@@ -4942,26 +4942,90 @@ function plazaOpen(id) {
 
 格式：用 markdown，简短段落，emoji 适量。`;
 
+  // 自动生成"AI 通常会怎么讲"模板（基于 exp.title 和 exp.intro）
+  const exampleExplain = buildExampleExplain(exp);
+
   plazaDetail.innerHTML = `<div class="plaza-detail">
     <button class="back ghost small" id="plazaBack">← 返回列表</button>
     <h2 style="margin: 8px 0 4px;">${exp.title} <span class="cat-tag ${PLAZA_CATEGORIES[exp.cat]}" style="font-size: 12px;">${exp.cat}</span> <span class="id-tag" style="font-size: 12px;">${exp.id}</span></h2>
     <p style="font-size: 14px; color: var(--muted); margin: 0 0 12px;">${exp.intro}</p>
     <div class="row" style="margin-bottom: 12px;">
-      <button class="ghost small" id="plazaAI">📋 复制 AI 讲解 prompt</button>
-      <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">打开豆包 →</a>
-      <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">打开 DeepSeek →</a>
+      <button class="primary small" id="plazaAI">📋 复制 prompt</button>
+      <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
+      <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
     </div>
+
+    <details open style="margin-bottom: 12px;">
+      <summary style="cursor: pointer; font-weight: 600; padding: 8px 0;">💡 AI 通常会怎么讲（点击展开/折叠）</summary>
+      <div style="background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 14px 16px; border-radius: 6px; font-size: 14px; line-height: 1.7; margin-top: 8px;">
+${exampleExplain}
+      </div>
+    </details>
+
+    <details style="margin-bottom: 16px;">
+      <summary style="cursor: pointer; font-weight: 600; padding: 8px 0;">📋 完整 prompt 文本（点击展开/折叠）</summary>
+      <pre style="background: #1e293b; color: #e2e8f0; padding: 14px 16px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
+    </details>
+
     <div id="plazaBody"></div>
   </div>`;
   exp.render(document.getElementById('plazaBody'));
   const aiBtn = document.getElementById('plazaAI');
-  aiBtn.dataset.orig = '📋 复制 AI 讲解 prompt';
+  aiBtn.dataset.orig = '📋 复制 prompt';
   aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
   };
   plazaDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// 自动生成"AI 通常会怎么讲"模板
+function buildExampleExplain(exp) {
+  // 根据 exp.cat 选择不同的讲解模板
+  const tpl = {
+    '数论': (e) => `<strong>① 生活例子</strong>：<br>想象你有一个存钱罐，每天往里放 1 块、放 2 块...${e.title.includes('完美') ? '，如果某天放的总数等于罐子里的总数，就是"完美数"（6 = 1+2+3）。' : e.title.includes('素数') ? '，挑出"只能被 1 和自己整除"的数（如 2、3、5、7）。' : '，看哪个数有点特别。'}<br><br>
+<strong>② 核心概念</strong>：<br>${e.title} 是一种"挑数字"的方法。计算机几毫秒就能扫百万个数，孩子可以亲手验证：${e.intro.split('。')[0]}。<br><br>
+<strong>③ 试一试</strong>：<br>• 让孩子自己挑几个数字算一算<br>• 比比谁找得快、谁找得多<br>• 看看 100 以内有几个这样的数`,
+
+    '序列': (e) => `<strong>① 生活例子</strong>：<br>想象你养了两只兔子，每月生一对。每月兔子对数：1, 1, 2, 3, 5, 8, 13...这就是 ${e.title.includes('Fibonacci') ? 'Fibonacci 数列' : e.title.split('（')[0]}！每个数都是前两个相加。<br><br>
+<strong>② 核心概念</strong>：<br>${e.title} 有一个简单规则：每一项由前面几项决定。孩子输入起点，AI 帮你画出来——能发现数列越往后增长越快、还是越慢？<br><br>
+<strong>③ 试一试</strong>：<br>• 算 10 项后停下来<br>• 让孩子猜第 11 项是什么<br>• 比比"猜测值"和"真实值"差多少`,
+
+    'π·e': (e) => `<strong>① 生活例子</strong>：<br>${e.title.includes('π') || e.title.includes('圆周率') ? '拿一根绳子绕圆柱一圈，再量直径。绳子长 / 直径 = 3.14... 这个 3.14 叫 π，无论圆柱多大都是这个数。' : e.title.includes('e') ? '把 1 元存银行，年利率 100%，连续复利 → 最终本息不是 2、3、4 元，而是 2.718... 元。这个"自然常数"叫 e。' : '用一根绳子和一个圆，看看能算出什么神奇常数。'}<br><br>
+<strong>② 核心概念</strong>：<br>${e.intro.split('。')[0]}。中国古代祖冲之算到 7 位精度，比欧洲早 1000 年；今天用 AI 几秒就能算万亿位。<br><br>
+<strong>③ 试一试</strong>：<br>• 让孩子用尺子和圆测一测 π<br>• 看看不同算法谁算得快<br>• 比赛谁背的 π 位数多`,
+
+    '几何': (e) => `<strong>① 生活例子</strong>：<br>观察一个橙子的形状：6 瓣、12 瓣、20 瓣... 它们都是 ${e.title.includes('柏拉图') ? '正多面体——' : '' }几何上的"完美"形状。孩子可以拿橘子 / 西瓜 / 篮球数一数。<br><br>
+<strong>② 核心概念</strong>：<br>${e.intro.split('。')[0]}。几何里"对"和"美"经常是一回事——因为对称。<br><br>
+<strong>③ 试一试</strong>：<br>• 让孩子用纸折正四面体 / 正八面体<br>• 算教室有几个面、几条棱、几个顶点<br>• 验证 V - E + F = 2 是否成立`,
+
+    '图论': (e) => `<strong>① 生活例子</strong>：<br>${e.title.includes('TSP') || e.title.includes('旅行') ? '送外卖要跑 5 家店——怎么走最短？' : e.title.includes('桥') || e.title.includes('哥尼斯堡') ? '18 世纪 Königsberg 有 7 桥——能不能走遍每桥恰好一次？' : '把 6 个小朋友拉在一起比"谁认识谁"——'} 看似简单，其实藏着数学难题。<br><br>
+<strong>② 核心概念</strong>：<br>${e.intro.split('。')[0]}。图论是研究"关系"的数学——能用在地图、社交网络、电路板设计中。<br><br>
+<strong>③ 试一试</strong>：<br>• 让孩子用 6 个点画 15 条边<br>• 试试必有一个"三人互识或互不识"<br>• 数数自己认识的人里有没有"三人组"`,
+
+    '概率': (e) => `<strong>① 生活例子</strong>：<br>${e.title.includes('生日') ? '一个班 30 人，至少两人同生日的概率 > 70%——听起来反直觉，对吧？' : e.title.includes('Monty') || e.title.includes('三门') ? '三个门选一个，主持人开一个空门——改选的成功率是不改的 2 倍！' : e.title.includes('赌徒') ? '口袋里 10 元想赢到 20 元，公平赌局也有 50% 概率输光——' : '抛硬币、掷骰子、抽签——'} 概率就是"长期会怎样"。<br><br>
+<strong>② 核心概念</strong>：<br>${e.intro.split('。')[0]}。<br><br>
+<strong>③ 试一试</strong>：<br>• 让孩子抛 20 次硬币记录正反<br>• 让 AI 模拟 1000 次看频率<br>• 比较"经验"和"理论"差多少`,
+
+    '算法': (e) => `<strong>① 生活例子</strong>：<br>${e.title.includes('24') ? '用 1、5、5、5 + 加减乘除算 24——你能算出来吗？' : e.title.includes('Nim') || e.title.includes('博弈') ? '3 堆石子轮流取——AI 用一个简单的异或就能保证必胜！' : e.title.includes('汉诺塔') ? '64 个金盘从一根柱子挪到另一根，最少要挪 18446744073709551615 次——' : e.title.includes('八皇后') ? '8 个皇后放棋盘互不攻击——92 种摆法！' : '想象一个算法问题：'} 看似简单，电脑几毫秒就算完。<br><br>
+<strong>② 核心概念</strong>：<br>${e.intro.split('。')[0]}。<br><br>
+<strong>③ 试一试</strong>：<br>• 让孩子手算一道，AI 算一道<br>• 比比谁快<br>• 想想"如果数据大 100 倍会怎样"`,
+
+    '分形': (e) => `<strong>① 生活例子</strong>：<br>看一片雪花、树根、海岸线——它们的形状都是"自相似"的：放大看局部，仍然和整体长得像。这就是 ${e.title}！<br><br>
+<strong>② 核心概念</strong>：<br>${e.intro.split('。')[0]}。分形在自然界、艺术、医学（血管）、通信（天线）里都有应用。<br><br>
+<strong>③ 试一试</strong>：<br>• 让孩子用 AI 调深度，看图形怎么变化<br>• 找一找家里有没有分形（花椰菜、闪电、河流）<br>• 用分形画一幅画`,
+
+    '其他': (e) => `<strong>① 生活例子</strong>：<br>${e.title.includes('幻方') ? '把 1-9 填在 3×3 方格里，每行/列/对角线加起来都是 15——这是中国 4000 年前的智慧。' : e.title.includes('螺旋') ? '向日葵的种子、鹦鹉螺的壳——都是螺旋形的。' : e.title.includes('Tic') || e.title.includes('井字') ? '和电脑下井字棋——其实你永远赢不了，AI 必平。' : e.title.includes('生命') ? '一群小格子按规则"活"和"死"——能演化出飞机、滑翔机、甚至能计算！' : '观察周围的世界——'} 数学无处不在。<br><br>
+<strong>② 核心概念</strong>：<br>${e.intro.split('。')[0]}。<br><br>
+<strong>③ 试一试</strong>：<br>• 让孩子动手画一画、算一算<br>• 想想生活中类似的例子<br>• 跟同学比谁发现得多`,
+  };
+  const fn = tpl[exp.cat] || tpl['其他'];
+  return fn(exp);
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 plazaSearch.addEventListener('input', plazaRenderGrid);
