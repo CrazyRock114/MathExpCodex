@@ -10,7 +10,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='72' font-size='72' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3Eπ%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='72' font-size='72' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3Eπ%3C/text%3E%3C/svg%3E">
 <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22AI%20%E6%95%B0%E5%AD%A6%E8%AF%BE%E5%A0%82%22%2C%22short_name%22%3A%22MathClass%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23fafaf7%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22description%22%3A%22100%20%E4%B8%AA%E6%95%B0%E5%AD%A6%E5%B0%8F%E5%AE%9E%E9%AA%8C%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2527http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2527%2520viewBox%253D%25270%25200%2520100%2520100%2527%253E%253Crect%2520width%253D%2527100%2527%2520height%253D%2527100%2527%2520rx%253D%252720%2527%2520fill%253D%2527%25232563eb%2527%252F%253E%253Ctext%2520x%253D%252750%2527%2520y%253D%252772%2527%2520font-size%253D%252772%2527%2520text-anchor%253D%2527middle%2527%2520fill%253D%2527white%2527%2520font-family%253D%2527sans-serif%2527%2520font-weight%253D%2527bold%2527%253E%25CF%2580%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
-<title>投针算 π × 冰雹蹦跳  |  AI 数学课堂</title>
+<title>数学小实验广场（108 个） |  AI 数学课堂</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
@@ -306,6 +306,33 @@
     color: #78350f;
     margin-bottom: 16px;
   }
+  /* Plaza 4 区样式 */
+  .plaza-detail details summary {
+    list-style: none;
+    user-select: none;
+  }
+  .plaza-detail details summary::-webkit-details-marker { display: none; }
+  .plaza-detail details summary::before {
+    content: "▶ ";
+    display: inline-block;
+    margin-right: 6px;
+    transition: transform 0.15s;
+    font-size: 0.85em;
+  }
+  .plaza-detail details[open] > summary::before {
+    content: "▼ ";
+    transform: rotate(0deg);
+  }
+  .plaza-detail details summary:hover { opacity: 0.85; }
+  .plaza-detail details > div { animation: fadeIn 0.2s ease-in; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .plaza-detail h4 { margin: 12px 0 6px; font-size: 15px; color: #1f2937; }
+  .plaza-detail h4:first-child { margin-top: 0; }
+  .plaza-detail ul, .plaza-detail ol { padding-left: 22px; margin: 8px 0; }
+  .plaza-detail li { margin: 4px 0; }
+  .plaza-detail .formula { background: rgba(255,255,255,0.6); padding: 1px 5px; border-radius: 3px; }
+  body.dark .plaza-detail details > div { color: #e2e8f0; }
+  body.dark .plaza-detail h4 { color: #f1f5f9; }
   .formula {
     font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
     background: #f3f4f6;
@@ -417,8 +444,8 @@
 <body>
 
 <header>
-  <h1>投针算 π × 冰雹蹦跳</h1>
-  <p>两个可交互的数学小实验：随机里藏着常数 3.14，蹦跳里藏着规律 1。课堂演示 / 学生自玩两相宜。</p>
+  <h1>🧪 数学小实验广场（108 个）</h1>
+  <p>投针算 π · 冰雹蹦跳 · 猜勾股数 · 四色定理 · 拉姆齐 · 哥德巴赫 · 孪生素数 · π 多算法…  9 大类数学实验，每个都带 ① 原理讲解 ② 历史背景 ③ 互动演示 ④ AI 讲解 四区。课堂演示 / 学生自玩两相宜。</p>
   <div style="position: absolute; top: 16px; right: 24px; display: flex; gap: 8px;">
     <button id="darkToggle" class="ghost small" style="font-size: 12px;">🌙 深色</button>
     <button id="presentToggle" class="ghost small" style="font-size: 12px;">📺 投屏</button>
@@ -426,531 +453,16 @@
 </header>
 
 <nav class="tabs">
-  <button class="active" data-tab="buffon">投针算 π</button>
-  <button data-tab="collatz">冰雹蹦跳 (Collatz)</button>
-  <button data-tab="pythagorean">猜勾股数</button>
-  <button data-tab="fourcolor">四色定理</button>
-  <button data-tab="ramsey">拉姆齐 R(3,3)</button>
-  <button data-tab="goldbach">哥德巴赫配糖</button>
-  <button data-tab="twin">孪生素数</button>
-  <button data-tab="pialg">π 多算法</button>
-  <button data-tab="plaza">实验广场（100）</button>
+  <button class="active" data-tab="plaza">🧪 数学小实验广场（108 个）</button>
   <button id="presentBtn" class="present-btn" title="进入全屏演示模式（隐藏顶部导航）">⛶ 全屏演示</button>
 </nav>
 
-<!-- ============== Tab 1: Buffon's Needle ============== -->
-<section class="tab-panel active" id="buffon">
+<!-- ============== Experiment Plaza ============== -->
+<section class="tab-panel active" id="plaza">
   <div class="intro">
-    法国博物学家 Buffon 1733 年提出：把一根长度为 L 的针扔到画着等距平行线（间距 d）的纸上，针跨过线的概率 P = <span class="formula">2L/(πd)</span>。
-    反过来，<span class="formula">π ≈ 2L·N/(d·n)</span>，N = 投掷总次数，n = 跨线次数。<strong>随机里藏着常数</strong>。
-  </div>
-
-  <div class="grid">
-    <div>
-      <div class="card">
-        <h2>画布：每一根针都被画下来 <button class="ghost small" id="bDownload" style="float: right; font-size: 12px;">下载 PNG</button></h2>
-        <canvas id="buffon-canvas" class="draw" width="720" height="420"></canvas>
-        <div class="legend">
-          <span class="line">平行线</span>
-          <span class="pin">未跨线针</span>
-          <span class="hit">跨线针</span>
-        </div>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 10px;">
-          提示：可以<strong>点画布自己扔一根针</strong>（拖动可旋转角度），让孩子感受随机；也可以用下方按钮让 AI 自动跑。
-        </p>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>误差趋势：π 估值怎么收敛？</h2>
-        <div class="chart-wrap"><canvas id="buffon-error"></canvas></div>
-      </div>
-    </div>
-
-    <div>
-      <div class="card">
-        <h2>参数</h2>
-        <div class="row">
-          <label>针长 L (px)
-            <input type="number" id="L" value="50" min="10" max="120">
-          </label>
-          <label>线距 d (px)
-            <input type="number" id="d" value="80" min="20" max="200">
-          </label>
-        </div>
-        <p style="font-size: 13px; color: var(--muted); margin: 8px 0 0;">
-          L/d = <strong id="ratio">0.625</strong>　
-          理论跨线率 P = <strong id="pTheory">39.8%</strong>
-        </p>
-        <h3>让 AI 投针</h3>
-        <div class="row">
-          <button class="primary" id="b1">投 1 根</button>
-          <button class="primary" id="b100">投 100 根</button>
-          <button class="primary" id="b1000">投 1 000 根</button>
-          <button class="primary" id="b10000">投 10 000 根</button>
-          <button class="ghost" id="bReset">重置</button>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>实时结果</h2>
-        <div class="stat-grid">
-          <div class="stat"><div class="k">总投掷 N</div><div class="v" id="sN">0</div></div>
-          <div class="stat"><div class="k">跨线 n</div><div class="v" id="sn">0</div></div>
-          <div class="stat"><div class="k">实测跨线率</div><div class="v" id="sP">—</div></div>
-          <div class="stat big"><div class="k">π 估值</div><div class="v good" id="sPi">—</div></div>
-        </div>
-        <div class="stat" style="margin-top: 10px;">
-          <div class="k">相对误差 |π估值 − π真实| / π</div>
-          <div class="v warn" id="sErr">—</div>
-        </div>
-        <p style="font-size: 12px; color: var(--muted); margin-top: 10px;">
-          π 真实值 = 3.14159265358979...
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== Tab 2: Collatz ============== -->
-<section class="tab-panel" id="collatz">
-  <div class="intro">
-    选一个正整数 n：偶数就除 2，奇数就 ×3+1。一直蹦下去，最后必到 1。Erdős 悬赏 500 美元都证不出来——<strong>蹦跳里藏着规律</strong>。但你能"找到"一个例外吗？
-  </div>
-
-  <div class="grid collatz">
-    <div>
-      <div class="card">
-        <h2>单数序列：选一个 n 看看</h2>
-        <div class="row">
-          <label>起始 n
-            <input type="number" id="cN" value="27" min="1" max="1000000">
-          </label>
-          <button class="primary" id="cRun">开始</button>
-          <button class="ghost" id="cStep">单步</button>
-          <button class="ghost" id="cReset">重置</button>
-        </div>
-        <h3>序列路径</h3>
-        <div class="chart-wrap"><canvas id="cPath"></canvas></div>
-        <h3>当前序列</h3>
-        <div class="sequence" id="cSeq">（输入 n 后点击开始）</div>
-        <div class="stat-grid" style="margin-top: 12px;">
-          <div class="stat"><div class="k">步数</div><div class="v" id="cSteps">0</div></div>
-          <div class="stat"><div class="k">峰值</div><div class="v warn" id="cMax">—</div></div>
-          <div class="stat"><div class="k">当前值</div><div class="v" id="cCur">—</div></div>
-          <div class="stat"><div class="k">是否回到 1</div><div class="v" id="cDone" style="font-size: 18px;">—</div></div>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>扫描 1 → N：每条序列蹦多高？</h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          AI 自动扫描，对每个起始 n 跑完序列，记录<strong>峰值</strong>和<strong>步数</strong>。看哪些数最"拧巴"。
-        </p>
-        <div class="row">
-          <label>扫描到 N
-            <input type="number" id="scanN" value="5000" min="100" max="100000" step="100">
-          </label>
-          <button class="primary" id="scanRun">开始扫描</button>
-          <span id="scanStatus" style="color: var(--muted); font-size: 13px;"></span>
-        </div>
-        <h3>峰值散点图（红 = 步数最多）</h3>
-        <div class="chart-wrap tall"><canvas id="scanChart"></canvas></div>
-      </div>
-    </div>
-
-    <div>
-      <div class="card">
-        <h2>反常起点 Top 10</h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          扫描范围内蹦得最久（步数最多）的 10 个数。
-        </p>
-        <table class="topn" id="topn">
-          <thead><tr><th>起始 n</th><th>步数</th><th>峰值</th></tr></thead>
-          <tbody><tr><td colspan="3" style="text-align:center; color: var(--muted);">（先跑一次扫描）</td></tr></tbody>
-        </table>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>反例悬赏</h2>
-        <p style="font-size: 14px; line-height: 1.6;">
-          Paul Erdős 当年为这个问题悬赏 <strong>500 美元</strong>，说"数学还没准备好解决这种问题"。
-          至今未有人能证明，更未找到反例——已验证到 <strong>5.76 × 10<sup>18</sup></strong>。
-        </p>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">
-          让 AI 扫到 10⁷（1 千万）大概要 30 秒；扫到 10⁵（10 万）只需 1 秒。课堂上推荐 1 万到 5 万。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== Tab 3: Pythagorean ============== -->
-<section class="tab-panel" id="pythagorean">
-  <div class="intro">
-    <strong>Euclid 公式</strong>：所有本原勾股数（互素的最简勾股数）都长这样——
-    <span class="formula">(m²−n², 2mn, m²+n²)</span>，
-    其中 m &gt; n &gt; 0、m−n 为奇数、m 和 n 互素。
-    1000 以内一共有 <strong>158 个</strong>本原勾股数，理论上 8 步能"夹"出来（log₂158 ≈ 7.3）。
-  </div>
-
-  <div class="grid">
-    <div>
-      <div class="card">
-        <h2>挑战模式：AI 出题你猜</h2>
-        <div class="row" style="margin-bottom: 12px;">
-          <button class="primary" id="pyNew">换一题</button>
-          <span style="color: var(--muted); font-size: 14px;">
-            剩余候选 <strong id="pyRemain" style="color: var(--accent);">—</strong>　
-            已用 <strong id="pyUsed" style="color: var(--accent);">0</strong> 步
-          </span>
-          <button class="ghost small" id="pyShowAns" style="margin-left: auto;">偷看答案</button>
-        </div>
-        <div id="pyAnswer" class="sequence" style="text-align: center; font-size: 18px; padding: 16px; background: #fef3c7;">
-          点击"换一题"开始
-        </div>
-        <h3>提问区（可输入数字或文字）</h3>
-        <div class="row">
-          <label style="flex: 1; min-width: 200px;">
-            输入数字
-            <input type="number" id="pyQ" placeholder="例如 5、100、3" min="0" max="999">
-          </label>
-          <button class="primary" id="pyAsk">提问</button>
-        </div>
-        <h3>快捷问题</h3>
-        <div class="row" style="gap: 8px;">
-          <button class="ghost small" data-q="contains">包含数字 ?</button>
-          <button class="ghost small" data-q="maxLess">最大边 &lt; ?</button>
-          <button class="ghost small" data-q="mEq">m = ?</button>
-          <button class="ghost small" data-q="nEq">n = ?</button>
-          <button class="ghost small" data-q="allOdd">三边都奇？</button>
-          <button class="ghost small" data-q="hasEven">有偶数边？</button>
-        </div>
-        <h3>提问历史</h3>
-        <div class="sequence" id="pyLog" style="min-height: 60px;">（还没有提问）</div>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>候选池（实时缩小）</h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          1000 以内所有本原勾股数。每次提问后，过滤掉不符的。
-        </p>
-        <div id="pyCandidates" class="sequence" style="min-height: 100px; line-height: 1.9;"></div>
-      </div>
-    </div>
-
-    <div>
-      <div class="card">
-        <h2>勾股数工厂：调 m, n</h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          自己当欧几里得，看看哪些 (m, n) 配对能出本原勾股数。
-        </p>
-        <label>m: <strong id="mVal">3</strong>
-          <input type="range" id="mSlider" min="2" max="40" value="3">
-        </label>
-        <label style="margin-top: 8px;">n: <strong id="nVal">2</strong>
-          <input type="range" id="nSlider" min="1" max="39" value="2">
-        </label>
-        <div class="stat-grid" style="margin-top: 12px;">
-          <div class="stat"><div class="k">a = m²−n²</div><div class="v" id="aOut">5</div></div>
-          <div class="stat"><div class="k">b = 2mn</div><div class="v" id="bOut">12</div></div>
-          <div class="stat"><div class="k">c = m²+n²</div><div class="v" id="cOut">13</div></div>
-        </div>
-        <div class="stat" style="margin-top: 10px; background: #ecfdf5; border-color: #a7f3d0;">
-          <div class="k" style="color: #047857;">本原？</div>
-          <div class="v" id="pyCheck" style="color: #059669;">✓ 是本原（gcd=1, m−n 奇）</div>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>本原勾股数表（1000 以内）</h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          全部 50 个，按 m 从小到大。
-        </p>
-        <div id="pyAllList" class="sequence" style="max-height: 200px; line-height: 1.7; font-size: 13px;"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== Tab 4: Four Color Theorem ============== -->
-<section class="tab-panel" id="fourcolor">
-  <div class="intro">
-    <strong>四色定理</strong>（Appel-Haken 1976）：任何平面地图只用 <strong>4 种颜色</strong>，就能让相邻区域不同色。
-    2005 年 Gonthier 用 Coq 证明助手给出了完整形式化证明——是第一个<strong>必须靠计算机</strong>才能完成的著名数学定理。
-    试试看：自己涂、跟 AI 比谁用的颜色少。
-  </div>
-
-  <div class="grid">
-    <div>
-      <div class="card">
-        <h2>地图：<span id="fcMapLabel">6 × 6 网格</span></h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          点格子涂色。规则：<strong>相邻（上下左右）格子颜色必须不同</strong>。
-        </p>
-        <div class="row" style="margin-bottom: 8px;">
-          <label style="flex: 1;">
-            地图类型
-            <select id="fcMapType" style="font-size: 14px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; width: 100%;">
-              <option value="grid">6 × 6 网格（2 色就够）</option>
-              <option value="voro">Voronoi 不规则地图（3 色不够要 4 色）</option>
-            </select>
-          </label>
-          <label style="width: 110px;">
-            国家数
-            <input type="number" id="fcN" value="14" min="5" max="20">
-          </label>
-          <button class="ghost small" id="fcRegen" style="margin-top: 18px;">重新生成</button>
-          <button class="ghost small" id="fcDownload" style="margin-top: 18px;">下载 PNG</button>
-        </div>
-        <svg id="fc-svg" width="100%" viewBox="0 0 360 360" style="background: #fafaf7; border: 1px solid var(--line); border-radius: 8px; display: block; touch-action: manipulation;"></svg>
-        <div class="stat-grid" style="margin-top: 12px;">
-          <div class="stat"><div class="k">已涂色</div><div class="v" id="fcFilled">0</div></div>
-          <div class="stat"><div class="k">冲突数（同色相邻）</div><div class="v warn" id="fcConflict">0</div></div>
-          <div class="stat"><div class="k">使用颜色数</div><div class="v" id="fcColors">0</div></div>
-          <div class="stat big"><div class="k">判定</div><div class="v" id="fcVerdict" style="font-size: 18px;">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="card">
-        <h2>4 色画板</h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          选一个颜色，再点格子涂上。
-        </p>
-        <div id="fcPalette" class="row" style="gap: 8px;"></div>
-        <h3>挑战模式</h3>
-        <div class="row" style="gap: 8px;">
-          <button class="primary" id="fc3Challenge">挑战 3 色</button>
-          <button class="ghost small" id="fc3Off">恢复 4 色</button>
-        </div>
-        <p style="font-size: 12px; color: var(--muted); margin-top: 6px;">
-          挑战 3 色：把第 4 色锁住，看 3 色够不够。—— <strong>大多数 6×6 图 3 色不够</strong>，但有些简单图可以。
-        </p>
-        <h3>AI 帮忙</h3>
-        <div class="row" style="gap: 8px;">
-          <button class="primary" id="fcAuto4">AI 用 4 色涂</button>
-          <button class="ghost" id="fcClear">清空</button>
-        </div>
-        <p style="font-size: 12px; color: var(--muted); margin-top: 6px;">
-          AI 用回溯算法找 4-着色方案。四色定理保证只要地图够"平面"，AI 总能找到。
-        </p>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>故事背景</h2>
-        <p style="font-size: 14px; line-height: 1.6;">
-          1852 年 Francis Guthrie 首次提出"四色猜想"。1976 年 Appel 和 Haken 借<strong>计算机</strong>辅助证明，震惊数学界——人不能"读"完全部证明。
-          2005 年 Gonthier 在 <strong>Coq 证明助手</strong>里把证明完全形式化，让机器自己检查机器写的证明。
-        </p>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">
-          教训：有些数学问题已经<strong>超出人类纸笔可验证的复杂度</strong>——必须借 AI/形式化工具。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== Tab 5: Ramsey R(3,3) ============== -->
-<section class="tab-panel" id="ramsey">
-  <div class="intro">
-    <strong>拉姆齐定理</strong>（F. P. Ramsey, 1930）：6 个人聚会，必有 3 人互相认识或 3 人互不认识。等价于——
-    <span class="formula">K₆</span> 的任意红蓝二着色必含<strong>单色三角形</strong>，但 <span class="formula">K₅</span> 不一定。
-    R(3,3) = 6 是最小值。试自己点边、验证规律。
-  </div>
-
-  <div class="grid">
-    <div>
-      <div class="card">
-        <h2>6 人派对：点边切换颜色 <button class="ghost small" id="rmDownload" style="float: right; font-size: 12px;">下载 PNG</button></h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          红边 = 两人认识，蓝边 = 两人不认识。任意两条边切换会刷新<strong>单色三角形</strong>的检测。
-        </p>
-        <svg id="rm-svg" width="100%" viewBox="0 0 480 420" style="background: #fafaf7; border: 1px solid var(--line); border-radius: 8px; display: block;"></svg>
-        <div class="stat-grid" style="margin-top: 12px;">
-          <div class="stat"><div class="k">红边（认识）</div><div class="v" id="rmRed" style="color: #ef4444;">0</div></div>
-          <div class="stat"><div class="k">蓝边（不认识）</div><div class="v" id="rmBlue" style="color: #2563eb;">0</div></div>
-          <div class="stat big"><div class="k">单色三角形</div><div class="v" id="rmTri" style="color: #059669;">0</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="card">
-        <h2>工具</h2>
-        <div class="row" style="gap: 8px;">
-          <button class="primary" id="rmRandom6">随机 K₆ 着色</button>
-          <button class="primary" id="rmRandom5">随机 K₅ 着色（6 人模式）</button>
-          <button class="ghost" id="rmClear">清空</button>
-        </div>
-        <h3>挑战</h3>
-        <div class="row" style="gap: 8px;">
-          <button class="ghost small" id="rmChallenge">AI 出反例：找无单色三角的 K₅</button>
-        </div>
-        <p style="font-size: 12px; color: var(--muted); margin-top: 6px;">
-          提示：<strong>5 人可以无单色三角形</strong>（C₅ 圈 + 弦交替是经典反例），但<strong>6 人不可能</strong>。
-        </p>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>统计：100 个随机 K₶ 着色</h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          点下方按钮，AI 跑 100 个随机 6 人配置，统计有多少含单色三角形。
-        </p>
-        <button class="primary" id="rmStat">跑 100 次</button>
-        <div class="stat" style="margin-top: 12px;">
-          <div class="k">含单色三角形</div>
-          <div class="v" id="rmStatResult">—</div>
-        </div>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 6px;">
-          期望：<strong>100%</strong>（这就是 R(3,3)=6 的核心证据）。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== Tab 6: Goldbach ============== -->
-<section class="tab-panel" id="goldbach">
-  <div class="intro">
-    <strong>哥德巴赫猜想</strong>（1742）：任何大于 2 的偶数都能写成两个素数之和。强版至今未证，数值验证已到 4×10¹⁸。
-    <strong>弱版</strong>（Helfgott 2013）：任何大于 5 的奇数都能写成<strong>三个</strong>素数之和——已证。
-    试试看：自己输入偶数，看 AI 帮你配糖。
-  </div>
-
-  <div class="grid">
-    <div>
-      <div class="card">
-        <h2>单数配糖：输入一个偶数</h2>
-        <div class="row">
-          <label style="flex: 1; min-width: 200px;">
-            偶数 N（&gt; 2）
-            <input type="number" id="gbN" value="100" min="4" max="100000">
-          </label>
-          <button class="primary" id="gbFind">配糖</button>
-          <button class="ghost" id="gbClear">清空</button>
-        </div>
-        <h3>所有分解</h3>
-        <div id="gbList" class="sequence" style="min-height: 100px; line-height: 1.9;">（输入偶数点"配糖"）</div>
-        <div class="stat-grid" style="margin-top: 12px;">
-          <div class="stat"><div class="k">分解数</div><div class="v" id="gbCount">0</div></div>
-          <div class="stat big"><div class="k">是否配成</div><div class="v" id="gbVerdict" style="font-size: 18px;">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="card">
-        <h2>扫 4 → N：所有偶数都能配吗？</h2>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">
-          AI 对 4 到 N 的每个偶数找素数对分解，统计成功率。
-        </p>
-        <div class="row">
-          <label>扫描到 N
-            <input type="number" id="gbScanN" value="1000" min="10" max="50000" step="100">
-          </label>
-          <button class="primary" id="gbScanRun">开始扫描</button>
-        </div>
-        <h3>结果</h3>
-        <div class="stat-grid">
-          <div class="stat"><div class="k">偶数总数</div><div class="v" id="gbTotal">—</div></div>
-          <div class="stat big"><div class="k">配成</div><div class="v good" id="gbOk">—</div></div>
-        </div>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 6px;">
-          期望：<strong>100%</strong>（迄今 4×10¹⁸ 都没反例）。扫到 1 万约 1 秒。
-        </p>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>反例悬赏</h2>
-        <p style="font-size: 14px; line-height: 1.6;">
-          谁找到一个不能写成两素数之和的偶数——<strong>数学界会给他立碑</strong>。
-          250 年了没人找到。Helfgott 2013 年证明了"三素数和"（弱版），但两素数（强版）仍是世纪难题。
-        </p>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">
-          提示：让孩子自己输一个偶数，看 AI 怎么"撞"出分解对——<strong>偶数越大反而越容易配</strong>。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== Tab 7: Twin Primes ============== -->
-<section class="tab-panel" id="twin">
-  <div class="intro">
-    <strong>孪生素数猜想</strong>：是否存在无穷多对相差 2 的素数（3-5、5-7、11-13、17-19、29-31…）？
-    2013 年张益唐证明存在无穷多对相差 &lt; 7×10⁷ 的素数，2014 年 Polymath 8 + Maynard 推进到 246。
-    AI 扫一段区间，看孪生素数有多"密"。
-  </div>
-
-  <div class="grid">
-    <div>
-      <div class="card">
-        <h2>扫 1 → N：孪生素数对</h2>
-        <div class="row">
-          <label style="flex: 1; min-width: 200px;">
-            扫描到 N
-            <input type="number" id="tpN" value="1000" min="100" max="500000" step="100">
-          </label>
-          <button class="primary" id="tpRun">开始扫描</button>
-          <span id="tpStatus" style="color: var(--muted); font-size: 13px;"></span>
-        </div>
-        <h3>孪生素数对（散点：横轴 = 小素数，纵轴 = 大素数）</h3>
-        <div class="chart-wrap tall"><canvas id="tpChart"></canvas></div>
-        <div class="stat-grid" style="margin-top: 12px;">
-          <div class="stat"><div class="k">区间 [1, N] 素数总数</div><div class="v" id="tpPrimeTotal">—</div></div>
-          <div class="stat big"><div class="k">孪生素数对数</div><div class="v good" id="tpTwinCount">—</div></div>
-          <div class="stat"><div class="k">孪生 / 素数比</div><div class="v" id="tpRatio">—</div></div>
-          <div class="stat"><div class="k">最大孪生对</div><div class="v" id="tpLargest">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="card">
-        <h2>单数验证：n 和 n+2 都是素数？</h2>
-        <div class="row">
-          <label style="flex: 1; min-width: 200px;">
-            输入 n
-            <input type="number" id="tpCheck" value="100">
-          </label>
-          <button class="primary" id="tpCheckBtn">检查</button>
-        </div>
-        <div class="stat" style="margin-top: 12px;">
-          <div class="k">n 是否素数</div>
-          <div class="v" id="tpIsP1">—</div>
-        </div>
-        <div class="stat" style="margin-top: 10px;">
-          <div class="k">n+2 是否素数</div>
-          <div class="v" id="tpIsP2">—</div>
-        </div>
-        <div class="stat" style="margin-top: 10px; background: #ecfdf5; border-color: #a7f3d0;">
-          <div class="k" style="color: #047857;">是否孪生素数</div>
-          <div class="v" id="tpIsTwin" style="color: #059669;">—</div>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>故事</h2>
-        <p style="font-size: 14px; line-height: 1.6;">
-          2013 年 5 月，张益唐（U New Hampshire 讲师、曾任赛百味店员、默默无闻多年）在
-          <em>Annals of Mathematics</em> 独自发表论文，<strong>证明存在无穷多对相差 &lt; 7×10⁷ 的素数</strong>。
-          此后 Polymath 8 计划（开放式合作）几个月内把界推进到 246。
-        </p>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">
-          <strong>Hardy-Littlewood 猜想</strong>：孪生素数对数 ~ 2C₂ ∫(N) / (ln N)²，C₂ ≈ 0.66。
-          实际密度与 N/ln²N 成正比递减——但仍是<strong>无穷多</strong>。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== Tab 9: Experiment Plaza (100) ============== -->
-<section class="tab-panel" id="plaza">
-  <div class="intro">
-    <strong>100 个数学小实验</strong>：覆盖数论 / 序列 / π·e / 几何 / 图论 / 概率 / 游戏 / 分形 8 大类。
-    搜关键字（如 "Fibonacci"、"生日"、"完美数"）或按分类筛选。点 "开始" 进入实验。
+    <strong>108 个数学小实验</strong>：覆盖数论 / 序列 / π·e / 几何 / 图论 / 概率 / 算法 / 分形 / 其他 9 大类。
+    搜关键字（如 "Fibonacci"、"生日"、"完美数"、"投针"）或按分类筛选。点任意卡片进入实验。
+    <br><strong>前 8 个"精选实验"</strong>（投针 / Collatz / 勾股 / 四色 / 拉姆齐 / 哥德巴赫 / 孪生 / π 多算法）含完整原理讲解、历史背景、互动演示、AI 讲解四区。
   </div>
 
   <div class="card">
@@ -964,84 +476,156 @@
   </div>
 </section>
 
-<!-- ============== Tab 8: Pi Algorithms ============== -->
-<section class="tab-panel" id="pialg">
-  <div class="intro">
-    <strong>算 π 的多算法</strong>：从公元前 250 年阿基米德割圆到 1989 年 Chudnovsky 公式，
-    人类用越来越快的方式逼近 π。本页让 AI 并排跑 4 种算法，<strong>实时看谁收敛快</strong>。
-  </div>
-
-  <div class="grid">
-    <div>
-      <div class="card">
-        <h2>多算法并行：每种算法跑多少项？</h2>
-        <div class="row">
-          <label style="flex: 1;">
-            计算 N 项
-            <input type="number" id="piN" value="100" min="1" max="100000">
-          </label>
-          <button class="primary" id="piRun">开始计算</button>
-          <span id="piStatus" style="color: var(--muted); font-size: 13px;"></span>
-        </div>
-        <h3>4 种算法的 π 估值（每 N 项采样一次）</h3>
-        <div class="chart-wrap tall"><canvas id="piChart"></canvas></div>
-        <div class="legend">
-          <span style="color: #ef4444;">阿基米德割圆（96 → 6 边形逐次倍增）</span><br>
-          <span style="color: #2563eb;">Leibniz 级数（π/4 = 1 - 1/3 + 1/5 - 1/7 + ...）</span><br>
-          <span style="color: #10b981;">Machin 公式（π/4 = 4·arctan(1/5) - arctan(1/239)）</span><br>
-          <span style="color: #eab308;">Chudnovsky（1/π = 12·Σ(...)）</span>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="card">
-        <h2>当前结果（各项算法）</h2>
-        <div class="stat"><div class="k">阿基米德</div><div class="v" id="piA" style="font-size: 18px;">—</div></div>
-        <div class="stat" style="margin-top: 8px;"><div class="k">Leibniz</div><div class="v" id="piL" style="font-size: 18px;">—</div></div>
-        <div class="stat" style="margin-top: 8px;"><div class="k">Machin</div><div class="v" id="piM" style="font-size: 18px;">—</div></div>
-        <div class="stat" style="margin-top: 8px;"><div class="k">Chudnovsky</div><div class="v" id="piC" style="font-size: 18px;">—</div></div>
-        <div class="stat big" style="margin-top: 10px; background: #ecfdf5; border-color: #a7f3d0;">
-          <div class="k" style="color: #047857;">真实 π</div>
-          <div class="v" id="piTrue" style="color: #059669;">3.14159265...</div>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 20px;">
-        <h2>收敛速度对比</h2>
-        <p style="font-size: 14px; line-height: 1.6;">
-          <strong>Leibniz</strong>：O(1/N)，超慢——算 1000 项才到 3.14；算 10⁶ 项到 3.141。<br>
-          <strong>Machin</strong>：O(1/N^3)，中速——10 项到 12 位精度。<br>
-          <strong>Chudnovsky</strong>：O(1/N^6)，极快——<strong>每加 1 项多 14 位有效数字</strong>，是当前算 π 万亿位的工业标准。
-        </p>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">
-          课堂上：<strong>让孩子按"开始"看图，红线 Leibniz 几乎不动，黄线 Chudnovsky 一步到位</strong>——算法差距是数量级的。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <script>
 /* ===================== Buffon's Needle ===================== */
 const PI = Math.PI;
-const cv  = document.getElementById('buffon-canvas');
-const ctx = cv.getContext('2d');
-const errCv = document.getElementById('buffon-error');
-const errCtx = errCv.getContext('2d');
-
-let L = +document.getElementById('L').value;
-let d = +document.getElementById('d').value;
+// Buffon's state - 顶层 let 以便 setupBuffon() 可重复调用
+let cv, ctx, errCv, errCtx, errChart;
+let L, d;
 let needles = []; // {x, y, angle, hit}
 let history = []; // {n, piEst}
+let ratio, pTheory, sN, sn, sP, sPi, sErr;
 
-const ratio = document.getElementById('ratio');
-const pTheory = document.getElementById('pTheory');
-const sN = document.getElementById('sN');
-const sn = document.getElementById('sn');
-const sP = document.getElementById('sP');
-const sPi = document.getElementById('sPi');
-const sErr = document.getElementById('sErr');
+const BUFFON_HTML = `
+<div class="intro">
+  法国博物学家 <strong>Buffon</strong> 1733 年提出：把长度为 L 的针扔到画着等距平行线（间距 d）的纸上，针跨过线的概率
+  <strong>P = 2L / (πd)</strong>。反过来，<strong>π ≈ 2L·N / (d·n)</strong>，N = 投掷总次数，n = 跨线次数。
+  ——<em>随机里藏着常数</em>。
+</div>
+<div class="grid">
+  <div>
+    <div class="card">
+      <h2>画布：每一根针都被画下来 <button class="ghost small" id="bDownload" style="float: right; font-size: 12px;">下载 PNG</button></h2>
+      <canvas id="buffon-canvas" class="draw" width="720" height="420"></canvas>
+      <div class="legend">
+        <span class="line">平行线</span>
+        <span class="pin">未跨线针</span>
+        <span class="hit">跨线针</span>
+      </div>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 10px;">提示：可以<strong>点画布自己扔一根针</strong>（角度随机），让孩子感受随机；也可以用下方按钮让 AI 自动跑。</p>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>误差趋势：π 估值怎么收敛？</h2>
+      <div class="chart-wrap"><canvas id="buffon-error"></canvas></div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h2>参数</h2>
+      <div class="row">
+        <label>针长 L (px)<input type="number" id="L" value="50" min="10" max="120"></label>
+        <label>线距 d (px)<input type="number" id="d" value="80" min="20" max="200"></label>
+      </div>
+      <p style="font-size: 13px; color: var(--muted); margin: 8px 0 0;">L/d = <strong id="ratio">0.625</strong>　理论跨线率 P = <strong id="pTheory">39.8%</strong></p>
+      <h3>让 AI 投针</h3>
+      <div class="row">
+        <button class="primary" id="b1">投 1 根</button>
+        <button class="primary" id="b100">投 100 根</button>
+        <button class="primary" id="b1000">投 1 000 根</button>
+        <button class="primary" id="b10000">投 10 000 根</button>
+        <button class="ghost" id="bReset">重置</button>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>实时结果</h2>
+      <div class="stat-grid">
+        <div class="stat"><div class="k">总投掷 N</div><div class="v" id="sN">0</div></div>
+        <div class="stat"><div class="k">跨线 n</div><div class="v" id="sn">0</div></div>
+        <div class="stat"><div class="k">实测跨线率</div><div class="v" id="sP">—</div></div>
+        <div class="stat big"><div class="k">π 估值</div><div class="v good" id="sPi">—</div></div>
+      </div>
+      <div class="stat" style="margin-top: 10px;">
+        <div class="k">相对误差 |π估值 − π真实| / π</div>
+        <div class="v warn" id="sErr">—</div>
+      </div>
+      <p style="font-size: 12px; color: var(--muted); margin-top: 10px;">π 真实值 = 3.14159265358979...</p>
+    </div>
+  </div>
+</div>
+`;
+
+function setupBuffon(root) {
+  root.innerHTML = BUFFON_HTML;
+  cv  = document.getElementById('buffon-canvas');
+  ctx = cv.getContext('2d');
+  errCv = document.getElementById('buffon-error');
+  errCtx = errCv.getContext('2d');
+  L = +document.getElementById('L').value;
+  d = +document.getElementById('d').value;
+  needles = [];
+  history = [];
+  ratio = document.getElementById('ratio');
+  pTheory = document.getElementById('pTheory');
+  sN = document.getElementById('sN');
+  sn = document.getElementById('sn');
+  sP = document.getElementById('sP');
+  sPi = document.getElementById('sPi');
+  sErr = document.getElementById('sErr');
+
+  document.getElementById('L').onchange = updateParams;
+  document.getElementById('d').onchange = updateParams;
+  document.getElementById('b1').onclick = () => drop(1);
+  document.getElementById('b100').onclick = () => drop(100);
+  document.getElementById('b1000').onclick = () => drop(1000);
+  document.getElementById('b10000').onclick = () => drop(10000);
+  document.getElementById('bReset').onclick = () => {
+    needles = []; history = [];
+    drawLines();
+    updateStats();
+    if (errChart) { errChart.data.labels = []; errChart.data.datasets[0].data = []; errChart.update(); }
+  };
+  document.getElementById('bDownload').onclick = () => {
+    downloadCanvas(cv, `投针_${timestamp()}.png`);
+  };
+
+  // 用户自己点画布扔一根
+  cv.addEventListener('click', (e) => {
+    const rect = cv.getBoundingClientRect();
+    const scaleX = cv.width / rect.width;
+    const scaleY = cv.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+    if (y < 5 || y > cv.height - 5) return;
+    const angle = Math.random() * PI;
+    const halfX = (L/2) * Math.cos(angle);
+    const halfY = (L/2) * Math.sin(angle);
+    const y1 = y - halfY;
+    const y2 = y + halfY;
+    const lineY1 = Math.floor(y1 / d) * d;
+    const lineY2 = Math.floor(y2 / d) * d;
+    const hit = (lineY1 !== lineY2);
+    const n = { x, y, angle, hit, halfX, halfY };
+    needles.push(n);
+    drawLines();
+    for (const nd of needles) drawNeedle(nd, false);
+    updateStats();
+  });
+
+  // 误差图（每次重建先 destroy 老的）
+  if (errChart) { try { errChart.destroy(); } catch(e){} errChart = null; }
+  errChart = new Chart(errCtx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [
+        { label: 'π 估值', data: [], borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,0.1)', borderWidth: 2, pointRadius: 0, tension: 0.1 },
+        { label: '真实 π', data: [], borderColor: '#ef4444', borderWidth: 1.5, borderDash: [4, 4], pointRadius: 0 },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { font: { size: 12 } } } },
+      scales: {
+        x: { title: { display: true, text: '投掷次数 N' } },
+        y: { title: { display: true, text: 'π 估值' }, suggestedMin: 2.5, suggestedMax: 3.7 },
+      }
+    }
+  });
+
+  updateParams();
+  drawLines();
+}
 
 function updateParams() {
   L = +document.getElementById('L').value;
@@ -1053,8 +637,6 @@ function updateParams() {
   // 重新画所有针
   redrawAll();
 }
-document.getElementById('L').onchange = updateParams;
-document.getElementById('d').onchange = updateParams;
 
 function drawLines() {
   ctx.clearRect(0, 0, cv.width, cv.height);
@@ -1153,85 +735,6 @@ function drop(n) {
   updateStats();
 }
 
-document.getElementById('b1').onclick = () => drop(1);
-document.getElementById('b100').onclick = () => drop(100);
-document.getElementById('b1000').onclick = () => drop(1000);
-document.getElementById('b10000').onclick = () => drop(10000);
-document.getElementById('bReset').onclick = () => {
-  needles = [];
-  history = [];
-  drawLines();
-  updateStats();
-  errChart.data.labels = [];
-  errChart.data.datasets[0].data = [];
-  errChart.update();
-};
-document.getElementById('bDownload').onclick = () => {
-  downloadCanvas(cv, `投针_${timestamp()}.png`);
-};
-
-// 用户自己点画布扔一根
-cv.addEventListener('click', (e) => {
-  const rect = cv.getBoundingClientRect();
-  const scaleX = cv.width / rect.width;
-  const scaleY = cv.height / rect.height;
-  const x = (e.clientX - rect.left) * scaleX;
-  const y = (e.clientY - rect.top) * scaleY;
-  // 限定在两条线之间
-  if (y < 5 || y > cv.height - 5) return;
-  const angle = Math.random() * PI;
-  const halfX = (L/2) * Math.cos(angle);
-  const halfY = (L/2) * Math.sin(angle);
-  const y1 = y - halfY;
-  const y2 = y + halfY;
-  const lineY1 = Math.floor(y1 / d) * d;
-  const lineY2 = Math.floor(y2 / d) * d;
-  const hit = (lineY1 !== lineY2);
-  const n = { x, y, angle, hit, halfX, halfY };
-  needles.push(n);
-  drawLines();
-  for (const nd of needles) drawNeedle(nd, false);
-  updateStats();
-});
-
-// 误差图
-const errChart = new Chart(errCtx, {
-  type: 'line',
-  data: {
-    labels: [],
-    datasets: [
-      {
-        label: 'π 估值',
-        data: [],
-        borderColor: '#2563eb',
-        backgroundColor: 'rgba(37,99,235,0.1)',
-        borderWidth: 2,
-        pointRadius: 0,
-        tension: 0.1,
-      },
-      {
-        label: '真实 π',
-        data: [],
-        borderColor: '#ef4444',
-        borderWidth: 1.5,
-        borderDash: [4, 4],
-        pointRadius: 0,
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'top', labels: { font: { size: 12 } } },
-    },
-    scales: {
-      x: { title: { display: true, text: '投掷次数 N' } },
-      y: { title: { display: true, text: 'π 估值' }, suggestedMin: 2.5, suggestedMax: 3.7 },
-    }
-  }
-});
-
 function drawErrorChart() {
   // 降采样：超过 200 点就只画 200 个
   let sample = history;
@@ -1245,30 +748,12 @@ function drawErrorChart() {
   errChart.update('none');
 }
 
-// init
-updateParams();
-drawLines();
-
 /* ===================== Collatz ===================== */
-const cN = document.getElementById('cN');
-const cRun = document.getElementById('cRun');
-const cStep = document.getElementById('cStep');
-const cReset = document.getElementById('cReset');
-const cSeq = document.getElementById('cSeq');
-const cSteps = document.getElementById('cSteps');
-const cMax = document.getElementById('cMax');
-const cCur = document.getElementById('cCur');
-const cDone = document.getElementById('cDone');
-const cPathCv = document.getElementById('cPath');
-const cPathCtx = cPathCv.getContext('2d');
-const scanN = document.getElementById('scanN');
-const scanRun = document.getElementById('scanRun');
-const scanStatus = document.getElementById('scanStatus');
-const scanCv = document.getElementById('scanChart');
-const scanCtx = scanCv.getContext('2d');
-const topnBody = document.querySelector('#topn tbody');
+let cN, cRun, cStep, cReset, cSeq, cSteps, cMax, cCur, cDone;
+let cPathCv, cPathCtx, cPathChart;
+let scanN, scanRun, scanStatus, scanCv, scanCtx, scanChart;
+let topnBody;
 
-let seq = [];
 let curN = null;
 
 function collatz(n) {
@@ -1294,86 +779,136 @@ function collatzUpTo(n, stepLimit = 10000) {
   return { start, steps, max, done: n === 1, final: n };
 }
 
-const cPathChart = new Chart(cPathCtx, {
-  type: 'line',
-  data: {
-    labels: [],
-    datasets: [{
-      label: 'n 值',
-      data: [],
-      borderColor: '#2563eb',
-      backgroundColor: 'rgba(37,99,235,0.1)',
-      borderWidth: 2,
-      pointRadius: 0,
-      tension: 0,
-      fill: true,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { title: { display: true, text: '步数' } },
-      y: { title: { display: true, text: 'n 值' }, type: 'logarithmic' },
+const COLLATZ_HTML = `
+<div class="intro">
+  选一个正整数 n：<strong>偶数就除 2，奇数就 ×3+1</strong>。一直蹦下去，最后必到 1。Erdős 悬赏 500 美元都证不出来——
+  <em>蹦跳里藏着规律</em>。但你能"找到"一个例外吗？
+</div>
+<div class="grid collatz">
+  <div>
+    <div class="card">
+      <h2>单数序列：选一个 n 看看</h2>
+      <div class="row">
+        <label>起始 n<input type="number" id="cN" value="27" min="1" max="1000000"></label>
+        <button class="primary" id="cRun">开始</button>
+        <button class="ghost" id="cStep">单步</button>
+        <button class="ghost" id="cReset">重置</button>
+      </div>
+      <h3>序列路径</h3>
+      <div class="chart-wrap"><canvas id="cPath"></canvas></div>
+      <h3>当前序列</h3>
+      <div class="sequence" id="cSeq">（输入 n 后点击开始）</div>
+      <div class="stat-grid" style="margin-top: 12px;">
+        <div class="stat"><div class="k">步数</div><div class="v" id="cSteps">0</div></div>
+        <div class="stat"><div class="k">峰值</div><div class="v warn" id="cMax">—</div></div>
+        <div class="stat"><div class="k">当前值</div><div class="v" id="cCur">—</div></div>
+        <div class="stat"><div class="k">是否回到 1</div><div class="v" id="cDone" style="font-size: 18px;">—</div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>扫描 1 → N：每条序列蹦多高？</h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">AI 自动扫描，对每个起始 n 跑完序列，记录<strong>峰值</strong>和<strong>步数</strong>。看哪些数最"拧巴"。</p>
+      <div class="row">
+        <label>扫描到 N<input type="number" id="scanN" value="5000" min="100" max="100000" step="100"></label>
+        <button class="primary" id="scanRun">开始扫描</button>
+        <span id="scanStatus" style="color: var(--muted); font-size: 13px;"></span>
+      </div>
+      <h3>峰值散点图（红 = 步数最多）</h3>
+      <div class="chart-wrap tall"><canvas id="scanChart"></canvas></div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h2>反常起点 Top 10</h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">扫描范围内蹦得最久（步数最多）的 10 个数。</p>
+      <table class="topn" id="topn">
+        <thead><tr><th>起始 n</th><th>步数</th><th>峰值</th></tr></thead>
+        <tbody><tr><td colspan="3" style="text-align:center; color: var(--muted);">（先跑一次扫描）</td></tr></tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>反例悬赏</h2>
+      <p style="font-size: 14px; line-height: 1.6;">Paul Erdős 当年为这个问题悬赏 <strong>500 美元</strong>，说"数学还没准备好解决这种问题"。至今未有人能证明，更未找到反例——已验证到 <strong>5.76 × 10<sup>18</sup></strong>。</p>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">让 AI 扫到 10⁷（1 千万）大概要 30 秒；扫到 10⁵（10 万）只需 1 秒。课堂上推荐 1 万到 5 万。</p>
+    </div>
+  </div>
+</div>
+`;
+
+function setupCollatz(root) {
+  root.innerHTML = COLLATZ_HTML;
+  cN = document.getElementById('cN');
+  cRun = document.getElementById('cRun');
+  cStep = document.getElementById('cStep');
+  cReset = document.getElementById('cReset');
+  cSeq = document.getElementById('cSeq');
+  cSteps = document.getElementById('cSteps');
+  cMax = document.getElementById('cMax');
+  cCur = document.getElementById('cCur');
+  cDone = document.getElementById('cDone');
+  cPathCv = document.getElementById('cPath');
+  cPathCtx = cPathCv.getContext('2d');
+  scanN = document.getElementById('scanN');
+  scanRun = document.getElementById('scanRun');
+  scanStatus = document.getElementById('scanStatus');
+  scanCv = document.getElementById('scanChart');
+  scanCtx = scanCv.getContext('2d');
+  topnBody = document.querySelector('#topn tbody');
+
+  // 销毁老 chart
+  if (cPathChart) { try { cPathChart.destroy(); } catch(e){} cPathChart = null; }
+  if (scanChart) { try { scanChart.destroy(); } catch(e){} scanChart = null; }
+
+  cPathChart = new Chart(cPathCtx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'n 值', data: [],
+        borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,0.1)',
+        borderWidth: 2, pointRadius: 0, tension: 0, fill: true,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: '步数' } },
+        y: { title: { display: true, text: 'n 值' }, type: 'logarithmic' },
+      }
     }
-  }
-});
+  });
 
-function renderSingleSeq(n) {
-  curN = +n;
-  const s = collatzUpTo(curN, 100000);
-  // 完整序列（可能很长，截断展示）
-  const full = collatz(curN);
-  cSeq.innerHTML = full.slice(0, 80).join(' → ')
-    + (full.length > 80 ? ` <span class="pill">… 共 ${full.length} 项</span>` : '');
-  cSteps.textContent = s.steps;
-  cMax.textContent = s.max.toLocaleString();
-  cCur.textContent = s.final;
-  cDone.textContent = s.done ? '✓ 回到 1' : '✗ 未到 1';
-  cDone.style.color = s.done ? 'var(--good)' : 'var(--warn)';
-  // 折线
-  cPathChart.data.labels = full.map((_, i) => i);
-  cPathChart.data.datasets[0].data = full;
-  cPathChart.update('none');
-}
+  cRun.onclick = () => renderSingleSeq(cN.value);
+  cStep.onclick = () => {
+    if (curN === null) { renderSingleSeq(cN.value); return; }
+    if (curN === 1) return;
+    curN = (curN % 2 === 0) ? curN / 2 : 3 * curN + 1;
+    cSeq.textContent = cSeq.textContent + ' → ' + curN;
+    cSteps.textContent = +cSteps.textContent + 1;
+    if (curN > +cMax.textContent.replace(/,/g, '')) cMax.textContent = curN.toLocaleString();
+    cCur.textContent = curN;
+    cPathChart.data.labels.push(+cSteps.textContent);
+    cPathChart.data.datasets[0].data.push(curN);
+    cPathChart.update('none');
+    if (curN === 1) {
+      cDone.textContent = '✓ 回到 1';
+      cDone.style.color = 'var(--good)';
+    }
+  };
+  cReset.onclick = () => {
+    curN = null;
+    cSeq.textContent = '（输入 n 后点击开始）';
+    cSteps.textContent = '0';
+    cMax.textContent = '—';
+    cCur.textContent = '—';
+    cDone.textContent = '—';
+    cDone.style.color = '';
+    cPathChart.data.labels = [];
+    cPathChart.data.datasets[0].data = [];
+    cPathChart.update();
+  };
 
-cRun.onclick = () => renderSingleSeq(cN.value);
-cStep.onclick = () => {
-  if (curN === null) { renderSingleSeq(cN.value); return; }
-  if (curN === 1) return;
-  curN = (curN % 2 === 0) ? curN / 2 : 3 * curN + 1;
-  // 简单展示：把当前值放到序列
-  cSeq.textContent = cSeq.textContent + ' → ' + curN;
-  cSteps.textContent = +cSteps.textContent + 1;
-  if (curN > +cMax.textContent.replace(/,/g, '')) cMax.textContent = curN.toLocaleString();
-  cCur.textContent = curN;
-  cPathChart.data.labels.push(+cSteps.textContent);
-  cPathChart.data.datasets[0].data.push(curN);
-  cPathChart.update('none');
-  if (curN === 1) {
-    cDone.textContent = '✓ 回到 1';
-    cDone.style.color = 'var(--good)';
-  }
-};
-cReset.onclick = () => {
-  curN = null;
-  cSeq.textContent = '（输入 n 后点击开始）';
-  cSteps.textContent = '0';
-  cMax.textContent = '—';
-  cCur.textContent = '—';
-  cDone.textContent = '—';
-  cDone.style.color = '';
-  cPathChart.data.labels = [];
-  cPathChart.data.datasets[0].data = [];
-  cPathChart.update();
-};
-
-/* === 扫描 === */
-let scanChart = null;
-
-function ensureScanChart() {
-  if (scanChart) return scanChart;
   scanChart = new Chart(scanCtx, {
     type: 'scatter',
     data: {
@@ -1385,8 +920,7 @@ function ensureScanChart() {
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
         x: { title: { display: true, text: '起始 n' } },
@@ -1394,47 +928,57 @@ function ensureScanChart() {
       }
     }
   });
-  return scanChart;
+
+  scanRun.onclick = () => {
+    const N = +scanN.value;
+    if (N < 1) return;
+    scanStatus.textContent = '扫描中…';
+    scanRun.disabled = true;
+    setTimeout(() => {
+      const results = [];
+      for (let i = 1; i <= N; i++) {
+        const r = collatzUpTo(i, 100000);
+        results.push({ n: i, steps: r.steps, max: r.max });
+      }
+      scanChart.data.datasets[0].data = results.map(r => ({ x: r.n, y: r.max }));
+      scanChart.data.datasets[0].pointBackgroundColor = results.map(r =>
+        r.steps > Math.max(50, N * 0.05) ? '#ef4444' : 'rgba(37,99,235,0.5)');
+      scanChart.data.datasets[0].pointRadius = results.map(r =>
+        r.steps > Math.max(50, N * 0.05) ? 4 : 2);
+      scanChart.update();
+      const top = [...results].sort((a, b) => b.steps - a.steps).slice(0, 10);
+      topnBody.innerHTML = top.map((r, i) => `
+        <tr class="${i === 0 ? 'highlight' : ''}">
+          <td>${r.n}</td>
+          <td>${r.steps}</td>
+          <td>${r.max.toLocaleString()}</td>
+        </tr>
+      `).join('');
+      scanStatus.textContent = `扫完 1–${N}，最大步数 ${top[0].steps}（起始 ${top[0].n}）`;
+      scanRun.disabled = false;
+    }, 50);
+  };
+
+  renderSingleSeq(27);
 }
 
-scanRun.onclick = () => {
-  const N = +scanN.value;
-  if (N < 1) return;
-  scanStatus.textContent = '扫描中…';
-  scanRun.disabled = true;
-  // 用 setTimeout 让 UI 有机会更新
-  setTimeout(() => {
-    const results = [];
-    for (let i = 1; i <= N; i++) {
-      const r = collatzUpTo(i, 100000);
-      results.push({ n: i, steps: r.steps, max: r.max });
-    }
-    const ch = ensureScanChart();
-    ch.data.datasets[0].data = results.map(r => ({ x: r.n, y: r.max }));
-    ch.data.datasets[0].pointBackgroundColor = results.map(r =>
-      r.steps > Math.max(50, N * 0.05) ? '#ef4444' : 'rgba(37,99,235,0.5)');
-    ch.data.datasets[0].pointRadius = results.map(r =>
-      r.steps > Math.max(50, N * 0.05) ? 4 : 2);
-    ch.update();
-    // Top 10
-    const top = [...results].sort((a, b) => b.steps - a.steps).slice(0, 10);
-    topnBody.innerHTML = top.map((r, i) => `
-      <tr class="${i === 0 ? 'highlight' : ''}">
-        <td>${r.n}</td>
-        <td>${r.steps}</td>
-        <td>${r.max.toLocaleString()}</td>
-      </tr>
-    `).join('');
-    scanStatus.textContent = `扫完 1–${N}，最大步数 ${top[0].steps}（起始 ${top[0].n}）`;
-    scanRun.disabled = false;
-  }, 50);
-};
-
-// 初始化 Collatz
-renderSingleSeq(27);
+function renderSingleSeq(n) {
+  curN = +n;
+  const s = collatzUpTo(curN, 100000);
+  const full = collatz(curN);
+  cSeq.innerHTML = full.slice(0, 80).join(' → ')
+    + (full.length > 80 ? ` <span class="pill">… 共 ${full.length} 项</span>` : '');
+  cSteps.textContent = s.steps;
+  cMax.textContent = s.max.toLocaleString();
+  cCur.textContent = s.final;
+  cDone.textContent = s.done ? '✓ 回到 1' : '✗ 未到 1';
+  cDone.style.color = s.done ? 'var(--good)' : 'var(--warn)';
+  cPathChart.data.labels = full.map((_, i) => i);
+  cPathChart.data.datasets[0].data = full;
+  cPathChart.update('none');
+}
 
 /* ===================== Pythagorean ===================== */
-// 1000 以内本原勾股数：m > n > 0, gcd(m,n)=1, m-n 奇
 function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
 function isPrimitive(m, n) {
   return (m - n) % 2 === 1 && gcd(m, n) === 1;
@@ -1458,18 +1002,141 @@ const ALL_PY = buildPrimitives(1000);
 ALL_PY.sort((x, y) => x.c - y.c);
 
 // === 挑战模式状态 ===
-let pyTarget = null;     // 答案 (m, n, a, b, c)
-let pyRemain = [];       // 候选
+let pyTarget = null;
+let pyRemain = [];
 let pyUsed = 0;
-let pyLastQ = null;      // 防重复
+let pyLastQ = null;
+let pyRemainEl, pyUsedEl, pyAnswerEl, pyLogEl, pyCandidatesEl, pyAllListEl, pyQEl;
+let mSlider, nSlider, mVal, nVal, aOut, bOut, cOut, pyCheckEl;
 
-const pyRemainEl = document.getElementById('pyRemain');
-const pyUsedEl = document.getElementById('pyUsed');
-const pyAnswerEl = document.getElementById('pyAnswer');
-const pyLogEl = document.getElementById('pyLog');
-const pyCandidatesEl = document.getElementById('pyCandidates');
-const pyAllListEl = document.getElementById('pyAllList');
-const pyQEl = document.getElementById('pyQ');
+const PYTHAGOREAN_HTML = `
+<div class="intro">
+  <strong>Euclid 公式</strong>：所有本原勾股数（互素的最简勾股数）都长这样——
+  <span class="formula">(m²−n², 2mn, m²+n²)</span>，
+  其中 m &gt; n &gt; 0、m−n 为奇数、m 和 n 互素。
+  1000 以内一共有 <strong>158 个</strong>本原勾股数，理论上 8 步能"夹"出来（log₂158 ≈ 7.3）。
+</div>
+<div class="grid">
+  <div>
+    <div class="card">
+      <h2>挑战模式：AI 出题你猜</h2>
+      <div class="row" style="margin-bottom: 12px;">
+        <button class="primary" id="pyNew">换一题</button>
+        <span style="color: var(--muted); font-size: 14px;">
+          剩余候选 <strong id="pyRemain" style="color: var(--accent);">—</strong>　
+          已用 <strong id="pyUsed" style="color: var(--accent);">0</strong> 步
+        </span>
+        <button class="ghost small" id="pyShowAns" style="margin-left: auto;">偷看答案</button>
+      </div>
+      <div id="pyAnswer" class="sequence" style="text-align: center; font-size: 18px; padding: 16px; background: #fef3c7;">
+        点击"换一题"开始
+      </div>
+      <h3>提问区（可输入数字或文字）</h3>
+      <div class="row">
+        <label style="flex: 1; min-width: 200px;">
+          输入数字
+          <input type="number" id="pyQ" placeholder="例如 5、100、3" min="0" max="999">
+        </label>
+        <button class="primary" id="pyAsk">提问</button>
+      </div>
+      <h3>快捷问题</h3>
+      <div class="row" style="gap: 8px;">
+        <button class="ghost small" data-q="contains">包含数字 ?</button>
+        <button class="ghost small" data-q="maxLess">最大边 &lt; ?</button>
+        <button class="ghost small" data-q="mEq">m = ?</button>
+        <button class="ghost small" data-q="nEq">n = ?</button>
+        <button class="ghost small" data-q="allOdd">三边都奇？</button>
+        <button class="ghost small" data-q="hasEven">有偶数边？</button>
+      </div>
+      <h3>提问历史</h3>
+      <div class="sequence" id="pyLog" style="min-height: 60px;">（还没有提问）</div>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>候选池（实时缩小）</h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">1000 以内所有本原勾股数。每次提问后，过滤掉不符的。</p>
+      <div id="pyCandidates" class="sequence" style="min-height: 100px; line-height: 1.9;"></div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h2>勾股数工厂：调 m, n</h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">自己当欧几里得，看看哪些 (m, n) 配对能出本原勾股数。</p>
+      <label>m: <strong id="mVal">3</strong>
+        <input type="range" id="mSlider" min="2" max="40" value="3">
+      </label>
+      <label style="margin-top: 8px;">n: <strong id="nVal">2</strong>
+        <input type="range" id="nSlider" min="1" max="39" value="2">
+      </label>
+      <div class="stat-grid" style="margin-top: 12px;">
+        <div class="stat"><div class="k">a = m²−n²</div><div class="v" id="aOut">5</div></div>
+        <div class="stat"><div class="k">b = 2mn</div><div class="v" id="bOut">12</div></div>
+        <div class="stat"><div class="k">c = m²+n²</div><div class="v" id="cOut">13</div></div>
+      </div>
+      <div class="stat" style="margin-top: 10px; background: #ecfdf5; border-color: #a7f3d0;">
+        <div class="k" style="color: #047857;">本原？</div>
+        <div class="v" id="pyCheck" style="color: #059669;">✓ 是本原（gcd=1, m−n 奇）</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>本原勾股数表（1000 以内）</h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">全部 158 个，按 c 从小到大。</p>
+      <div id="pyAllList" class="sequence" style="max-height: 200px; line-height: 1.7; font-size: 13px;"></div>
+    </div>
+  </div>
+</div>
+`;
+
+function setupPythagorean(root) {
+  root.innerHTML = PYTHAGOREAN_HTML;
+  pyRemainEl = document.getElementById('pyRemain');
+  pyUsedEl = document.getElementById('pyUsed');
+  pyAnswerEl = document.getElementById('pyAnswer');
+  pyLogEl = document.getElementById('pyLog');
+  pyCandidatesEl = document.getElementById('pyCandidates');
+  pyAllListEl = document.getElementById('pyAllList');
+  pyQEl = document.getElementById('pyQ');
+  mSlider = document.getElementById('mSlider');
+  nSlider = document.getElementById('nSlider');
+  mVal = document.getElementById('mVal');
+  nVal = document.getElementById('nVal');
+  aOut = document.getElementById('aOut');
+  bOut = document.getElementById('bOut');
+  cOut = document.getElementById('cOut');
+  pyCheckEl = document.getElementById('pyCheck');
+
+  // 快捷按钮
+  document.querySelectorAll('button[data-q]').forEach(btn => {
+    btn.onclick = () => {
+      const t = btn.dataset.q;
+      const ph = {
+        contains: '包含数字 ?（0-9）',
+        maxLess:  '最大边 < ?（如 100）',
+        mEq:      'm = ?（如 3）',
+        nEq:      'n = ?（如 2）',
+        allOdd:   '（无需数字，三边都奇？）',
+        hasEven:  '（无需数字，有偶数边？）',
+      }[t];
+      pyQEl.placeholder = ph;
+      pyQEl.dataset.mode = t;
+      pyQEl.focus();
+    };
+  });
+
+  document.getElementById('pyNew').onclick = pyReset;
+  document.getElementById('pyAsk').onclick = pyAsk;
+  document.getElementById('pyQ').onkeypress = (e) => { if (e.key === 'Enter') pyAsk(); };
+  document.getElementById('pyShowAns').onclick = () => {
+    if (!pyTarget) return;
+    pyAnswerEl.innerHTML = `答案：<strong>(${pyTarget.a}, ${pyTarget.b}, ${pyTarget.c})</strong>　<span style="color: var(--muted);">m=${pyTarget.m}, n=${pyTarget.n}</span>`;
+    pyAnswerEl.style.background = '#dbeafe';
+    pyAnswerEl.style.color = '#1e40af';
+  };
+  mSlider.oninput = updateFactory;
+  nSlider.oninput = updateFactory;
+
+  pyReset();
+  updateFactory();
+}
 
 function pyReset() {
   pyRemain = ALL_PY.slice();
@@ -1486,7 +1153,6 @@ function pyReset() {
 function pyUpdateUI() {
   pyRemainEl.textContent = pyRemain.length;
   pyUsedEl.textContent = pyUsed;
-  // 候选池
   if (pyRemain.length === 0) {
     pyCandidatesEl.innerHTML = '<em style="color: var(--warn);">候选被排除光了——题目可能出问题</em>';
   } else if (pyRemain.length > 80) {
@@ -1496,30 +1162,10 @@ function pyUpdateUI() {
       `(${p.a}, ${p.b}, ${p.c}) <span style="color: var(--muted); font-size: 12px;">m=${p.m},n=${p.n}</span>`
     ).join(' · ');
   }
-  // 全部表
   pyAllListEl.innerHTML = ALL_PY.map(p =>
     `<strong>(${p.a},${p.b},${p.c})</strong> <span style="color: var(--muted);">m=${p.m},n=${p.n}</span>`
   ).join('　');
 }
-
-// === 提问逻辑 ===
-// 快捷按钮：根据 data-q 设置 pyQEl 的 placeholder
-document.querySelectorAll('button[data-q]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const t = btn.dataset.q;
-    const ph = {
-      contains: '包含数字 ?（0-9）',
-      maxLess:  '最大边 < ?（如 100）',
-      mEq:      'm = ?（如 3）',
-      nEq:      'n = ?（如 2）',
-      allOdd:   '（无需数字，三边都奇？）',
-      hasEven:  '（无需数字，有偶数边？）',
-    }[t];
-    pyQEl.placeholder = ph;
-    pyQEl.dataset.mode = t;
-    pyQEl.focus();
-  });
-});
 
 function pyContains(triple, digit) {
   return triple.a.toString().includes(digit.toString())
@@ -1528,7 +1174,6 @@ function pyContains(triple, digit) {
 }
 
 function pyCheck(qText, t) {
-  // 返回 {pass: bool, label: string}
   if (qText === 'allOdd') {
     const odd = (t.a % 2 === 1) && (t.b % 2 === 1) && (t.c % 2 === 1);
     return { pass: odd, label: '三边都奇？' };
@@ -1540,16 +1185,11 @@ function pyCheck(qText, t) {
   return null;
 }
 
-// 输入校验：检查数字是否合法，不合法返回错误信息
 function pyValidateInput(mode, val) {
-  if (mode === 'allOdd' || mode === 'hasEven') return null; // 不需要输入
-  if (val === '' || val === null || val === undefined) {
-    return '请先输入数字';
-  }
+  if (mode === 'allOdd' || mode === 'hasEven') return null;
+  if (val === '' || val === null || val === undefined) return '请先输入数字';
   const n = Number(val);
-  if (!Number.isInteger(n) || isNaN(n)) {
-    return '请输入合法整数';
-  }
+  if (!Number.isInteger(n) || isNaN(n)) return '请输入合法整数';
   if (mode === 'contains') {
     if (n < 0 || n > 9) return '包含数字问题：请输入 0-9 的单个数字';
   } else if (mode === 'maxLess') {
@@ -1567,12 +1207,9 @@ function pyAsk() {
   if (!pyTarget) { pyReset(); return; }
   const mode = pyQEl.dataset.mode || 'contains';
   let val = pyQEl.value.trim();
-
-  // 输入校验
   const err = pyValidateInput(mode, val);
   if (err) { alert(err); return; }
 
-  // 防重复
   const qKey = `${mode}:${val}`;
   if (pyLastQ === qKey) { alert('同一个问题不要重复提～'); return; }
 
@@ -1593,10 +1230,7 @@ function pyAsk() {
     result = pyCheck(mode, pyTarget);
   }
 
-  // 保存当前 pyRemain 快照（用于自动回滚）
   const beforeFilter = pyRemain.slice();
-
-  // 过滤候选
   pyRemain = pyRemain.filter(t => {
     if (mode === 'contains') return pyContains(t, val) === result.pass;
     if (mode === 'maxLess') return (t.c < +val) === result.pass;
@@ -1607,17 +1241,13 @@ function pyAsk() {
     return true;
   });
 
-  // 自动回滚：候选为 0 时撤销这次提问
   if (pyRemain.length === 0) {
     pyRemain = beforeFilter;
     alert('这次提问会把所有候选都排除——已自动撤销。\n试试换个数字或换个问题类型。');
     return;
   }
 
-  // 提交防重复
   pyLastQ = qKey;
-
-  // 日志
   const sign = result.pass ? '✓ 是' : '✗ 否';
   const color = result.pass ? 'var(--good)' : 'var(--warn)';
   const newLog = pyLogEl.innerHTML === '（还没有提问）' ? '' : pyLogEl.innerHTML + '<br>';
@@ -1626,38 +1256,13 @@ function pyAsk() {
   pyUsed++;
   pyUpdateUI();
 
-  // 检查命中
   if (pyRemain.length === 1) {
     pyAnswerEl.innerHTML = `✓ 候选只剩 1 个：<strong>(${pyRemain[0].a}, ${pyRemain[0].b}, ${pyRemain[0].c})</strong>　<span style="color: var(--muted);">用 ${pyUsed} 步猜中</span>`;
     pyAnswerEl.style.background = '#ecfdf5';
     pyAnswerEl.style.color = '#065f46';
   }
-
-  // 清空输入
   pyQEl.value = '';
 }
-
-document.getElementById('pyNew').onclick = pyReset;
-document.getElementById('pyAsk').onclick = pyAsk;
-document.getElementById('pyQ').addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') pyAsk();
-});
-document.getElementById('pyShowAns').onclick = () => {
-  if (!pyTarget) return;
-  pyAnswerEl.innerHTML = `答案：<strong>(${pyTarget.a}, ${pyTarget.b}, ${pyTarget.c})</strong>　<span style="color: var(--muted);">m=${pyTarget.m}, n=${pyTarget.n}</span>`;
-  pyAnswerEl.style.background = '#dbeafe';
-  pyAnswerEl.style.color = '#1e40af';
-};
-
-// === 勾股数工厂 ===
-const mSlider = document.getElementById('mSlider');
-const nSlider = document.getElementById('nSlider');
-const mVal = document.getElementById('mVal');
-const nVal = document.getElementById('nVal');
-const aOut = document.getElementById('aOut');
-const bOut = document.getElementById('bOut');
-const cOut = document.getElementById('cOut');
-const pyCheckEl = document.getElementById('pyCheck');
 
 function updateFactory() {
   let m = +mSlider.value;
@@ -1668,7 +1273,6 @@ function updateFactory() {
   const a = m*m - n*n;
   const b = 2*m*n;
   const c = m*m + n*n;
-  // 排序：把 a, b 按大小排，c 最大
   const sorted = [a, b, c].sort((x,y) => x - y);
   aOut.textContent = sorted[0];
   bOut.textContent = sorted[1];
@@ -1677,23 +1281,12 @@ function updateFactory() {
   if (prim) {
     pyCheckEl.innerHTML = `✓ 是本原（gcd=1, m−n 奇 = ${m-n}）`;
     pyCheckEl.style.color = '#059669';
-    aOut.style.color = '';
-    bOut.style.color = '';
-    cOut.style.color = '';
   } else {
     const reason = (m-n) % 2 === 0 ? 'm−n 是偶数' : `gcd(m,n)=${gcd(m,n)}`;
     pyCheckEl.innerHTML = `✗ 非本原（${reason}）—— 答案会被缩放`;
     pyCheckEl.style.color = '#dc2626';
-    aOut.style.color = '';
-    bOut.style.color = '';
-    cOut.style.color = '';
   }
 }
-mSlider.addEventListener('input', updateFactory);
-nSlider.addEventListener('input', updateFactory);
-
-pyReset();
-updateFactory();
 
 /* ===================== Four Color Theorem ===================== */
 const FC_COLORS = [
@@ -1702,36 +1295,128 @@ const FC_COLORS = [
   { name: '绿', hex: '#10b981', light: '#a7f3d0' },
   { name: '黄', hex: '#eab308', light: '#fef08a' },
 ];
-// 地图通用参数
-const FC_CANVAS = 360;  // SVG 画布 360x360
-const FC_GRID_SIZE = 6; // 网格模式 6x6
-const FC_GRID_CELL = 56; // 网格模式每格 56px
+const FC_CANVAS = 360;
+const FC_GRID_SIZE = 6;
+const FC_GRID_CELL = 56;
 const FC_GRID_GAP = 2;
-const FC_VORO_CELL = 8; // Voronoi 模式每像素块 8px → 45x45 = 2025 块
-let fcMapType = 'grid'; // 'grid' | 'voro'
+const FC_VORO_CELL = 8;
+let fcMapType = 'grid';
 let fcRows = FC_GRID_SIZE, fcCols = FC_GRID_SIZE, fcCellPx = FC_GRID_CELL;
-let fcGrid = [];           // [r][c] = 0..4
-let fcVoroRegion = [];     // [r][c] = region id (0..N-1)，仅 voro 模式用
-let fcVoroSeeds = [];      // [{x, y, id}]
-let fcCurrent = 1;         // 当前选中的颜色 1-4
+let fcGrid = [];
+let fcVoroRegion = [];
+let fcVoroSeeds = [];
+let fcCurrent = 1;
 let fcThreeOnly = false;
-const fcSvg = document.getElementById('fc-svg');
-const fcFilledEl = document.getElementById('fcFilled');
-const fcConflictEl = document.getElementById('fcConflict');
-const fcColorsEl = document.getElementById('fcColors');
-const fcVerdictEl = document.getElementById('fcVerdict');
-const fcPaletteEl = document.getElementById('fcPalette');
-const fcMapLabel = document.getElementById('fcMapLabel');
-const fcMapTypeEl = document.getElementById('fcMapType');
-const fcNEl = document.getElementById('fcN');
+let fcSvg, fcFilledEl, fcConflictEl, fcColorsEl, fcVerdictEl, fcPaletteEl, fcMapLabel, fcMapTypeEl, fcNEl;
 
-// 18 个柔和的"国号色"（用于 Voronoi 显示国号）
 const FC_REGION_COLORS = [
   '#fde68a', '#fecaca', '#bfdbfe', '#a7f3d0', '#ddd6fe',
   '#fbcfe8', '#fed7aa', '#fef08a', '#c7d2fe', '#99f6e4',
   '#fcd34d', '#fca5a5', '#93c5fd', '#86efac', '#c4b5fd',
   '#f9a8d4', '#fdba74', '#fde047', '#a5b4fc', '#5eead4'
 ];
+
+const FOURCOLOR_HTML = `
+<div class="intro">
+  <strong>四色定理</strong>（Appel-Haken 1976）：任何平面地图只用 <strong>4 种颜色</strong>，就能让相邻区域不同色。
+  2005 年 Gonthier 用 Coq 证明助手给出了完整形式化证明——是第一个<strong>必须靠计算机</strong>才能完成的著名数学定理。
+  试试看：自己涂、跟 AI 比谁用的颜色少。
+</div>
+<div class="grid">
+  <div>
+    <div class="card">
+      <h2>地图：<span id="fcMapLabel">6 × 6 网格</span></h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">点格子涂色。规则：<strong>相邻（上下左右）格子颜色必须不同</strong>。</p>
+      <div class="row" style="margin-bottom: 8px;">
+        <label style="flex: 1;">地图类型
+          <select id="fcMapType" style="font-size: 14px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; width: 100%;">
+            <option value="grid">6 × 6 网格（2 色就够）</option>
+            <option value="voro">Voronoi 不规则地图（3 色不够要 4 色）</option>
+          </select>
+        </label>
+        <label style="width: 110px;">国家数
+          <input type="number" id="fcN" value="14" min="5" max="20">
+        </label>
+        <button class="ghost small" id="fcRegen" style="margin-top: 18px;">重新生成</button>
+        <button class="ghost small" id="fcDownload" style="margin-top: 18px;">下载 PNG</button>
+      </div>
+      <svg id="fc-svg" width="100%" viewBox="0 0 360 360" style="background: #fafaf7; border: 1px solid var(--line); border-radius: 8px; display: block; touch-action: manipulation;"></svg>
+      <div class="stat-grid" style="margin-top: 12px;">
+        <div class="stat"><div class="k">已涂色</div><div class="v" id="fcFilled">0</div></div>
+        <div class="stat"><div class="k">冲突数（同色相邻）</div><div class="v warn" id="fcConflict">0</div></div>
+        <div class="stat"><div class="k">使用颜色数</div><div class="v" id="fcColors">0</div></div>
+        <div class="stat big"><div class="k">判定</div><div class="v" id="fcVerdict" style="font-size: 18px;">—</div></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h2>4 色画板</h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">选一个颜色，再点格子涂上。</p>
+      <div id="fcPalette" class="row" style="gap: 8px;"></div>
+      <h3>挑战模式</h3>
+      <div class="row" style="gap: 8px;">
+        <button class="primary" id="fc3Challenge">挑战 3 色</button>
+        <button class="ghost small" id="fc3Off">恢复 4 色</button>
+      </div>
+      <p style="font-size: 12px; color: var(--muted); margin-top: 6px;">挑战 3 色：把第 4 色锁住，看 3 色够不够。—— <strong>大多数 6×6 图 3 色不够</strong>，但有些简单图可以。</p>
+      <h3>AI 帮忙</h3>
+      <div class="row" style="gap: 8px;">
+        <button class="primary" id="fcAuto4">AI 用 4 色涂</button>
+        <button class="ghost" id="fcClear">清空</button>
+      </div>
+      <p style="font-size: 12px; color: var(--muted); margin-top: 6px;">AI 用回溯算法找 4-着色方案。四色定理保证只要地图够"平面"，AI 总能找到。</p>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>故事背景</h2>
+      <p style="font-size: 14px; line-height: 1.6;">1852 年 Francis Guthrie 首次提出"四色猜想"。1976 年 Appel 和 Haken 借<strong>计算机</strong>辅助证明，震惊数学界——人不能"读"完全部证明。2005 年 Gonthier 在 <strong>Coq 证明助手</strong>里把证明完全形式化，让机器自己检查机器写的证明。</p>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">教训：有些数学问题已经<strong>超出人类纸笔可验证的复杂度</strong>——必须借 AI/形式化工具。</p>
+    </div>
+  </div>
+</div>
+`;
+
+function setupFourColor(root) {
+  root.innerHTML = FOURCOLOR_HTML;
+  fcSvg = document.getElementById('fc-svg');
+  fcFilledEl = document.getElementById('fcFilled');
+  fcConflictEl = document.getElementById('fcConflict');
+  fcColorsEl = document.getElementById('fcColors');
+  fcVerdictEl = document.getElementById('fcVerdict');
+  fcPaletteEl = document.getElementById('fcPalette');
+  fcMapLabel = document.getElementById('fcMapLabel');
+  fcMapTypeEl = document.getElementById('fcMapType');
+  fcNEl = document.getElementById('fcN');
+
+  document.getElementById('fc3Challenge').onclick = () => {
+    fcThreeOnly = true;
+    if (fcCurrent === 4) fcCurrent = 1;
+    fcRenderPalette();
+    fcRenderGrid();
+  };
+  document.getElementById('fc3Off').onclick = () => {
+    fcThreeOnly = false;
+    fcRenderPalette();
+  };
+  document.getElementById('fcAuto4').onclick = fcAuto4Color;
+  document.getElementById('fcClear').onclick = () => {
+    fcGrid = Array.from({ length: fcRows }, () => Array(fcCols).fill(0));
+    fcRenderGrid();
+    fcUpdateStats();
+  };
+  document.getElementById('fcDownload').onclick = () => {
+    const svgEl = document.getElementById('fc-svg');
+    svgToPng(svgEl).then(png => {
+      const a = document.createElement('a');
+      a.href = png; a.download = `四色_${timestamp()}.png`; a.click();
+    });
+  };
+  fcMapTypeEl.onchange = () => { fcInit(); };
+  document.getElementById('fcRegen').onclick = () => { fcInit(); };
+  fcNEl.onchange = () => { if (fcMapType === 'voro') fcInit(); };
+
+  fcInit();
+}
 
 function fcInit() {
   fcLoadMap();
@@ -1758,7 +1443,6 @@ function fcLoadMap() {
 }
 
 function fcVoroGenerate(n) {
-  // 生成 n 个种子点（用松弛布局避免过近）
   const seeds = [];
   const W = FC_CANVAS, H = FC_CANVAS;
   let attempts = 0;
@@ -1800,11 +1484,7 @@ function fcRenderPalette() {
     const btn = document.createElement('button');
     btn.className = 'fc-pal';
     btn.dataset.idx = idx;
-    btn.style.cssText = `
-      width: 56px; height: 56px; border-radius: 10px; border: 3px solid transparent;
-      background: ${c.hex}; color: white; font-weight: 700; cursor: pointer;
-      position: relative; box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    `;
+    btn.style.cssText = `width: 56px; height: 56px; border-radius: 10px; border: 3px solid transparent; background: ${c.hex}; color: white; font-weight: 700; cursor: pointer; position: relative; box-shadow: 0 1px 2px rgba(0,0,0,0.1);`;
     btn.textContent = c.name;
     if (fcThreeOnly && idx === 4) {
       btn.disabled = true; btn.style.opacity = 0.3; btn.style.cursor = 'not-allowed';
@@ -1825,7 +1505,6 @@ function fcRenderPalette() {
 function fcRenderGrid() {
   fcSvg.innerHTML = '';
   fcSvg.setAttribute('viewBox', `0 0 ${FC_CANVAS} ${FC_CANVAS}`);
-
   if (fcMapType === 'grid') {
     const total = FC_GRID_SIZE * FC_GRID_CELL + (FC_GRID_SIZE - 1) * FC_GRID_GAP;
     fcSvg.setAttribute('viewBox', `0 0 ${total} ${total}`);
@@ -1837,86 +1516,60 @@ function fcRenderGrid() {
         const color = v === 0 ? '#fafaf7' : FC_COLORS[v-1].light;
         const stroke = v === 0 ? '#d1d5db' : FC_COLORS[v-1].hex;
         const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', x);
-        rect.setAttribute('y', y);
-        rect.setAttribute('width', FC_GRID_CELL);
-        rect.setAttribute('height', FC_GRID_CELL);
-        rect.setAttribute('rx', 6);
-        rect.setAttribute('fill', color);
-        rect.setAttribute('stroke', stroke);
-        rect.setAttribute('stroke-width', v === 0 ? 1 : 2);
+        rect.setAttribute('x', x); rect.setAttribute('y', y);
+        rect.setAttribute('width', FC_GRID_CELL); rect.setAttribute('height', FC_GRID_CELL);
+        rect.setAttribute('rx', 6); rect.setAttribute('fill', color);
+        rect.setAttribute('stroke', stroke); rect.setAttribute('stroke-width', v === 0 ? 1 : 2);
         rect.style.cursor = 'pointer';
         rect.onclick = () => fcClick(r, c);
         rect.addEventListener('touchstart', (e) => { e.preventDefault(); fcClick(r, c); }, { passive: false });
         fcSvg.appendChild(rect);
         if (v > 0) {
           const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-          text.setAttribute('x', x + FC_GRID_CELL / 2);
-          text.setAttribute('y', y + FC_GRID_CELL / 2 + 5);
-          text.setAttribute('text-anchor', 'middle');
-          text.setAttribute('fill', FC_COLORS[v-1].hex);
-          text.setAttribute('font-size', 22);
-          text.setAttribute('font-weight', 700);
-          text.textContent = v;
-          text.style.pointerEvents = 'none';
+          text.setAttribute('x', x + FC_GRID_CELL / 2); text.setAttribute('y', y + FC_GRID_CELL / 2 + 5);
+          text.setAttribute('text-anchor', 'middle'); text.setAttribute('fill', FC_COLORS[v-1].hex);
+          text.setAttribute('font-size', 22); text.setAttribute('font-weight', 700);
+          text.textContent = v; text.style.pointerEvents = 'none';
           fcSvg.appendChild(text);
         }
       }
     }
   } else {
-    // Voronoi 模式：每个 region 用不同柔和色，涂色区域用 4 色覆盖
-    // 先画底色（按 region）
     for (let y = 0; y < fcRows; y++) {
       for (let x = 0; x < fcCols; x++) {
         const v = fcGrid[y][x];
         const reg = fcVoroRegion[y][x];
         const baseColor = v === 0 ? FC_REGION_COLORS[reg % FC_REGION_COLORS.length] : FC_COLORS[v-1].hex;
         const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', x * fcCellPx);
-        rect.setAttribute('y', y * fcCellPx);
-        rect.setAttribute('width', fcCellPx);
-        rect.setAttribute('height', fcCellPx);
-        rect.setAttribute('fill', baseColor);
-        rect.style.cursor = 'pointer';
+        rect.setAttribute('x', x * fcCellPx); rect.setAttribute('y', y * fcCellPx);
+        rect.setAttribute('width', fcCellPx); rect.setAttribute('height', fcCellPx);
+        rect.setAttribute('fill', baseColor); rect.style.cursor = 'pointer';
         rect.onclick = () => fcClick(y, x);
         rect.addEventListener('touchstart', (e) => { e.preventDefault(); fcClick(y, x); }, { passive: false });
         fcSvg.appendChild(rect);
       }
     }
-    // 画 region 边界（相邻 region 间加细线）
     for (let y = 0; y < fcRows; y++) {
       for (let x = 0; x < fcCols; x++) {
         const reg = fcVoroRegion[y][x];
-        // 右边界
         if (x + 1 < fcCols && fcVoroRegion[y][x+1] !== reg) {
           const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-          line.setAttribute('x1', (x + 1) * fcCellPx);
-          line.setAttribute('y1', y * fcCellPx);
-          line.setAttribute('x2', (x + 1) * fcCellPx);
-          line.setAttribute('y2', (y + 1) * fcCellPx);
-          line.setAttribute('stroke', '#1f2937');
-          line.setAttribute('stroke-width', 1.2);
-          line.setAttribute('opacity', 0.3);
-          line.style.pointerEvents = 'none';
+          line.setAttribute('x1', (x + 1) * fcCellPx); line.setAttribute('y1', y * fcCellPx);
+          line.setAttribute('x2', (x + 1) * fcCellPx); line.setAttribute('y2', (y + 1) * fcCellPx);
+          line.setAttribute('stroke', '#1f2937'); line.setAttribute('stroke-width', 1.2);
+          line.setAttribute('opacity', 0.3); line.style.pointerEvents = 'none';
           fcSvg.appendChild(line);
         }
-        // 下边界
         if (y + 1 < fcRows && fcVoroRegion[y+1][x] !== reg) {
           const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-          line.setAttribute('x1', x * fcCellPx);
-          line.setAttribute('y1', (y + 1) * fcCellPx);
-          line.setAttribute('x2', (x + 1) * fcCellPx);
-          line.setAttribute('y2', (y + 1) * fcCellPx);
-          line.setAttribute('stroke', '#1f2937');
-          line.setAttribute('stroke-width', 1.2);
-          line.setAttribute('opacity', 0.3);
-          line.style.pointerEvents = 'none';
+          line.setAttribute('x1', x * fcCellPx); line.setAttribute('y1', (y + 1) * fcCellPx);
+          line.setAttribute('x2', (x + 1) * fcCellPx); line.setAttribute('y2', (y + 1) * fcCellPx);
+          line.setAttribute('stroke', '#1f2937'); line.setAttribute('stroke-width', 1.2);
+          line.setAttribute('opacity', 0.3); line.style.pointerEvents = 'none';
           fcSvg.appendChild(line);
         }
       }
     }
-    // 国号标注：在每个 region 中心写一个白色文字
-    // 先计算每个 region 的"几何中心"
     const centers = fcVoroSeeds.map(s => ({ x: s.x, y: s.y, id: s.id, count: 0, sumX: 0, sumY: 0 }));
     for (let y = 0; y < fcRows; y++) {
       for (let x = 0; x < fcCols; x++) {
@@ -1931,14 +1584,10 @@ function fcRenderGrid() {
       const cx = c.sumX / c.count;
       const cy = c.sumY / c.count;
       const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      text.setAttribute('x', cx);
-      text.setAttribute('y', cy + 4);
-      text.setAttribute('text-anchor', 'middle');
-      text.setAttribute('fill', '#1f2937');
-      text.setAttribute('font-size', 11);
-      text.setAttribute('font-weight', 700);
-      text.setAttribute('opacity', 0.6);
-      text.textContent = c.id + 1;
+      text.setAttribute('x', cx); text.setAttribute('y', cy + 4);
+      text.setAttribute('text-anchor', 'middle'); text.setAttribute('fill', '#1f2937');
+      text.setAttribute('font-size', 11); text.setAttribute('font-weight', 700);
+      text.setAttribute('opacity', 0.6); text.textContent = c.id + 1;
       text.style.pointerEvents = 'none';
       fcSvg.appendChild(text);
     });
@@ -1964,8 +1613,6 @@ function fcUpdateStats() {
       if (r + 1 < fcRows && fcGrid[r+1][c] === v) conflicts++;
     }
   }
-  // region 总数（Voronoi 模式用）
-  const totalCells = fcMapType === 'voro' ? fcVoroSeeds.length : FC_GRID_SIZE * FC_GRID_SIZE;
   const regionFilled = new Set();
   if (fcMapType === 'voro') {
     for (let r = 0; r < fcRows; r++) {
@@ -1999,7 +1646,6 @@ function fcUpdateStats() {
 }
 
 function fcAuto4Color() {
-  // 贪心：按行扫描，每个空格子选第一个不冲突的颜色
   const g = fcGrid.map(row => row.slice());
   const isOK = (r, c, v) => {
     if (c > 0 && g[r][c-1] === v) return false;
@@ -2028,40 +1674,105 @@ function fcAuto4Color() {
   fcUpdateStats();
 }
 
-document.getElementById('fc3Challenge').onclick = () => {
-  fcThreeOnly = true;
-  if (fcCurrent === 4) fcCurrent = 1;
-  fcRenderPalette();
-  fcRenderGrid();
-};
-document.getElementById('fc3Off').onclick = () => {
-  fcThreeOnly = false;
-  fcRenderPalette();
-};
-document.getElementById('fcAuto4').onclick = fcAuto4Color;
-document.getElementById('fcClear').onclick = () => {
-  fcGrid = Array.from({ length: fcRows }, () => Array(fcCols).fill(0));
-  fcRenderGrid();
-  fcUpdateStats();
-};
-fcMapTypeEl.onchange = () => { fcInit(); };
-document.getElementById('fcRegen').onclick = () => { fcInit(); };
-fcNEl.onchange = () => { if (fcMapType === 'voro') fcInit(); };
-
-fcInit();
-
 /* ===================== Ramsey R(3,3) ===================== */
 const RM_N = 6;
-let rmEdges = [];   // 15 条边，true = 红（认识）, false = 蓝（不认识）
+let rmEdges = [];
 let rmPoints = [];
-const rmSvg = document.getElementById('rm-svg');
-const rmRedEl = document.getElementById('rmRed');
-const rmBlueEl = document.getElementById('rmBlue');
-const rmTriEl = document.getElementById('rmTri');
-const rmStatResult = document.getElementById('rmStatResult');
+let rmSvg, rmRedEl, rmBlueEl, rmTriEl, rmStatResult;
+
+const RAMSEY_HTML = `
+<div class="intro">
+  <strong>拉姆齐定理</strong>（F. P. Ramsey, 1930）：6 个人聚会，必有 3 人互相认识或 3 人互不认识。等价于——
+  <span class="formula">K₆</span> 的任意红蓝二着色必含<strong>单色三角形</strong>，但 <span class="formula">K₅</span> 不一定。
+  R(3,3) = 6 是最小值。试自己点边、验证规律。
+</div>
+<div class="grid">
+  <div>
+    <div class="card">
+      <h2>6 人派对：点边切换颜色 <button class="ghost small" id="rmDownload" style="float: right; font-size: 12px;">下载 PNG</button></h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">红边 = 两人认识，蓝边 = 两人不认识。任意两条边切换会刷新<strong>单色三角形</strong>的检测。</p>
+      <svg id="rm-svg" width="100%" viewBox="0 0 480 420" style="background: #fafaf7; border: 1px solid var(--line); border-radius: 8px; display: block;"></svg>
+      <div class="stat-grid" style="margin-top: 12px;">
+        <div class="stat"><div class="k">红边（认识）</div><div class="v" id="rmRed" style="color: #ef4444;">0</div></div>
+        <div class="stat"><div class="k">蓝边（不认识）</div><div class="v" id="rmBlue" style="color: #2563eb;">0</div></div>
+        <div class="stat big"><div class="k">单色三角形</div><div class="v" id="rmTri" style="color: #059669;">0</div></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h2>工具</h2>
+      <div class="row" style="gap: 8px;">
+        <button class="primary" id="rmRandom6">随机 K₆ 着色</button>
+        <button class="primary" id="rmRandom5">随机 K₅ 着色（6 人模式）</button>
+        <button class="ghost" id="rmClear">清空</button>
+      </div>
+      <h3>挑战</h3>
+      <div class="row" style="gap: 8px;">
+        <button class="ghost small" id="rmChallenge">AI 出反例：找无单色三角的 K₅</button>
+      </div>
+      <p style="font-size: 12px; color: var(--muted); margin-top: 6px;">提示：<strong>5 人可以无单色三角形</strong>（C₅ 圈 + 弦交替是经典反例），但<strong>6 人不可能</strong>。</p>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>统计：100 个随机 K₶ 着色</h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">点下方按钮，AI 跑 100 个随机 6 人配置，统计有多少含单色三角形。</p>
+      <button class="primary" id="rmStat">跑 100 次</button>
+      <div class="stat" style="margin-top: 12px;">
+        <div class="k">含单色三角形</div>
+        <div class="v" id="rmStatResult">—</div>
+      </div>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 6px;">期望：<strong>100%</strong>（这就是 R(3,3)=6 的核心证据）。</p>
+    </div>
+  </div>
+</div>
+`;
+
+function setupRamsey(root) {
+  root.innerHTML = RAMSEY_HTML;
+  rmSvg = document.getElementById('rm-svg');
+  rmRedEl = document.getElementById('rmRed');
+  rmBlueEl = document.getElementById('rmBlue');
+  rmTriEl = document.getElementById('rmTri');
+  rmStatResult = document.getElementById('rmStatResult');
+
+  document.getElementById('rmRandom6').onclick = () => rmRandomFill(0.5, true);
+  document.getElementById('rmRandom5').onclick = () => rmRandomFill(0.5, true);
+  document.getElementById('rmClear').onclick = () => {
+    rmEdges = Array(RM_N * (RM_N - 1) / 2).fill(null);
+    rmRender();
+    rmUpdateStats();
+  };
+  document.getElementById('rmChallenge').onclick = rmK5NoMono;
+  document.getElementById('rmStat').onclick = () => {
+    let count = 0;
+    for (let t = 0; t < 100; t++) {
+      const edges = Array(15).fill(0).map(() => Math.random() < 0.5);
+      let hasMono = false;
+      for (let i = 0; i < 6 && !hasMono; i++) {
+        for (let j = i+1; j < 6 && !hasMono; j++) {
+          for (let k = j+1; k < 6 && !hasMono; k++) {
+            const a = edges[i*5 - i*(i-1)/2 + (j-i-1)];
+            const b = edges[j*5 - j*(j-1)/2 + (k-j-1)];
+            const c = edges[i*5 - i*(i-1)/2 + (k-i-1)];
+            if (a === b && a === c) hasMono = true;
+          }
+        }
+      }
+      if (hasMono) count++;
+    }
+    rmStatResult.textContent = `${count} / 100`;
+    rmStatResult.style.color = count === 100 ? 'var(--good)' : 'var(--warn)';
+  };
+  document.getElementById('rmDownload').onclick = async () => {
+    const png = await svgToPng(rmSvg);
+    if (png) downloadDataUrl(png, `拉姆齐R33_${timestamp()}.png`);
+  };
+
+  rmRender();
+  rmUpdateStats();
+}
 
 function rmPos() {
-  // 6 个点放成五边形 + 中心，或正六边形
   const cx = 240, cy = 210, R = 140;
   rmPoints = [];
   for (let i = 0; i < RM_N; i++) {
@@ -2072,45 +1783,32 @@ function rmPos() {
 
 function rmEdgeIdx(i, j) {
   if (i > j) [i, j] = [j, i];
-  // i < j: 0→1:0, 0→2:1, 0→3:2, 0→4:3, 0→5:4, 1→2:5, ..., 4→5:14
   return i * (RM_N - 1) - i * (i - 1) / 2 + (j - i - 1);
 }
 
 function rmRender() {
   rmPos();
   rmSvg.innerHTML = '';
-  const W = 480, H = 420;
-  // 画三角形高亮（先画底层）
   const tri = rmFindTriangles();
   tri.forEach(([a, b, c]) => {
-    const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    poly.setAttribute('points', rmPoints.map(p => `${p.x},${p.y}`).join(' '));
-    // 不画整圆，改为画 3 条高亮边
     [[a,b],[b,c],[c,a]].forEach(([i, j]) => {
       const p1 = rmPoints[i], p2 = rmPoints[j];
       const hl = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      hl.setAttribute('x1', p1.x);
-      hl.setAttribute('y1', p1.y);
-      hl.setAttribute('x2', p2.x);
-      hl.setAttribute('y2', p2.y);
-      hl.setAttribute('stroke', '#fbbf24');
-      hl.setAttribute('stroke-width', 8);
-      hl.setAttribute('opacity', 0.6);
-      hl.setAttribute('stroke-linecap', 'round');
+      hl.setAttribute('x1', p1.x); hl.setAttribute('y1', p1.y);
+      hl.setAttribute('x2', p2.x); hl.setAttribute('y2', p2.y);
+      hl.setAttribute('stroke', '#fbbf24'); hl.setAttribute('stroke-width', 8);
+      hl.setAttribute('opacity', 0.6); hl.setAttribute('stroke-linecap', 'round');
       rmSvg.appendChild(hl);
     });
   });
-  // 画边
   for (let i = 0; i < RM_N; i++) {
     for (let j = i+1; j < RM_N; j++) {
       const idx = rmEdgeIdx(i, j);
       const red = rmEdges[idx];
       const p1 = rmPoints[i], p2 = rmPoints[j];
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', p1.x);
-      line.setAttribute('y1', p1.y);
-      line.setAttribute('x2', p2.x);
-      line.setAttribute('y2', p2.y);
+      line.setAttribute('x1', p1.x); line.setAttribute('y1', p1.y);
+      line.setAttribute('x2', p2.x); line.setAttribute('y2', p2.y);
       line.setAttribute('stroke', red === null ? '#9ca3af' : (red ? '#ef4444' : '#2563eb'));
       line.setAttribute('stroke-width', red === null ? 1 : 2.5);
       line.setAttribute('stroke-dasharray', red === null ? '4 4' : '0');
@@ -2118,37 +1816,27 @@ function rmRender() {
       line.onclick = () => {
         if (rmEdges[idx] === null) rmEdges[idx] = true;
         else if (rmEdges[idx] === true) rmEdges[idx] = false;
-        else rmEdges[idx] = null;  // 三态：未设/红/蓝
+        else rmEdges[idx] = null;
         rmRender();
         rmUpdateStats();
       };
       rmSvg.appendChild(line);
     }
   }
-  // 画点
   rmPoints.forEach((p, idx) => {
     const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    c.setAttribute('cx', p.x);
-    c.setAttribute('cy', p.y);
-    c.setAttribute('r', 22);
-    c.setAttribute('fill', '#fff');
-    c.setAttribute('stroke', '#1f2937');
-    c.setAttribute('stroke-width', 2);
+    c.setAttribute('cx', p.x); c.setAttribute('cy', p.y); c.setAttribute('r', 22);
+    c.setAttribute('fill', '#fff'); c.setAttribute('stroke', '#1f2937'); c.setAttribute('stroke-width', 2);
     rmSvg.appendChild(c);
     const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    t.setAttribute('x', p.x);
-    t.setAttribute('y', p.y + 5);
-    t.setAttribute('text-anchor', 'middle');
-    t.setAttribute('font-size', 16);
-    t.setAttribute('font-weight', 700);
-    t.textContent = idx + 1;
-    t.style.pointerEvents = 'none';
+    t.setAttribute('x', p.x); t.setAttribute('y', p.y + 5);
+    t.setAttribute('text-anchor', 'middle'); t.setAttribute('font-size', 16); t.setAttribute('font-weight', 700);
+    t.textContent = idx + 1; t.style.pointerEvents = 'none';
     rmSvg.appendChild(t);
   });
 }
 
 function rmFindTriangles() {
-  // 找所有单色三角形
   const tris = [];
   for (let i = 0; i < RM_N; i++) {
     for (let j = i+1; j < RM_N; j++) {
@@ -2177,7 +1865,6 @@ function rmUpdateStats() {
 }
 
 function rmRandomFill(pRed = 0.5, forceAll = true) {
-  // 初始化：所有边先设为"未设"
   rmEdges = Array(RM_N * (RM_N - 1) / 2).fill(null);
   for (let idx = 0; idx < rmEdges.length; idx++) {
     if (forceAll || Math.random() < 0.9) {
@@ -2189,27 +1876,20 @@ function rmRandomFill(pRed = 0.5, forceAll = true) {
 }
 
 function rmK5NoMono() {
-  // 经典 C5 圈反例：5 个点，5 条外圈红，5 条弦蓝
-  // 编号 0-4 摆成正五边形，第 5 个点不参与
-  // 把 0-4 之间的边按 C5 + 对角线染色
   rmEdges = Array(RM_N * (RM_N - 1) / 2).fill(null);
-  // 让第 5 个点（i=5）所有边先设为蓝（不参与判断）
   for (let j = 0; j < RM_N; j++) {
     if (j !== 5) rmEdges[rmEdgeIdx(5, j)] = false;
   }
-  // 0-4 之间：C5 外圈 = 红，对角线 = 蓝
   const ring = [0, 1, 2, 3, 4];
   for (let i = 0; i < 5; i++) {
     const a = ring[i], b = ring[(i+1) % 5];
-    rmEdges[rmEdgeIdx(a, b)] = true; // 红
+    rmEdges[rmEdgeIdx(a, b)] = true;
   }
   for (let i = 0; i < 5; i++) {
     for (let j = i+2; j < 5; j++) {
-      if (j === i + 4 - 0) continue; // 跳过相邻（已经在环里处理过）
-      // i 与 i+2, i+3（mod 5） 是对角线
       const a = ring[i], b = ring[j];
       if (rmEdges[rmEdgeIdx(a, b)] === null) {
-        rmEdges[rmEdgeIdx(a, b)] = false; // 蓝
+        rmEdges[rmEdgeIdx(a, b)] = false;
       }
     }
   }
@@ -2217,59 +1897,81 @@ function rmK5NoMono() {
   rmUpdateStats();
 }
 
-document.getElementById('rmRandom6').onclick = () => rmRandomFill(0.5, true);
-document.getElementById('rmRandom5').onclick = () => rmRandomFill(0.5, true); // 6 人模式随机
-document.getElementById('rmClear').onclick = () => {
-  rmEdges = Array(RM_N * (RM_N - 1) / 2).fill(null);
-  rmRender();
-  rmUpdateStats();
-};
-document.getElementById('rmChallenge').onclick = rmK5NoMono;
-document.getElementById('rmStat').onclick = () => {
-  let count = 0;
-  for (let t = 0; t < 100; t++) {
-    const edges = Array(15).fill(0).map(() => Math.random() < 0.5);
-    let hasMono = false;
-    for (let i = 0; i < 6 && !hasMono; i++) {
-      for (let j = i+1; j < 6 && !hasMono; j++) {
-        for (let k = j+1; k < 6 && !hasMono; k++) {
-          const a = edges[i*5 - i*(i-1)/2 + (j-i-1)];
-          const b = edges[j*5 - j*(j-1)/2 + (k-j-1)];
-          const c = edges[i*5 - i*(i-1)/2 + (k-i-1)];
-          if (a === b && a === c) hasMono = true;
-        }
-      }
-    }
-    if (hasMono) count++;
-  }
-  rmStatResult.textContent = `${count} / 100`;
-  rmStatResult.style.color = count === 100 ? 'var(--good)' : 'var(--warn)';
-};
-document.getElementById('rmDownload').onclick = async () => {
-  const png = await svgToPng(rmSvg);
-  if (png) downloadDataUrl(png, `拉姆齐R33_${timestamp()}.png`);
-};
-document.getElementById('fcDownload').onclick = async () => {
-  const png = await svgToPng(fcSvg);
-  if (png) downloadDataUrl(png, `四色地图_${timestamp()}.png`);
-};
-
-rmRender();
-rmUpdateStats();
-
 /* ===================== Goldbach ===================== */
-const gbN = document.getElementById('gbN');
-const gbFind = document.getElementById('gbFind');
-const gbClear = document.getElementById('gbClear');
-const gbList = document.getElementById('gbList');
-const gbCountEl = document.getElementById('gbCount');
-const gbVerdictEl = document.getElementById('gbVerdict');
-const gbScanN = document.getElementById('gbScanN');
-const gbScanRun = document.getElementById('gbScanRun');
-const gbTotalEl = document.getElementById('gbTotal');
-const gbOkEl = document.getElementById('gbOk');
+let gbN, gbFind, gbClear, gbList, gbCountEl, gbVerdictEl, gbScanN, gbScanRun, gbTotalEl, gbOkEl;
 
-// 线性筛素数（n ≤ 50000 够用）
+const GOLDBACH_HTML = `
+<div class="intro">
+  <strong>哥德巴赫猜想</strong>（1742）：任何大于 2 的偶数都能写成两个素数之和。强版至今未证，数值验证已到 4×10¹⁸。
+  <strong>弱版</strong>（Helfgott 2013）：任何大于 5 的奇数都能写成<strong>三个</strong>素数之和——已证。
+  试试看：自己输入偶数，看 AI 帮你配糖。
+</div>
+<div class="grid">
+  <div>
+    <div class="card">
+      <h2>单数配糖：输入一个偶数</h2>
+      <div class="row">
+        <label style="flex: 1; min-width: 200px;">偶数 N（&gt; 2）<input type="number" id="gbN" value="100" min="4" max="100000"></label>
+        <button class="primary" id="gbFind">配糖</button>
+        <button class="ghost" id="gbClear">清空</button>
+      </div>
+      <h3>所有分解</h3>
+      <div id="gbList" class="sequence" style="min-height: 100px; line-height: 1.9;">（输入偶数点"配糖"）</div>
+      <div class="stat-grid" style="margin-top: 12px;">
+        <div class="stat"><div class="k">分解数</div><div class="v" id="gbCount">0</div></div>
+        <div class="stat big"><div class="k">是否配成</div><div class="v" id="gbVerdict" style="font-size: 18px;">—</div></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h2>扫 4 → N：所有偶数都能配吗？</h2>
+      <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">AI 对 4 到 N 的每个偶数找素数对分解，统计成功率。</p>
+      <div class="row">
+        <label>扫描到 N<input type="number" id="gbScanN" value="1000" min="10" max="50000" step="100"></label>
+        <button class="primary" id="gbScanRun">开始扫描</button>
+      </div>
+      <h3>结果</h3>
+      <div class="stat-grid">
+        <div class="stat"><div class="k">偶数总数</div><div class="v" id="gbTotal">—</div></div>
+        <div class="stat big"><div class="k">配成</div><div class="v good" id="gbOk">—</div></div>
+      </div>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 6px;">期望：<strong>100%</strong>（迄今 4×10¹⁸ 都没反例）。扫到 1 万约 1 秒。</p>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>反例悬赏</h2>
+      <p style="font-size: 14px; line-height: 1.6;">谁找到一个不能写成两素数之和的偶数——<strong>数学界会给他立碑</strong>。250 年了没人找到。Helfgott 2013 年证明了"三素数和"（弱版），但两素数（强版）仍是世纪难题。</p>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">提示：让孩子自己输一个偶数，看 AI 怎么"撞"出分解对——<strong>偶数越大反而越容易配</strong>。</p>
+    </div>
+  </div>
+</div>
+`;
+
+function setupGoldbach(root) {
+  root.innerHTML = GOLDBACH_HTML;
+  gbN = document.getElementById('gbN');
+  gbFind = document.getElementById('gbFind');
+  gbClear = document.getElementById('gbClear');
+  gbList = document.getElementById('gbList');
+  gbCountEl = document.getElementById('gbCount');
+  gbVerdictEl = document.getElementById('gbVerdict');
+  gbScanN = document.getElementById('gbScanN');
+  gbScanRun = document.getElementById('gbScanRun');
+  gbTotalEl = document.getElementById('gbTotal');
+  gbOkEl = document.getElementById('gbOk');
+
+  gbFind.onclick = gbFindPairs;
+  gbClear.onclick = () => {
+    gbList.innerHTML = '（输入偶数点"配糖"）';
+    gbCountEl.textContent = '0';
+    gbVerdictEl.textContent = '—';
+    gbVerdictEl.style.color = '';
+  };
+  gbScanRun.onclick = gbScan;
+  gbN.onkeypress = e => { if (e.key === 'Enter') gbFindPairs(); };
+  gbScanN.onkeypress = e => { if (e.key === 'Enter') gbScan(); };
+}
+
 function sieve(n) {
   const isPrime = new Uint8Array(n + 1).fill(1);
   isPrime[0] = isPrime[1] = 0;
@@ -2282,7 +1984,6 @@ function sieve(n) {
 }
 
 function gbDecompose(N, isPrime) {
-  // 找所有 p1 + p2 = N, p1 ≤ p2 都是素数
   const pairs = [];
   for (let p = 2; p <= N/2; p++) {
     if (isPrime[p] && isPrime[N - p]) {
@@ -2343,17 +2044,6 @@ function gbScan() {
     alert(`找到反例！N = ${failList.join(', ')}`);
   }
 }
-
-gbFind.onclick = gbFindPairs;
-gbClear.onclick = () => {
-  gbList.innerHTML = '（输入偶数点"配糖"）';
-  gbCountEl.textContent = '0';
-  gbVerdictEl.textContent = '—';
-  gbVerdictEl.style.color = '';
-};
-gbScanRun.onclick = gbScan;
-gbN.addEventListener('keypress', e => { if (e.key === 'Enter') gbFindPairs(); });
-gbScanN.addEventListener('keypress', e => { if (e.key === 'Enter') gbScan(); });
 
 /* ===================== 通用：下载 PNG ===================== */
 function downloadDataUrl(dataUrl, filename) {
@@ -2456,6 +2146,343 @@ const PLAZA_CATEGORIES = {
 // 实验注册表：每个实验 { id, cat, title, intro, render(host, getValue) }
 // render 负责把交互注入 host，并返回 cleanup 函数
 const EXPERIMENTS = [
+
+/* ===================== 精选 8 个 (含详细原理/历史/试一试) ===================== */
+{
+  id: 'PR01', cat: '几何', title: '投针算 π (Buffon 1733)',
+  intro: '把长度为 L 的针扔到画着等距平行线（间距 d）的纸上，针跨线概率 P = 2L/(πd)，反推 π。',
+  principle: `<h4>🔍 这到底是怎么回事？</h4>
+<p>想象你往画着等距平行线的纸上扔一根针。每根针的位置 <em>(x, y)</em> 和角度 <em>θ</em> 都是<strong>完全随机</strong>的——但每根针跨不跨线，居然有 <strong>精确的数学概率</strong>，而且这个概率里藏着 π。</p>
+<h4>📐 概率怎么算的？</h4>
+<p>设针长 <span class="formula">L</span>，线距 <span class="formula">d</span>，针的角度 <span class="formula">θ ∈ [0, π]</span>（π 角度内已经覆盖所有方向），离最近线的距离 <span class="formula">y ∈ [0, d/2]</span>（对称性只算半边）。</p>
+<p>针跨线的条件：<span class="formula">(L/2)·sin θ &gt; y</span>。对所有随机的 (θ, y) 积分：</p>
+<div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 14px;">
+P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
+  = (1/πd) ∫₀^π L·sinθ dθ<br>
+  = (1/πd) · L · 2<br>
+  = <strong>2L / (πd)</strong>
+</div>
+<p>所以 <strong>π = 2L / (P·d) = 2L·N / (n·d)</strong>，N = 投的总次数，n = 跨线的次数。投得越多，π 估得越准。</p>
+<h4>🖼️ 直观理解</h4>
+<ul>
+  <li>针越接近竖直（θ 接近 π/2），越容易跨线——<strong>sin θ</strong> 大</li>
+  <li>针越接近水平（θ 接近 0 或 π），几乎不跨线——<strong>sin θ</strong> 小</li>
+  <li>距离最近的线越近（y 小），越容易跨线</li>
+  <li>针越长（L 大），跨线概率越高</li>
+</ul>
+<h4>💡 为什么这个发现伟大？</h4>
+<p>在 Buffon 之前，大家都觉得"几何"和"概率"是两回事。投针实验第一次让<strong>随机过程</strong>给出了<strong>确定性常数</strong>——这种思想后来被蒙特卡洛方法继承，是现代物理、金融、AI 模拟的根基。</p>`,
+  history: `<p><strong>1733 年</strong>，法国博物学家 <strong>Georges-Louis Leclerc, Comte de Buffon</strong>（布丰）第一次提出这个问题。他以百科全书式的 <em>Histoire Naturelle</em> 闻名，同时还是概率论的先驱。</p>
+<p><strong>1850 年</strong>，瑞士天文学家 <strong>Rudolf Wolf</strong> 亲手扔了 <strong>5000 根针</strong>，得到 π ≈ 3.1596——相对误差 0.5%，在当时惊人地精确。</p>
+<p><strong>1901 年</strong>，意大利数学家 <strong>Mario Lazzarini</strong> 用精心设计的针长（针长 = 线距的 5/6）扔了 3408 根，得到 <strong>π ≈ 3.1415929...</strong>，前 6 位都正确——但后来被怀疑数据有"优化"嫌疑。</p>
+<p><strong>现代意义</strong>：蒙特卡洛方法（1940s-）就是 Buffon 思想的"徒孙"。MCMC、粒子物理、期权定价，<strong>全都是用随机模拟算确定性答案</strong>。</p>`,
+  tryit: `<ol>
+  <li><strong>看孩子预测</strong>：让孩子先猜"投 100 根针，π 估值会落 3 到 4 之间吗？"——会。猜"会落 3.14 附近吗？"——投得越多越接近。</li>
+  <li><strong>点画布自己扔针</strong>：鼠标点画布上任意位置就扔一根。问孩子"这根针跨线了吗？为什么？"</li>
+  <li><strong>投 1 根</strong>：看 π 估值从"—"变成"3.14xxx"——单次波动可能很大（3.0 ~ 4.0）。</li>
+  <li><strong>投 100 根</strong>：π 估值在 3.05 ~ 3.25 之间。问孩子"为什么还是不准？"——因为 100 个样本太小。</li>
+  <li><strong>投 1000 根</strong>：现在 3.10 ~ 3.18 范围。</li>
+  <li><strong>投 10000 根</strong>：3.13 ~ 3.15 范围——<strong>误差 1% 以内</strong>，但还是不及 祖冲之 1500 年前的精度！</li>
+  <li><strong>改变参数再玩</strong>：把 L 改成 100、d 改成 80——理论跨线率变 80%，重新投，验证理论。</li>
+  <li><strong>下载 PNG</strong>：把你投的结果存为图片，跟同学比谁投得"分布最均匀"。</li>
+</ol>`,
+  render: (h) => setupBuffon(h)
+},
+{
+  id: 'PR02', cat: '数论', title: '冰雹蹦跳 (Collatz 猜想)',
+  intro: '选一个正整数 n：偶数就除 2，奇数就 ×3+1，一直蹦下去，最后必到 1。',
+  principle: `<h4>🔍 这到底是怎么回事？</h4>
+<p>Collatz 猜想是人类数学里<strong>最简单又最难</strong>的未解之谜之一。它的规则简单到小学生都能做：</p>
+<div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 15px;">
+如果 n 是<strong>偶数</strong>：n → n/2<br>
+如果 n 是<strong>奇数</strong>：n → 3n+1
+</div>
+<p>从任何正整数 n 出发，反复应用这个规则，<strong>似乎最终都会蹦到 1</strong>（然后在 1 → 4 → 2 → 1 循环）。</p>
+<h4>📊 看几个例子</h4>
+<p><strong>n = 6</strong>：6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1（9 步到 1）<br>
+<strong>n = 11</strong>：11 → 34 → 17 → 52 → 26 → 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1（15 步）<br>
+<strong>n = 27</strong>：蹦 112 步，<strong>峰值高达 9232</strong>，才最终到 1</p>
+<h4>🧠 为什么这么难证？</h4>
+<p>看起来"奇数 ×3+1 变大，偶数 /2 变小"，平均起来应该往 1 收缩。数学家能证明：<strong>几乎所有 n 蹦几次后都掉回小数值</strong>。但要证明"对所有 n 都成立"，要处理无数种边界情况。</p>
+<p>已验证的范围：<strong>5.76 × 10¹⁸</strong>（约 58 亿亿）。但数学证明？<strong>没有</strong>。Paul Erdős 说："这种问题数学还没准备好解决。"</p>
+<h4>💡 直观：为什么它"应该"成立？</h4>
+<ul>
+  <li>奇数 ×3+1 后是<strong>偶数</strong>（因为 3×奇=奇，奇+1=偶），下一步必然 /2</li>
+  <li>所以"奇数 → 偶数"平均损失约 1/4 的大小</li>
+  <li>整个序列的"几何均值"约 3/4（<em>3/4 &lt; 1</em>），所以长期必收敛</li>
+  <li>但这不严格——有可能"奇数大跳"积累到突破边界</li>
+</ul>`,
+  history: `<p><strong>1930 年代</strong>，德国汉堡大学的 <strong>Lothar Collatz</strong>（1910-1990）研究差分方程时发现了这个规律。1950 年他第一次在国际会议上提出来，被当成"玩具问题"。</p>
+<p><strong>1960-1970 年代</strong>，<strong>Bryan Thwaites</strong>（英国数学家）猜测这个猜想永远成立，但没证明。<strong>Shizuo Kakutani</strong>（日裔美国数学家）把这个问题在耶鲁大学数学系传开，大家叫它 <em>"Kakutani's 3n+1 problem"</em>。</p>
+<p><strong>1970s</strong>，<strong>Paul Erdős</strong>（20 世纪最多产的数学家之一）公开悬赏 500 美元求证明或反例，至今没人领到。</p>
+<p><strong>1990s</strong>，<strong>Geoffrey Lagarias</strong> 整理了 Collatz 问题，写了 50 页综述<em>"The 3x+1 problem: an annotated bibliography"</em>。今天 Lagarias 是这个领域最权威的专家之一。</p>
+<p><strong>2010s</strong>，<strong>Terence Tao</strong>（2006 菲尔兹奖得主）证明了一个<strong>几乎</strong>版本：几乎所有 n 都会"很接近"地收敛。但离完全证明还很远。</p>`,
+  tryit: `<ol>
+  <li><strong>试小数字</strong>：输入 6、11、27，看序列变化。问孩子"为什么 27 要蹦 112 步？"</li>
+  <li><strong>找规律</strong>：让孩子手动算 1-10 的"步数表"：1→0步, 2→1, 3→7, 4→2, 5→5, 6→8, 7→16, 8→3, 9→19, 10→6。问"哪个蹦得最久？"——7 (16 步) 和 9 (19 步)。</li>
+  <li><strong>挑战：找反例</strong>：扫描到 10000，让孩子<strong>亲自</strong>找 1 个反例（找不到，赢 500 美元 Erdős 悬赏！）</li>
+  <li><strong>看峰值</strong>：n = 27 蹦到峰值 9232，n = 871 蹦到峰值 190747 —— 问"为什么有些 n 这么拧巴？"</li>
+  <li><strong>观察散点图</strong>：扫 5000，看哪些点是红的——红 = 步数超 5% 的"反常起点"。</li>
+  <li><strong>Top 10 表</strong>：扫描完成后看 Top 10——1 万以内蹦得最久的 10 个数是哪些？</li>
+  <li><strong>单步模式</strong>：用"单步"按钮看每一步怎么变化，感受"奇数 ×3+1 后必偶 /2"的节奏。</li>
+</ol>`,
+  render: (h) => setupCollatz(h)
+},
+{
+  id: 'PR03', cat: '数论', title: '猜勾股数 (Euclid 公式)',
+  intro: '本原勾股数 (a, b, c) 满足 a² + b² = c²。Euclid 公式：所有本原勾股数都长 (m²−n², 2mn, m²+n²)。',
+  principle: `<h4>🔍 勾股数是什么？</h4>
+<p>三个正整数 a, b, c 满足 <span class="formula">a² + b² = c²</span>，就是一组<strong>勾股数</strong>。最有名的是 (3, 4, 5)：3² + 4² = 9 + 16 = 25 = 5²。</p>
+<p>如果三个数<strong>两两互素</strong>（gcd=1），叫<strong>本原勾股数</strong>。1000 以内有 158 个本原勾股数。</p>
+<h4>📐 Euclid 公式（公元前 300 年）</h4>
+<p>取任意 <span class="formula">m &gt; n &gt; 0</span>，要求：</p>
+<ul>
+  <li><strong>m 和 n 互素</strong>（gcd(m, n) = 1）</li>
+  <li><strong>m − n 是奇数</strong>（保证 a 是奇数）</li>
+</ul>
+<p>那么：<span class="formula">a = m² − n²</span>，<span class="formula">b = 2mn</span>，<span class="formula">c = m² + n²</span> 一定是一组本原勾股数。</p>
+<p><strong>例子</strong>：m=3, n=2 → (9−4, 2·3·2, 9+4) = (5, 12, 13)。验证：5² + 12² = 25 + 144 = 169 = 13²。✓</p>
+<p><strong>反之</strong>，每个本原勾股数都<strong>唯一对应</strong>一对 (m, n)。所以"找本原勾股数"等价于"枚举 m, n 配对"。</p>
+<h4>🧮 为什么这个公式成立？</h4>
+<p>代数验证：<br>
+(m²−n²)² + (2mn)² = m⁴ − 2m²n² + n⁴ + 4m²n² = m⁴ + 2m²n² + n⁴ = (m²+n²)² ✓</p>
+<p>互素性 + m-n 奇 保证三边没有公因子，所以是"本原"。</p>
+<h4>💡 信息论下界</h4>
+<p>1000 以内有 158 个本原勾股数，要"夹"出来一个，理论上最少 <span class="formula">log₂(158) ≈ 7.3</span> 步——所以 8 步能 100% 猜中！</p>`,
+  history: `<p><strong>公元前 1900-1600 年</strong>，古巴比伦人已经在泥板上记录 (3,4,5)、(5,12,13)、(8,15,17) 等勾股数——但他们不知道为什么"对"。</p>
+<p><strong>公元前 6 世纪</strong>，希腊数学家 <strong>Pythagoras</strong>（毕达哥拉斯）证明直角三角形 a²+b²=c² 永远成立——这就是<strong>勾股定理</strong>。</p>
+<p><strong>公元前 300 年</strong>，<strong>Euclid</strong>（欧几里得）在《几何原本》第 X 卷命题 29 给出<strong>本原勾股数公式</strong>——这是人类第一次"完整构造"所有勾股数。</p>
+<p><strong>1740 年前后</strong>，瑞士数学家 <strong>Leonhard Euler</strong> 给出 m, n 互素且 m-n 奇的条件（Euclid 原著只说 m > n）。</p>
+<p><strong>现代推广</strong>：勾股数对应<strong>高斯整数</strong>（复整数）的分解，把"找勾股数"转化为"算 a² + b²"——这是代数数论的经典案例。</p>`,
+  tryit: `<ol>
+  <li><strong>工厂试滑块</strong>：把 m 调到 5、n 调到 4——得到 (9, 40, 41)？验证 9² + 40² = 81 + 1600 = 1681 = 41² ✓</li>
+  <li><strong>试 m=4, n=2</strong>：得到 (12, 16, 20)，但"非本原"——因为 gcd(4,2)=2, 4-2=偶。提示：本原要求 m-n 奇！</li>
+  <li><strong>挑战模式</strong>：点"换一题"，AI 随机选一个本原勾股数（如 7-24-25），你用 8 步内猜出来。</li>
+  <li><strong>先问"包含数字 7"？</strong> 候选项会缩到几十个。再问"最大边 &lt; 30"？剩几个。再问"m=4"？锁定！</li>
+  <li><strong>直接问 m 或 n</strong>：这是"绝杀"问题——m, n 直接决定一组。问对了立刻就剩 1 个。</li>
+  <li><strong>看"偷看答案"按钮</strong>：放弃就直接看。</li>
+  <li><strong>看候选池</strong>：每次提问后候选池会刷新，体会"二分"的强大。</li>
+  <li><strong>全表浏览</strong>：右下角"本原勾股数表"列出全部 158 个，按 c 排序——问孩子"为什么 5-12-13 后下一个是 8-15-17？"</li>
+</ol>`,
+  render: (h) => setupPythagorean(h)
+},
+{
+  id: 'PR04', cat: '图论', title: '四色定理 (Appel-Haken 1976)',
+  intro: '任何平面地图只用 4 种颜色，就能让相邻区域不同色。第一个必须靠计算机证明的著名定理。',
+  principle: `<h4>🔍 这到底是怎么回事？</h4>
+<p>假设你有一张地图（中国地图、欧洲地图、自己画的 Voronoi 图……），上面有几个国家（区域），两国<strong>共享一段边界</strong>叫"相邻"。问题：<strong>最少需要几种颜色</strong>，才能给每个国家涂一种颜色、且相邻两国颜色不同？</p>
+<p>答案：<strong>4 种就够</strong>。这条定理就是 <strong>四色定理</strong>。</p>
+<h4>📐 为什么 2-3 色不够？</h4>
+<p><strong>2 色</strong>：想象一个由 3 个互相相邻的国家——必须 3 色。失败。<br>
+<strong>3 色</strong>：画一个"中心 + 3 个围城"——中心要跟 3 个围城不同色，所以中心用第 4 色。</p>
+<p>画个"中心 + 5 个围城"呢？也失败了——3 色不够。但 <strong>6 个围城</strong>呢？</p>
+<p>数学家证明 <strong>3 色永远不够</strong>（总能找到反例图），但 <strong>4 色总是够的</strong>。</p>
+<h4>🧠 为什么这么难证？</h4>
+<p>地图的形状千变万化，要考虑"邻接关系"的图结构。数学家把地图转成<strong>平面图</strong>（无交叉边的图），然后证明：</p>
+<ol>
+  <li>任何平面图都能归约到 <strong>约 1800 种"基本图"</strong></li>
+  <li>每种基本图都能 4-着色（机器穷举）</li>
+  <li>所以任何平面图都能 4-着色</li>
+</ol>
+<p>这个证明<strong>用了 1200 小时的计算机时间</strong>，任何人类无法"读"完全部细节。</p>
+<h4>💡 应用</h4>
+<p>四色定理看似"画图"，但实质是<strong>图论与组合学</strong>的核心问题。芯片布线、频段分配、课程表排课——都跟"图着色"有关。</p>`,
+  history: `<p><strong>1852 年</strong>，<strong>Francis Guthrie</strong>（伦敦大学学生）在给英国地图涂色时发现：似乎 4 种颜色就够了。他问弟弟 Frederick，弟弟去问老师 <strong>Augustus De Morgan</strong>，De Morgan 写信给 <strong>William Hamilton</strong>——但 Hamilton 没兴趣。</p>
+<p><strong>1878 年</strong>，<strong>Arthur Cayley</strong> 在伦敦数学会正式提出"四色猜想"。<br>
+<strong>1879 年</strong>，<strong>Alfred Kempe</strong> 发表"证明"——被公认 11 年。</p>
+<p><strong>1890 年</strong>，<strong>Percy Heawood</strong> 指出 Kempe 的证明有漏洞（但修正后能证 5 色）。<br>
+<strong>1922 年</strong>，<strong>Philip Franklin</strong> 证明 ≤ 25 区域时四色成立。<br>
+<strong>1960s</strong>，逐步推进到 ≤ 40 区域。</p>
+<p><strong>1976 年 6 月</strong>，<strong>Kenneth Appel</strong> 和 <strong>Wolfgang Haken</strong> 在伊利诺伊大学用计算机<strong>穷举 1936 个不可约构型</strong>，终于证明。发表在 <em>Illinois Journal of Mathematics</em>。</p>
+<p><strong>2005 年</strong>，<strong>Georges Gonthier</strong> 用 <strong>Coq 证明助手</strong>给出<strong>完全形式化证明</strong>——机器检查机器写的证明。</p>
+<p><strong>争议</strong>：数学家至今争论"计算机辅助证明"算不算"真证明"。但 Gonthier 之后，没人再怀疑四色定理。</p>`,
+  tryit: `<ol>
+  <li><strong>先看 6×6 网格</strong>：点任意格子涂红色，再点隔壁——是不是变蓝？再点隔壁——变绿？体验"相邻必不同色"。</li>
+  <li><strong>挑战 3 色</strong>：点"挑战 3 色"按钮——4 号色被锁住。试试 6×6 网格能不能只用 3 色——<strong>2 色就够</strong>！</li>
+  <li><strong>切到 Voronoi 模式</strong>：地图变不规则，14 个国家。这时 3 色<strong>不够</strong>——至少要 4 色。验证！</li>
+  <li><strong>让 AI 涂</strong>：点"AI 用 4 色涂"——看 AI 的回溯算法怎么一格格涂色。AI <strong>一定能涂出来</strong>（这就是定理）。</li>
+  <li><strong>自创国家数</strong>：国家数改成 20，地图更复杂，AI 也能搞定。</li>
+  <li><strong>下载 PNG</strong>：把你涂的地图下载下来——给同学出题："这个地图最少要几色？"</li>
+  <li><strong>教学金句</strong>：跟孩子说"这条定理 1852 年提出，1976 年才证出来——足足 124 年！而且最后还靠了电脑！数学家也怕电脑抢饭碗吗？"</li>
+</ol>`,
+  render: (h) => setupFourColor(h)
+},
+{
+  id: 'PR05', cat: '图论', title: '拉姆齐 R(3,3) = 6',
+  intro: '6 个人聚会，必有 3 人互相认识或 3 人互不认识。等价于 K₆ 的红蓝着色必含单色三角形。',
+  principle: `<h4>🔍 这个问题为什么有趣？</h4>
+<p>想象 <strong>6 个人</strong>围坐一桌。两人之间要么"认识"（红边）要么"不认识"（蓝边）。问：<strong>是否一定有 3 人互相全认识，或 3 人互相全不认识？</strong></p>
+<p>答案是：<strong>一定</strong>。</p>
+<p>这就是 <strong>R(3,3) = 6</strong>——拉姆齐数 R(s, t) 是在 2-着色完全图里，必含 s-单色团或 t-单色团的最小顶点数。</p>
+<h4>📐 直观证明（6 人必含单色三角形）</h4>
+<p>看其中<strong>任一人 A</strong>，A 跟其他 5 人相连——5 条边至少 3 条同色（鸽巢原理）。假设 A 跟 B, C, D 三人都用<strong>红色</strong>边（认识）。</p>
+<p>考虑 B-C 边：</p>
+<ul>
+  <li>如果 B-C 是<strong>红色</strong>，那么 A-B-C 组成<strong>红色三角形</strong>（3 人互识）✓</li>
+  <li>如果 B-C 是<strong>蓝色</strong>，同理 C-D 蓝色或 B-D 蓝色 → 蓝色三角形（3 人互不识）✓</li>
+</ul>
+<p>所以无论怎么涂，<strong>6 个点必有单色三角形</strong>。</p>
+<h4>🧠 5 个人呢？</h4>
+<p><strong>5 人不一定</strong>。经典反例：C₅ 圈——5 个点摆成正五边形，圈上 5 条边红、5 条对角线蓝。这样<strong>没有单色三角形</strong>。</p>
+<p>所以 R(3,3) = 6 是个<strong>精确</strong>的下界：再少一个点就可能不成立。</p>
+<h4>💡 拉姆齐数的其他值</h4>
+<ul>
+  <li>R(3,3) = 6</li>
+  <li>R(4,4) = 18（已知，未严格证）</li>
+  <li>R(5,5) 介于 43 和 48 之间</li>
+  <li>R(s, s) 增长是<strong>指数级</strong>的——但精确值大部分未知</li>
+</ul>`,
+  history: `<p><strong>1928 年</strong>，<strong>Frank P. Ramsey</strong>（1903-1930，英国数学家）在论文 <em>On a problem of formal logic</em> 中提出"组合数学中的拉姆齐定理"——但他证明的是无限版本。</p>
+<p><strong>1930 年</strong>，<strong>Theodore Motzkin</strong> 第一次给出 R(3,3)=6 的有限版本证明。</p>
+<p><strong>1935 年</strong>，<strong>Paul Erdős</strong> 和 <strong>George Szekeres</strong> 发表 <em>A combinatorial problem in geometry</em>，奠定<strong>拉姆齐理论</strong>的现代基础。"幸福结局问题"（任意 5 个点中必有 4 个构成凸四边形）也来自这篇。</p>
+<p><strong>1935 年</strong>，<strong>Issai Schur</strong> 把 R(3,3) 联系到<strong>Schur 数</strong>（同色 x+y=z 解）——拉姆齐数的代数版本。</p>
+<p><strong>1960s-</strong>，<strong>Stanisław Radziszowski</strong> 持续维护 R(s, t) 已知值的小型百科，是这个领域的标准参考。</p>
+<p><strong>现代意义</strong>：拉姆齐理论是<strong>组合学、概率论、逻辑学</strong>的交叉核心。它告诉我们"完全混乱"是不可能的——任何大系统必有规律结构。</p>`,
+  tryit: `<ol>
+  <li><strong>手动点边</strong>：默认所有边是灰色（未设）。点 1-2 边变红（认识），再点 1-3 边变蓝（不认识），体验三态切换。</li>
+  <li><strong>看单色三角形计数</strong>：每改一条边，黄色高亮立刻出现，<strong>实时</strong>告诉你有几个单色三角形。</li>
+  <li><strong>故意造无单色三角的 6 节点图</strong>：试 100 次都失败——证明 R(3,3) ≤ 6。</li>
+  <li><strong>点"AI 出反例：找无单色三角的 K₅"</strong>：看 AI 展示经典 C₅ 圈反例——5 人<strong>可以</strong>无单色三角形。</li>
+  <li><strong>跑 100 次</strong>：100 个随机 6 人配置，统计含单色三角的比例——应该<strong>100%</strong>。</li>
+  <li><strong>孩子最难的问题</strong>：5 人聚会有可能无单色三角形吗？—— 让孩子先猜，再用 AI 按钮验证。</li>
+  <li><strong>下载 PNG</strong>：把你设计的 6 人关系图下载，给同学出题"你能找到单色三角形吗？"。</li>
+  <li><strong>进阶思考</strong>：如果每条边有 3 种颜色（红/蓝/绿），6 人还能无单色三角形吗？（不能，R(3,3,3) = 17）</li>
+</ol>`,
+  render: (h) => setupRamsey(h)
+},
+{
+  id: 'PR06', cat: '数论', title: '哥德巴赫配糖 (Goldbach 1742)',
+  intro: '任何大于 2 的偶数都能写成两个素数之和。强版至今未证，弱版（Helfgott 2013）已证。',
+  principle: `<h4>🔍 这到底是怎么回事？</h4>
+<p>取任何<strong>大于 2 的偶数 N</strong>，问：能不能写成<strong>两个素数之和</strong>？</p>
+<p>例子：<br>
+  4 = 2 + 2 ✓<br>
+  6 = 3 + 3 ✓<br>
+  10 = 3 + 7 ✓ 或 5 + 5 ✓<br>
+  100 = 3 + 97 = 11 + 89 = 17 + 83 = ...（8 种分法）</p>
+<p>数学家验证了到 <strong>4 × 10¹⁸</strong>（400 亿亿）都成立，但<strong>证明</strong>？<strong>没有</strong>！</p>
+<h4>📐 强版 vs 弱版</h4>
+<p><strong>强版</strong>（1742 至今未证）：每个 ≥ 4 的偶数 = 两素数之和。<br>
+<strong>弱版</strong>（Helfgott 2013 已证）：每个 ≥ 7 的奇数 = <strong>三</strong>素数之和。</p>
+<p>弱版等价于"每个 ≥ 6 的偶数 = 三素数之和"——因为 2N = 2 + p1 + p2（odd N → 2N-2 = 偶）。</p>
+<h4>🧠 为什么这么难？</h4>
+<p>素数分布是"看似随机但有规律"。偶数越大，配对越多——<br>
+<strong>N=100</strong>：8 种配法<br>
+<strong>N=1000</strong>：28 种配法<br>
+<strong>N=10⁶</strong>：5402 种配法</p>
+<p>但要"严格证明"对所有 N 都成立，要用到深奥的<strong>解析数论</strong>——圆法、筛法、指数和估计——一个错就全错。</p>
+<h4>💡 一个反例值多少？</h4>
+<p>如果谁找到一个不能写成两素数之和的偶数，<strong>数学界会给他立碑</strong>。1752 年 Euler 跟哥德巴赫通信以来，没人找到。</p>`,
+  history: `<p><strong>1742 年 6 月 7 日</strong>，普鲁士数学家 <strong>Christian Goldbach</strong>（哥德巴赫，1690-1764）在给 <strong>Leonhard Euler</strong> 的信中提出："每个大于 2 的整数 = 三个素数之和"。</p>
+<p><strong>同年 6 月 30 日</strong>，Euler 回信：把这个猜想改成"每个大于 2 的偶数 = 两个素数之和"——因为加 1 改 2 等价。注意 <strong>当时 1 算素数</strong>（19 世纪才把 1 排除）。</p>
+<p><strong>1859 年</strong>，<strong>Bernhard Riemann</strong> 发表 <em>Über die Anzahl der Primzahlen unter einer gegebenen Größe</em>（关于小于给定值的素数个数），给出<strong>黎曼 ζ 函数</strong>——<strong>素数分布的钥匙</strong>。但黎曼猜想至今未证（2000 年克莱数学所悬赏 100 万美元）。</p>
+<p><strong>1923 年</strong>，<strong>Godfrey Hardy</strong> 和 <strong>John Littlewood</strong> 证明：在<strong>广义黎曼猜想</strong>成立下，每个大偶数能写成 a+b（a, b 素数）。</p>
+<p><strong>1937 年</strong>，<strong>Ivan Vinogradov</strong> 用<strong>圆法</strong>无假设地证明：每个足够大的奇数 = 三个素数之和——即<strong>弱哥德巴赫猜想</strong>。</p>
+<p><strong>2013 年</strong>，<strong>Harald Helfgott</strong>（秘鲁裔美国数学家）补完 Vinogradov 的边界，<strong>完全证明</strong>弱哥德巴赫猜想（每个 ≥ 7 的奇数 = 三素数之和）。</p>
+<p><strong>强版</strong>：至今未证。2024 年 <strong>Terence Tao</strong> 给出"几乎证明"：每个偶数能写成 a+b（a 素数、b 几乎素数）。</p>`,
+  tryit: `<ol>
+  <li><strong>输入小偶数</strong>：试 4, 6, 10, 100, 1000——看配对数从 1 个涨到 28 个。</li>
+  <li><strong>输入大偶数</strong>：试 10000、100000——配对数会更多，<strong>偶数越大反而越容易配</strong>。</li>
+  <li><strong>故意找反例</strong>：扫到 50000，看 AI 有没有"反例"——100% 没有（迄今 4×10¹⁸ 都没）。</li>
+  <li><strong>观察规律</strong>：100 = 3+97 = 11+89 = 17+83 = 29+71 = 41+59 = 47+53——总是对称的。问孩子"为什么 4 一定是 2+2？"（因为 1 不算素数）。</li>
+  <li><strong>孪生素数 vs 哥德巴赫</strong>：孪生素数是"p, p+2 都是素数"；哥德巴赫是"p1 + p2 = 偶数 N"。让孩子对比两条未解之谜。</li>
+  <li><strong>AI 帮你"撞"配对</strong>：从 2 试到 N/2，第一个命中的就是配对——比人类快得多。</li>
+  <li><strong>教学金句</strong>："数学家验证到 400 亿亿都没反例，但'找不到反例'不等于'证明没有反例'——这就是数学的严谨。"</li>
+</ol>`,
+  render: (h) => setupGoldbach(h)
+},
+{
+  id: 'PR07', cat: '数论', title: '孪生素数 (Twin Primes)',
+  intro: '相差 2 的素数对：(3,5)、(5,7)、(11,13)、(17,19)、(29,31)... 张益唐 2013 年里程碑证明。',
+  principle: `<h4>🔍 孪生素数是什么？</h4>
+<p>两个素数 p 和 p+2（相差 2）就是一对<strong>孪生素数</strong>。例子：<br>
+  (3, 5)、(5, 7)、(11, 13)、(17, 19)、(29, 31)、(41, 43)、(59, 61)、(71, 73)...</p>
+<p>(2, 3) 不算——差 1 不是孪生。还有<strong>三胞胎</strong>(p, p+2, p+6) 形式：5-7-11、11-13-17、17-19-23。</p>
+<h4>📐 孪生素数猜想</h4>
+<p>是否存在<strong>无穷多对</strong>孪生素数？<br>
+答案：<strong>几乎肯定有</strong>，但<strong>至今未严格证明</strong>。</p>
+<p>已找到最大孪生对：<strong>2,003,663,613 × 2¹⁹⁵,⁰⁰⁰ ± 1</strong>（约 58000 位数字）——但这只是"找到"，不是"证明有无穷多"。</p>
+<h4>🧠 张益唐 2013：里程碑</h4>
+<p>2013 年 5 月，<strong>Yitang Zhang</strong>（张益唐）证明：存在<strong>无穷多对</strong>素数相差 &lt; 7 × 10⁷。这是 100 年来对孪生素数猜想的最大突破。</p>
+<p>虽然没证明"差 2"（即真正的孪生），但把"差无穷"压到了"差 7000 万"。</p>
+<p><strong>2014 年</strong>，<strong>Polymath 8</strong>（开放式合作）几个月内把界压到 246。Maynard 独立给出更优界。</p>
+<h4>📊 密度规律（Hardy-Littlewood 1923）</h4>
+<p>孪生素数对数 ~ <span class="formula">2·C₂ · ∫₂ᴺ dx/(ln x)²</span>，其中 <strong>C₂ ≈ 0.66</strong>（孪生素数常数）。</p>
+<p>实际：1000 以内有 35 对，10000 以内有 205 对——<strong>密度递减但永不归零</strong>。</p>`,
+  history: `<p><strong>1849 年</strong>，<strong>Alphonse de Polignac</strong> 提出更广的猜想：每个偶数都是某对素数之差（不只 2）——孪生猜想是特例。</p>
+<p><strong>1912 年</strong>，<strong>Edmund Landau</strong> 在国际数学家大会列出 4 个未解问题，"孪生素数猜想"排第 2——著名的 <strong>Landau 问题</strong>。</p>
+<p><strong>1923 年</strong>，<strong>Godfrey Hardy</strong> 和 <strong>John Littlewood</strong> 用<strong>圆法</strong>证明：在<strong>广义黎曼猜想</strong>下，孪生猜想成立。给出 <strong>C₂ = 0.66016...</strong>。</p>
+<p><strong>1966 年</strong>，<strong>Chen Jingrun</strong>（陈景润）证明：每个大偶数 = p + q（p 素数，q 几乎素数至多 2 因子）——<strong>陈氏定理</strong>，哥德巴赫问题的"几乎证明"。</p>
+<p><strong>2005 年</strong>，<strong>Daniel Goldston</strong>、<strong>János Pintz</strong>、<strong>Cem Yıldırım</strong> 证明：素数对差距 <strong>趋于 0</strong>（无穷多对差距任意小）。但具体差几还是不知道。</p>
+<p><strong>2013 年 5 月 13 日</strong>，<strong>Yitang Zhang</strong>（张益唐）独自投稿到 <em>Annals of Mathematics</em>，证明无穷多对差 &lt; 7000 万。审稿人 <strong>Henryk Iwaniec</strong> 和 <strong>Kevin Ford</strong> 4 月就收到，但 5 月才意识到重大。发表当天登上 <em>Nature</em>、<em>New York Times</em> 头条。</p>
+<p><strong>2013 年 8 月</strong>，<strong>Terence Tao</strong> 发起 <strong>Polymath 8</strong> 计划（开放式合作），几个月内把 7000 万压到 246。Maynard 独立给出更好的界。</p>
+<p><strong>2014 年至今</strong>，差距"246" 仍是最强界，差 2（真正的孪生）仍未证——但距目标越来越近。</p>`,
+  tryit: `<ol>
+  <li><strong>输入 100</strong>：看孪生对 (71, 73) 等。问孩子"为什么 (3, 5) 后下一个是 (5, 7)？"(因为 4 不是素数)。</li>
+  <li><strong>输入 1000</strong>：35 对孪生，最大 (881, 883)。散点图呈现"沿 y=x+2 分布"。</li>
+  <li><strong>输入 10000</strong>：205 对孪生。问孩子"为什么密度变低？"（素数越来越稀疏）。</li>
+  <li><strong>验证单数</strong>：输入 41 → 41 和 43 都是素数 → 孪生 ✓。输入 100 → 100 不是素数 → 不是孪生 ✗。</li>
+  <li><strong>看孪生 / 素数比</strong>：1000 内 168 个素数，35 对孪生 → 约 21%。10000 内 1229 个素数，205 对孪生 → 约 17%——密度递减但仍可观。</li>
+  <li><strong>扫到 100000</strong>：1224 对孪生，约 8 秒。问孩子"如果扫到 1 亿呢？"——100 亿对，约 10000 秒（3 小时）。</li>
+  <li><strong>张益唐的故事</strong>：跟孩子讲"一个曾任赛百味店员的数学家，58 岁默默无闻，59 岁一鸣惊人——给全世界上了一节'坚持'课"。</li>
+  <li><strong>教学金句</strong>："数学家验证到 4×10¹⁸ 都没反例，但证明不了——这就是数学的'看得见摸不着'。"</li>
+</ol>`,
+  render: (h) => setupTwin(h)
+},
+{
+  id: 'PR08', cat: 'π·e', title: 'π 的多算法对比（4 种并行）',
+  intro: '阿基米德割圆 / Leibniz / Machin / Chudnovsky——同一目标 π，4 种完全不同的算法，差距 6 个数量级。',
+  principle: `<h4>🔍 为什么有这么多算法？</h4>
+<p>π 是个<strong>超越数</strong>（林德曼 1882 证明），所以不可能用有理数代数式精确表达。但我们可以用<strong>无穷级数</strong>或<strong>几何逼近</strong>算到任意精度。</p>
+<p>不同算法的"收敛速度"差距巨大——同样算 1 万次迭代，Leibniz 只到 3.14，Chudnovsky 已到小数点后 14 位。</p>
+<h4>📐 4 种算法对比</h4>
+<p><strong>① 阿基米德割圆（公元前 250）</strong><br>
+用正 6 边 → 12 边 → 24 边 → 48 边 → 96 边 逼近圆。<br>
+<span class="formula">π ≈ n·sin(π/n)</span>，n 越大越准。<br>
+96 边时 π ≈ 3.1408 ~ 3.1429（阿基米德算的）。</p>
+<p><strong>② Leibniz 级数（1674 年）</strong><br>
+<span class="formula">π/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 - ...</span><br>
+简单但极慢——收敛速度 O(1/N)，算 1 万项才到 3.14，<strong>算 100 万项才到 3.141593</strong>。</p>
+<p><strong>③ Machin 公式（1706 年）</strong><br>
+<span class="formula">π/4 = 4·arctan(1/5) - arctan(1/239)</span><br>
+<span class="formula">arctan(x) = x - x³/3 + x⁵/5 - x⁷/7 + ...</span><br>
+arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快——<strong>10 项就到 12 位精度</strong>。</p>
+<p><strong>④ Chudnovsky 公式（1988 年）</strong><br>
+<span class="formula">1/π = 12 · Σ (-1)^k · (6k)!(545140134k + 13591409) / ((3k)!(k!)³ · 640320^(3k+3/2))</span><br>
+看似复杂，但每加 1 项<strong>多 14 位精度</strong>——是当前算 π 万亿位的工业标准。</p>
+<h4>🧮 收敛速度对比（迭代 N 次）</h4>
+<ul>
+  <li>Leibniz：O(1/N)，N 项精度 ~ 1/N 位</li>
+  <li>Machin：O(1/N³)，N 项精度 ~ log N 位</li>
+  <li>Chudnovsky：O(1/N⁶)，N 项精度 ~ 14·N 位</li>
+</ul>
+<p>算 π 100 万亿位（2022 年纪录）用了 Chudnovsky 变体 + 54 天，<strong>54 天 × 1 项/天 ≈ 1.6 亿次迭代</strong>。</p>`,
+  history: `<p><strong>公元前 250 年</strong>，<strong>Archimedes</strong>（阿基米德，287-212 BC）用 96 边形得 <span class="formula">3.1408 &lt; π &lt; 3.1429</span>——人类首次给出 π 的误差范围。</p>
+<p><strong>公元 480 年</strong>，中国数学家 <strong>祖冲之</strong>（429-500）给出 <span class="formula">3.1415926 &lt; π &lt; 3.1415927</span>，还算了 355/113（密率）和 22/7（疏率）——<strong>领先欧洲 1000 年</strong>。</p>
+<p><strong>1424 年</strong>，<strong>Jamshīd al-Kāshī</strong>（波斯）算 π 到 16 位小数。</p>
+<p><strong>1674 年</strong>，<strong>Gottfried Leibniz</strong> 发现 π/4 = 1 - 1/3 + 1/5 - 1/7 + ...——简单优雅但慢。</p>
+<p><strong>1706 年</strong>，<strong>John Machin</strong>（英国天文学教授）给出 Machin 公式 π/4 = 4·arctan(1/5) - arctan(1/239)，手算到 100 位。</p>
+<p><strong>1761 年</strong>，<strong>Johann Lambert</strong> 证明 π 是<strong>无理数</strong>。<br>
+<strong>1882 年</strong>，<strong>Ferdinand von Lindemann</strong> 证明 π 是<strong>超越数</strong>（不是任何有理系数多项式的根）——解决"化圆为方"不可能。</p>
+<p><strong>1948 年</strong>，<strong>Lev Toropov</strong> 等算出 π 203 位（含错误）。<br>
+<strong>1985 年</strong>，<strong>Bill Gosper</strong> 算到 1700 万位。<br>
+<strong>2002 年</strong>，<strong>金田康正</strong>（日本）算到 12411 亿位。</p>
+<p><strong>1988 年</strong>，<strong>David 和 Gregory Chudnovsky</strong> 兄弟（俄裔美国数学家）发表 Chudnovsky 公式——<strong>现代工业标准</strong>。</p>
+<p><strong>2022 年 6 月</strong>，<strong>Timothy Mullican</strong> 用家用电脑算到 100 万亿位，用 Chudnovsky + 54 天。<br>
+<strong>2024 年</strong>，存储优化版到 202 万亿位。</p>
+<p>π 的"为什么无穷多位还不循环"问题（圆周率是无理数），仍然是个开放数学问题——尽管答案已证（π 无理），但具体的"第 1 万亿位是什么"在变。</p>`,
+  tryit: `<ol>
+  <li><strong>先看静止画面</strong>：4 条线，Machin 和 Chudnovsky 已经接近 3.14xxx，阿基米德在 3.0-3.1 跳动，Leibniz 几乎水平线。</li>
+  <li><strong>按"开始计算" N=10</strong>：Leibniz 还是 3.0 附近，Machin 已到 3.141592，Chudnovsky 一步到位 3.14159265358979。</li>
+  <li><strong>改成 N=100</strong>：4 条线<strong>几乎都收敛</strong>到真实 π。但误差数量级：Leibniz 仍 1%，Machin 0.0000001%，Chudnovsky 远超双精度。</li>
+  <li><strong>改成 N=10000</strong>：Leibniz 才刚到 3.141，Chudnovsky 完全没变化（因为算不动 N=10000）。</li>
+  <li><strong>看每条线的"速度"</strong>：Leibniz 是最慢的蓝线，几乎 45° 直角走。Chudnovsky 黄线是"阶跃函数"——1 项就到顶。</li>
+  <li><strong>教学金句</strong>：跟孩子说"人类花 2000 年才把 π 算到 1 亿位，今天 1 个手机 1 秒就能算。这就是数学的积累。"</li>
+  <li><strong>祖冲之的 7 位</strong>：用阿基米德方法，祖冲之算的精度到小数点后 7 位——比欧洲早 1000 年。</li>
+  <li><strong>Chudnovsky 公式</strong>：把公式抄下来给孩子看——"你不需要懂每个符号，但要感受'公式越复杂、算得越快'的震撼"。</li>
+</ol>`,
+  render: (h) => setupPiAlg(h)
+},
 
 /* ===================== 数论 20 个 ===================== */
 {
@@ -3150,6 +3177,51 @@ const EXPERIMENTS = [
 {
   id: 'PE01', cat: 'π·e', title: 'Wallis 乘积',
   intro: 'π/2 = 2·2·4·4·6·6.../1·3·3·5·5·7... 收敛慢但优雅。',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：奇偶分子对分子相消</h4>
+<p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">把 π/2 写成 N 个<strong>分数</strong>的乘积。每个分数都是 <code>(2k·2k) / ((2k-1)(2k+1))</code>：分子分母"差 1"交错。</p>
+<svg viewBox="0 0 600 200" style="width: 100%; max-width: 600px; background: #fefce8; border-radius: 6px; border: 1px solid #fde68a;">
+  <!-- 标题 -->
+  <text x="300" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">π/2 = ∏(k=1..N) (2k·2k) / ((2k-1)·(2k+1))</text>
+  <!-- 5 对分数：分子偶数/分母奇数 -->
+  <g font-family="ui-monospace, monospace" font-size="13" fill="#1f2937">
+    <text x="20" y="50">k=1:</text>
+    <text x="70" y="50" fill="#2563eb">2·2</text>
+    <text x="100" y="50">/</text>
+    <text x="115" y="50" fill="#dc2626">1·3</text>
+    <text x="160" y="50">= 4/3</text>
+    <text x="20" y="80">k=2:</text>
+    <text x="70" y="80" fill="#2563eb">4·4</text>
+    <text x="100" y="80">/</text>
+    <text x="115" y="80" fill="#dc2626">3·5</text>
+    <text x="160" y="80">= 16/15</text>
+    <text x="20" y="110">k=3:</text>
+    <text x="70" y="110" fill="#2563eb">6·6</text>
+    <text x="100" y="110">/</text>
+    <text x="115" y="110" fill="#dc2626">5·7</text>
+    <text x="160" y="110">= 36/35</text>
+    <text x="20" y="140">k=4:</text>
+    <text x="70" y="140" fill="#2563eb">8·8</text>
+    <text x="100" y="140">/</text>
+    <text x="115" y="140" fill="#dc2626">7·9</text>
+    <text x="160" y="140">= 64/63</text>
+  </g>
+  <!-- 右半部分：累乘收敛 -->
+  <g transform="translate(280, 40)">
+    <text x="0" y="0" font-size="12" font-weight="600" fill="#059669">累乘收敛到 π/2 ≈ 1.5708</text>
+    <rect x="0" y="20" width="280" height="20" fill="#e5e7eb" rx="4"/>
+    <rect x="0" y="20" width="240" height="20" fill="#10b981" rx="4"/>
+    <text x="140" y="35" text-anchor="middle" font-size="11" fill="white" font-weight="600">N=1000: 1.5691</text>
+    <rect x="0" y="50" width="280" height="20" fill="#e5e7eb" rx="4"/>
+    <rect x="0" y="50" width="270" height="20" fill="#10b981" rx="4"/>
+    <text x="140" y="65" text-anchor="middle" font-size="11" fill="white" font-weight="600">N=10000: 1.5707</text>
+    <rect x="0" y="80" width="280" height="20" fill="#e5e7eb" rx="4"/>
+    <rect x="0" y="80" width="278" height="20" fill="#10b981" rx="4"/>
+    <text x="140" y="95" text-anchor="middle" font-size="11" fill="white" font-weight="600">N=100000: 1.57079...</text>
+    <line x1="0" y1="120" x2="280" y2="120" stroke="#6b7280" stroke-width="1" stroke-dasharray="4 2"/>
+    <text x="280" y="135" text-anchor="end" font-size="10" fill="#6b7280">极限 π/2 ≈ 1.5707963</text>
+  </g>
+  <text x="300" y="190" text-anchor="middle" font-size="11" fill="#6b7280">每项越来越接近 1（因为分子分母都"差 1"）</text>
+</svg>`,
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 N <input type="number" id="pe01_n" value="5000" min="100"></label><button class="primary" id="pe01_run">算</button></div><div id="pe01_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe01_run').onclick = () => {
@@ -3163,6 +3235,34 @@ const EXPERIMENTS = [
 {
   id: 'PE02', cat: 'π·e', title: 'Nilakantha 级数',
   intro: 'π = 3 + 4/(2·3·4) - 4/(4·5·6) + 4/(6·7·8) - ... 比 Leibniz 收敛快。',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：交错项柱状图</h4>
+<p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">每项 = 4 / (n(n+1)(n+2))，n 从 2 开始。蓝色加、红色减，柱长代表项的<strong>大小</strong>。</p>
+<svg viewBox="0 0 600 220" style="width: 100%; max-width: 600px; background: #f0f9ff; border-radius: 6px; border: 1px solid #bae6fd;">
+  <line x1="40" y1="20" x2="40" y2="180" stroke="#6b7280" stroke-width="1"/>
+  <line x1="40" y1="100" x2="580" y2="100" stroke="#6b7280" stroke-width="1"/>
+  <text x="20" y="25" text-anchor="end" font-size="10" fill="#6b7280">+0.1</text>
+  <text x="20" y="103" text-anchor="end" font-size="10" fill="#6b7280">0</text>
+  <text x="20" y="183" text-anchor="end" font-size="10" fill="#6b7280">-0.1</text>
+  <!-- 8 个柱（交错颜色） -->
+  <g>
+    <rect x="60"  y="84" width="40" height="16" fill="#2563eb"/><text x="80"  y="80" text-anchor="middle" font-size="9" fill="#1e3a8a">k=1</text>
+    <rect x="110" y="93" width="40" height="7"  fill="#dc2626"/><text x="130" y="113" text-anchor="middle" font-size="9" fill="#7f1d1d">k=2</text>
+    <rect x="160" y="96" width="40" height="4"  fill="#2563eb"/><text x="180" y="93" text-anchor="middle" font-size="9" fill="#1e3a8a">k=3</text>
+    <rect x="210" y="98" width="40" height="2"  fill="#dc2626"/><text x="230" y="115" text-anchor="middle" font-size="9" fill="#7f1d1d">k=4</text>
+    <rect x="260" y="98.5" width="40" height="1.5" fill="#2563eb"/><text x="280" y="96" text-anchor="middle" font-size="9" fill="#1e3a8a">k=5</text>
+    <rect x="310" y="99" width="40" height="1"  fill="#dc2626"/><text x="330" y="116" text-anchor="middle" font-size="9" fill="#7f1d1d">k=6</text>
+    <rect x="360" y="99.3" width="40" height="0.7" fill="#2563eb"/>
+    <rect x="410" y="99.5" width="40" height="0.5" fill="#dc2626"/>
+    <rect x="460" y="99.7" width="40" height="0.3" fill="#2563eb"/>
+    <rect x="510" y="99.8" width="40" height="0.2" fill="#dc2626"/>
+  </g>
+  <!-- 累加曲线 -->
+  <path d="M 40,100 L 100,93 L 160,99.5 L 220,99.2 L 280,99.6 L 340,99.5 L 400,99.7 L 460,99.65 L 520,99.7" stroke="#059669" stroke-width="2" fill="none"/>
+  <line x1="40" y1="78" x2="580" y2="78" stroke="#dc2626" stroke-dasharray="3 3"/>
+  <text x="585" y="80" font-size="10" fill="#dc2626">π ≈ 3.1416</text>
+  <text x="40" y="200" font-size="11" fill="#1f2937">起步 3 + 第1项 0.0833 + 第2项 -0.0139 + ... → 3.14159</text>
+  <text x="40" y="215" font-size="10" fill="#6b7280">比 Leibniz (4k) 倍快——因为 n³ 衰减</text>
+</svg>`,
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 N <input type="number" id="pe02_n" value="1000" min="10"></label><button class="primary" id="pe02_run">算</button></div><div id="pe02_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe02_run').onclick = () => {
@@ -3180,6 +3280,27 @@ const EXPERIMENTS = [
 {
   id: 'PE03', cat: 'π·e', title: 'Ramanujan π 公式',
   intro: '1910 年拉马努金发现：1/π = (2√2/9801) Σ (4k)!(1103+26390k) / ((k!)^4 · 396^(4k))',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：每项贡献 14 位精度</h4>
+<p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">拉马努金的"魔法"：公式里 <code>(6k)! / ((3k)!(k!)³)</code> 让每项比上项大 <strong>~ 396⁴ⁿ</strong> 倍——但分母也大这么多——但<strong>净结果是每项多 14 位精度</strong>。</p>
+<svg viewBox="0 0 600 240" style="width: 100%; max-width: 600px; background: #fdf4ff; border-radius: 6px; border: 1px solid #e9d5ff;">
+  <!-- 公式展示 -->
+  <text x="300" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#6b21a8">1/π = 12 × Σ (-1)ᵏ · (6k)!(545140134k + 13591409) / ((3k)!(k!)³ · 640320^(3k+1.5))</text>
+  <!-- 累加 1/π 收敛 -->
+  <g transform="translate(40, 50)">
+    <text x="0" y="0" font-size="12" font-weight="600" fill="#1f2937">前 N 项对 1/π 的贡献</text>
+    <line x1="0" y1="20" x2="540" y2="20" stroke="#e5e7eb"/>
+    <rect x="0"   y="40" width="540" height="20" fill="#ddd6fe" rx="3"/><text x="20" y="55" font-size="11" fill="#5b21b6">项 1: ~0.3183099...</text>
+    <rect x="0"   y="65" width="540" height="20" fill="#c4b5fd" rx="3"/><text x="20" y="80" font-size="11" fill="#5b21b6">+ 项 2: ~-6.4e-14（修正到 14 位）</text>
+    <rect x="0"   y="90" width="540" height="20" fill="#a78bfa" rx="3"/><text x="20" y="105" font-size="11" fill="white">+ 项 3: 修正到 28 位</text>
+    <rect x="0"   y="115" width="540" height="20" fill="#8b5cf6" rx="3"/><text x="20" y="130" font-size="11" fill="white">+ 项 4: 修正到 42 位</text>
+  </g>
+  <!-- 算 π 估值 -->
+  <g transform="translate(40, 180)">
+    <rect x="0" y="0" width="540" height="50" fill="#fef3c7" rx="6" stroke="#f59e0b"/>
+    <text x="20" y="20" font-size="12" font-weight="700" fill="#92400e">N=1 项：π ≈ 3.14159265358979...</text>
+    <text x="20" y="38" font-size="11" fill="#78350f">✓ 14 位精度！Chudnovsky 公式同源——工业标准</text>
+  </g>
+</svg>`,
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 N <input type="number" id="pe03_n" value="3" min="1" max="5"></label><button class="primary" id="pe03_run">算</button></div><div id="pe03_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe03_run').onclick = () => {
@@ -3200,6 +3321,39 @@ const EXPERIMENTS = [
 {
   id: 'PE04', cat: 'π·e', title: 'BBP 算法（十六进制 π 位）',
   intro: '1995 年贝尔曼公式，可直接算 π 的第 n 位十六进制，无需算前 n-1 位。',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：跳过前 n-1 位直接算第 n 位</h4>
+<p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">普通算法要算前 100 万位才能拿第 100 万位；BBP <strong>直接跳到第 n 位</strong>。</p>
+<svg viewBox="0 0 600 200" style="width: 100%; max-width: 600px; background: #fff7ed; border-radius: 6px; border: 1px solid #fed7aa;">
+  <text x="300" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">π (十六进制) = 3.243F6A8885A308D3...</text>
+  <!-- 16 个色块代表十六进制位 -->
+  <g transform="translate(40, 50)">
+    <text x="0" y="0" font-size="11" fill="#6b7280">前 16 位 hex（0-F）</text>
+    <g font-family="ui-monospace, monospace" font-size="14" font-weight="700" fill="white">
+      <rect x="0"   y="10" width="30" height="30" fill="#dc2626" rx="4"/><text x="15" y="30" text-anchor="middle">3</text>
+      <rect x="35"  y="10" width="30" height="30" fill="#ea580c" rx="4"/><text x="50" y="30" text-anchor="middle">2</text>
+      <rect x="70"  y="10" width="30" height="30" fill="#f59e0b" rx="4"/><text x="85" y="30" text-anchor="middle">4</text>
+      <rect x="105" y="10" width="30" height="30" fill="#eab308" rx="4"/><text x="120" y="30" text-anchor="middle">3</text>
+      <rect x="140" y="10" width="30" height="30" fill="#84cc16" rx="4"/><text x="155" y="30" text-anchor="middle">F</text>
+      <rect x="175" y="10" width="30" height="30" fill="#22c55e" rx="4"/><text x="190" y="30" text-anchor="middle">6</text>
+      <rect x="210" y="10" width="30" height="30" fill="#10b981" rx="4"/><text x="225" y="30" text-anchor="middle">A</text>
+      <rect x="245" y="10" width="30" height="30" fill="#14b8a6" rx="4"/><text x="260" y="30" text-anchor="middle">8</text>
+      <rect x="280" y="10" width="30" height="30" fill="#06b6d4" rx="4"/><text x="295" y="30" text-anchor="middle">8</text>
+      <rect x="315" y="10" width="30" height="30" fill="#0ea5e9" rx="4"/><text x="330" y="30" text-anchor="middle">8</text>
+      <rect x="350" y="10" width="30" height="30" fill="#3b82f6" rx="4"/><text x="365" y="30" text-anchor="middle">8</text>
+      <rect x="385" y="10" width="30" height="30" fill="#6366f1" rx="4"/><text x="400" y="30" text-anchor="middle">5</text>
+      <rect x="420" y="10" width="30" height="30" fill="#8b5cf6" rx="4"/><text x="435" y="30" text-anchor="middle">A</text>
+      <rect x="455" y="10" width="30" height="30" fill="#a855f7" rx="4"/><text x="470" y="30" text-anchor="middle">3</text>
+      <rect x="490" y="10" width="30" height="30" fill="#d946ef" rx="4"/><text x="505" y="30" text-anchor="middle">0</text>
+      <rect x="525" y="10" width="30" height="30" fill="#ec4899" rx="4"/><text x="540" y="30" text-anchor="middle">8</text>
+    </g>
+  </g>
+  <!-- BBP 公式 -->
+  <g transform="translate(40, 110)">
+    <text x="0" y="0" font-size="11" font-weight="600" fill="#1f2937">公式：π = Σ (4/(8k+1) - 2/(8k+4) - 1/(8k+5) - 1/(8k+6)) / 16ᵏ</text>
+    <text x="0" y="20" font-size="10" fill="#6b7280">取第 n 位的"小部分"只涉及 k≥n 的项——前面的项可以<strong>并行</strong>扔给别的处理器</text>
+    <text x="0" y="40" font-size="10" fill="#6b7280">✓ 2002 年用此算法 + 25 台 PC 算 π 的 12411 亿位</text>
+  </g>
+</svg>`,
   render: (h) => {
     h.innerHTML = `<div class="row"><label>位数 n <input type="number" id="pe04_n" value="10" min="1" max="50"></label><button class="primary" id="pe04_run">算</button></div><div id="pe04_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe04_run').onclick = () => {
@@ -3219,6 +3373,44 @@ const EXPERIMENTS = [
 {
   id: 'PE05', cat: 'π·e', title: '蒙特卡洛 π（圆面积法）',
   intro: '在 1×1 正方形内随机撒点，统计落在 1/4 圆内的比例 × 4 = π。',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：1/4 圆面积 / 正方形面积 = π/4</h4>
+<p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">圆心 (0,0)、半径 1 的 1/4 圆。随机撒 N 个点，落在圆内的比例 = π/4。</p>
+<svg viewBox="0 0 320 320" style="width: 100%; max-width: 320px; background: #fef9c3; border-radius: 6px; border: 1px solid #fde68a;">
+  <!-- 1×1 正方形 -->
+  <rect x="20" y="20" width="280" height="280" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+  <!-- 1/4 圆弧 -->
+  <path d="M 20,300 A 280,280 0 0,1 300,20" fill="#fde68a" stroke="#ca8a04" stroke-width="2.5" opacity="0.7"/>
+  <!-- 撒 30 个点（手工放） -->
+  <g>
+    <circle cx="50" cy="120" r="4" fill="#2563eb"/>
+    <circle cx="80" cy="60" r="4" fill="#2563eb"/>
+    <circle cx="100" cy="200" r="4" fill="#2563eb"/>
+    <circle cx="130" cy="80" r="4" fill="#dc2626"/>
+    <circle cx="150" cy="250" r="4" fill="#2563eb"/>
+    <circle cx="170" cy="40" r="4" fill="#dc2626"/>
+    <circle cx="190" cy="180" r="4" fill="#2563eb"/>
+    <circle cx="200" cy="100" r="4" fill="#dc2626"/>
+    <circle cx="220" cy="220" r="4" fill="#2563eb"/>
+    <circle cx="240" cy="60" r="4" fill="#dc2626"/>
+    <circle cx="260" cy="160" r="4" fill="#dc2626"/>
+    <circle cx="280" cy="90" r="4" fill="#dc2626"/>
+    <circle cx="60" cy="270" r="4" fill="#2563eb"/>
+    <circle cx="110" cy="150" r="4" fill="#dc2626"/>
+    <circle cx="40" cy="200" r="4" fill="#2563eb"/>
+    <circle cx="250" cy="250" r="4" fill="#2563eb"/>
+    <circle cx="180" cy="280" r="4" fill="#2563eb"/>
+    <circle cx="290" cy="180" r="4" fill="#dc2626"/>
+    <circle cx="70" cy="40" r="4" fill="#dc2626"/>
+    <circle cx="220" cy="120" r="4" fill="#dc2626"/>
+  </g>
+  <!-- 标注 -->
+  <text x="40" y="50" font-size="12" font-weight="600" fill="#92400e">1×1 正方形</text>
+  <text x="40" y="290" font-size="12" font-weight="600" fill="#2563eb">● 圆内</text>
+  <text x="120" y="290" font-size="12" font-weight="600" fill="#dc2626">● 圆外</text>
+  <text x="40" y="310" font-size="11" fill="#1f2937">点数 = N, 圆内 = n</text>
+  <text x="190" y="310" font-size="11" font-weight="600" fill="#059669">π ≈ 4n/N</text>
+</svg>
+<p style="font-size: 12px; color: var(--muted); margin-top: 8px;">算 100 个点：误差 0.5；算 10 万个点：误差 0.01；算 1 亿个点：误差 0.0003。<strong>收敛速度 O(1/√N)</strong>——比 Leibniz 慢，但思路简单。</p>`,
   render: (h) => {
     h.innerHTML = `<div class="row"><label>撒点数 N <input type="number" id="pe05_n" value="10000" min="100"></label><button class="primary" id="pe05_run">撒</button></div><div id="pe05_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe05_run').onclick = () => {
@@ -3236,6 +3428,37 @@ const EXPERIMENTS = [
 {
   id: 'PE06', cat: 'π·e', title: 'e 的泰勒展开',
   intro: 'e^x = Σ x^n / n!。令 x=1：e = 1 + 1 + 1/2 + 1/6 + 1/24 + ...',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：1/n! 阶乘递减（极快收敛）</h4>
+<p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">阶乘增长比指数还快——1/n! 迅速逼近 0。</p>
+<svg viewBox="0 0 600 240" style="width: 100%; max-width: 600px; background: #f0fdf4; border-radius: 6px; border: 1px solid #bbf7d0;">
+  <text x="300" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">e = Σ 1/n! = 1 + 1 + 1/2 + 1/6 + 1/24 + 1/120 + 1/720 + ...</text>
+  <!-- 8 个柱 -->
+  <g transform="translate(40, 50)">
+    <line x1="0" y1="150" x2="540" y2="150" stroke="#6b7280"/>
+    <rect x="20"  y="0"  width="50" height="150" fill="#10b981" rx="2"><animate attributeName="height" from="0" to="150" dur="0.5s" fill="freeze"/><animate attributeName="y" from="150" to="0" dur="0.5s" fill="freeze"/></rect>
+    <text x="45" y="170" text-anchor="middle" font-size="10" fill="#065f46">1/0!=1</text>
+    <rect x="80"  y="0"  width="50" height="150" fill="#10b981" rx="2"><animate attributeName="height" from="0" to="150" dur="0.5s" begin="0.3s" fill="freeze"/><animate attributeName="y" from="150" to="0" dur="0.5s" begin="0.3s" fill="freeze"/></rect>
+    <text x="105" y="170" text-anchor="middle" font-size="10" fill="#065f46">1/1!=1</text>
+    <rect x="140" y="75" width="50" height="75" fill="#10b981" rx="2"><animate attributeName="height" from="0" to="75" dur="0.5s" begin="0.6s" fill="freeze"/><animate attributeName="y" from="150" to="75" dur="0.5s" begin="0.6s" fill="freeze"/></rect>
+    <text x="165" y="170" text-anchor="middle" font-size="10" fill="#065f46">1/2!=0.5</text>
+    <rect x="200" y="125" width="50" height="25" fill="#10b981" rx="2"><animate attributeName="height" from="0" to="25" dur="0.5s" begin="0.9s" fill="freeze"/><animate attributeName="y" from="150" to="125" dur="0.5s" begin="0.9s" fill="freeze"/></rect>
+    <text x="225" y="170" text-anchor="middle" font-size="10" fill="#065f46">1/6≈0.17</text>
+    <rect x="260" y="144" width="50" height="6"  fill="#10b981" rx="2"><animate attributeName="height" from="0" to="6" dur="0.5s" begin="1.2s" fill="freeze"/><animate attributeName="y" from="150" to="144" dur="0.5s" begin="1.2s" fill="freeze"/></rect>
+    <text x="285" y="170" text-anchor="middle" font-size="10" fill="#065f46">1/24≈0.04</text>
+    <rect x="320" y="149" width="50" height="1.2" fill="#10b981" rx="2"><animate attributeName="height" from="0" to="1.2" dur="0.5s" begin="1.5s" fill="freeze"/><animate attributeName="y" from="150" to="148.8" dur="0.5s" begin="1.5s" fill="freeze"/></rect>
+    <text x="345" y="170" text-anchor="middle" font-size="10" fill="#065f46">1/120≈0.008</text>
+    <rect x="380" y="149.8" width="50" height="0.2" fill="#10b981" rx="2"><animate attributeName="height" from="0" to="0.2" dur="0.5s" begin="1.8s" fill="freeze"/><animate attributeName="y" from="150" to="149.8" dur="0.5s" begin="1.8s" fill="freeze"/></rect>
+    <text x="405" y="170" text-anchor="middle" font-size="10" fill="#065f46">1/720</text>
+    <rect x="440" y="150" width="50" height="0.05" fill="#10b981" rx="2"/>
+    <text x="465" y="170" text-anchor="middle" font-size="10" fill="#065f46">1/5040</text>
+  </g>
+  <!-- 累加 -->
+  <g transform="translate(40, 195)">
+    <rect x="0" y="0" width="540" height="32" fill="#dcfce7" rx="4"/>
+    <text x="20" y="13" font-size="11" font-weight="600" fill="#065f46">前 5 项 = 1+1+0.5+0.167+0.042 = 2.7083</text>
+    <text x="20" y="27" font-size="11" fill="#047857">前 10 项 = 2.7182818...（14 位精度 ✓）</text>
+  </g>
+</svg>`,
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 N <input type="number" id="pe06_n" value="30" min="1" max="100"></label><button class="primary" id="pe06_run">算</button></div><div id="pe06_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe06_run').onclick = () => {
@@ -3249,6 +3472,33 @@ const EXPERIMENTS = [
 {
   id: 'PE07', cat: 'π·e', title: '复利极限 = e',
   intro: '(1 + 1/n)^n 随 n 增大趋近 e：n=10→2.59, n=100→2.70, n=1000→2.717。',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：从离散复利到连续复利 = e</h4>
+<p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">把 1 元存银行，年利率 100%：一年结算 N 次，每次 1/N 利率 → 极限 = e 元。</p>
+<svg viewBox="0 0 600 240" style="width: 100%; max-width: 600px; background: #fdf4ff; border-radius: 6px; border: 1px solid #e9d5ff;">
+  <text x="300" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#6b21a8">lim (1 + 1/n)ⁿ = e ≈ 2.71828</text>
+  <!-- 折线 -->
+  <g transform="translate(40, 40)">
+    <line x1="0" y1="0" x2="0" y2="160" stroke="#6b7280"/>
+    <line x1="0" y1="160" x2="540" y2="160" stroke="#6b7280"/>
+    <text x="-5" y="5" text-anchor="end" font-size="10" fill="#6b7280">3.0</text>
+    <text x="-5" y="80" text-anchor="end" font-size="10" fill="#6b7280">2.0</text>
+    <text x="-5" y="160" text-anchor="end" font-size="10" fill="#6b7280">1.0</text>
+    <text x="0" y="180" text-size="10" fill="#6b7280">n=1</text>
+    <text x="540" y="180" text-anchor="end" font-size="10" fill="#6b7280">n→∞</text>
+    <!-- (1+1/n)^n 折线（关键点）-->
+    <path d="M 0,160 L 100,150 L 180,140 L 240,134 L 290,130 L 330,127 L 365,125 L 395,124 L 420,123 L 440,122.5 L 460,122.2 L 480,122 L 500,121.8 L 520,121.7 L 540,121.6" stroke="#a855f7" stroke-width="2.5" fill="none"/>
+    <!-- 极限线 e -->
+    <line x1="0" y1="121.6" x2="540" y2="121.6" stroke="#dc2626" stroke-dasharray="3 3" stroke-width="1.5"/>
+    <text x="540" y="118" text-anchor="end" font-size="10" fill="#dc2626">e ≈ 2.718</text>
+    <!-- 关键节点 -->
+    <circle cx="100" cy="150" r="3" fill="#a855f7"/><text x="100" y="142" text-anchor="middle" font-size="9" fill="#7c3aed">n=10</text>
+    <circle cx="180" cy="140" r="3" fill="#a855f7"/><text x="180" y="132" text-anchor="middle" font-size="9" fill="#7c3aed">n=100</text>
+    <circle cx="240" cy="134" r="3" fill="#a855f7"/><text x="240" y="126" text-anchor="middle" font-size="9" fill="#7c3aed">n=1000</text>
+    <circle cx="290" cy="130" r="3" fill="#a855f7"/><text x="290" y="122" text-anchor="middle" font-size="9" fill="#7c3aed">n=10⁴</text>
+    <circle cx="330" cy="127" r="3" fill="#a855f7"/><text x="330" y="119" text-anchor="middle" font-size="9" fill="#7c3aed">n=10⁶</text>
+  </g>
+  <text x="40" y="225" font-size="11" fill="#1f2937">直觉：复利次数越多，本金增长越接近 e——这是"自然增长"的本质速度</text>
+</svg>`,
   render: (h) => {
     h.innerHTML = `<div class="row"><label>最大 n <input type="number" id="pe07_n" value="10000" min="10"></label><button class="primary" id="pe07_run">算</button></div><div id="pe07_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe07_run').onclick = () => {
@@ -3265,6 +3515,36 @@ const EXPERIMENTS = [
 {
   id: 'PE08', cat: 'π·e', title: 'φ（黄金比例）的连分数',
   intro: 'φ = 1 + 1/(1 + 1/(1 + 1/(1 + ...)))。',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：所有 1 的连分数 + 黄金矩形螺旋</h4>
+<p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">φ 是<strong>最"懒"</strong>的连分数：所有项都是 1。截断第 N 层 → 1, 2, 3/2, 5/3, 8/5, 13/8...（Fibonacci 比！）</p>
+<svg viewBox="0 0 600 240" style="width: 100%; max-width: 600px; background: #fffbeb; border-radius: 6px; border: 1px solid #fde68a;">
+  <text x="300" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#92400e">φ = 1 + 1/(1 + 1/(1 + 1/(1 + 1/(1 + ...))))</text>
+  <!-- 截断收敛表 -->
+  <g transform="translate(40, 45)">
+    <text x="0" y="0" font-size="11" font-weight="600" fill="#1f2937">截断 N 层的值：</text>
+    <g font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">
+      <text x="0"   y="20">N=1: φ₁ = 1                 = 1.0</text>
+      <text x="0"   y="40">N=2: φ₂ = 1 + 1/1           = 2.0</text>
+      <text x="0"   y="60">N=3: φ₃ = 1 + 1/(1+1/1)     = 1.5</text>
+      <text x="0"   y="80">N=4: φ₄ = 1 + 1/(1+1/(1+1/1)) = 1.666...</text>
+      <text x="0"   y="100">N=5: φ₅ = 1.6</text>
+      <text x="0"   y="120">N=10: φ₁₀ = 1.6181818...</text>
+      <text x="0"   y="140" fill="#059669" font-weight="700">N=∞: φ = 1.618033988749895...</text>
+    </g>
+  </g>
+  <!-- 黄金矩形螺旋 -->
+  <g transform="translate(380, 50)">
+    <text x="0" y="-10" font-size="11" font-weight="600" fill="#92400e">黄金矩形螺旋</text>
+    <!-- 4 个嵌套矩形 -->
+    <rect x="0" y="0" width="180" height="180" fill="#fef3c7" stroke="#ca8a04" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="111" fill="#fde68a" stroke="#ca8a04" stroke-width="1.5"/>
+    <rect x="69" y="0" width="111" height="111" fill="#fcd34d" stroke="#ca8a04" stroke-width="1.5"/>
+    <rect x="69" y="0" width="111" height="69" fill="#fbbf24" stroke="#ca8a04" stroke-width="1.5"/>
+    <rect x="111" y="42" width="69" height="69" fill="#f59e0b" stroke="#ca8a04" stroke-width="1.5"/>
+    <!-- 螺旋 -->
+    <path d="M 180,0 A 180,180 0 0,1 0,180 A 111,111 0 0,1 111,69 A 69,69 0 0,1 42,69" stroke="#dc2626" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>`,
   render: (h) => {
     h.innerHTML = `<div class="row"><label>深度 N <input type="number" id="pe08_n" value="20" min="1" max="40"></label><button class="primary" id="pe08_run">截断</button></div><div id="pe08_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe08_run').onclick = () => {
@@ -3278,6 +3558,34 @@ const EXPERIMENTS = [
 {
   id: 'PE09', cat: 'π·e', title: '欧拉-马斯刻若尼常数 γ',
   intro: 'γ = lim(1 + 1/2 + 1/3 + ... + 1/n - ln n) ≈ 0.5772。',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：调和级数 Hₙ 与 ln n 的"距离"</h4>
+<p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">调和级数 Hₙ = 1 + 1/2 + 1/3 + ... + 1/n 发散，但和 ln n 越来越接近——它们的差距就是 γ。</p>
+<svg viewBox="0 0 600 240" style="width: 100%; max-width: 600px; background: #f0f9ff; border-radius: 6px; border: 1px solid #bae6fd;">
+  <text x="300" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#0c4a6e">γ = lim (Hₙ - ln n) ≈ 0.5772156649...</text>
+  <!-- 双线图 -->
+  <g transform="translate(40, 50)">
+    <line x1="0" y1="0" x2="0" y2="160" stroke="#6b7280"/>
+    <line x1="0" y1="160" x2="540" y2="160" stroke="#6b7280"/>
+    <text x="-5" y="5" text-anchor="end" font-size="10" fill="#6b7280">Hₙ</text>
+    <!-- Hₙ 折线（log 增长） -->
+    <path d="M 0,160 L 60,135 L 120,118 L 180,105 L 240,94 L 300,86 L 360,80 L 420,75 L 480,71 L 540,68" stroke="#2563eb" stroke-width="2.5" fill="none"/>
+    <text x="0" y="180" text-size="10" fill="#2563eb">Hₙ</text>
+    <!-- ln n 折线 -->
+    <path d="M 0,160 L 60,140 L 120,123 L 180,112 L 240,103 L 300,96 L 360,91 L 420,87 L 480,84 L 540,82" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="3 2" fill="none"/>
+    <text x="540" y="76" text-anchor="end" font-size="10" fill="#0ea5e9">ln n</text>
+    <!-- γ 间距标注（n 大时两条线平行） -->
+    <line x1="450" y1="76" x2="450" y2="79" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="455" y="82" font-size="10" fill="#dc2626">γ ≈ 0.577</text>
+  </g>
+  <!-- 关键值 -->
+  <g transform="translate(40, 200)">
+    <rect x="0" y="0" width="540" height="32" fill="#dbeafe" rx="4"/>
+    <text x="20" y="13" font-size="11" font-weight="600" fill="#1e3a8a">n=1: H₁ - ln 1 = 1 - 0 = 1</text>
+    <text x="280" y="13" font-size="11" font-weight="600" fill="#1e3a8a">n=10: 2.9290 - 2.3026 = 0.6264</text>
+    <text x="20" y="27" font-size="11" font-weight="600" fill="#1e3a8a">n=100: 5.1874 - 4.6052 = 0.5822</text>
+    <text x="280" y="27" font-size="11" font-weight="600" fill="#059669">n=∞:  → 0.5772156649...</text>
+  </g>
+</svg>`,
   render: (h) => {
     h.innerHTML = `<div class="row"><label>最大 n <input type="number" id="pe09_n" value="100000" min="100"></label><button class="primary" id="pe09_run">算</button></div><div id="pe09_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe09_run').onclick = () => {
@@ -3292,6 +3600,34 @@ const EXPERIMENTS = [
 {
   id: 'PE10', cat: 'π·e', title: '圆周率日（3/14 课堂演示）',
   intro: '3 月 14 日是国际数学日（π Day）。π = 3.1415926...',
+  svgDemo: `<h4 style="margin-top: 0;">🎨 圆周率日（π Day）大字号 + 历史时间线</h4>
+<svg viewBox="0 0 600 320" style="width: 100%; max-width: 600px; background: linear-gradient(135deg, #fdf2f8, #fef3c7); border-radius: 8px; border: 1px solid #fbcfe8;">
+  <!-- 大 π 数字 -->
+  <text x="300" y="100" text-anchor="middle" font-size="84" font-weight="800" font-family="ui-monospace, monospace" fill="#be185d">
+    π = 3.14159<tspan fill="#9d174d">26535</tspan>...
+    <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite"/>
+  </text>
+  <text x="300" y="135" text-anchor="middle" font-size="14" fill="#831843">3 月 14 日 = π Day = 国际数学日</text>
+  <!-- 时间线 -->
+  <g transform="translate(40, 170)">
+    <line x1="0" y1="40" x2="540" y2="40" stroke="#9d174d" stroke-width="2"/>
+    <g font-size="10" fill="#1f2937" text-anchor="middle">
+      <!-- BC 250 -->
+      <circle cx="0" cy="40" r="6" fill="#fbbf24"/><text x="0" y="20">BC 250</text><text x="0" y="65">阿基米德</text><text x="0" y="78">96 边形</text>
+      <!-- 480 -->
+      <circle cx="100" cy="40" r="6" fill="#fbbf24"/><text x="100" y="20">480 AD</text><text x="100" y="65">祖冲之</text><text x="100" y="78">355/113</text>
+      <!-- 1706 -->
+      <circle cx="200" cy="40" r="6" fill="#10b981"/><text x="200" y="20">1706</text><text x="200" y="65">Machin</text><text x="200" y="78">100 位</text>
+      <!-- 1882 -->
+      <circle cx="280" cy="40" r="6" fill="#3b82f6"/><text x="280" y="20">1882</text><text x="280" y="65">Lindemann</text><text x="280" y="78">π 超越</text>
+      <!-- 1989 -->
+      <circle cx="370" cy="40" r="6" fill="#8b5cf6"/><text x="370" y="20">1988</text><text x="370" y="65">Chudnovsky</text><text x="370" y="78">14位/项</text>
+      <!-- 2024 -->
+      <circle cx="480" cy="40" r="8" fill="#ec4899"><animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/></circle><text x="480" y="20">2024</text><text x="480" y="65" font-weight="700">202 万亿</text><text x="480" y="78">位纪录</text>
+    </g>
+  </g>
+  <text x="300" y="305" text-anchor="middle" font-size="11" fill="#831843">从 1 位（阿基米德）到 202 万亿位（2024）—— 2200 年</text>
+</svg>`,
   render: (h) => {
     h.innerHTML = `<div style="text-align: center; padding: 20px;">
       <div style="font-size: 96px; font-weight: 800; color: var(--accent);">π = 3.14159265...</div>
@@ -4942,37 +5278,96 @@ function plazaOpen(id) {
 
 格式：用 markdown，简短段落，emoji 适量。`;
 
-  // 自动生成"AI 通常会怎么讲"模板（基于 exp.title 和 exp.intro）
+  // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+
+  // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
+  const hasRichContent = exp.principle || exp.history || exp.tryit;
+
+  const principleSection = exp.principle ? `
+    <details open style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #1e40af;">📐 ① 原理讲解（深入浅出）</summary>
+      <div style="background: linear-gradient(to right, #eff6ff, #f0f9ff); border-left: 5px solid #3b82f6; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
+        ${exp.principle}
+      </div>
+    </details>` : '';
+
+  const historySection = exp.history ? `
+    <details style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #7c2d12;">📜 ② 历史背景</summary>
+      <div style="background: linear-gradient(to right, #fef3c7, #fffbeb); border-left: 5px solid #f59e0b; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
+        ${exp.history}
+      </div>
+    </details>` : '';
+
+  const tryitSection = exp.tryit ? `
+    <details style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #065f46;">🎮 ③ 试一试（一步步引导）</summary>
+      <div style="background: linear-gradient(to right, #ecfdf5, #f0fdf4); border-left: 5px solid #10b981; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
+        ${exp.tryit}
+      </div>
+    </details>` : '';
+
+  const aiSection = `
+    <details style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
+      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
+        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
+        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
+          ${exampleExplain}
+        </div>
+        <h4>📋 完整 prompt 文本</h4>
+        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
+        <div class="row" style="margin-top: 12px;">
+          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
+          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
+          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
+        </div>
+      </div>
+    </details>`;
+
+  // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
+  // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
+  const svgDemo = exp.svgDemo ? `
+    <details style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #be185d;">🎨 公式图解（SVG 动画）</summary>
+      <div style="background: linear-gradient(to right, #fdf2f8, #fff7ed); border-left: 5px solid #ec4899; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
+        ${exp.svgDemo}
+      </div>
+    </details>` : '';
+
+  // 如果没有 principle 等区，直接给个简短的引导
+  const fallbackSection = !hasRichContent ? `
+    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
+      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
+    </div>` : '';
 
   plazaDetail.innerHTML = `<div class="plaza-detail">
     <button class="back ghost small" id="plazaBack">← 返回列表</button>
     <h2 style="margin: 8px 0 4px;">${exp.title} <span class="cat-tag ${PLAZA_CATEGORIES[exp.cat]}" style="font-size: 12px;">${exp.cat}</span> <span class="id-tag" style="font-size: 12px;">${exp.id}</span></h2>
-    <p style="font-size: 14px; color: var(--muted); margin: 0 0 12px;">${exp.intro}</p>
-    <div class="row" style="margin-bottom: 12px;">
-      <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-      <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-      <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-    </div>
+    <p style="font-size: 14px; color: var(--muted); margin: 0 0 16px;">${exp.intro}</p>
 
-    <details open style="margin-bottom: 12px;">
-      <summary style="cursor: pointer; font-weight: 600; padding: 8px 0;">💡 AI 通常会怎么讲（点击展开/折叠）</summary>
-      <div style="background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 14px 16px; border-radius: 6px; font-size: 14px; line-height: 1.7; margin-top: 8px;">
-${exampleExplain}
+    ${principleSection}
+    ${historySection}
+    ${tryitSection}
+    ${svgDemo}
+
+    <details open style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #b91c1c;">🎯 互动演示（点开玩）</summary>
+      <div style="background: linear-gradient(to right, #fef2f2, #fff1f2); border-left: 5px solid #ef4444; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
+        <div id="plazaBody"></div>
       </div>
     </details>
 
-    <details style="margin-bottom: 16px;">
-      <summary style="cursor: pointer; font-weight: 600; padding: 8px 0;">📋 完整 prompt 文本（点击展开/折叠）</summary>
-      <pre style="background: #1e293b; color: #e2e8f0; padding: 14px 16px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-    </details>
-
-    <div id="plazaBody"></div>
+    ${aiSection}
+    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
   const aiBtn = document.getElementById('plazaAI');
-  aiBtn.dataset.orig = '📋 复制 prompt';
-  aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
+  if (aiBtn) {
+    aiBtn.dataset.orig = '📋 复制 prompt';
+    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
+  }
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
@@ -5040,34 +5435,79 @@ plazaRenderGrid();
 
 
 /* ===================== Twin Primes ===================== */
-const tpN = document.getElementById('tpN');
-const tpRun = document.getElementById('tpRun');
-const tpStatus = document.getElementById('tpStatus');
-const tpChartCv = document.getElementById('tpChart');
-const tpPrimeTotal = document.getElementById('tpPrimeTotal');
-const tpTwinCount = document.getElementById('tpTwinCount');
-const tpRatio = document.getElementById('tpRatio');
-const tpLargest = document.getElementById('tpLargest');
-const tpCheck = document.getElementById('tpCheck');
-const tpCheckBtn = document.getElementById('tpCheckBtn');
-const tpIsP1 = document.getElementById('tpIsP1');
-const tpIsP2 = document.getElementById('tpIsP2');
-const tpIsTwin = document.getElementById('tpIsTwin');
-
+let tpN, tpRun, tpStatus, tpChartCv, tpPrimeTotal, tpTwinCount, tpRatio, tpLargest, tpCheck, tpCheckBtn, tpIsP1, tpIsP2, tpIsTwin;
 let tpChart = null;
-function ensureTPChart() {
-  if (tpChart) return tpChart;
+
+const TWIN_HTML = `
+<div class="intro">
+  <strong>孪生素数猜想</strong>：是否存在无穷多对相差 2 的素数（3-5、5-7、11-13、17-19、29-31…）？
+  2013 年张益唐证明存在无穷多对相差 &lt; 7×10⁷ 的素数，2014 年 Polymath 8 + Maynard 推进到 246。
+  AI 扫一段区间，看孪生素数有多"密"。
+</div>
+<div class="grid">
+  <div>
+    <div class="card">
+      <h2>扫 1 → N：孪生素数对</h2>
+      <div class="row">
+        <label style="flex: 1; min-width: 200px;">扫描到 N<input type="number" id="tpN" value="1000" min="100" max="500000" step="100"></label>
+        <button class="primary" id="tpRun">开始扫描</button>
+        <span id="tpStatus" style="color: var(--muted); font-size: 13px;"></span>
+      </div>
+      <h3>孪生素数对（散点：横轴 = 小素数，纵轴 = 大素数）</h3>
+      <div class="chart-wrap tall"><canvas id="tpChart"></canvas></div>
+      <div class="stat-grid" style="margin-top: 12px;">
+        <div class="stat"><div class="k">区间 [1, N] 素数总数</div><div class="v" id="tpPrimeTotal">—</div></div>
+        <div class="stat big"><div class="k">孪生素数对数</div><div class="v good" id="tpTwinCount">—</div></div>
+        <div class="stat"><div class="k">孪生 / 素数比</div><div class="v" id="tpRatio">—</div></div>
+        <div class="stat"><div class="k">最大孪生对</div><div class="v" id="tpLargest">—</div></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h2>单数验证：n 和 n+2 都是素数？</h2>
+      <div class="row">
+        <label style="flex: 1; min-width: 200px;">输入 n<input type="number" id="tpCheck" value="100"></label>
+        <button class="primary" id="tpCheckBtn">检查</button>
+      </div>
+      <div class="stat" style="margin-top: 12px;"><div class="k">n 是否素数</div><div class="v" id="tpIsP1">—</div></div>
+      <div class="stat" style="margin-top: 10px;"><div class="k">n+2 是否素数</div><div class="v" id="tpIsP2">—</div></div>
+      <div class="stat" style="margin-top: 10px; background: #ecfdf5; border-color: #a7f3d0;">
+        <div class="k" style="color: #047857;">是否孪生素数</div>
+        <div class="v" id="tpIsTwin" style="color: #059669;">—</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>故事</h2>
+      <p style="font-size: 14px; line-height: 1.6;">2013 年 5 月，张益唐（U New Hampshire 讲师、曾任赛百味店员、默默无闻多年）在 <em>Annals of Mathematics</em> 独自发表论文，<strong>证明存在无穷多对相差 &lt; 7×10⁷ 的素数</strong>。此后 Polymath 8 计划（开放式合作）几个月内把界推进到 246。</p>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 8px;"><strong>Hardy-Littlewood 猜想</strong>：孪生素数对数 ~ 2C₂ ∫(N) / (ln N)²，C₂ ≈ 0.66。实际密度与 N/ln²N 成正比递减——但仍是<strong>无穷多</strong>。</p>
+    </div>
+  </div>
+</div>
+`;
+
+function setupTwin(root) {
+  root.innerHTML = TWIN_HTML;
+  tpN = document.getElementById('tpN');
+  tpRun = document.getElementById('tpRun');
+  tpStatus = document.getElementById('tpStatus');
+  tpChartCv = document.getElementById('tpChart');
+  tpPrimeTotal = document.getElementById('tpPrimeTotal');
+  tpTwinCount = document.getElementById('tpTwinCount');
+  tpRatio = document.getElementById('tpRatio');
+  tpLargest = document.getElementById('tpLargest');
+  tpCheck = document.getElementById('tpCheck');
+  tpCheckBtn = document.getElementById('tpCheckBtn');
+  tpIsP1 = document.getElementById('tpIsP1');
+  tpIsP2 = document.getElementById('tpIsP2');
+  tpIsTwin = document.getElementById('tpIsTwin');
+
+  if (tpChart) { try { tpChart.destroy(); } catch(e){} tpChart = null; }
   tpChart = new Chart(tpChartCv.getContext('2d'), {
     type: 'scatter',
-    data: { datasets: [{
-      label: '孪生素数对 (n, n+2)',
-      data: [],
-      backgroundColor: '#2563eb',
-      pointRadius: 3,
-    }] },
+    data: { datasets: [{ label: '孪生素数对 (n, n+2)', data: [], backgroundColor: '#2563eb', pointRadius: 3 }] },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       plugins: { legend: { position: 'top', labels: { font: { size: 12 } } } },
       scales: {
         x: { title: { display: true, text: '小素数 n' } },
@@ -5075,7 +5515,14 @@ function ensureTPChart() {
       }
     }
   });
-  return tpChart;
+
+  tpRun.onclick = tpScan;
+  tpCheckBtn.onclick = tpCheckOne;
+  tpCheck.onkeypress = e => { if (e.key === 'Enter') tpCheckOne(); };
+  tpN.onkeypress = e => { if (e.key === 'Enter') tpScan(); };
+
+  tpScan();
+  tpCheckOne();
 }
 
 function tpScan() {
@@ -5094,11 +5541,10 @@ function tpScan() {
         if (isPrime[i + 2]) pairs.push([i, i + 2]);
       }
     }
-    const ch = ensureTPChart();
-    ch.data.datasets[0].data = pairs.map(p => ({ x: p[0], y: p[1] }));
-    ch.data.datasets[0].pointBackgroundColor = pairs.length > 2000 ? 'rgba(37,99,235,0.4)' : '#2563eb';
-    ch.data.datasets[0].pointRadius = pairs.length > 2000 ? 1.5 : 3;
-    ch.update();
+    tpChart.data.datasets[0].data = pairs.map(p => ({ x: p[0], y: p[1] }));
+    tpChart.data.datasets[0].pointBackgroundColor = pairs.length > 2000 ? 'rgba(37,99,235,0.4)' : '#2563eb';
+    tpChart.data.datasets[0].pointRadius = pairs.length > 2000 ? 1.5 : 3;
+    tpChart.update();
     tpPrimeTotal.textContent = primeTotal;
     tpTwinCount.textContent = pairs.length;
     tpRatio.textContent = primeTotal > 0 ? (pairs.length / primeTotal * 100).toFixed(1) + '%' : '0';
@@ -5128,27 +5574,67 @@ function tpCheckOne() {
   tpIsTwin.style.color = isTwin ? '#059669' : '#dc2626';
 }
 
-tpRun.onclick = tpScan;
-tpCheckBtn.onclick = tpCheckOne;
-tpCheck.addEventListener('keypress', e => { if (e.key === 'Enter') tpCheckOne(); });
-tpN.addEventListener('keypress', e => { if (e.key === 'Enter') tpScan(); });
-tpScan();
-tpCheckOne();
-
 /* ===================== Pi Algorithms ===================== */
-const piN = document.getElementById('piN');
-const piRun = document.getElementById('piRun');
-const piStatus = document.getElementById('piStatus');
-const piChartCv = document.getElementById('piChart');
-const piA = document.getElementById('piA');
-const piL = document.getElementById('piL');
-const piM = document.getElementById('piM');
-const piC = document.getElementById('piC');
+let piN, piRun, piStatus, piChartCv, piA, piL, piM, piC;
+let piChart = null;
 const PI_TRUE = 3.14159265358979323846;
 
-let piChart = null;
-function ensurePiChart() {
-  if (piChart) return piChart;
+const PIALG_HTML = `
+<div class="intro">
+  <strong>算 π 的多算法</strong>：从公元前 250 年阿基米德割圆到 1989 年 Chudnovsky 公式，人类用越来越快的方式逼近 π。本页让 AI 并排跑 4 种算法，<strong>实时看谁收敛快</strong>。
+</div>
+<div class="grid">
+  <div>
+    <div class="card">
+      <h2>多算法并行：每种算法跑多少项？</h2>
+      <div class="row">
+        <label style="flex: 1;">计算 N 项<input type="number" id="piN" value="100" min="1" max="100000"></label>
+        <button class="primary" id="piRun">开始计算</button>
+        <span id="piStatus" style="color: var(--muted); font-size: 13px;"></span>
+      </div>
+      <h3>4 种算法的 π 估值（每 N 项采样一次）</h3>
+      <div class="chart-wrap tall"><canvas id="piChart"></canvas></div>
+      <div class="legend">
+        <span style="color: #ef4444;">阿基米德割圆（96 → 6 边形逐次倍增）</span><br>
+        <span style="color: #2563eb;">Leibniz 级数（π/4 = 1 - 1/3 + 1/5 - 1/7 + ...）</span><br>
+        <span style="color: #10b981;">Machin 公式（π/4 = 4·arctan(1/5) - arctan(1/239)）</span><br>
+        <span style="color: #eab308;">Chudnovsky（1/π = 12·Σ(...)）</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h2>当前结果（各项算法）</h2>
+      <div class="stat"><div class="k">阿基米德</div><div class="v" id="piA" style="font-size: 18px;">—</div></div>
+      <div class="stat" style="margin-top: 8px;"><div class="k">Leibniz</div><div class="v" id="piL" style="font-size: 18px;">—</div></div>
+      <div class="stat" style="margin-top: 8px;"><div class="k">Machin</div><div class="v" id="piM" style="font-size: 18px;">—</div></div>
+      <div class="stat" style="margin-top: 8px;"><div class="k">Chudnovsky</div><div class="v" id="piC" style="font-size: 18px;">—</div></div>
+      <div class="stat big" style="margin-top: 10px; background: #ecfdf5; border-color: #a7f3d0;">
+        <div class="k" style="color: #047857;">真实 π</div>
+        <div class="v" id="piTrue" style="color: #059669;">3.14159265...</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h2>收敛速度对比</h2>
+      <p style="font-size: 14px; line-height: 1.6;"><strong>Leibniz</strong>：O(1/N)，超慢——算 1000 项才到 3.14；算 10⁶ 项到 3.141。<br><strong>Machin</strong>：O(1/N^3)，中速——10 项到 12 位精度。<br><strong>Chudnovsky</strong>：O(1/N^6)，极快——<strong>每加 1 项多 14 位有效数字</strong>，是当前算 π 万亿位的工业标准。</p>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">课堂上：<strong>让孩子按"开始"看图，红线 Leibniz 几乎不动，黄线 Chudnovsky 一步到位</strong>——算法差距是数量级的。</p>
+    </div>
+  </div>
+</div>
+`;
+
+function setupPiAlg(root) {
+  root.innerHTML = PIALG_HTML;
+  piN = document.getElementById('piN');
+  piRun = document.getElementById('piRun');
+  piStatus = document.getElementById('piStatus');
+  piChartCv = document.getElementById('piChart');
+  piA = document.getElementById('piA');
+  piL = document.getElementById('piL');
+  piM = document.getElementById('piM');
+  piC = document.getElementById('piC');
+
+  if (piChart) { try { piChart.destroy(); } catch(e){} piChart = null; }
   piChart = new Chart(piChartCv.getContext('2d'), {
     type: 'line',
     data: {
@@ -5161,8 +5647,7 @@ function ensurePiChart() {
       ]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       plugins: { legend: { position: 'top', labels: { font: { size: 12 } } } },
       scales: {
         x: { title: { display: true, text: '迭代次数 N' } },
@@ -5170,17 +5655,16 @@ function ensurePiChart() {
       }
     }
   });
-  return piChart;
+
+  piRun.onclick = piRunAll;
+  piN.onkeypress = e => { if (e.key === 'Enter') piRunAll(); };
+  piRunAll();
 }
 
-// 阿基米德割圆：n 边形内接圆
-// 边长 = 2 sin(π/n)，周长 = 2n sin(π/n)，直径 = 2
-// π ≈ 周长 / 直径 = n sin(π/n)
 function archimedesPi(n) {
   return n * Math.sin(Math.PI / n);
 }
 
-// Leibniz: π/4 = Σ (-1)^k / (2k+1)
 function leibnizPi(N) {
   let s = 0;
   for (let k = 0; k < N; k++) {
@@ -5189,30 +5673,24 @@ function leibnizPi(N) {
   return 4 * s;
 }
 
-// Machin: π/4 = 4·arctan(1/5) - arctan(1/239)
 function arctan(x, N) {
-  // arctan(x) = Σ (-1)^k x^(2k+1) / (2k+1)
   let s = 0;
-  let x2k1 = x; // x^1
+  let x2k1 = x;
   for (let k = 0; k < N; k++) {
     s += (k % 2 === 0 ? 1 : -1) * x2k1 / (2 * k + 1);
     x2k1 *= x * x;
   }
   return s;
 }
+
 function machinPi(N) {
   return 4 * (4 * arctan(1/5, N) - arctan(1/239, N));
 }
 
-// Chudnovsky: 1/π = 12 Σ (-1)^k (6k)! (545140134k + 13591409) / ((3k)! (k!)^3 · 640320^(3k+3/2))
-// 工业算法，每项多 14 位精度
 function chudnovskyPi(N) {
-  // 用 BigInt？为了快，用 Number 但只算 N=1,2,3,4,5 项（精度已超）
-  // 每算一项就多约 14 位
   const C = 426880 * Math.sqrt(10005);
   let sum = 0;
   for (let k = 0; k < N; k++) {
-    // (6k)! / ((3k)! (k!)^3)
     let num = 1;
     for (let i = 1; i <= 6 * k; i++) num *= i;
     let den = 1;
@@ -5233,36 +5711,23 @@ function piRunAll() {
   piStatus.textContent = '计算中…';
   piRun.disabled = true;
   setTimeout(() => {
-    // 阿基米德：只支持几个固定值（6, 12, 24, 48, 96）。我们用 N 映射
-    // 简化：用 N 控制迭代次数
-    const samples = Math.min(N, 50);  // 采样 50 个点
+    const samples = Math.min(N, 50);
     const labels = [];
     const dataA = [], dataL = [], dataM = [], dataC = [];
-    // 简化：阿基米德用 N=2,3,4,...,50 边形
-    // Leibniz / Machin 用前 k 项，k = 1, 2, ..., samples
-    // Chudnovsky 用前 k 项，k = 1, 2, ..., samples
     for (let s = 1; s <= samples; s++) {
       labels.push(s);
-      // 阿基米德：N 边形
-      const aN = Math.max(3, Math.pow(2, s));  // 3, 4, 8, 16, ... 但 4 不对，应该 3, 6, 12, 24...
-      // 阿基米德从六边形开始：s=1:6, s=2:12, s=3:24, s=4:48, s=5:96
       const aSides = 6 * Math.pow(2, s - 1);
       dataA.push(archimedesPi(aSides));
-      // Leibniz: 前 s 项
       dataL.push(leibnizPi(s * Math.ceil(N / samples)));
-      // Machin: arctan 用前 s 项
       dataM.push(machinPi(s * Math.ceil(N / samples)));
-      // Chudnovsky: 前 s 项
       dataC.push(chudnovskyPi(s));
     }
-    const ch = ensurePiChart();
-    ch.data.labels = labels;
-    ch.data.datasets[0].data = dataA;
-    ch.data.datasets[1].data = dataL;
-    ch.data.datasets[2].data = dataM;
-    ch.data.datasets[3].data = dataC;
-    ch.update();
-    // 当前值
+    piChart.data.labels = labels;
+    piChart.data.datasets[0].data = dataA;
+    piChart.data.datasets[1].data = dataL;
+    piChart.data.datasets[2].data = dataM;
+    piChart.data.datasets[3].data = dataC;
+    piChart.update();
     piA.textContent = dataA[dataA.length - 1].toFixed(8);
     piL.textContent = dataL[dataL.length - 1].toFixed(8);
     piM.textContent = dataM[dataM.length - 1].toFixed(8);
@@ -5271,10 +5736,6 @@ function piRunAll() {
     piRun.disabled = false;
   }, 50);
 }
-
-piRun.onclick = piRunAll;
-piN.addEventListener('keypress', e => { if (e.key === 'Enter') piRunAll(); });
-piRunAll();
 
 /* ===================== Tabs ===================== */
 document.querySelectorAll('nav.tabs button[data-tab]').forEach(btn => {
