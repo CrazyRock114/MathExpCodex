@@ -10946,6 +10946,1543 @@ function initStage_SQ13_initAll() { initStage_SQ13(); }
 function initStage_SQ14_initAll() { initStage_SQ14(); }
 function initStage_SQ15_initAll() { initStage_SQ15(); }
 
+// ============== PE01-10 5 步直观讲解 (v13) ==============
+// ============== PE01-10 5 步直观讲解 getStages 函数 ==============
+function getStagesPE01() {
+  return [
+    {
+      emoji: '🎩', title: 'Wallis 乘积（最优雅）', content: `
+        <p class="lead">π/2 = <strong style="color:#7c3aed;">∏ (2k·2k) / ((2k-1)(2k+1))</strong>——奇偶交叉相乘，逼近 π！</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #1e3a8a;">4/3</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">k=1: 2·2/(1·3)</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">第一项</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fef3c7, #fef3c7); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #92400e;">16/15</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">k=2: 4·4/(3·5)</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">接近 1</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #14532d;">3.1415...</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">前 10000 项</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">逐步逼近 π</div>
+          </div>
+        </div>
+        <div class="next-hint">🎩 <strong>1655</strong> John Wallis 发现。慢但优雅：每加 10 倍项，π 估值多 1 位。</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '验算 Wallis 乘积', content: `
+        <p class="lead">输入 N，累乘前 N 项：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px; min-width: 200px;">
+            <label style="display: block; margin: 6px 0; font-weight: 700;">N = <input type="number" id="pe01s2-n" min="100" max="100000" value="5000" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe01s2-preset" data-n="1000">N=1000</button>
+              <button class="ghost small pe01s2-preset" data-n="10000">N=10000</button>
+              <button class="ghost small pe01s2-preset" data-n="50000">N=50000</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px; min-width: 300px;">
+            <div id="pe01s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>慢但稳</strong>：每加 10 倍项，多准约 1 位。N=100000 大约 3.14157...</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '收敛曲线', content: `
+        <p class="lead">N 越大 π 估值越准——观察"线性收敛"：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="pe01s3-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>规律</strong>：每加 10 倍项，误差减半（O(1/N) 收敛）</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '与 Leibniz 对比', content: `
+        <p class="lead">Wallis vs Leibniz：两种"线性收敛"算法比较：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe01s4-n" min="100" max="100000" value="10000" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="pe01s4-run">▶ 对比</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe01s4-result" style="padding: 14px; background: #fef3c7; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>结论</strong>：收敛速度几乎一样；Wallis 分子分母都是整数，更适合小学生算</div>
+      `
+    },
+    {
+      emoji: '📅', title: 'Wallis 乘积小史', content: `
+        <p class="lead">1655 年提出 → 1730 Wallis 公式推出 Stirling 公式 → 现在</p>
+        <div class="viz">
+          <div id="pe01s5-timeline"></div>
+        </div>
+        <div class="next-hint">💡 <strong>关联</strong>：从 Wallis 公式出发可推出 Stirling 公式 n! ≈ √(2πn)(n/e)ⁿ</div>
+      `
+    },
+  ];
+}
+function getStagesPE02() {
+  return [
+    {
+      emoji: '🎯', title: 'Nilakantha 级数', content: `
+        <p class="lead">π = 3 + 4/(2·3·4) - 4/(4·5·6) + 4/(6·7·8) - ...<br>比 Leibniz 收敛<strong style="color:#7c3aed;">快得多</strong>！</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #1e3a8a;">3 + 1/6</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">k=1: 4/(2·3·4) = 1/6</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">从 3 起步</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fecaca, #fecaca); border: 2px solid #ef4444; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #7f1d1d;">- 1/30</div>
+            <div style="font-size: 12px; color: #7f1d1d; margin-top: 6px;">k=2: 4/(4·5·6) = 1/30</div>
+            <div style="font-size: 11px; color: #991b1b; margin-top: 4px;">减号交替</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #14532d;">3.14159</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">前 10 项</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">已准到 5 位</div>
+          </div>
+        </div>
+        <div class="next-hint">🎯 <strong>Nilakantha 1500</strong> 印度数学家发现，比 Leibniz (1674) 早 170 年！</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '算 Nilakantha', content: `
+        <p class="lead">输入 N，看前 N 项：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe02s2-n" min="1" max="1000" value="20" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe02s2-preset" data-n="10">N=10</button>
+              <button class="ghost small pe02s2-preset" data-n="50">N=50</button>
+              <button class="ghost small pe02s2-preset" data-n="100">N=100</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe02s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>神速</strong>：N=10 已经准到小数点后 5 位（Leibniz 要 100000 项！）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '三算法收敛对比', content: `
+        <p class="lead">Leibniz vs Nilakantha vs Machin 看曲线：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="pe02s3-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>结论</strong>：Nilakantha 是 Leibniz 的"加速版"——收敛 O(1/n³) vs O(1/n)</div>
+      `
+    },
+    {
+      emoji: '🔬', title: 'N=10 精度分析', content: `
+        <p class="lead">看 Nilakantha 前 10 项到底多准：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe02s4-n" min="1" max="20" value="10" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="pe02s4-run">▶ 算</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe02s4-result" style="padding: 14px; background: #f0fdf4; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>对比</strong>：Leibniz N=10 → 3.091，Nilakantha N=10 → 3.14159（5 位！）</div>
+      `
+    },
+    {
+      emoji: '📅', title: 'Nilakantha 小史', content: `
+        <p class="lead">1500 年印度数学家发现，早 Leibniz 170 年。</p>
+        <div class="viz">
+          <div id="pe02s5-timeline"></div>
+        </div>
+        <div class="next-hint">❓ <strong>趣事</strong>：Nilakantha 还在《Tantrasangraha》里发现半弦长公式——比西方早 200 年</div>
+      `
+    },
+  ];
+}
+function getStagesPE03() {
+  return [
+    {
+      emoji: '🕉️', title: 'Ramanujan π 公式（每项 8 位）', content: `
+        <p class="lead">1/π = (2√2/9801) Σ [(4k)!(1103+26390k)] / [(k!)⁴ · 396^(4k)]<br>每加 1 项，<strong style="color:#7c3aed;">精度增加 8 位</strong>！</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #1e3a8a;">3.1416</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">N=1 项</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">粗略 4 位</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #92400e;">3.141592653</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">N=2 项</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">已 9 位！</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #14532d;">3.14159...</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">N=3 项</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">17 位！</div>
+          </div>
+        </div>
+        <div class="next-hint">🕉️ <strong>1910</strong> 印度数学天才 Ramanujan 发现，震惊数学界</div>
+      `
+    },
+    {
+      emoji: '🧮', title: 'Ramanujan 公式计算器', content: `
+        <p class="lead">输入 N，看每项贡献多少 π 位：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe03s2-n" min="1" max="5" value="3" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe03s2-preset" data-n="1">N=1</button>
+              <button class="ghost small pe03s2-preset" data-n="2">N=2</button>
+              <button class="ghost small pe03s2-preset" data-n="3">N=3</button>
+              <button class="ghost small pe03s2-preset" data-n="4">N=4</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe03s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>注意</strong>：大数计算可能丢失精度（用 BigInt 才能算更多项）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: 'Ramanujan vs Chudnovsky 速度', content: `
+        <p class="lead">Ramanujan (8 位/项) vs Chudnovsky (14 位/项) 对比：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <div style="font-size: 13px; line-height: 1.8;">
+            <strong>Ramanujan (1910):</strong> 每项多 8 位精度<br>
+            <strong>Chudnovsky (1988):</strong> 每项多 14 位精度<br>
+            <strong>工业标准:</strong> 1990s 起都用 Chudnovsky 算 π
+          </div>
+        </div>
+        <div class="next-hint">🔭 <strong>历史</strong>：Chudnovsky 是 Ramanujan 公式的"加强版"——基于 640320³ = 8·1001000258·999700025²</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '为什么收敛这么神？', content: `
+        <p class="lead">公式 (4k)!/(k!)⁴ 增长超快但分母 396^(4k) 也超快——<strong style="color:#7c3aed;">净效果是每项大 396⁴ⁿ 倍</strong>：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+          • 分子 (4k)!/(k!)⁴ ~ 2^(8k) (C(4k, k) 倍数)<br>
+          • 分母 396^(4k) = (2·198)^(4k) = 2^(4k) · 198^(4k)<br>
+          • 净比 = 2^(4k) · 198^(-4k) · 1103 ~ 198^(-4k) · 1103<br>
+          • 但 k 大时分母 1103+26390k ~ 26390k ~ k<br>
+          • 总效果 = k · (1/198)⁴ᵏ → 0
+        </div>
+        <div class="next-hint">🔬 <strong>实际</strong>：级数累加 n 越大，每加 1 项修 8 位（因为项衰减 ~ 1/198⁴ᵏ → 8 位/项）</div>
+      `
+    },
+    {
+      emoji: '📅', title: 'Ramanujan 小史', content: `
+        <p class="lead">1887 印度贫民 → 1914 Hardy 发现 → 1920 早逝 → 永恒传奇</p>
+        <div class="viz">
+          <div id="pe03s5-timeline"></div>
+        </div>
+        <div class="next-hint">🌟 <strong>传奇</strong>：Hardy 评价"我学数学这么多年，从未见过像 Ramanujan 这样的人"</div>
+      `
+    },
+  ];
+}
+function getStagesPE04() {
+  return [
+    {
+      emoji: '🎱', title: 'BBP 算法（跳着算第 N 位）', content: `
+        <p class="lead">π = Σ [1/16^k] × [4/(8k+1) - 2/(8k+4) - 1/(8k+5) - 1/(8k+6)]<br><strong style="color:#7c3aed;">直接算第 N 位！</strong></p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fed7aa, #fed7aa); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #92400e;">普通算法</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">算第 N 位 = 算前 N-1 位</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">O(N) 复杂度</div>
+          </div>
+          <div style="flex: 1 1 60px; text-align: center; font-size: 28px; line-height: 1.7; padding: 14px;">VS</div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #14532d;">BBP 算法</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">直接跳到第 N 位！</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">O(1) 复杂度</div>
+          </div>
+        </div>
+        <div class="next-hint">🎱 <strong>1995</strong> Bailey-Borwein-Plouffe 发现，引发"π 公式学"研究热潮</div>
+      `
+    },
+    {
+      emoji: '🧮', title: 'BBP 公式计算器', content: `
+        <p class="lead">输入 N，看前 N+10 项的 π 估值：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe04s2-n" min="1" max="100" value="20" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe04s2-preset" data-n="10">N=10</button>
+              <button class="ghost small pe04s2-preset" data-n="50">N=50</button>
+              <button class="ghost small pe04s2-preset" data-n="100">N=100</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe04s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>精度</strong>：N=20 大约 6 位精度（每项 ~0.5 位 hex = 0.21 位 dec）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '第 16 进制位 demo', content: `
+        <p class="lead">π 的前 20 位 hex：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>位 n = <input type="number" id="pe04s3-n" min="0" max="10" value="0" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="pe04s3-run">▶ 算 hex 位</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe04s3-result" style="padding: 14px; background: #fff7ed; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔭 <strong>壮举</strong>：2002 年用 BBP 算 π 的 12411 亿位 hex！</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '为什么能"跳着算"？', content: `
+        <p class="lead">取 π 第 n 位时，前面 k &lt; n 项的"小部分"可以<strong style="color:#7c3aed;">并行扔给多个处理器</strong>：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+          • π_n (第 n 位) = {16^n × π}<br>
+          • {x} = x - floor(x) (取小数部分)<br>
+          • 大项在 k≥n 后，前面的项可以单独算<br>
+          • BBP 让每个处理器算不同的 n 段<br>
+          • 整体并行 → 速度提升几个数量级
+        </div>
+        <div class="next-hint">🔬 <strong>应用</strong>：分布式算 π 用了 25 台 PC + BBP，2002 年算到 12411 亿位</div>
+      `
+    },
+    {
+      emoji: '📅', title: 'BBP 算法小史', content: `
+        <p class="lead">1995 发现 → 2002 算 12411 亿位 → 现代分布式应用</p>
+        <div class="viz">
+          <div id="pe04s5-timeline"></div>
+        </div>
+        <div class="next-hint">💡 <strong>类似公式</strong>：BBP 思想可推广到 log(2)、Catalan 常数、ζ(3) 等</div>
+      `
+    },
+  ];
+}
+function getStagesPE05() {
+  return [
+    {
+      emoji: '🎲', title: '蒙特卡洛（随机撒点）', content: `
+        <p class="lead">1×1 正方形内随机撒点，落入 1/4 圆内的比例 = π/4！<br>因此 <strong style="color:#7c3aed;">π ≈ 4 × 圆内点 / 总点数</strong>。</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #1e3a8a;">78/100</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">N=100 点</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">π ≈ 3.12（误差 0.02）</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #92400e;">7854/10000</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">N=10000</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">π ≈ 3.1416</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #14532d;">3.14159</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">N=10⁶</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">接近真实 π</div>
+          </div>
+        </div>
+        <div class="next-hint">🎲 <strong>20 世纪 40 年代</strong> 乌拉姆、冯·诺依曼在曼哈顿计划中发明蒙特卡洛</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '蒙特卡洛 π 模拟', content: `
+        <p class="lead">输入 N，模拟撒 N 个点：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe05s2-n" min="100" max="1000000" value="10000" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe05s2-preset" data-n="1000">N=1000</button>
+              <button class="ghost small pe05s2-preset" data-n="10000">N=10⁴</button>
+              <button class="ghost small pe05s2-preset" data-n="100000">N=10⁵</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe05s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>收敛</strong>：误差 ~ 1/√N，N 加 100 倍误差才减 10 倍</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '可视化撒点', content: `
+        <p class="lead">看 1/4 圆内外的点（红/蓝）：</p>
+        <div class="viz" style="text-align: center; padding: 16px; background: #fef9c3; border-radius: 12px;">
+          <canvas id="pe05s3-canvas" style="max-width: 300px; display: block; margin: 0 auto;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>观察</strong>：N 越大，圆内/圆外的比越接近 π/4 ≈ 0.785</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '与其他算法对比', content: `
+        <p class="lead">蒙特卡洛 vs 解析算法：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>目标精度 = <input type="number" id="pe05s4-n" min="1" max="8" value="6" style="width: 100px; padding: 4px;"> 位</label>
+            <button class="primary" id="pe05s4-run">▶ 算</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe05s4-result" style="padding: 14px; background: #f0fdf4; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>结论</strong>：蒙特卡洛要 10⁸ 点才能到 5 位精度，效率低但思路简单</div>
+      `
+    },
+    {
+      emoji: '📅', title: '蒙特卡洛方法小史', content: `
+        <p class="lead">1940s 曼哈顿计划 → 现代金融/物理/AI 广泛使用</p>
+        <div class="viz">
+          <div id="pe05s5-timeline"></div>
+        </div>
+        <div class="next-hint">💡 <strong>应用</strong>：期权定价、粒子输运、AlphaGo MCTS、电影光线追踪</div>
+      `
+    },
+  ];
+}
+function getStagesPE06() {
+  return [
+    {
+      emoji: '🌿', title: 'e 的泰勒展开（阶乘衰减）', content: `
+        <p class="lead">e^x = Σ x^n / n!。令 x=1：<strong style="color:#7c3aed;">e = 1 + 1 + 1/2 + 1/6 + 1/24 + 1/120 + ...</strong></p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #1e3a8a;">1 + 1</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">前 2 项</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">= 2.0</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #92400e;">+ 1/2 + 1/6</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">前 4 项</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">= 2.6667</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #14532d;">2.71828</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">前 20 项</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">= 真实 e 14 位</div>
+          </div>
+        </div>
+        <div class="next-hint">🌿 <strong>1728</strong> Euler 引入 e 这个符号。n! 增长超快，10 项已准到 14 位！</div>
+      `
+    },
+    {
+      emoji: '🧮', title: 'e 泰勒计算器', content: `
+        <p class="lead">输入 N，看 e 估值：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe06s2-n" min="1" max="50" value="20" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe06s2-preset" data-n="10">N=10</button>
+              <button class="ghost small pe06s2-preset" data-n="20">N=20</button>
+              <button class="ghost small pe06s2-preset" data-n="30">N=30</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe06s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>神速</strong>：N=10 已准到 7 位，N=20 准到 14 位</div>
+      `
+    },
+    {
+      emoji: '🔭', title: 'e 的柱状图（阶乘衰减）', content: `
+        <p class="lead">1/n! 衰减速度可视化：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="pe06s3-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>衰减</strong>：1/0!=1, 1/1!=1, 1/2!=0.5, 1/3!=0.17, 1/10!≈3×10⁻⁷</div>
+      `
+    },
+    {
+      emoji: '🔬', title: 'e 在哪里？', content: `
+        <p class="lead">e = 2.71828... 这个数出现在生活的<strong style="color:#7c3aed;">很多地方</strong>：</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <div style="flex: 1 1 240px; padding: 14px; background: #dbeafe; border-left: 4px solid #3b82f6; border-radius: 6px; font-size: 13px;">
+            <strong>🌱 复利</strong>：(1+1/n)^n → e
+          </div>
+          <div style="flex: 1 1 240px; padding: 14px; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 6px; font-size: 13px;">
+            <strong>📉 衰变</strong>：N(t) = N₀ e^(-λt)
+          </div>
+          <div style="flex: 1 1 240px; padding: 14px; background: #dcfce7; border-left: 4px solid #10b981; border-radius: 6px; font-size: 13px;">
+            <strong>🎲 概率</strong>：正态分布常数 1/√(2π)
+          </div>
+          <div style="flex: 1 1 240px; padding: 14px; background: #fce7f3; border-left: 4px solid #ec4899; border-radius: 6px; font-size: 13px;">
+            <strong>📊 信息</strong>：熵公式 H = -Σ p log p
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>本征</strong>：d/dx e^x = e^x（唯一一个导数等于自身的函数！）</div>
+      `
+    },
+    {
+      emoji: '📅', title: 'e 小史', content: `
+        <p class="lead">1683 Bernoulli → 1728 Euler 命名 → 现代无处不在</p>
+        <div class="viz">
+          <div id="pe06s5-timeline"></div>
+        </div>
+        <div class="next-hint">❓ <strong>未解</strong>：e 是超越数（Hermite 1873 证明），但 e²、e+e 等的关系仍有研究</div>
+      `
+    },
+  ];
+}
+function getStagesPE07() {
+  return [
+    {
+      emoji: '💰', title: '复利极限 = e', content: `
+        <p class="lead">(1 + 1/n)^n 随 n 增大趋近 <strong style="color:#7c3aed;">e ≈ 2.71828</strong>——这是"连续复利"的本质！</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fce7f3, #fce7f3); border: 2px solid #ec4899; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #831843;">2.59</div>
+            <div style="font-size: 12px; color: #831843; margin-top: 6px;">n=10</div>
+            <div style="font-size: 11px; color: #be185d; margin-top: 4px;">年结 10 次</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #92400e;">2.7048</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">n=100</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">年结 100 次</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #14532d;">2.71828</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">n=∞</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">连续复利 = e</div>
+          </div>
+        </div>
+        <div class="next-hint">💰 <strong>1683</strong> Jacob Bernoulli 首次研究复利时注意到这个极限</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '复利极限计算器', content: `
+        <p class="lead">输入 N 看不同 n 的复利：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>最大 n = <input type="number" id="pe07s2-n" min="10" max="100000" value="10000" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe07s2-preset" data-n="1000">n=1000</button>
+              <button class="ghost small pe07s2-preset" data-n="10000">n=10⁴</button>
+              <button class="ghost small pe07s2-preset" data-n="100000">n=10⁵</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe07s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>实用</strong>：金融里"连续复利"用 e 做模型基础</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '复利逼近曲线', content: `
+        <p class="lead">看 (1+1/n)^n 趋近 e 的曲线：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="pe07s3-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>规律</strong>：n 每加 10 倍，差距减半（O(1/n) 收敛）</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '为什么 e 是"自然增长"？', content: `
+        <p class="lead">e 的"自然"在哪？——<strong style="color:#7c3aed;">唯一满足 d/dx e^x = e^x 的数</strong>：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+          • 细菌繁殖速度与现有数量成正比<br>
+          • 放射性衰变速度与现有原子数成正比<br>
+          • 冷却速度与温差成正比（牛顿冷却）<br>
+          • 都是 dN/dt = kN，解是 N(t) = N₀ eᵏᵗ<br>
+          • 所以"自然增长"必然涉及 e
+        </div>
+        <div class="next-hint">🔬 <strong>应用</strong>：金融期权定价（Black-Scholes）、人口预测、放射碳定年</div>
+      `
+    },
+    {
+      emoji: '📅', title: '复利与 e 小史', content: `
+        <p class="lead">1683 Bernoulli → 1728 Euler → 1973 Black-Scholes 公式</p>
+        <div class="viz">
+          <div id="pe07s5-timeline"></div>
+        </div>
+        <div class="next-hint">💡 <strong>现代</strong>：e 在金融工程（期权定价）、生物（人口）、物理（衰变）都不可或缺</div>
+      `
+    },
+  ];
+}
+function getStagesPE08() {
+  return [
+    {
+      emoji: '🌀', title: 'φ 的连分数（全 1）', content: `
+        <p class="lead">φ = 1 + 1/(1 + 1/(1 + 1/(1 + ...)))<br>——最简单也最美的连分数（全是 1）！</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #92400e;">1.5</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">N=3 层</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">3/2</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #14532d;">1.6</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">N=5 层</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">8/5</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fce7f3, #fce7f3); border: 2px solid #ec4899; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #831843;">1.6180</div>
+            <div style="font-size: 12px; color: #831843; margin-top: 6px;">N=20 层</div>
+            <div style="font-size: 11px; color: #be185d; margin-top: 4px;">接近 φ</div>
+          </div>
+        </div>
+        <div class="next-hint">🌀 <strong>惊喜</strong>：截断 N 层 = F_{N+1}/F_N（Fibonacci 比！）</div>
+      `
+    },
+    {
+      emoji: '🧮', title: 'φ 连分数截断', content: `
+        <p class="lead">输入 N，看 φ 的 N 层截断：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe08s2-n" min="1" max="40" value="20" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe08s2-preset" data-n="10">N=10</button>
+              <button class="ghost small pe08s2-preset" data-n="20">N=20</button>
+              <button class="ghost small pe08s2-preset" data-n="30">N=30</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe08s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>50 层</strong> 已经接近 16 位精度（每加 1 层精度 +0.4 位）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '黄金矩形无限切', content: `
+        <p class="lead">连分数 = 黄金矩形递归切：</p>
+        <div class="viz" style="text-align: center; padding: 16px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 12px;">
+          <svg viewBox="0 0 400 250" style="max-width: 380px;">
+            <rect x="0" y="0" width="200" height="124" fill="#fef3c7" stroke="#ca8a04" stroke-width="2"/>
+            <rect x="0" y="0" width="124" height="124" fill="#fde68a" stroke="#ca8a04" stroke-width="1.5"/>
+            <rect x="124" y="0" width="76" height="76" fill="#fcd34d" stroke="#ca8a04" stroke-width="1.5"/>
+            <rect x="124" y="76" width="48" height="48" fill="#fbbf24" stroke="#ca8a04" stroke-width="1.5"/>
+            <rect x="172" y="76" width="28" height="28" fill="#f59e0b" stroke="#ca8a04" stroke-width="1.5"/>
+            <rect x="172" y="104" width="28" height="20" fill="#d97706" stroke="#92400e" stroke-width="1.5"/>
+            <path d="M 200,0 A 200,200 0 0,1 0,200 A 124,124 0 0,1 124,76 A 76,76 0 0,1 48,76" stroke="#dc2626" stroke-width="2.5" fill="none"/>
+            <text x="100" y="240" text-anchor="middle" font-size="12" fill="#7c3aed" font-weight="700">每切一次 = 一次连分数层</text>
+          </svg>
+        </div>
+        <div class="next-hint">🔭 <strong>几何</strong>：宽:高 = 1:φ，切出最大正方形后剩下还是黄金矩形</div>
+      `
+    },
+    {
+      emoji: '🔬', title: 'φ 的核心方程 φ² = φ + 1', content: `
+        <p class="lead">φ 是<strong style="color:#7c3aed;">唯一满足 φ² = φ + 1 的正实数</strong>：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>验证：φ = <input type="number" id="pe08s4-n" min="0" max="2" step="0.0001" value="1.618" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="pe08s4-run">▶ 验算</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe08s4-result" style="padding: 14px; background: #f0fdf4; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>意义</strong>：φ² = φ + 1 解释了为什么 φ 在自相似结构（向日葵、贝壳）中反复出现</div>
+      `
+    },
+    {
+      emoji: '📅', title: 'φ 连分数小史', content: `
+        <p class="lead">古希腊 → 印度 → 文艺复兴 → 今天</p>
+        <div class="viz">
+          <div id="pe08s5-timeline"></div>
+        </div>
+        <div class="next-hint">💡 <strong>"最懒"连分数</strong>：所有项都是 1——这是数学中最简洁的连分数</div>
+      `
+    },
+  ];
+}
+function getStagesPE09() {
+  return [
+    {
+      emoji: '🔮', title: '欧拉-马斯刻若尼常数 γ', content: `
+        <p class="lead">γ = lim (1 + 1/2 + 1/3 + ... + 1/n - ln n) ≈ <strong style="color:#7c3aed;">0.5772156649...</strong></p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #1e3a8a;">1 - 0</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">n=1</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">H₁ - ln 1 = 1</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #92400e;">0.6264</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">n=10</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">H₁₀ - ln 10</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 900; color: #14532d;">0.5772</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">n=∞</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">→ γ</div>
+          </div>
+        </div>
+        <div class="next-hint">🔮 <strong>1735</strong> 欧拉发现，1790 马斯刻若尼独立算更多位</div>
+      `
+    },
+    {
+      emoji: '🧮', title: 'γ 收敛计算器', content: `
+        <p class="lead">输入 N 算 γ 估值：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe09s2-n" min="100" max="10000000" value="100000" style="width: 130px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe09s2-preset" data-n="1000">N=1000</button>
+              <button class="ghost small pe09s2-preset" data-n="100000">N=10⁵</button>
+              <button class="ghost small pe09s2-preset" data-n="1000000">N=10⁶</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe09s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>慢收敛</strong>：N=10⁴ 已准到 5 位，N=10⁵ 准到 6 位，N=10⁶ 准到 7 位</div>
+      `
+    },
+    {
+      emoji: '🔭', title: 'γ 与 ζ 函数', content: `
+        <p class="lead">γ 与 Riemann zeta 函数的关系：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+          <strong>ζ(s) = Σ 1/n^s</strong>（Riemann zeta 函数）<br>
+          ζ(1) 发散 → 1/(s-1) + γ + O(s-1)<br>
+          所以 γ = lim(s→1) [ζ(s) - 1/(s-1)]<br><br>
+          <strong>🎯 关键</strong>：ζ(s) = 0 的实部都等于 1/2（黎曼猜想，未证！）
+        </div>
+        <div class="next-hint">🔭 <strong>深度</strong>：γ 在数论、概率论、量子物理中都有应用</div>
+      `
+    },
+    {
+      emoji: '🔬', title: 'γ 是有理数吗？', content: `
+        <p class="lead">数学家研究 γ 几百年，<strong style="color:#7c3aed;">不知道 γ 是不是有理数</strong>！</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+          • γ 已被证明是<strong>无理数</strong>（2018 proof）<br>
+          • γ 是否是<strong>超越数</strong>？未证<br>
+          • γ 是否是<strong>有理数</strong>？未证（相信是无理）<br>
+          • 数学家猜想：γ 是"transcendental irrational"——和 π 一样
+        </div>
+        <div class="next-hint">🔬 <strong>未解之谜</strong>：跟 π 不同，γ 没有简单的连分数表示——这是为什么大家还搞不清它</div>
+      `
+    },
+    {
+      emoji: '📅', title: 'γ 小史', content: `
+        <p class="lead">1735 欧拉 → 1790 马斯刻若尼 → 2018 证 γ 是无理数 → 至今</p>
+        <div class="viz">
+          <div id="pe09s5-timeline"></div>
+        </div>
+        <div class="next-hint">❓ <strong>未解</strong>：γ 是不是超越数？是不是代数无理数？300+ 年未解！</div>
+      `
+    },
+  ];
+}
+function getStagesPE10() {
+  return [
+    {
+      emoji: '🥧', title: '3.14 = π Day', content: `
+        <p class="lead"><strong style="color:#7c3aed;">3 月 14 日</strong>是国际数学日——因为 π ≈ 3.14！</p>
+        <div class="viz" style="text-align: center; padding: 24px; background: linear-gradient(135deg, #fdf2f8, #fef3c7); border-radius: 12px;">
+          <div style="font-size: 80px; font-weight: 900; color: #be185d; font-family: 'Courier New', monospace;">π = 3.14159...</div>
+          <div style="font-size: 16px; color: #831843; margin-top: 8px;">3 月 14 日 = π Day</div>
+        </div>
+        <div class="next-hint">🥧 <strong>庆祝</strong>：吃 pie（派）、背 π 位数、玩数学游戏</div>
+      `
+    },
+    {
+      emoji: '🧮', title: 'π 位数查询', content: `
+        <p class="lead">看 π 的前 N 位：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="pe10s2-n" min="10" max="1000" value="100" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small pe10s2-preset" data-n="20">20 位</button>
+              <button class="ghost small pe10s2-preset" data-n="100">100 位</button>
+              <button class="ghost small pe10s2-preset" data-n="500">500 位</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="pe10s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.7; word-break: break-all;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>挑战</strong>：背到小数点后 10 位（3.1415926535）你就是 π 神童！</div>
+      `
+    },
+    {
+      emoji: '🔭', title: 'π 的历史时间线', content: `
+        <p class="lead">2200 年人类算 π 的历程：</p>
+        <div class="viz" style="text-align: center; padding: 16px; background: #fdf2f8; border-radius: 12px;">
+          <svg viewBox="0 0 580 180" style="max-width: 560px;">
+            <line x1="20" y1="80" x2="560" y2="80" stroke="#9d174d" stroke-width="2"/>
+            <g font-size="10" fill="#1f2937" text-anchor="middle">
+              <circle cx="40" cy="80" r="5" fill="#fbbf24"/><text x="40" y="60">BC 250</text><text x="40" y="105">阿基米德</text><text x="40" y="118">96 边形</text>
+              <circle cx="130" cy="80" r="5" fill="#fbbf24"/><text x="130" y="60">480 AD</text><text x="130" y="105">祖冲之</text><text x="130" y="118">355/113</text>
+              <circle cx="220" cy="80" r="5" fill="#10b981"/><text x="220" y="60">1706</text><text x="220" y="105">Machin</text><text x="220" y="118">100 位</text>
+              <circle cx="310" cy="80" r="5" fill="#3b82f6"/><text x="310" y="60">1882</text><text x="310" y="105">Lindemann</text><text x="310" y="118">π 超越</text>
+              <circle cx="400" cy="80" r="5" fill="#8b5cf6"/><text x="400" y="60">1988</text><text x="400" y="105">Chudnovsky</text><text x="400" y="118">14 位/项</text>
+              <circle cx="520" cy="80" r="7" fill="#ec4899"/><text x="520" y="60">2024</text><text x="520" y="105">202 万亿</text><text x="520" y="118">位纪录</text>
+            </g>
+          </svg>
+        </div>
+        <div class="next-hint">🔭 <strong>阿基米德→祖冲之→现代</strong>：2200 年精度提升 22 个数量级！</div>
+      `
+    },
+    {
+      emoji: '🔬', title: 'π 是正规数吗？', content: `
+        <p class="lead">π 中每个数字 0-9 出现概率 = 1/10？——数学家<strong style="color:#7c3aed;">还没证明</strong>！</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <div style="font-size: 13px; line-height: 1.8;">
+            <strong>统计观察</strong>：π 前 100 万位中 0-9 出现次数约各 10 万次<br>
+            <strong>π 中含你的生日</strong>？（大概率能找到）<br>
+            <strong>"合取数"猜想</strong>：任何数字串都在 π 中出现<br>
+            <strong>状态</strong>：未证，经验上 π 看起来"完全随机"
+          </div>
+          <div style="margin-top: 8px;">
+            <label>查找 <input type="text" id="pe10s4-q" placeholder="如 12345" value="1415" style="width: 100px; padding: 4px;"></label>
+            <button class="primary small" id="pe10s4-run">▶ 在 π 中找</button>
+            <div id="pe10s4-result" style="margin-top: 8px; font-family: 'Courier New', monospace; font-size: 13px;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>意义</strong>：若 π 是合取数 = 你的名字、生日、电话号码都能在 π 中找到！</div>
+      `
+    },
+    {
+      emoji: '📅', title: 'π 计算小史', content: `
+        <p class="lead">从阿基米德 1 位到 2024 年 202 万亿位——2200 年的努力：</p>
+        <div class="viz">
+          <div id="pe10s5-timeline"></div>
+        </div>
+        <div class="next-hint">🎉 <strong>π Day 2019</strong>：Google 用 31.4 万亿位庆祝！<br>🎉 <strong>2024 纪录</strong>：202 万亿位（StorageReview 团队）</div>
+      `
+    },
+  ];
+}
+
+// ============== PE01-10 initStage 函数 ==============
+// PE01 Wallis
+function initStage_PE01_s1() {}
+function initStage_PE01_s2() {
+  const nInput = document.getElementById('pe01s2-n');
+  const resultEl = document.getElementById('pe01s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(100, Math.min(100000, parseInt(nInput.value) || 5000));
+    let p = 1;
+    for (let k = 1; k <= N; k++) p *= (2*k)*(2*k) / ((2*k-1)*(2*k+1));
+    const piEst = p * 2;
+    resultEl.innerHTML = `Wallis 前 ${N} 项 = <strong>${piEst.toFixed(10)}</strong><br>真实 π = 3.1415926536...<br>误差 = ${Math.abs(piEst - Math.PI).toFixed(8)}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe01s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE01_s3() {
+  const ctx = document.getElementById('pe01s3-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  const labels = [], data = [];
+  for (let n = 100; n <= 100000; n *= 2) {
+    let p = 1;
+    for (let k = 1; k <= n; k++) p *= (2*k)*(2*k) / ((2*k-1)*(2*k+1));
+    labels.push(`N=${n}`);
+    data.push(p * 2);
+  }
+  ctx._chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets: [{ label: 'Wallis 估值', data, borderColor: '#7c3aed', fill: false }] },
+    options: { plugins: { legend: { display: false } } }
+  });
+}
+function initStage_PE01_s4() {
+  const nInput = document.getElementById('pe01s4-n');
+  const runBtn = document.getElementById('pe01s4-run');
+  const resultEl = document.getElementById('pe01s4-result');
+  if (!runBtn) return;
+  const update = () => {
+    const N = Math.max(100, Math.min(100000, parseInt(nInput.value) || 10000));
+    let p = 1;
+    for (let k = 1; k <= N; k++) p *= (2*k)*(2*k) / ((2*k-1)*(2*k+1));
+    const w = p * 2;
+    let l = 0;
+    for (let k = 0; k < N; k++) l += (k%2===0 ? 1 : -1) / (2*k+1);
+    const lz = l * 4;
+    resultEl.innerHTML = `N=${N} 时：<br>Wallis: <strong>${w.toFixed(8)}</strong>（误差 ${Math.abs(w-Math.PI).toFixed(8)}）<br>Leibniz: <strong>${lz.toFixed(8)}</strong>（误差 ${Math.abs(lz-Math.PI).toFixed(8)}）`;
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_PE01_s5() {
+  const tl = document.getElementById('pe01s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1655', text: 'John Wallis 发现 Wallis 乘积', color: '#7c3aed' },
+    { year: '1730', text: 'Wallis 公式推出 Stirling 公式 n! ≈ √(2πn)(n/e)ⁿ', color: '#f59e0b' },
+    { year: '20世纪', text: '用于计算 π 的早期计算机实现', color: '#10b981' },
+    { year: '今天', text: '在课堂数学、Stirling 公式推导中广泛使用', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE01() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE01_${s}`] === 'function') window[`initStage_PE01_${s}`](); } catch(e) { console.error('initStage_PE01_' + s + ' err:', e); }
+  });
+}
+
+// PE02 Nilakantha
+function initStage_PE02_s1() {}
+function initStage_PE02_s2() {
+  const nInput = document.getElementById('pe02s2-n');
+  const resultEl = document.getElementById('pe02s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(1, Math.min(1000, parseInt(nInput.value) || 20));
+    let s = 3;
+    for (let k = 1; k <= N; k++) {
+      const term = 4 / ((2*k) * (2*k+1) * (2*k+2));
+      s += (k%2===1 ? term : -term);
+    }
+    resultEl.innerHTML = `Nilakantha 前 ${N} 项 = <strong>${s.toFixed(15)}</strong><br>真实 π = 3.141592653589793...<br>误差 = ${Math.abs(s - Math.PI).toExponential(3)}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe02s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE02_s3() {
+  const ctx = document.getElementById('pe02s3-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  const labels = [], dataL = [], dataN = [], dataM = [];
+  for (let n = 1; n <= 200; n += 2) {
+    let l = 0;
+    for (let k = 0; k < n; k++) l += (k%2===0 ? 1 : -1) / (2*k+1);
+    let nil = 3;
+    for (let k = 1; k <= n; k++) nil += (k%2===1 ? 4/((2*k)*(2*k+1)*(2*k+2)) : -4/((2*k)*(2*k+1)*(2*k+2)));
+    labels.push(n);
+    dataL.push(Math.abs(l*4 - Math.PI));
+    dataN.push(Math.abs(nil - Math.PI));
+  }
+  ctx._chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets: [
+      { label: 'Leibniz', data: dataL, borderColor: '#ef4444', fill: false },
+      { label: 'Nilakantha', data: dataN, borderColor: '#10b981', fill: false },
+    ]},
+    options: { plugins: { legend: { display: true } }, scales: { y: { type: 'logarithmic' } } }
+  });
+}
+function initStage_PE02_s4() {
+  const nInput = document.getElementById('pe02s4-n');
+  const runBtn = document.getElementById('pe02s4-run');
+  const resultEl = document.getElementById('pe02s4-result');
+  if (!runBtn) return;
+  const update = () => {
+    const N = Math.max(1, Math.min(20, parseInt(nInput.value) || 10));
+    let s = 3;
+    for (let k = 1; k <= N; k++) {
+      const term = 4 / ((2*k) * (2*k+1) * (2*k+2));
+      s += (k%2===1 ? term : -term);
+    }
+    resultEl.innerHTML = `N=${N} 时 Nilakantha = <strong>${s.toFixed(15)}</strong><br>真实 π = 3.141592653589793<br>误差位数 = ${(-Math.log10(Math.abs(s - Math.PI))).toFixed(2)} 位精度`;
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_PE02_s5() {
+  const tl = document.getElementById('pe02s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '~1500', text: '印度数学家 Nilakantha Somayaji 在《Tantrasangraha》提出', color: '#f59e0b' },
+    { year: '1500-1674', text: '领先西方 170 年', color: '#7c3aed' },
+    { year: '1674', text: 'Leibniz 独立发现 π/4 级数', color: '#10b981' },
+    { year: '今天', text: '在 π 公式学、加速算法研究中重要', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE02() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE02_${s}`] === 'function') window[`initStage_PE02_${s}`](); } catch(e) { console.error('initStage_PE02_' + s + ' err:', e); }
+  });
+}
+
+// PE03 Ramanujan
+function initStage_PE03_s1() {}
+function initStage_PE03_s2() {
+  const nInput = document.getElementById('pe03s2-n');
+  const resultEl = document.getElementById('pe03s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(1, Math.min(5, parseInt(nInput.value) || 3));
+    let s = 0;
+    for (let k = 0; k < N; k++) {
+      const fact4k = factorial(4 * k);
+      const kf4 = Math.pow(factorial(k), 4);
+      s += fact4k * (1103 + 26390 * k) / (kf4 * Math.pow(396, 4 * k));
+    }
+    const invPi = (2 * Math.sqrt(2) / 9801) * s;
+    const pi = 1 / invPi;
+    resultEl.innerHTML = `Ramanujan 前 ${N} 项：<br>1/π ≈ ${invPi.toFixed(15)}<br>π ≈ <strong>${pi.toFixed(15)}</strong><br>真实 π = 3.14159265358979...<br>精度 ≈ ${(-Math.log10(Math.abs(pi - Math.PI))).toFixed(2)} 位`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe03s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE03_s3() {}
+function initStage_PE03_s4() {}
+function initStage_PE03_s5() {
+  const tl = document.getElementById('pe03s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1887', text: 'Ramanujan 生于印度泰米尔纳德邦', color: '#f59e0b' },
+    { year: '1910', text: '独立发现 1/π 公式，无任何推导', color: '#7c3aed' },
+    { year: '1914', text: 'Hardy 邀请到剑桥', color: '#10b981' },
+    { year: '1918', text: '当选英国皇家学会会士（最年轻亚洲人）', color: '#3b82f6' },
+    { year: '1920', text: '32 岁早逝，留下 4000+ 公式', color: '#ec4899' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE03() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE03_${s}`] === 'function') window[`initStage_PE03_${s}`](); } catch(e) { console.error('initStage_PE03_' + s + ' err:', e); }
+  });
+}
+
+// PE04 BBP
+function initStage_PE04_s1() {}
+function initStage_PE04_s2() {
+  const nInput = document.getElementById('pe04s2-n');
+  const resultEl = document.getElementById('pe04s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const n = Math.max(1, Math.min(100, parseInt(nInput.value) || 20));
+    let pi = 0;
+    for (let k = 0; k < n + 10; k++) {
+      pi += (4 / (8*k+1) - 2 / (8*k+4) - 1 / (8*k+5) - 1 / (8*k+6)) / Math.pow(16, k);
+    }
+    resultEl.innerHTML = `BBP 前 ${n+10} 项 = <strong>${pi.toFixed(15)}</strong><br>真实 π = 3.14159265358979...<br>精度 ≈ ${(-Math.log10(Math.abs(pi - Math.PI))).toFixed(2)} 位`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe04s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE04_s3() {
+  const nInput = document.getElementById('pe04s3-n');
+  const runBtn = document.getElementById('pe04s3-run');
+  const resultEl = document.getElementById('pe04s3-result');
+  if (!runBtn) return;
+  const update = () => {
+    const n = Math.max(0, Math.min(10, parseInt(nInput.value) || 0));
+    let piFrac = 0;
+    for (let k = n; k < n + 50; k++) {
+      piFrac += (4 / (8*k+1) - 2 / (8*k+4) - 1 / (8*k+5) - 1 / (8*k+6)) / Math.pow(16, k);
+    }
+    piFrac = piFrac - Math.floor(piFrac);
+    const hexDigit = Math.floor(piFrac * 16);
+    resultEl.innerHTML = `π 第 ${n} 位 hex = <strong>${hexDigit.toString(16).toUpperCase()}</strong><br>（即 0-F 之一）<br>实际 π 前几 hex：3.243F6A8885A308D3...`;
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_PE04_s4() {}
+function initStage_PE04_s5() {
+  const tl = document.getElementById('pe04s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1995', text: 'Bailey-Borwein-Plouffe 三人发现 BBP 公式', color: '#7c3aed' },
+    { year: '1995', text: '发表在《Mathematical Intelligence》引发轰动', color: '#f59e0b' },
+    { year: '2002', text: '用 BBP + 25 台 PC 算 π 的 12411 亿位 hex', color: '#10b981' },
+    { year: '今天', text: '分布式 π 计算、数字考古学应用', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE04() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE04_${s}`] === 'function') window[`initStage_PE04_${s}`](); } catch(e) { console.error('initStage_PE04_' + s + ' err:', e); }
+  });
+}
+
+// PE05 蒙特卡洛
+function initStage_PE05_s1() {}
+function initStage_PE05_s2() {
+  const nInput = document.getElementById('pe05s2-n');
+  const resultEl = document.getElementById('pe05s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(100, Math.min(1000000, parseInt(nInput.value) || 10000));
+    let inside = 0;
+    for (let i = 0; i < N; i++) {
+      const x = Math.random(), y = Math.random();
+      if (x*x + y*y <= 1) inside++;
+    }
+    const piEst = 4 * inside / N;
+    resultEl.innerHTML = `撒 N=${N} 点<br>圆内 = ${inside}<br>π ≈ <strong>${piEst.toFixed(6)}</strong><br>真实 π = 3.141593<br>误差 = ${Math.abs(piEst - Math.PI).toFixed(6)}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe05s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE05_s3() {
+  const canvas = document.getElementById('pe05s3-canvas');
+  if (!canvas) return;
+  canvas.width = 300; canvas.height = 300;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#fef3c7'; ctx.fillRect(0, 0, 300, 300);
+  // 画 1/4 圆弧
+  ctx.fillStyle = '#fde68a';
+  ctx.beginPath();
+  ctx.moveTo(20, 280);
+  ctx.lineTo(20, 20);
+  ctx.lineTo(280, 20);
+  ctx.arc(20, 20, 260, 0, Math.PI/2, false);
+  ctx.closePath();
+  ctx.fill();
+  // 撒 500 个点
+  let inside = 0, outside = 0;
+  for (let i = 0; i < 500; i++) {
+    const x = 20 + Math.random() * 260;
+    const y = 20 + Math.random() * 260;
+    const dx = x - 20, dy = y - 20;
+    if (dx*dx + dy*dy <= 260*260) {
+      ctx.fillStyle = '#2563eb';
+      inside++;
+    } else {
+      ctx.fillStyle = '#dc2626';
+      outside++;
+    }
+    ctx.beginPath();
+    ctx.arc(x, y, 2.5, 0, 2 * Math.PI);
+    ctx.fill();
+  }
+  ctx.fillStyle = '#1f2937';
+  ctx.font = 'bold 14px sans-serif';
+  ctx.fillText(`蓝: ${inside} (圆内) | 红: ${outside} (圆外)`, 30, 270);
+}
+function initStage_PE05_s4() {
+  const nInput = document.getElementById('pe05s4-n');
+  const runBtn = document.getElementById('pe05s4-run');
+  const resultEl = document.getElementById('pe05s4-result');
+  if (!runBtn) return;
+  const update = () => {
+    const targetBits = Math.max(1, Math.min(8, parseInt(nInput.value) || 6));
+    // 蒙特卡洛: 误差 ~ 1/√N, 1 位精度需要 N ~ 10^15, x 位需要 N ~ 10^(2x)
+    const mcN = Math.pow(10, 2 * targetBits);
+    // Machin: 12 项到 100 位
+    const lines = [];
+    lines.push(`目标精度 = ${targetBits} 位：`);
+    lines.push(`• 蒙特卡洛需 N ~ 10^${2*targetBits} ≈ 10^${2*targetBits.toFixed(0)}`);
+    lines.push(`• Leibniz 需 N ~ 10^${targetBits}`);
+    lines.push(`• Machin 需 N ~ ${targetBits * 3}`);
+    lines.push(`• Chudnovsky 需 N ~ ${targetBits}`);
+    resultEl.innerHTML = lines.map(l => `<div>${l}</div>`).join('');
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_PE05_s5() {
+  const tl = document.getElementById('pe05s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1940s', text: 'Stanislaw Ulam 在曼哈顿计划中发明蒙特卡洛', color: '#7c3aed' },
+    { year: '1949', text: 'Metropolis 和 Ulam 发表论文正式命名', color: '#f59e0b' },
+    { year: '1970s-2000s', text: '广泛应用：金融定价、物理模拟', color: '#10b981' },
+    { year: '2016', text: 'AlphaGo 用蒙特卡洛树搜索（MCTS）战胜李世石', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE05() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE05_${s}`] === 'function') window[`initStage_PE05_${s}`](); } catch(e) { console.error('initStage_PE05_' + s + ' err:', e); }
+  });
+}
+
+// PE06 e 泰勒
+function initStage_PE06_s1() {}
+function initStage_PE06_s2() {
+  const nInput = document.getElementById('pe06s2-n');
+  const resultEl = document.getElementById('pe06s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(1, Math.min(50, parseInt(nInput.value) || 20));
+    let s = 0;
+    for (let n = 0; n < N; n++) s += 1 / factorial(n);
+    resultEl.innerHTML = `e 泰勒前 ${N} 项 = <strong>${s.toFixed(15)}</strong><br>真实 e = 2.718281828459045...<br>精度 ≈ ${(-Math.log10(Math.abs(s - Math.E))).toFixed(2)} 位`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe06s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE06_s3() {
+  const ctx = document.getElementById('pe06s3-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  const labels = [], data = [];
+  for (let n = 0; n <= 15; n++) {
+    labels.push(`1/${n}!`);
+    data.push(1 / factorial(n));
+  }
+  ctx._chart = new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ label: '1/n!', data, backgroundColor: '#10b981' }] },
+    options: { plugins: { legend: { display: false } }, scales: { y: { type: 'logarithmic' } } }
+  });
+}
+function initStage_PE06_s4() {}
+function initStage_PE06_s5() {
+  const tl = document.getElementById('pe06s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1683', text: 'Jacob Bernoulli 在复利研究中遇到 e', color: '#7c3aed' },
+    { year: '1728', text: 'Euler 引入 e 这个符号', color: '#f59e0b' },
+    { year: '1736', text: 'Euler 证明 e 是无理数', color: '#10b981' },
+    { year: '1873', text: 'Hermite 证明 e 是超越数', color: '#3b82f6' },
+    { year: '今天', text: '微积分、概率论、金融、物理学的基础常数', color: '#a855f7' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE06() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE06_${s}`] === 'function') window[`initStage_PE06_${s}`](); } catch(e) { console.error('initStage_PE06_' + s + ' err:', e); }
+  });
+}
+
+// PE07 复利极限
+function initStage_PE07_s1() {}
+function initStage_PE07_s2() {
+  const nInput = document.getElementById('pe07s2-n');
+  const resultEl = document.getElementById('pe07s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(10, Math.min(100000, parseInt(nInput.value) || 10000));
+    const out = [];
+    for (let n = 1; n <= N; n *= 10) {
+      out.push(`n=${n.toLocaleString()}: (1+1/n)^n = ${Math.pow(1 + 1/n, n).toFixed(10)}`);
+    }
+    out.push('真实 e = 2.718281828459045...');
+    resultEl.innerHTML = out.join('<br>');
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe07s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE07_s3() {
+  const ctx = document.getElementById('pe07s3-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  const labels = [], data = [];
+  for (let n = 1; n <= 1000; n++) {
+    labels.push(n);
+    data.push(Math.pow(1 + 1/n, n));
+  }
+  ctx._chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets: [{ label: '(1+1/n)^n', data, borderColor: '#a855f7', fill: false }] },
+    options: { plugins: { legend: { display: false } } }
+  });
+}
+function initStage_PE07_s4() {}
+function initStage_PE07_s5() {
+  const tl = document.getElementById('pe07s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1683', text: 'Bernoulli 在复利问题中发现 (1+1/n)^n 极限', color: '#7c3aed' },
+    { year: '1728', text: 'Euler 命名 e', color: '#f59e0b' },
+    { year: '1873', text: 'Hermite 证明 e 超越', color: '#10b981' },
+    { year: '1973', text: 'Black-Scholes 期权定价公式广泛应用', color: '#3b82f6' },
+    { year: '今天', text: '金融工程、生物衰变、信息论的基础', color: '#a855f7' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE07() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE07_${s}`] === 'function') window[`initStage_PE07_${s}`](); } catch(e) { console.error('initStage_PE07_' + s + ' err:', e); }
+  });
+}
+
+// PE08 φ 连分数
+function initStage_PE08_s1() {}
+function initStage_PE08_s2() {
+  const nInput = document.getElementById('pe08s2-n');
+  const resultEl = document.getElementById('pe08s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(1, Math.min(40, parseInt(nInput.value) || 20));
+    let f = 1;
+    for (let i = 0; i < N; i++) f = 1 + 1 / f;
+    const phi = (1 + Math.sqrt(5)) / 2;
+    resultEl.innerHTML = `φ 连分数 ${N} 层 = <strong>${f.toFixed(15)}</strong><br>真实 φ = ${phi.toFixed(15)}<br>误差 = ${Math.abs(f - phi).toExponential(3)}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe08s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE08_s3() {}
+function initStage_PE08_s4() {
+  const nInput = document.getElementById('pe08s4-n');
+  const runBtn = document.getElementById('pe08s4-run');
+  const resultEl = document.getElementById('pe08s4-result');
+  if (!runBtn) return;
+  const update = () => {
+    const phi = parseFloat(nInput.value) || 1.618;
+    const phiSquared = phi * phi;
+    const phiPlusOne = phi + 1;
+    const ok = Math.abs(phiSquared - phiPlusOne) < 0.001;
+    resultEl.innerHTML = `φ = ${phi}<br>φ² = ${phiSquared.toFixed(4)}<br>φ + 1 = ${phiPlusOne.toFixed(4)}<br>${ok ? '✓ 满足 φ² = φ + 1' : '✗ 不满足'}`;
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_PE08_s5() {
+  const tl = document.getElementById('pe08s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '~300 BC', text: '欧几里得《几何原本》提出"中末比"', color: '#f59e0b' },
+    { year: '~1500', text: '印度数学家研究连分数', color: '#7c3aed' },
+    { year: '1590s', text: '发现 φ 与斐波那契数的关系', color: '#10b981' },
+    { year: '1835', text: 'Martin Ohm 命名"黄金比例"', color: '#3b82f6' },
+    { year: '20世纪', text: '在生物学、艺术、建筑中广泛发现', color: '#a855f7' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE08() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE08_${s}`] === 'function') window[`initStage_PE08_${s}`](); } catch(e) { console.error('initStage_PE08_' + s + ' err:', e); }
+  });
+}
+
+// PE09 γ
+function initStage_PE09_s1() {}
+function initStage_PE09_s2() {
+  const nInput = document.getElementById('pe09s2-n');
+  const resultEl = document.getElementById('pe09s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(100, Math.min(10000000, parseInt(nInput.value) || 100000));
+    let h = 0;
+    for (let i = 1; i <= N; i++) h += 1 / i;
+    const gamma = h - Math.log(N);
+    resultEl.innerHTML = `γ 前 ${N} 项 = <strong>${gamma.toFixed(10)}</strong><br>真实 γ = 0.5772156649...<br>精度 ≈ ${(-Math.log10(Math.abs(gamma - 0.5772156649))).toFixed(2)} 位`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe09s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE09_s3() {}
+function initStage_PE09_s4() {}
+function initStage_PE09_s5() {
+  const tl = document.getElementById('pe09s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1735', text: 'Euler 在研究调和级数时引入 γ', color: '#7c3aed' },
+    { year: '1790', text: 'Mascheroni 独立计算更多位数', color: '#f59e0b' },
+    { year: '2018', text: '证明 γ 是无理数', color: '#10b981' },
+    { year: '今天', text: 'γ 是否是超越数仍未解决', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE09() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE09_${s}`] === 'function') window[`initStage_PE09_${s}`](); } catch(e) { console.error('initStage_PE09_' + s + ' err:', e); }
+  });
+}
+
+// PE10 π Day
+function initStage_PE10_s1() {}
+function initStage_PE10_s2() {
+  const nInput = document.getElementById('pe10s2-n');
+  const resultEl = document.getElementById('pe10s2-result');
+  if (!nInput) return;
+  const piStr = '3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951941511609433057270365759591953092186117381932611793105118548074462379962749567351885752724891227938183011949129833673362440656643086021394946395224737190702179860943702770539217176293176752384674818467669405132000568127145263560827785771342757789609173637178721468440901224953430146549585371050792279689258923542019956112129021960864034418159813629774771309960518707211349999998372978049951059731732816096318595024459455346908302642522308253344685035261931188171010003137838752886587533208381420617177669147303598253490428755468731159562863882353787593751957781857780532171226806613001927876611195909216420198938095257201065485863278865936153381827968230301952035301852968995773622599413891249721775283479131515574857242454150695950829533116861727855889075098381754637464939319255060400927701671139009848824012858361603563707660104710181942956595982303288620659875477291589306820261064166422606498674367610104317501374938831381440546598503637564283379276303712067308490713598540108957266056887640794216637839673038262817834038871427113500128505207989176218413334219628035527569367921799362367549501837656520376525762521766568943044364003279827481343964160928398259152655801348754411745839376562134239284175656379742663952504375189659200213785075124388417243911728567367463186416573558197583632498522720631049561655640573665011201499883679090248776488009348695259581488407229429505389099298598125217873456078834000416459661388558454695495813390220722306283089103728840653201787889352034888604350506454233949293642282884903447021693158050329555414813538872881715962070175763021925014511763366000822493130962721812575937549625109601834381764577669180919416526944965704881935261231762261376035406360861678269367211753718749514306161493728408252462547687879685264323436326162654625383698888935682546795358014884541740292996559862759210256213936979780623309530298105469397143789669644474951985889367695526650268544635769571938413530867725328440219430873521241321912782507269366643032616511836283216550402493442539898300813866738248120318049378050705580467964894761655133752138967302393401218118662614477280936330731461395375294115837235581117234197271319888468017007165896403498797181169119795223658829605579639461120971643365000142081166923032447481720531492475976910190971230456942039953707886895025962145282617217036461790363478126744554000196532585732397121912691417865725236595586114583173764521213240201279295326401236277272731726435301090302558674489432117655978460672639898401354824019035762491684125463262612528931568862695622124921298366306490105425148966228942784884884581694849989977023486437413431739175613457283467365736727991208027966335239528794497329334396438937506914400906185307985537960304096842508644583836274926101429359497371257061767919029988514310874899997523476399584305874924168708275495949677620255299154258485574982571867564825288559920459304285008477539021362308374522451492199356028411364054781417780897312981635096818310288644858265074829323246235728753978497786510533242246009613311686822525188264742837752587002744137116576271573093208169207992350020762974568716207352813588569553075971492188169125408571009660281293781758027178521795668727110410488724433030557296999907405137455887940475497561609614368675759310388216466506286361808253686326169363762133654757884345648912464259108579545011663404578794195759353732474558909798151512962999717538125463562776347854862182317147413464233732662499498654751506848401034565452553362601449255285268279207628107498923359264417807539633295834225325131068944018141093313533259894321592396253254853516289113228868208146970646201753295109776318443908732148371190579082940229132351281218808408115441909435235470857139057089160200450588566482403750997141308339423875158045992853819906522452129486898419501517982109411113208189330370107513530449043731253423401127741160366720355998503528929440333161278312767681961110350581790612442726343250807240185377228691331266297154350325223224068560450311215766317450044666197669676363895194866978277762550596014108882632767558750465934374725669837728226442793598522363259277970424524562498253989250503286899221421838813184476540789197125165501700144162697892808294639790799890290132456178623894521616921780265729805572801974364142087580257829345997170303852324145629725686548646867887575681719130632132586706406381971759495269144614534398278526998057598680227420306291012304976884221021669376941386525299914276078620205807646345839605202319812994327305373551674807309588064778972359604104962713040728147498296742138655726380970307553524960461635964337918721451660230825719802155071571949843560110183926739380623233542324321830133131268291603724920015769079498381706321195794598445696150948293857638287676802030011072297219779160129508392403125899846666015571692912274753494085479734413525663188898299114434611939260207119120304640181356238513300785934205110702274887645723197698924508797355006081645839553276259928307112520604047493399931388793274153531904896035768567024408231760530751284298999341728133530275041127434816859238124049509457893738560471586375825180465763996864744175293431897354150473815945226089614400950216305532586436409330543839172032498838736185420710770053252176271854785736169061898826478007470798281441761486068799522090702823905231273322425728606438169449970308602385419341292307932941958965732607242340673493253909302414011351731962003980656716690857503405481812651331632820901630842406601725531275783642495697367428368410260628374875632232422448488910439200275717812195655348787687829213085796455081968380160682448614225439491278591802280344580607443503924692431732520620778731903199462521870895753606151467018275149759609887036604802912121230965590437055336834624327498505188282247010492419765436605504801089373540781879252945284424382692229196234888148939976130258299865452229882624340633410498269090482326519714150920382513628471016875398100623404803571174605094367393365272545554063467794076433850556989026052768989193124823116380728635290333122689514514586822690627939458199408553065026782962690767295464259616935801553202790204624399269046036040286210990550585641769708866059662314440723496176160214028819272720993106264065973582950832676525741272337206280533452776551289102476811414960064554912567626807689175663184500873542392587863614365965071332398125777788968520714879566884355177006569060791396040205270010750888969535355055371181668070102369540352603804936890159162078432083257700304018519395143360678689107695589120612020635698576854369981762357325124172051343807984551706415158474791477884158322664030568207938070238725300569953844399291103262197728115088342919113673841533706906564884988615628455584121963489488574869659083003496656265683004454311662798462580957258208237083495309875368654790181452047080206160714224954461635364927294886477741664783884143762544435501377908918545568324348489900783294614894469397964972134554433864887217304260384767031924525887379333503286913424761726510583988754727365421348648890687335960099039262297332426433974209057248300475161964867921798221086371230477272669113763297740632714259883366966529703075215583898060988375855375218934837972499555626378744264293516375235533542358410829644664794826195061252230373215723949495261281286301300275130068246201620692502609307391828145656934488949255290077456525376254642128592372792681022586424691382496425844623008829533481978656426147782498690303968481112640372627526274631175822653561633171656477717893241066114869017056712594404382582311673287494325302192572994891344210637208284326449990574809815471590769119039987761461113043766174529319535035889371335454821658338678861466421766025506706386566571758084135998366028252088746322370578991956162477335291421604251436590179617618505417142220023766024508415675358404503251211841493836210170909718026593268190889316108876217965001626929636735321676103567340966258735439624783320423862747507233520474970286452161616750371886685574745210148531784468078080485155842136854145682285536773581918174343149367350210717735647839436330299159208092128175895393019301242319804195620514326753585283953356426776350121030861129029574679458706376866101103369939156774499681980938506389647654940604302438837657178628884611247604680770167736506441914814972321481698240701898568050478491760248918249169257396909318493628551962829816066208683331188312640427920197382859191124757541283138333547751815647969218242490943762059946053494433479250553693720922040505690130335820479007988938900968093503254212898459327707051533944586774664144883484920478432884383737106325321419751802232203146038860511538877136181261819293744736230794366499792253552247932839438793211643304151743970540898280685430764623175362219145318810206953799866444498166841194412847790466342009012412791387666335781544978921560907744368540374340289262854327492571635035685660180286725653484681503956110065570293554434823760124488287264565391966388251614247366963375681680061671542636441335766738893794324497115831961086820102840562339578179301683460730962963906790958765014229391802193769227006234989966848786014755721138816793238386131444073337333826064505317996173297267439436477875259640064656894296645909578785428755058266999213579935956488971080877864660287112248798181928987527588543216295486371258171999341526491259897926307332884033107336672935481325305405583208284900539359620927018464218637997471882883556252300539543726635889150496425573120886086505315410899604197768513232159661344501607152998422882540024717040217450451081649737198734547231660047109191321277766372407994298296434094040322871687839663514583550342563286413935205092478068507772187505525477256219462359033510693824581178286490474818688104340646396659131299305760459197860103672796843683289346294430034505459565585568714897825537381757133893299149598816412036495326490310377657301326021919363562489919340538882691518473876431340318681284434596248481530960856262349438254684867122227268765443324233531398451231512504320563248598244952766744669556005023890308196547529717298354028375521654765408593965316878171874038767430393427762311924494869698441658497548184305780182061059594981565209590644647491351163744087376795262616124622630261890073939506382034777801187285533436981028197662988440949986499703959584794890582427802054506743304302263709280758080471002159909362040044446704015992510914251468494060079254440191547453399141232321272622246441559973555622963603266275655601282834638856764778504567436223289604574491787141254107046309332525572445379304263280172263161277648195864218569788541726339804892032788706710602792318552766763493932906408498838197801372506368847897412487609365259558205584266381619950134129741495522858551584740363994804391001993598438324946327753645377290390301256083198066283869952302643762630293510183260471745079152094741433807388593295347628325249505207026577577798435880661890455802101529541410425068644501321178783106967761330581005606084267945650376289016602949488937579048216320500600325898978013933753958355718859371685596557374935935158306998884682233391491273155318342859396108646463311376787252634492376464172891715159437053225762673989081408757566503587510760712115810751208873057003880552511001807388827698718105166641181683312519862349380266315037501608418829393968033525178695442301495481817102661188271276880398929436222173041219278048190321700119366369629624491569270494878961722890205021809143881045183298304263465737840006376192196358322454635644082472324782586599101495097159668348027406435210657212802882040988148495805297716356171201916040707842393898449370949704';
+  const update = () => {
+    const N = Math.max(10, Math.min(1000, parseInt(nInput.value) || 100));
+    resultEl.innerHTML = `π 前 ${N} 位：<br><strong>${piStr.substring(0, N + 2)}</strong>`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.pe10s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_PE10_s3() {}
+function initStage_PE10_s4() {
+  const qInput = document.getElementById('pe10s4-q');
+  const runBtn = document.getElementById('pe10s4-run');
+  const resultEl = document.getElementById('pe10s4-result');
+  if (!runBtn) return;
+  const update = () => {
+    const q = qInput.value.trim();
+    if (!q) { resultEl.innerHTML = '请输入要查找的数字串'; return; }
+    const piStr = '3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820466521384146951941511609433057270365759591953092186117381932611793105118548074462379962749567351885752724891227938183011949129833673362440656643086021394946395224737190702179860943702770539217176293176752384674818467669405132000568127145263560827785771342757789609173637178721468440901224953430146549585371050792279689258923542019956112129021960864034418159813629774771309960518707211349999998372978049951059731732816096318595024459455346908302642522308253344685035261931188171010003137838752886587533208381420617177669147303598253490428755468731159562863882353787593751957781857780532171226806613001927876611195909216420198938095257201065485863278865936153381827968230301952035301852968995773622599413891249721775283479131515574857242454150695950829533116861727855889075098381754637464939319255060400927701671139009848824012858361603563707660104710181942956595982303288620659875477291589306820261064166422606498674367610104317501374938831381440546598503637564283379276303712067308490713598540108957266056887640794216637839673038262817834038871427113500128505207989176218413334219628035527569367921799362367549501837656520376525762521766568943044364003279827481343964160928398259152655801348754411745839376562134239284175656379742663952504375189659200213785075124388417243911728567367463186416573558197583632498522720631049561655640573665011201499883679090248776488009348695259581488407229429505389099298598125217873456078834000416459661388558454695495813390220722306283089103728840653201787889352034888604350506454233949293642282884903447021693158050329555414813538872881715962070175763021925014511763366000822493130962721812575937549625109601834381764577669180919416526944965704881935261231762261376035406360861678269367211753718749514306161493728408252462547687879685264323436326162654625383698888935682546795358014884541740292996559862759210256213936979780623309530298105469397143789669644474951985889367695526650268544635769571938413530867725328440219430873521241321912782507269366643032616511836283216550402493442539898300813866738248120318049378050705580467964894761655133752138967302393401218118662614477280936330731461395375294115837235581117234197271319888468017007165896403498797181169119795223658829605579639461120971643365000142081166923032447481720531492475976910190971230456942039953707886895025962145282617217036461790363478126744554000196532585732397121912691417865725236595586114583173764521213240201279295326401236277272731726435301090302558674489432117655978460672639898401354824019035762491684125463262612528931568862695622124921298366306490105425148966228942784884884581694849989977023486437413431739175613457283467365736727991208027966335239528794497329334396438937506914400906185307985537960304096842508644583836274926101429359497371257061767919029988514310874899997523476399584305874924168708275495949677620255299154258485574982571867564825288559920459304285008477539021362308374522451492199356028411364054781417780897312981635096818310288644858265074829323246235728753978497786510533242246009613311686822525188264742837752587002744137116576271573093208169207992350020762974568716207352813588569553075971492188169125408571009660281293781758027178521795668727110410488724433030557296999907405137455887940475497561609614368675759310388216466506286361808253686326169363762133654757884345648912464259108579545011663404578794195759353732474558909798151512962999717538125463562776347854862182317147413464233732662499498654751506848401034565452553362601449255285268279207628107498923359264417807539633295834225325131068944018141093313533259894321592396253254853516289113228868208146970646201753295109776318443908732148371190579082940229132351281218808408115441909435235470857139057089160200450588566482403750997141308339423875158045992853819906522452129486898419501517982109411113208189330370107513530449043731253423401127741160366720355998503528929440333161278312767681961110350581790612442726343250807240185377228691331266297154350325223224068560450311215766317450044666197669676363895194866978277762550596014108882632767558750465934374725669837728226442793598522363259277970424524562498253989250503286899221421838813184476540789197125165501700144162697892808294639790799890290132456178623894521616921780265729805572801974364142087580257829345997170303852324145629725686548646867887575681719130632132586706406381971759495269144614534398278526998057598680227420306291012304976884221021669376941386525299914276078620205807646345839605202319812994327305373551674807309588064778972359604104962713040728147498296742138655726380970307553524960461635964337918721451660230825719802155071571949843560110183926739380623233542324321830133131268291603724920015769079498381706321195794598445696150948293857638287676802030011072297219779160129508392403125899846666015571692912274753494085479734413525663188898299114434611939260207119120304640181356238513300785934205110702274887645723197698924508797355006081645839553276259928307112520604047493399931388793274153531904896035768567024408231760530751284298999341728133530275041127434816859238124049509457893738560471586375825180465763996864744175293431897354150473815945226089614400950216305532586436409330543839172032498838736185420710770053252176271854785736169061898826478007470798281441761486068799522090702823905231273322425728606438169449970308602385419341292307932941958965732607242340673493253909302414011351731962003980656716690857503405481812651331632820901630842406601725531275783642495697367428368410260628374875632232422448488910439200275717812195655348787687829213085796455081968380160682448614225439491278591802280344580607443503924692431732520620778731903199462521870895753606151467018275149759609887036604802912121230965590437055336834624327498505188282247010492419765436605504801089373540781879252945284424382692229196234888148939976130258299865452229882624340633410498269090482326519714150920382513628471016875398100623404803571174605094367393365272545554063467794076433850556989026052768989193124823116380728635290333122689514514586822690627939458199408553065026782962690767295464259616935801553202790204624399269046036040286210990550585641769708866059662314440723496176160214028819272720993106264065973582950832676525741272337206280533452776551289102476811414960064554912567626807689175663184500873542392587863614365965071332398125777788968520714879566884355177006569060791396040205270010750888969535355055371181668070102369540352603804936890159162078432083257700304018519395143360678689107695589120612020635698576854369981762357325124172051343807984551706415158474791477884158322664030568207938070238725300569953844399291103262197728115088342919113673841533706906564884988615628455584121963489488574869659083003496656265683004454311662798462580957258208237083495309875368654790181452047080206160714224954461635364927294886477741664783884143762544435501377908918545568324348489900783294614894469397964972134554433864887217304260384767031924525887379333503286913424761726510583988754727365421348648890687335960099039262297332426433974209057248300475161964867921798221086371230477272669113763297740632714259883366966529703075215583898060988375855375218934837972499555626378744264293516375235533542358410829644664794826195061252230373215723949495261281286301300275130068246201620692502609307391828145656934488949255290077456525376254642128592372792681022586424691382496425844623008829533481978656426147782498690303968481112640372627526274631175822653561633171656477717893241066114869017056712594404382582311673287494325302192572994891344210637208284326449990574809815471590769119039987761461113043766174529319535035889371335454821658338678861466421766025506706386566571758084135998366028252088746322370578991956162477335291421604251436590179617618505417142220023766024508415675358404503251211841493836210170909718026593268190889316108876217965001626929636735321676103567340966258735439624783320423862747507233520474970286452161616750371886685574745210148531784468078080485155842136854145682285536773581918174343149367350210717735647839436330299159208092128175895393019301242319804195620514326753585283953356426776350121030861129029574679458706376866101103369939156774499681980938506389647654940604302438837657178628884611247604680770167736506441914814972321481698240701898568050478491760248918249169257396909318493628551962829816066208683331188312640427920197382859191124757541283138333547751815647969218242490943762059946053494433479250553693720922040505690130335820479007988938900968093503254212898459327707051533944586774664144883484920478432884383737106325321419751802232203146038860511538877136181261819293744736230794366499792253552247932839438793211643304151743970540898280685430764623175362219145318810206953799866444498166841194412847790466342009012412791387666335781544978921560907744368540374340289262854327492571635035685660180286725653484681503956110065570293554434823760124488287264565391966388251614247366963375681680061671542636441335766738893794324497115831961086820102840562339578179301683460730962963906790958765014229391802193769227006234989966848786014755721138816793238386131444073337333826064505317996173297267439436477875259640064656894296645909578785428755058266999213579935956488971080877864660287112248798181928987527588543216295486371258171999341526491259897926307332884033107336672935481325305405583208284900539359620927018464218637997471882883556252300539543726635889150496425573120886086505315410899604197768513232159661344501607152998422882540024717040217450451081649737198734547231660047109191321277766372407994298296434094040322871687839663514583550342563286413935205092478068507772187505525477256219462359033510693824581178286490474818688104340646396659131299305760459197860103672796843683289346294430034505459565585568714897825537381757133893299149598816412036495326490310377657301326021919363562489919340538882691518473876431340318681284434596248481530960856262349438254684867122227268765443324233531398451231512504320563248598244952766744669556005023890308196547529717298354028375521654765408593965316878171874038767430393427762311924494869698441658497548184305780182061059594981565209590644647491351163744087376795262616124622630261890073939506382034777801187285533436981028197662988440949986499703959584794890582427802054506743304302263709280758080471002159909362040044446704015992510914251468494060079254440191547453399141232321272622246441559973555622963603266275655601282834638856764778504567436223289604574491787141254107046309332525572445379304263280172263161277648195864218569788541726339804892032788706710602792318552766763493932906408498838197801372506368847897412487609365259558205584266381619950134129741495522858551584740363994804391001993598438324946327753645377290390301256083198066283869952302643762630293510183260471745079152094741433807388593295347628325249505207026577577798435880661890455802101529541410425068644501321178783106967761330581005606084267945650376289016602949488937579048216320500600325898978013933753958355718859371685596557374935935158306998884682233391491273155318342859396108646463311376787252634492376464172891715159437053225762673989081408757566503587510760712115810751208873057003880552511001807388827698718105166641181683312519862349380266315037501608418829393968033525178695442301495481817102661188271276880398929436222173041219278048190321700119366369629624491569270494878961722890205021809143881045183298304263465737840006376192196358322454635644082472324782586599101495097159668348027406435210657212802882040988148495805297716356171201916040707842393898449370949704';
+    const idx = piStr.indexOf(q);
+    if (idx === -1) {
+      resultEl.innerHTML = `前 1000 位 π 中未找到 <strong>${q}</strong>（可能需要更多位）`;
+    } else {
+      const start = Math.max(0, idx - 5);
+      const end = Math.min(piStr.length, idx + q.length + 20);
+      resultEl.innerHTML = `找到！位置：第 <strong>${idx - 1}</strong> 位<br>上下文：...${piStr.substring(start, end)}...`;
+    }
+  };
+  qInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_PE10_s5() {
+  const tl = document.getElementById('pe10s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: 'BC 250', text: '阿基米德用 96 边形得 π 近似 3.1416', color: '#f59e0b' },
+    { year: '480 AD', text: '祖冲之得 3.1415926~7（领先欧洲 1000 年）', color: '#7c3aed' },
+    { year: '1706', text: 'Machin 算到 100 位', color: '#10b981' },
+    { year: '1873', text: 'Hermite 证 e 超越', color: '#3b82f6' },
+    { year: '1882', text: 'Lindemann 证 π 超越', color: '#a855f7' },
+    { year: '2024', text: '202 万亿位（当前世界纪录）', color: '#ec4899' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_PE10() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_PE10_${s}`] === 'function') window[`initStage_PE10_${s}`](); } catch(e) { console.error('initStage_PE10_' + s + ' err:', e); }
+  });
+}
+
+function initStage_PE01_initAll() { initStage_PE01(); }
+function initStage_PE02_initAll() { initStage_PE02(); }
+function initStage_PE03_initAll() { initStage_PE03(); }
+function initStage_PE04_initAll() { initStage_PE04(); }
+function initStage_PE05_initAll() { initStage_PE05(); }
+function initStage_PE06_initAll() { initStage_PE06(); }
+function initStage_PE07_initAll() { initStage_PE07(); }
+function initStage_PE08_initAll() { initStage_PE08(); }
+function initStage_PE09_initAll() { initStage_PE09(); }
+function initStage_PE10_initAll() { initStage_PE10(); }
+
+
 // 包含 15 个 getStages + 5*15+15 initStage 函数
 
 function downloadDataUrl(dataUrl, filename) {
@@ -11060,7 +12597,7 @@ const EXPERIMENTS = [{
   svgDemo: "<h4 style=\"margin-top: 0;\">🎨 算法图解：跳过前 n-1 位直接算第 n 位</h4>\n<p style=\"font-size: 13px; color: var(--muted); margin: 0 0 8px;\">普通算法要算前 100 万位才能拿第 100 万位；BBP <strong>直接跳到第 n 位</strong>。</p>\n<svg viewBox=\"0 0 600 200\" style=\"width: 100%; max-width: 600px; background: #fff7ed; border-radius: 6px; border: 1px solid #fed7aa;\">\n  <text x=\"300\" y=\"20\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#9a3412\">π (十六进制) = 3.243F6A8885A308D3...</text>\n  <!-- 16 个色块代表十六进制位 -->\n  <g transform=\"translate(40, 50)\">\n    <text x=\"0\" y=\"0\" font-size=\"11\" fill=\"#6b7280\">前 16 位 hex（0-F）</text>\n    <g font-family=\"ui-monospace, monospace\" font-size=\"14\" font-weight=\"700\" fill=\"white\">\n      <rect x=\"0\"   y=\"10\" width=\"30\" height=\"30\" fill=\"#dc2626\" rx=\"4\"/><text x=\"15\" y=\"30\" text-anchor=\"middle\">3</text>\n      <rect x=\"35\"  y=\"10\" width=\"30\" height=\"30\" fill=\"#ea580c\" rx=\"4\"/><text x=\"50\" y=\"30\" text-anchor=\"middle\">2</text>\n      <rect x=\"70\"  y=\"10\" width=\"30\" height=\"30\" fill=\"#f59e0b\" rx=\"4\"/><text x=\"85\" y=\"30\" text-anchor=\"middle\">4</text>\n      <rect x=\"105\" y=\"10\" width=\"30\" height=\"30\" fill=\"#eab308\" rx=\"4\"/><text x=\"120\" y=\"30\" text-anchor=\"middle\">3</text>\n      <rect x=\"140\" y=\"10\" width=\"30\" height=\"30\" fill=\"#84cc16\" rx=\"4\"/><text x=\"155\" y=\"30\" text-anchor=\"middle\">F</text>\n      <rect x=\"175\" y=\"10\" width=\"30\" height=\"30\" fill=\"#22c55e\" rx=\"4\"/><text x=\"190\" y=\"30\" text-anchor=\"middle\">6</text>\n      <rect x=\"210\" y=\"10\" width=\"30\" height=\"30\" fill=\"#10b981\" rx=\"4\"/><text x=\"225\" y=\"30\" text-anchor=\"middle\">A</text>\n      <rect x=\"245\" y=\"10\" width=\"30\" height=\"30\" fill=\"#14b8a6\" rx=\"4\"/><text x=\"260\" y=\"30\" text-anchor=\"middle\">8</text>\n      <rect x=\"280\" y=\"10\" width=\"30\" height=\"30\" fill=\"#06b6d4\" rx=\"4\"/><text x=\"295\" y=\"30\" text-anchor=\"middle\">8</text>\n      <rect x=\"315\" y=\"10\" width=\"30\" height=\"30\" fill=\"#0ea5e9\" rx=\"4\"/><text x=\"330\" y=\"30\" text-anchor=\"middle\">8</text>\n      <rect x=\"350\" y=\"10\" width=\"30\" height=\"30\" fill=\"#3b82f6\" rx=\"4\"/><text x=\"365\" y=\"30\" text-anchor=\"middle\">8</text>\n      <rect x=\"385\" y=\"10\" width=\"30\" height=\"30\" fill=\"#6366f1\" rx=\"4\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\">5</text>\n      <rect x=\"420\" y=\"10\" width=\"30\" height=\"30\" fill=\"#8b5cf6\" rx=\"4\"/><text x=\"435\" y=\"30\" text-anchor=\"middle\">A</text>\n      <rect x=\"455\" y=\"10\" width=\"30\" height=\"30\" fill=\"#a855f7\" rx=\"4\"/><text x=\"470\" y=\"30\" text-anchor=\"middle\">3</text>\n      <rect x=\"490\" y=\"10\" width=\"30\" height=\"30\" fill=\"#d946ef\" rx=\"4\"/><text x=\"505\" y=\"30\" text-anchor=\"middle\">0</text>\n      <rect x=\"525\" y=\"10\" width=\"30\" height=\"30\" fill=\"#ec4899\" rx=\"4\"/><text x=\"540\" y=\"30\" text-anchor=\"middle\">8</text>\n    </g>\n  </g>\n  <!-- BBP 公式 -->\n  <g transform=\"translate(40, 110)\">\n    <text x=\"0\" y=\"0\" font-size=\"11\" font-weight=\"600\" fill=\"#1f2937\">公式：π = Σ (4/(8k+1) - 2/(8k+4) - 1/(8k+5) - 1/(8k+6)) / 16ᵏ</text>\n    <text x=\"0\" y=\"20\" font-size=\"10\" fill=\"#6b7280\">取第 n 位的\"小部分\"只涉及 k≥n 的项——前面的项可以<strong>并行</strong>扔给别的处理器</text>\n    <text x=\"0\" y=\"40\" font-size=\"10\" fill=\"#6b7280\">✓ 2002 年用此算法 + 25 台 PC 算 π 的 12411 亿位</text>\n  </g>\n</svg>",
   explain: "同学们好！今天我们来看一个超神奇的 π 公式——BBP 公式（Bailey–Borwein–Plouffe）。\n\n1995 年，Simon Plouffe 发现了一个惊人的公式：\n\nπ = Σ [1 / 16^k] × [4/(8k+1) - 2/(8k+4) - 1/(8k+5) - 1/(8k+6)]\n\n从 k 等于 0 到无穷。\n\n这个公式的特点是：可以直接算 π 的第 n 位（16 进制）！不需要算前 n-1 位。\n\n这有什么意义？以前算 π 到 N 位要算前 N-1 位。但 BBP 可以\"跳着算\"——这在数学上是革命性的。\n\nBBP 公式的发现过程：\n- 1995 年 Bailey、Borwein、Plouffe 三人发现\n- 发表在《Mathematical Intelligence》\n- 引发了\"π 公式学\"的研究热潮\n- 后来还发现了 log(2)、Catalan 常数、ζ(3) 等常数的 BBP 型公式\n\nBBP 公式的收敛速度：每加 1 项，精度增加约 0.5 位（16 进制），等价于约 0.21 位（十进制）。\n\n虽然 BBP 算 π 整体比 Chudnovsky 慢，但它能\"跳着算\"任意位，这在某些场景下很有用。\n\n实际应用：\n- 验证 π 的统计性质（数字分布）\n- 寻找 π 中的特别模式\n- 分布式计算\n\n更神奇的 BBP 应用：可以用 BBP 类似公式直接算任意自然常数的十六进制位。这对\"数字考古学\"——寻找 π 之类的常数中的隐藏模式——超级有用。\n\n例如：2001 年有人用 BBP 公式算出 π 的第 40 亿位（16 进制）。\n\n现在请同学们自己动手：点\"BBP 公式\"，看 N=5、20、50、100 时的 π 估值。N=5 大约 3.14159。N=100 是不是已经很准？看看精度增长规律。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"能跳着算第 N 位\"的有趣公式里。",
   audioUrl: "audio/PE04_explain.mp3",
-  stages: [],
+  stages: [{"emoji": "🎱", "title": "BBP 算法（跳着算第 N 位）", "content": "\n        <p class=\"lead\">π = Σ [1/16^k] × [4/(8k+1) - 2/(8k+4) - 1/(8k+5) - 1/(8k+6)]<br><strong style=\"color:#7c3aed;\">直接算第 N 位！</strong></p>\n        <div class=\"viz\" style=\"display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;\">\n          <div style=\"flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fed7aa, #fed7aa); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;\">\n            <div style=\"font-size: 24px; font-weight: 900; color: #92400e;\">普通算法</div>\n            <div style=\"font-size: 12px; color: #92400e; margin-top: 6px;\">算第 N 位 = 算前 N-1 位</div>\n            <div style=\"font-size: 11px; color: #b45309; margin-top: 4px;\">O(N) 复杂度</div>\n          </div>\n          <div style=\"flex: 1 1 60px; text-align: center; font-size: 28px; line-height: 1.7; padding: 14px;\">VS</div>\n          <div style=\"flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;\">\n            <div style=\"font-size: 24px; font-weight: 900; color: #14532d;\">BBP 算法</div>\n            <div style=\"font-size: 12px; color: #14532d; margin-top: 6px;\">直接跳到第 N 位！</div>\n            <div style=\"font-size: 11px; color: #15803d; margin-top: 4px;\">O(1) 复杂度</div>\n          </div>\n        </div>\n        <div class=\"next-hint\">🎱 <strong>1995</strong> Bailey-Borwein-Plouffe 发现，引发\"π 公式学\"研究热潮</div>\n      "}, {"emoji": "🧮", "title": "BBP 公式计算器", "content": "\n        <p class=\"lead\">输入 N，看前 N+10 项的 π 估值：</p>\n        <div class=\"viz\" style=\"display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;\">\n          <div style=\"flex: 1 1 200px;\">\n            <label>N = <input type=\"number\" id=\"pe04s2-n\" min=\"1\" max=\"100\" value=\"20\" style=\"width: 120px; padding: 4px;\"></label>\n            <div style=\"display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;\">\n              <button class=\"primary small pe04s2-preset\" data-n=\"10\">N=10</button>\n              <button class=\"ghost small pe04s2-preset\" data-n=\"50\">N=50</button>\n              <button class=\"ghost small pe04s2-preset\" data-n=\"100\">N=100</button>\n            </div>\n          </div>\n          <div style=\"flex: 2 1 300px;\">\n            <div id=\"pe04s2-result\" style=\"padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;\"></div>\n          </div>\n        </div>\n        <div class=\"next-hint\">💡 <strong>精度</strong>：N=20 大约 6 位精度（每项 ~0.5 位 hex = 0.21 位 dec）</div>\n      "}, {"emoji": "🔭", "title": "第 16 进制位 demo", "content": "\n        <p class=\"lead\">π 的前 20 位 hex：</p>\n        <div class=\"viz\" style=\"display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;\">\n          <div style=\"flex: 1 1 200px;\">\n            <label>位 n = <input type=\"number\" id=\"pe04s3-n\" min=\"0\" max=\"10\" value=\"0\" style=\"width: 120px; padding: 4px;\"></label>\n            <button class=\"primary\" id=\"pe04s3-run\">▶ 算 hex 位</button>\n          </div>\n          <div style=\"flex: 2 1 300px;\">\n            <div id=\"pe04s3-result\" style=\"padding: 14px; background: #fff7ed; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;\"></div>\n          </div>\n        </div>\n        <div class=\"next-hint\">🔭 <strong>壮举</strong>：2002 年用 BBP 算 π 的 12411 亿位 hex！</div>\n      "}, {"emoji": "🔬", "title": "为什么能\"跳着算\"？", "content": "\n        <p class=\"lead\">取 π 第 n 位时，前面 k &lt; n 项的\"小部分\"可以<strong style=\"color:#7c3aed;\">并行扔给多个处理器</strong>：</p>\n        <div class=\"viz\" style=\"padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;\">\n          • π_n (第 n 位) = {16^n × π}<br>\n          • {x} = x - floor(x) (取小数部分)<br>\n          • 大项在 k≥n 后，前面的项可以单独算<br>\n          • BBP 让每个处理器算不同的 n 段<br>\n          • 整体并行 → 速度提升几个数量级\n        </div>\n        <div class=\"next-hint\">🔬 <strong>应用</strong>：分布式算 π 用了 25 台 PC + BBP，2002 年算到 12411 亿位</div>\n      "}, {"emoji": "📅", "title": "BBP 算法小史", "content": "\n        <p class=\"lead\">1995 发现 → 2002 算 12411 亿位 → 现代分布式应用</p>\n        <div class=\"viz\">\n          <div id=\"pe04s5-timeline\"></div>\n        </div>\n        <div class=\"next-hint\">💡 <strong>类似公式</strong>：BBP 思想可推广到 log(2)、Catalan 常数、ζ(3) 等</div>\n      "}],
   render: function(h) {
     h.innerHTML = `<div class="row"><label>位数 n <input type="number" id="pe04_n" value="10" min="1" max="50"></label><button class="primary" id="pe04_run">算</button></div><div id="pe04_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe04_run').onclick = () => {
