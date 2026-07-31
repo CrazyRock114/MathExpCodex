@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一种很自恋的数——自恋数，也叫阿姆斯特朗数。\n\n什么叫自恋数？就是数字本身等于它各位数字的 k 次方之和，其中 k 是位数。\n\n举个例子：153 是 3 位数。1 的 3 次方加 5 的 3 次方加 3 的 3 次方——1 加 125 加 27——正好等于 153！\n\n再来一个：9474 是 4 位数。9 的 4 次方加 4 的 4 次方加 7 的 4 次方加 4 的 4 次方——6561 加 256 加 2401 加 256——正好等于 9474！\n\n为什么叫\"自恋\"？因为这个数\"自己看着自己的每一位\"——每个数字都\"自我欣赏\"——加起来还是自己。太自恋了！\n\n1000 以内的自恋数只有 4 个：1、153、370、371、407（注意 1 也是，因为 1 等于 1 的 1 次方）。10000 以内有 1、153、370、371、407、1634、8208、9474 这 8 个。所有位数的自恋数总共只有 88 个！\n\n这 88 个数里最大的一个叫\"大象\"——它有 39 位！115132219018763992565095597973971522401 是最大的自恋数。\n\n为什么自恋数这么少？因为 n 位数的最大 k 次方之和是 n×9 的 k 次方。要让它等于 n 位数，n 必须不能太大。\n\n现在请同学们自己动手：点\"找自恋数\"，扫 1 到 10000，看看能找到几个。1 是的，153 是的，370 是的，371 是的，407 是的，1634 是的，8208 是的，9474 是的——总共 8 个。看看 100000 以内有吗？百万以内有吗？\n\n记住：数学不只藏在书本里——藏在每一个\"自我欣赏\"的数字里。",
+  audioUrl: "audio/NT04_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt04_n" value="100000" min="100"></label><button class="primary" id="nt04_run">找自恋数</button></div><div id="nt04_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('nt04_run').onclick = () => {
@@ -2739,7 +2739,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/NT04_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

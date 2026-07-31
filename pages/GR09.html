@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超简单的图论恒等式——握手引理。\n\n握手引理：在任何无向图中，所有顶点的度数之和等于边数的 2 倍。\n\nΣ deg(v) = 2 × |E|\n\n为什么？每条边连接 2 个顶点，所以对度数总和贡献 2（每个端点加 1）。\n\n举个例子：\n- 三角形：3 个顶点每个度 2。度数和 = 6 = 2 × 3。✓\n- 四边形：4 个顶点每个度 2。度数和 = 8 = 2 × 4。✓\n- 完全图 K₄：4 个顶点每个度 3。度数和 = 12 = 2 × 6。✓\n\n推论 1：度数和是偶数（因为等于 2 倍边数）。\n\n推论 2：奇数度顶点的个数是偶数。证明：奇数度顶点的度数和是奇数（奇数个奇数相加是奇数），但总度数和 = 2 × 边数 = 偶数。所以奇数度顶点必须凑成偶数对。\n\n握手引理的扩展：\n- 在有向图中：入度之和 = 出度之和 = 边数\n- 在多重图中：每条边算 2 次贡献\n\n握手引理的应用：\n- 任何图都有偶数个奇数度顶点\n- 所以欧拉回路只可能在所有偶数度顶点的图存在\n- 任何奇数度顶点不可能只有 1 个或 3 个——必须成对\n\n具体应用：\n第一条：村庄的度数（连接数）和必须为偶数。\n\n第二条：7 桥问题：4 个奇数度顶点，不存在欧拉路径。\n\n第三条：握手问题：5 个人握手奇数次的人数是偶数。\n\n第四条：地图染色：奇数度区域相邻色最少 3 色。\n\n第五条：网络设计：奇数度节点必须凑对。\n\n握手引理看起来\"显然\"，但在很多看似不相关的问题中都有应用。\n\n更进一步：每条边对度数和贡献 2，所以度数和 = 2 × 边数。简单但有效！\n\n应用：检查图是否合法——如果度数和不是偶数，图肯定有误。\n\n实际应用举例：\n- 电路板：每条导线连接 2 个焊点，焊点的总度数 = 2 × 导线数\n- 道路网：每条路连接 2 个路口，路口总度数 = 2 × 路数\n- 分子结构：每个化学键连接 2 个原子，原子的总连接数 = 2 × 键数\n\n现在请同学们自己动手：点\"握手引理\"，看一个图。验证度数和 = 2 × 边数。试试有 4 个奇数度顶点的图，验证奇数度顶点是偶数个。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"边连接两个顶点\"的有趣必然性里。",
+  audioUrl: "audio/GR09_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>顶点数 n <input type="number" id="gr09_n" value="4" min="2"></label><button class="primary" id="gr09_run">随机图</button></div><div id="gr09_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gr09_run').onclick = () => {
@@ -2735,7 +2735,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GR09_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超美的分形——Julia 集（Julia Set）。\n\nJulia 集和曼德博集合是一对\"孪生兄弟\"——同样迭代 z = z² + c，但 c 是固定的，z 是变量。\n\n曼德博集合：c 变化，z₀ = 0，问 c 让 z 不发散\nJulia 集合：c 固定，z 任意，问哪些 z 不发散\n\n经典 Julia 集：\n- c = 0：z² = z²，所有 z 都发散（Julia 集是单位圆）\n- c = -1：z² - 1，著名的\"圣诞树\"分形\n- c = -0.8 + 0.156i：连通的 Julia 集（\"海马\"）\n- c = 0.3 + 0.5i：连通但有 dendrite（树枝状）\n- c = i：连通\n- c = -0.4 + 0.6i：连通的\"双螺旋\"\n- |c| > 2：所有 z 都逃逸，Julia 集 = ∞（空集）\n- |c| = 2 附近：复杂的边界\n\nJulia 集的关键定理（Fatou 和 Julia，1918-1920）：\n- Julia 集连通 ↔ 0 在曼德博集合里\n- Julia 集不连通（康托尔尘）↔ 0 不在曼德博集合里\n\n具体说：\n- c = 0：0 在 M 内（z=0 永远 0），但 Julia 集 = 单位圆\n- c = 0.25：0 在 M 内，Julia 集 = 简单环\n- c = -0.8 + 0.156i：0 在 M 内，Julia 集 = 复杂的连通分形\n- c = -0.5 + 0.5i：0 在 M 边界附近，Julia 集 = 树枝状（连通）\n- c = -1：0 在 M 边界附近，Julia 集 = \"圣诞树\"分形\n\n举例：c = -0.8 + 0.156i 的 Julia 集\n- 看起来像连通的\"海马\"形分形\n- 放大看有无限细节\n- 自相似，每个区域都\"长\"得跟整体像\n\n举例：c = -0.4 + 0.6i 的 Julia 集\n- 连通的双螺旋\n- 看起来像两条相互缠绕的螺旋\n\n举例：c = i 的 Julia 集\n- 简单的椭圆\n\n举例：c = -1 的 Julia 集\n- 圣诞树（无限自相似）\n- 颜色：黑色在集合内，彩色在集合外（迭代次数决定颜色）\n\nJulia 集的\"美\"：每个 c 都对应一个独特的分形。改变 c 的小数点后几位，整个分形完全改变。\n\n应用：\n- 复分析\n- 动力系统\n- 混沌理论\n- 艺术生成\n\n计算机生成 Julia 集：\n1. 屏幕每个像素 = 复数 z\n2. 迭代 z² + c\n3. 迭代 1000 步\n4. 如果 |z| 一直 < 2：黑色（在集合内）\n5. 如果逃逸：用逃逸迭代次数着色\n\nJulia 集 vs 曼德博集合：\n- 曼德博：参数空间，c 变化，z₀ = 0\n- Julia：状态空间，c 固定，z 变化\n- 每个 c 对应一个 Julia 集\n- 曼德博集合的每个 c\"控制\"一个 Julia 集\n\n现在请同学们自己动手：点\"Julia 集\"，看 c = -0.8 + 0.156i 的\"海马\"分形。试 c = -0.4 + 0.6i 的\"双螺旋\"。试 c = -1 的\"圣诞树\"。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"复数迭代\"的有趣分形里。",
+  audioUrl: "audio/FR05_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>c 实部 <input type="number" id="fr05_cr" value="-0.8" step="0.1"></label><label>c 虚部 <input type="number" id="fr05_ci" value="0.156" step="0.05"></label><label>迭代 <input type="number" id="fr05_i" value="50" min="10"></label><button class="primary" id="fr05_run">画</button></div><canvas id="fr05_cv" width="400" height="300" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
     document.getElementById('fr05_run').onclick = () => {
@@ -2750,7 +2750,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/FR05_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超经典的博弈游戏——Nim（取石子）。\n\nNim 游戏：有 n 堆石子，每堆若干颗。你和 AI 轮流选一堆取任意颗（至少 1 颗）。取完最后一颗的人赢。\n\nNim 是\"博弈论\"的经典模型。它有一个超级神奇的必胜策略——异或（XOR）。\n\n必胜策略：开局时把每堆石子数做异或。\n- 如果异或结果 = 0：当前局面对你（先手）不利，AI 有必胜策略。\n- 如果异或结果 ≠ 0：当前局面对你（先手）有利，你可以通过某步让异或 = 0 获胜。\n\n举个例子：3 堆 1、2、3 石子。异或 = 1 XOR 2 XOR 3 = 0。先手不利。\n\nNim 必胜策略的具体做法：\n如果异或 ≠ 0，找到最高位为 1 的堆。把这堆的石子数改成\"原值 XOR 总异或值\"。\n\n举例：3 堆 1、2、4。异或 = 1 XOR 2 XOR 4 = 7。最高位第 3 位。最高位为 1 的堆是第 3 堆（4）。新值 = 4 XOR 7 = 3。所以从 4 改成 3。新局面：1、2、3。异或 = 0。\n\n现在 AI 在 1、2、3 局面下，无论怎么取，都会让异或 ≠ 0。你继续让异或 = 0。最终 AI 输。\n\n证明：异或 = 0 意味着\"对称局面\"，轮到你时取走石子会让异或 ≠ 0，对手可以让异或回到 0。最终对手赢。\n\n所以 AI 必胜策略：保持异或 = 0。先手必败。\n\n但如果异或 ≠ 0，先手可以让异或 = 0，AI 必败。\n\n特殊情况：\n- 1 堆：先手直接全取，必胜\n- 2 堆等量：异或 = 0，先手必败\n- 2 堆不等：异或 ≠ 0，先手可以让 2 堆等量，必胜\n\nNim 策略的应用：\n- 数学竞赛：博弈论\n- 计算机科学：算法游戏\n- 经济学：寡头竞争\n- 心理学：决策\n\nNim 是 1901 年由 Charles Bouton 命名的。\n\nNim 变种：\n- 反向 Nim：取最后一颗的输\n- 限定取法：每堆最多取 k 颗\n- 多维 Nim：多个 Nim 矩阵\n- Wythoff 博弈：可从两堆同时取\n\n现在请同学们自己动手：点\"Nim 游戏\"，跟 AI 玩。AI 难度\"必胜\"会用异或策略。看 AI 是不是每次都能赢？试试 1 堆 5 颗——AI 让你先手还是后手？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"异或\"决定胜负的有趣博弈里。",
+  audioUrl: "audio/AL02_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row" style="margin-bottom: 12px;">
       <label>堆数 <input type="number" id="al02_n" value="3" min="1" max="5"></label>
@@ -2835,7 +2835,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/AL02_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

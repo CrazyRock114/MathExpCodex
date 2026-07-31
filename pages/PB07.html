@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超经典的概率问题——赌徒破产（Gambler's Ruin）。\n\n想象一个赌徒有 A 元。每局赌 1 元，赢的概率 p，输的概率 q = 1-p。赌徒一直赌到输光（剩 0 元）或赢到目标 B 元。问：赌徒输光的概率是多少？\n\n经典结果：\nP(赌徒输光) = (q/p)ᴬ × (1 - (q/p)ᴮ) / (1 - (q/p)ᴬ⁺ᴮ)\nP(赌徒赢到 B) = 1 - P(输光)\n\n特例 p = q = 0.5（公平赌局）：\nP(输光) = 1 - A/(A+B) = B/(A+B)\nP(赢到 B) = A/(A+B)\n\n特例 p ≠ q：\nP(输光) = ((q/p)ᴬ - (q/p)ᴬ⁺ᴮ) / (1 - (q/p)ᴬ⁺ᴮ)\n\n举例：A = 10 元，B = 20 元，p = 0.5：\nP(输光) = 20/30 = 0.667\nP(赢到 20) = 10/30 = 0.333\n\n举例：A = 10 元，B = 1000 元，p = 0.5：\nP(输光) = 1000/1010 ≈ 99%\nP(赢到 1000) = 10/1010 ≈ 1%\n\n即使公平赌局，赌徒资金只有目标的 1% 时，赢的概率只有 1%！\n\n不对称赌局 p < q（庄家优势）：\n举例：A = 10 元，B = 20 元，p = 0.45：\nP(输光) ≈ 0.87\nP(赢到 20) ≈ 0.13\n\n不对称赌局 p > q（赌徒有优势）：\n举例：A = 10 元，B = 20 元，p = 0.55：\nP(输光) ≈ 0.13\nP(赢到 20) ≈ 0.87\n\n赌徒破产定理：\n- p < 0.5，赌徒几乎必然破产（无限赌下去）\n- p = 0.5，赌徒有 A/(A+B) 概率赢\n- p > 0.5，赌徒有大概率赢\n\n但 p 略大于 0.5（如 0.51）需要非常多次赌局才稳定。\n\n应用：\n- 赌博：理解为什么赌场总是赢\n- 投资：长期持有 vs 短线\n- 商业：现金储备 vs 风险\n- 排队论：服务窗口排队\n- 生态：物种灭绝的概率\n\n赌徒破产的\"金科玉律\"：长期赌下去，p ≤ 0.5 必然破产。这是为什么赌场永远赢。\n\n现实意义：你有 1 元，目标是 100 万。公平赌局 p = 0.5，长期看赢到的概率是百万分之一。\n\n现在请同学们自己动手：点\"赌徒破产\"，输入 A、B、p，看输光和赢到 B 的概率。试试公平赌局 p=0.5 和不公平赌局 p=0.45。看看差距多大。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"赌徒为什么总是输\"的有趣破产规律里。",
+  audioUrl: "audio/PB07_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>A <input type="number" id="pb07_a" value="10" min="1"></label><label>B <input type="number" id="pb07_b" value="20" min="1"></label><label>p <input type="number" id="pb07_p" value="0.45" min="0" max="1" step="0.05"></label><button class="primary" id="pb07_run">模拟 1000 次</button></div><div id="pb07_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pb07_run').onclick = () => {
@@ -2737,7 +2737,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PB07_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

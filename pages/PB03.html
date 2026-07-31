@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超基础但超重要的分布——二项分布。\n\n什么是二项分布？n 次独立伯努利试验（每次成功概率 p），成功次数 X 的分布。\n\nP(X = k) = C(n, k) × pᵏ × (1-p)ⁿ⁻ᵏ\n\n其中 C(n, k) = n! / (k! × (n-k)!) 是二项式系数。\n\n二项分布的均值：E[X] = n × p\n二项分布的方差：Var(X) = n × p × (1-p)\n二项分布的标准差：σ = √(n × p × (1-p))\n\n举个例子：抛 10 次硬币，正面次数 X。\n- P(X = 0) = (1/2)¹⁰ = 1/1024 ≈ 0.1%\n- P(X = 1) = 10 × (1/2)¹⁰ = 10/1024 ≈ 1.0%\n- P(X = 2) = 45 × (1/2)¹⁰ = 45/1024 ≈ 4.4%\n- ...\n- P(X = 5) = 252 × (1/2)¹⁰ = 252/1024 ≈ 24.6%\n- ...\n- P(X = 10) = (1/2)¹⁰ ≈ 0.1%\n\n均值 = 10 × 0.5 = 5，方差 = 10 × 0.5 × 0.5 = 2.5，标准差 ≈ 1.58。\n\n二项分布的形状：当 n × p 较大时（n 大、p 不太小），二项分布近似正态分布（中心极限定理）。\n\n举例：n=100, p=0.3。均值 = 30，方差 = 21，标准差 ≈ 4.58。看起来接近正态。\n\n二项分布的累积分布函数：F(k) = P(X ≤ k) = Σ C(n, i) × pⁱ × (1-p)ⁿ⁻ⁱ。\n\n二项分布的应用：\n- 质量检验：1000 件产品抽 100 件看合格数\n- 临床试验：1000 病人看治愈数\n- 选举调查：1000 选民支持某党派的数\n- 工业：生产线缺陷率\n- 营销：广告点击率\n\n二项分布 vs 几何分布：二项分布是 n 次试验成功 k 次，几何分布是首次成功需要几次试验。\n\n二项分布 vs 泊松分布：当 n 很大、p 很小时，二项分布 ≈ 泊松分布 λ = np。\n\n举例：10000 次独立试验，每次成功概率 0.001，平均成功 10 次。X ~ Bin(10000, 0.001) ≈ Poi(10)。\n\n现在请同学们自己动手：点\"二项分布\"，输入 n 和 p，比如 n=10, p=0.5。看 P(X=0)..P(X=10) 概率。试试 n=100, p=0.3，看分布形状。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"n 次独立试验\"的有趣统计里。",
+  audioUrl: "audio/PB03_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="pb03_n" value="10" min="1"></label><label>p <input type="number" id="pb03_p" value="0.5" min="0" max="1" step="0.1"></label><button class="primary" id="pb03_run">算分布</button></div><div id="pb03_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pb03_run').onclick = () => {
@@ -2733,7 +2733,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PB03_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

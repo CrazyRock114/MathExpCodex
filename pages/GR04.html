@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超基础但超有用的数据结构——二叉树遍历。\n\n什么是二叉树？每个节点最多 2 个子节点的树形结构。\n\n什么是遍历？访问树中每个节点恰好一次。\n\n二叉树有 3 种遍历方式：\n\n第一种：先序遍历（Pre-order）\n顺序：根 → 左 → 右\n\"先访问根，再访问左子树，再访问右子树\"\n\n第二种：中序遍历（In-order）\n顺序：左 → 根 → 右\n\"先访问左子树，再访问根，再访问右子树\"\n\n第三种：后序遍历（Post-order）\n顺序：左 → 右 → 根\n\"先访问左子树，再访问右子树，再访问根\"\n\n举个例子：树根 A，左子 B（B 的左子是 D、右子是 E），右子 C（C 的左子是 F、右子是 G）。\n\n先序：A → B → D → E → C → F → G\n中序：D → B → E → A → F → C → G\n后序：D → E → B → F → G → C → A\n\n3 种遍历方式刚好相反。\n\n二叉树遍历的应用：\n- 先序：复制一棵树、序列化\n- 中序：二叉搜索树（BST）按升序输出节点\n- 后序：删除一棵树、计算表达式（后缀表达式）\n\n为什么中序遍历 BST 能按升序输出？因为 BST 满足\"左子 < 根 < 右子\"。中序访问时，左子都先于根、右子都后于根，所以是升序。\n\n举例：BST\n    5\n   /   3   7\n /  / 2  4 6  8\n\n中序：2 → 3 → 4 → 5 → 6 → 7 → 8（升序！）\n\n遍历的递归实现（伪代码）：\n- 先序：visit(node); preorder(node.left); preorder(node.right)\n- 中序：inorder(node.left); visit(node); inorder(node.right)\n- 后序：postorder(node.left); postorder(node.right); visit(node)\n\nMorris 遍历：不用递归也不用栈，O(1) 空间——很巧妙但难理解。\n\n迭代版：用显式栈模拟递归。\n\n现在请同学们自己动手：点\"二叉树遍历\"，看一棵树。点\"先序\"看访问顺序。点\"中序\"看。点\"后序\"看。验证一下是不是符合定义。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"访问每个节点一次\"的有趣结构里。",
+  audioUrl: "audio/GR04_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>节点数 n <input type="number" id="gr04_n" value="7" min="3" max="15"></label><button class="primary" id="gr04_run">建树</button></div><div id="gr04_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gr04_run').onclick = () => {
@@ -2738,7 +2738,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GR04_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

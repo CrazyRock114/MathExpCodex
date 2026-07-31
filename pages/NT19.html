@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一种特殊的素数——梅森素数。\n\n什么是梅森素数？形如 2 的 p 次方减 1 的素数，其中 p 也必须是素数。\n\n为什么叫梅森？因为法国数学家马林·梅森在 17 世纪最早系统研究过这种数。\n\n前几个梅森素数：2 的 2 次方减 1 等于 3；2 的 3 次方减 1 等于 7；2 的 5 次方减 1 等于 31；2 的 7 次方减 1 等于 127；2 的 13 次方减 1 等于 8191；2 的 17 次方减 1 等于 131071；2 的 19 次方减 1 等于 524287；2 的 31 次方减 1 等于 2147483647。\n\n注意：如果 p 是合数（比如 p=4 或 p=6），那 2 的 p 次方减 1 一定是合数。所以只需要测试素数 p。\n\n到 2024 年，数学家已经发现 51 个梅森素数。最大的是 2 的 82589933 次方减 1——有 24862048 位数字！2018 年由 GIMPS 分布式计算项目发现。\n\n梅森素数有什么用？\n- 完全数都跟梅森素数一一对应。欧几里得发现：如果 2 的 p 次方减 1 是素数，那 2 的 p-1 次方乘 (2 的 p 次方减 1) 就是完全数。\n- RSA 加密里有时用大梅森素数当模数。\n- 它推动了分布式计算的发展——GIMPS 项目用全球志愿者电脑找梅森素数。\n\n梅森素数有无穷多个吗？这是个未解之谜！数学家普遍认为有，但没人证明。\n\n现在请同学们自己动手：点\"找梅森素数\"，扫 1 到 1000。你会找到 3、7、31、127 这 4 个（其他都超过 1000 了）。看看 2 的 5 次方减 1 等于 31 是不是？2 的 7 次方减 1 等于 127 是不是？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"2 的 p 次方减 1\"的素数里。",
+  audioUrl: "audio/NT19_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>指数 p 上限 <input type="number" id="nt19_p" value="60" min="2"></label><button class="primary" id="nt19_run">找</button></div><div id="nt19_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('nt19_run').onclick = () => {
@@ -2749,7 +2749,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/NT19_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

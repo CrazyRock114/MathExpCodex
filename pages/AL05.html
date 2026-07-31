@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超经典的问题——八皇后问题。\n\n八皇后问题：在 8×8 国际象棋棋盘上放 8 个皇后，让它们互不攻击。皇后能横、竖、斜 4 个方向走。\n\n互不攻击意味着：\n- 任意两个皇后不在同一行\n- 任意两个皇后不在同一列\n- 任意两个皇后不在同一对角线（两条）\n\n八皇后问题一共有 92 个解（旋转和镜像视为不同）。\n\n第一个解：\n. Q . . . . . .\n. . . . Q . . .\n. . . . . . Q .\n. . . . . Q . .\n. . . Q . . . .\n. . . . . . . Q\n. . Q . . . . .\nQ . . . . . . .\n\n八皇后问题的历史：1848 年由德国国际象棋作曲家 Max Bezzel 提出。1874 年 Franz Nauck 用回溯法找到全部 92 个解。Nauck 还推广到 n 皇后问题。\n\n八皇后问题的解法：\n1. 暴力枚举：8⁸ = 1677 万种放法，但要剪枝\n2. 回溯法：每行放 1 个，递归到下一行，O(8!) ≈ 4 万次\n3. 位运算：极快，常用于竞赛\n\n回溯法伪代码：\nsolve(row):\n  if row == 8: 输出解\n  for col in 0..7:\n    if not attacked(row, col):\n      place(row, col)\n      solve(row + 1)\n      remove(row, col)\n\nattacked(row, col) 检查：当前列是否已有皇后、左对角线、右对角线是否已有皇后。用数组快速查。\n\nn 皇后问题的解数（n ≥ 4）：\nn=4: 2\nn=5: 10\nn=6: 4\nn=7: 40\nn=8: 92\nn=9: 352\nn=10: 724\nn=11: 2680\nn=12: 14200\nn=13: 73712\nn=14: 365596\n\n八皇后问题的应用：\n- 组合数学：回溯算法\n- 人工智能：约束满足问题（CSP）\n- 算法竞赛：经典问题\n- 数学研究：对称性、对称群\n\n8 皇后有 12 个独立解（去掉旋转和镜像后的本质不同解）。\n\n还有\"魔幻皇后问题\"——让每行、列、对角线之和相等（类似幻方）。\n\n8 皇后变种：\n- n 皇后（任意 n ≥ 4）\n- 不相邻皇后（8 皇后变种，皇后不能相邻）\n- 3D 皇后（n³ 立方体）\n- 骑士巡游（8 皇后 + 骑士走 L 形）\n\n国际象棋其他经典问题：\n- 骑士巡游：走遍每个格子\n- 国王巡游：类似\n- 车巡游：横竖走\n\n现在请同学们自己动手：点\"八皇后\"，看一个解。验证 8 个皇后互不攻击。点\"换一题\"看其他 91 个解。看看 n=4（2 个解）、n=10（724 个解）。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"皇后不攻击\"的有趣排列里。",
+  audioUrl: "audio/AL05_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="al05_n" value="8" min="4" max="10"></label><button class="primary" id="al05_run">枚举解</button><span id="al05_status" style="color: var(--muted); font-size: 13px;"></span></div><div id="al05_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('al05_run').onclick = () => {
@@ -2751,7 +2751,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/AL05_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

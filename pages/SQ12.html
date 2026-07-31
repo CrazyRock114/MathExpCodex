@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超美但超深的数列——Eulerian 数。\n\n什么是 Eulerian 数？⟨n, k⟩ = 1 到 n 的全排列中，恰好有 k 个\"上升\"位置的排列数。\n\n什么是\"上升位置\"？在排列 p₁ p₂ ... p_n 中，如果 p_i < p_{i+1}，那位置 i 就是\"上升\"。\n\n举个例子：n = 3 的所有 6 个排列：\n- 123：1<2<3，上升位置 = 2（位置 1 和 2）。⟨3, 2⟩ += 1\n- 132：1<3 但 3>2，上升位置 = 1（位置 1）。⟨3, 1⟩ += 1\n- 213：2>1 但 1<3，上升位置 = 1（位置 2）。⟨3, 1⟩ += 1\n- 231：2<3 但 3>1，上升位置 = 1（位置 1）。⟨3, 1⟩ += 1\n- 312：3>1 但 1<2，上升位置 = 1（位置 2）。⟨3, 1⟩ += 1\n- 321：3>2>1，上升位置 = 0。⟨3, 0⟩ += 1\n\n所以 n=3 的 Eulerian 数是 ⟨3,0⟩=1, ⟨3,1⟩=4, ⟨3,2⟩=1。\n\nEulerian 数矩阵 n=1..5：\nn=1: ⟨1,0⟩=1\nn=2: ⟨2,0⟩=1, ⟨2,1⟩=1\nn=3: ⟨3,0⟩=1, ⟨3,1⟩=4, ⟨3,2⟩=1\nn=4: ⟨4,0⟩=1, ⟨4,1⟩=11, ⟨4,2⟩=11, ⟨4,3⟩=1\nn=5: ⟨5,0⟩=1, ⟨5,1⟩=26, ⟨5,2⟩=66, ⟨5,3⟩=26, ⟨5,4⟩=1\n\nEulerian 数有一个重要递推公式：\n⟨n, k⟩ = (k+1) × ⟨n-1, k⟩ + (n-k) × ⟨n-1, k-1⟩\n\nEulerian 数还满足：\nΣ_{k=0}^{n-1} ⟨n, k⟩ = n!（n 的全排列数）\nΣ_{k=1}^{n} k × ⟨n, k⟩ = n!(n-1)/2（平均上升数 = n/2 - 1/2）\n\nEulerian 数跟二项式系数、Stirling 数、调和数有深度联系。\n\n应用：\n- 排列的统计性质\n- 升序的逆序数分析\n- 算法的复杂度分析\n\n现在请同学们自己动手：点\"生成 Eulerian 数\"，看前 7 行。验证 ⟨4,1⟩=11。看看 ⟨5,2⟩=66。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"上升位置\"的有趣统计里。",
+  audioUrl: "audio/SQ12_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq12_n" value="6" min="2" max="8"></label><button class="primary" id="sq12_run">生成</button></div><div id="sq12_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('sq12_run').onclick = () => {
@@ -2740,7 +2740,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ12_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超美的几何——柏拉图立体（5 种正多面体）。\n\n什么是正多面体？每个面都是相同的正多边形，每个顶点处的面数相同，整个多面体对称。\n\n数学证明：世界上只有 5 种正多面体！\n\n第一种：正四面体（4 个正三角形）\nV=4, E=6, F=4\n像三棱锥、骰子（4 面体）\n\n第二种：立方体（6 个正方形）\nV=8, E=12, F=6\n像盒子、骰子\n\n第三种：正八面体（8 个正三角形）\nV=6, E=12, F=8\n像双四棱锥、宝石切面\n\n第四种：正十二面体（12 个正五边形）\nV=20, E=30, F=12\n像足球、骰子（12 面体）\n\n第五种：正二十面体（20 个正三角形）\nV=12, E=30, F=20\n像正三角形的复合体\n\n为什么只有 5 种？因为顶点处至少 3 个面相遇，每面至少 3 条边。设每个顶点处有 p 个面，每面有 q 条边。p × 内角 < 360°（否则顶点点不开）。\n\n只有 5 个组合满足：\n- (3, 3)：每个顶点 3 个三角形 → 正四面体\n- (4, 3)：每个顶点 3 个正方形 → 立方体\n- (3, 4)：每个顶点 4 个三角形 → 正八面体\n- (5, 3)：每个顶点 3 个五边形 → 正十二面体\n- (3, 5)：每个顶点 5 个三角形 → 正二十面体\n\n5 种正多面体都有神奇的数学性质：\n- 全部满足 V - E + F = 2（欧拉公式）\n- 都有对偶关系：四面体↔四面体，立方体↔八面体，十二面体↔二十面体\n\n柏拉图认为这 5 种立体是宇宙的\"基本元素\"：\n- 四面体 = 火\n- 立方体 = 土\n- 八面体 = 气\n- 二十面体 = 水\n- 十二面体 = 宇宙/以太\n\n开普勒用柏拉图立体解释太阳系的 6 颗行星轨道（虽然后来发现错了）。\n\n现在请同学们自己动手：点\"柏拉图立体\"，看 5 种立体的 V、E、F 数据。验证 V - E + F = 2。看看哪些是相互对偶的（V 和 F 互换）。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"完美对称\"的有趣立体里。",
+  audioUrl: "audio/GM06_explain.mp3",
   render: function(h) {
     h.innerHTML = `<table class="topn" style="margin-top:12px;"><thead><tr><th>名称</th><th>面</th><th>棱</th><th>顶</th><th>V-E+F</th></tr></thead><tbody>
       <tr><td>正四面体</td><td>4</td><td>6</td><td>4</td><td>2</td></tr>
@@ -2731,7 +2731,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GM06_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

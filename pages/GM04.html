@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看两个超有用的几何公式——球的体积和表面积。\n\n球是最完美的几何体。它有最小表面积包住最大体积。气泡、星球、细胞都接近球形。\n\n球的体积公式：V = (4/3)πr³\n\n球的表面积公式：A = 4πr²\n\n注意：A 实际上是 V 的导数（4πr² = dV/dr）——这是数学美的地方！\n\n举个例子：地球半径约 6371 公里。\n- 体积 V = (4/3)π × 6371³ ≈ 1.083 × 10¹² 立方公里（约 1 万亿立方公里）\n- 表面积 A = 4π × 6371² ≈ 5.1 × 10⁸ 平方公里（约 5 亿平方公里）\n\n球体积公式的来源：阿基米德用\"穷竭法\"证明——把球切成无穷多薄圆盘，累加体积。\n\n球表面积公式的来源：阿基米德也用类似方法。微积分出来后，dV/dr = 4πr² 就是面积。\n\n球几何的小性质：\n- 球内接正方体（顶点在球上）的边长 = r√2\n- 球内接正八面体的边长 = r√2\n- 球内接正二十面体的边长 ≈ 1.0515r\n\n球的奇妙性质：\n- 球在任意方向投影都是圆\n- 球的任意截面都是圆\n- 球没有\"边\"和\"角\"\n- 球的对称性最高（所有方向都对称）\n\n球的实际应用：\n- 行星运动：天体接近球形\n- 液滴：水珠、气泡\n- 压力容器：球形最省材料\n- 球类运动：足球、篮球、乒乓球\n\n还有\"球坐标\"——用 r（半径）、θ（极角）、φ（方位角）描述空间任意点。\n\n球的面积分：球面面积 = 4πr²。立体角：球对应整个空间，立体角 4π 球面度。\n\n现在请同学们自己动手：点\"球体积/表面积\"，输入半径比如 1、2、3、5。验证 r=1 时 V=4.19, A=12.57。看看 r=5 时是多少？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"完美对称\"的有趣球体里。",
+  audioUrl: "audio/GM04_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>半径 r <input type="number" id="gm04_r" value="5" min="0.1"></label><button class="primary" id="gm04_run">算</button></div><div id="gm04_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gm04_run').onclick = () => {
@@ -2728,7 +2728,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GM04_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

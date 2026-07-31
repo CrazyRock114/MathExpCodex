@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超有趣的语言结构——斐波那契词（Fibonacci word）。\n\n什么是斐波那契词？跟斐波那契数列一样递归构造，但元素是字符串：\nS(0) = \"0\"\nS(1) = \"01\"\nS(2) = S(1) + S(0) = \"01\" + \"0\" = \"010\"\nS(3) = S(2) + S(1) = \"010\" + \"01\" = \"01001\"\nS(4) = S(3) + S(2) = \"01001\" + \"010\" = \"01001010\"\nS(5) = S(4) + S(3) = \"01001010\" + \"01001\" = \"0100101001001\"\nS(6) = S(5) + S(4) = \"0100101001001\" + \"01001010\" = \"010010100100101001010\"\n\n每个词都是前两个词的拼接！\n\n斐波那契词有一些超级有趣的性质：\n\n第一条：S(n) 的长度是斐波那契数 F_{n+2}。S(5) 长度 13 = F_7。✓\n\n第二条：S(n) 在 S(n+1) 中恰好出现 1 次（作为前缀）。比如 S(3)=\"01001\" 在 S(4)=\"01001010\" 中出现 1 次（前缀）。\n\n第三条：S(n) 的\"自相似\"——S(n) 看起来跟 S(n+1) 的前半段很像，因为 S(n+1) = S(n) + S(n-1)。\n\n第四条：斐波那契词有统计性质——0 和 1 的比例趋近黄金比例 φ = 1.618：1（也就是 1/φ 比例的 0，1/φ² 比例的 1）。\n\n第五条：斐波那契词不能用任何有限状态的自动机\"完全压缩\"——它的熵永远是正的。\n\n斐波那契词的应用：\n- 字符串算法\n- 数据压缩（虽然压缩比有限）\n- DNA 序列分析（生物信息学）\n- 分形几何\n\n斐波那契词其实是一种\"分形词\"——它在每个尺度上都跟自己相似，但又不完全相同。\n\n现在请同学们自己动手：点\"生成斐波那契词\"，看 S(6)、S(7)、S(8)。验证 S(4)=\"01001010\"。数数 0 和 1 的个数，是不是接近 1.618:1？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"自我相似的语言\"的有趣结构里。",
+  audioUrl: "audio/SQ10_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq10_n" value="6" min="1" max="10"></label><button class="primary" id="sq10_run">生成</button></div><div id="sq10_out" class="sequence" style="margin-top:12px; word-break: break-all;"></div>`;
     document.getElementById('sq10_run').onclick = () => {
@@ -2729,7 +2729,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ10_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

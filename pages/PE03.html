@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "<h4 style=\"margin-top: 0;\">🎨 算法图解：每项贡献 14 位精度</h4>\n<p style=\"font-size: 13px; color: var(--muted); margin: 0 0 8px;\">拉马努金的\"魔法\"：公式里 <code>(6k)! / ((3k)!(k!)³)</code> 让每项比上项大 <strong>~ 396⁴ⁿ</strong> 倍——但分母也大这么多——但<strong>净结果是每项多 14 位精度</strong>。</p>\n<svg viewBox=\"0 0 600 240\" style=\"width: 100%; max-width: 600px; background: #fdf4ff; border-radius: 6px; border: 1px solid #e9d5ff;\">\n  <!-- 公式展示 -->\n  <text x=\"300\" y=\"22\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#6b21a8\">1/π = 12 × Σ (-1)ᵏ · (6k)!(545140134k + 13591409) / ((3k)!(k!)³ · 640320^(3k+1.5))</text>\n  <!-- 累加 1/π 收敛 -->\n  <g transform=\"translate(40, 50)\">\n    <text x=\"0\" y=\"0\" font-size=\"12\" font-weight=\"600\" fill=\"#1f2937\">前 N 项对 1/π 的贡献</text>\n    <line x1=\"0\" y1=\"20\" x2=\"540\" y2=\"20\" stroke=\"#e5e7eb\"/>\n    <rect x=\"0\"   y=\"40\" width=\"540\" height=\"20\" fill=\"#ddd6fe\" rx=\"3\"/><text x=\"20\" y=\"55\" font-size=\"11\" fill=\"#5b21b6\">项 1: ~0.3183099...</text>\n    <rect x=\"0\"   y=\"65\" width=\"540\" height=\"20\" fill=\"#c4b5fd\" rx=\"3\"/><text x=\"20\" y=\"80\" font-size=\"11\" fill=\"#5b21b6\">+ 项 2: ~-6.4e-14（修正到 14 位）</text>\n    <rect x=\"0\"   y=\"90\" width=\"540\" height=\"20\" fill=\"#a78bfa\" rx=\"3\"/><text x=\"20\" y=\"105\" font-size=\"11\" fill=\"white\">+ 项 3: 修正到 28 位</text>\n    <rect x=\"0\"   y=\"115\" width=\"540\" height=\"20\" fill=\"#8b5cf6\" rx=\"3\"/><text x=\"20\" y=\"130\" font-size=\"11\" fill=\"white\">+ 项 4: 修正到 42 位</text>\n  </g>\n  <!-- 算 π 估值 -->\n  <g transform=\"translate(40, 180)\">\n    <rect x=\"0\" y=\"0\" width=\"540\" height=\"50\" fill=\"#fef3c7\" rx=\"6\" stroke=\"#f59e0b\"/>\n    <text x=\"20\" y=\"20\" font-size=\"12\" font-weight=\"700\" fill=\"#92400e\">N=1 项：π ≈ 3.14159265358979...</text>\n    <text x=\"20\" y=\"38\" font-size=\"11\" fill=\"#78350f\">✓ 14 位精度！Chudnovsky 公式同源——工业标准</text>\n  </g>\n</svg>",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超美的 π 公式——Ramanujan 公式。\n\n1910 年，印度数学天才拉马努金（Srinivasa Ramanujan）发现了一个超美的 π 公式：\n\n1/π = (2√2 / 9801) × Σ [(4k)! × (1103 + 26390k)] / [(k!)⁴ × 396^(4k)]\n\n这个公式的特点：每加 1 项，就能多 8 位精度！是当时算 π 的最快公式。\n\n拉马努金是谁？1887 年生于印度，没受过正规数学教育，但自己推导出了大量公式。1914 年被英国数学家 G. H. Hardy 发现并邀请到剑桥。32 岁就当选英国皇家学会会士。最让人惊叹的是——他在没看到任何证明的情况下，凭直觉就写下了大量正确的公式！\n\nRamanujan 公式的威力：\n- 1 项：1/π ≈ 0.3183（粗略）\n- 2 项：精度达到 8 位\n- 3 项：精度达到 16 位\n- 4 项：精度达到 24 位\n- 5 项：精度达到 32 位\n\n每加 1 项，精度翻倍增加。这比 Leibniz（O(1/n)）和 Machin（O(1/n³)）都强得多。\n\n现代计算机算 π 万亿位，1985 年之前用的就是 Ramanujan 公式的变体。之后被 Chudnovsky 公式（每项 14 位）取代。\n\n拉马努金还发现了其他超美的公式：\n- 分拆数递推（五边形数定理）\n- 模拟 θ 函数\n- 大量恒等式\n\nRamanujan 在数学界是传奇人物，他能从\"无\"中\"看到\"公式。Hardy 评价：\"我学数学这么多年，从没见过像 Ramanujan 这样的人\"。\n\n现在请同学们自己动手：点\"Ramanujan 公式\"，看 N=1、2、3、5、10 时的 π 估值。N=1 大约 3.1416。N=2 应该到小数点后 8 位。看看 N=3、5、10 越来越准。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"印度天才\"凭直觉写下的神奇公式里。",
+  audioUrl: "audio/PE03_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>项数 N <input type="number" id="pe03_n" value="3" min="1" max="5"></label><button class="primary" id="pe03_run">算</button></div><div id="pe03_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pe03_run').onclick = () => {
@@ -2735,7 +2735,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PE03_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

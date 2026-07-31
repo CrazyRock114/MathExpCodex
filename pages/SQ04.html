@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超美的数列——Catalan 数。\n\n什么是 Catalan 数？它等于 C(2n, n) 除以 (n+1)。其中 C(2n, n) 是 2n 选 n（组合数）。\n\n前 10 个 Catalan 数：C_0=1, C_1=1, C_2=2, C_3=5, C_4=14, C_5=42, C_6=132, C_7=429, C_8=1430, C_9=4862。\n\n它来自比利时数学家 Eugène Charles Catalan，他在 1838 年首次系统研究了这个数列。\n\nCatalan 数在组合学里超级常见——至少有 200 种不同的组合问题答案是 Catalan 数！\n\n举几个例子：\n\n1. 平衡括号数：n 对括号有多少种\"合法\"配对？C_n。1 对：() 一种。2 对：()()、(()) 两种。3 对：()()()、()(()、(()())、((()))、(())() 五种。✓\n\n2. 二叉树数：n 个节点能组成多少种不同的二叉树？C_n。1 个节点：1 种。2 个节点：2 种（左孩子或右孩子）。3 个节点：5 种。✓\n\n3. 凸多边形三角剖分：n+2 个顶点的凸多边形能切成三角形的不同方法数 = C_n。\n\n4. 路径不越线：从 (0,0) 到 (n,n) 的路径，每步走右或上，不越过 y=x 直线的不同路径数 = C_n。\n\n5. 圆上不相交弦：圆上 2n 个点两两连弦，弦之间互不相交的方法数 = C_n。\n\n6. 堆栈操作：n 个元素的进出栈，n 个 push 后 n 个 pop 的合法操作序列数 = C_n。\n\n为什么这么巧？因为这些看似不同的问题，本质上是同一个数学结构——Catalan 结构！\n\nCatalan 数增长很快：C_20 = 6564120420（约 66 亿），C_50 是个 28 位数，C_100 是个 57 位数。\n\n现在请同学们自己动手：点\"生成 Catalan 数\"，看前 15 项。验证 C_3=5：3 对括号有几种合法配对？C_4=14：4 对括号有几种？看看 C_5=42 是怎么数出来的。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"看似不同、实则相同\"的组合问题里。",
+  audioUrl: "audio/SQ04_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq04_n" value="10" min="1"></label><button class="primary" id="sq04_run">生成</button></div><div id="sq04_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('sq04_run').onclick = () => {
@@ -2730,7 +2730,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ04_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

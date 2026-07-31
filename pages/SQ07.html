@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超重要的数学结构——帕斯卡三角（Pascal's Triangle）。\n\n什么是帕斯卡三角？每一行两端是 1，每个数等于它正上方两数之和。\n\n前 6 行帕斯卡三角：\n1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1\n1 5 10 10 5 1\n\n它是以法国数学家 Blaise Pascal 命名的，但其实中国南宋数学家杨辉在 1261 年就描述过这个结构，所以也叫\"杨辉三角\"。\n\n帕斯卡三角藏着超级多的秘密：\n\n第一：每一行是 (x+y) 的 n 次方展开式的系数。\n(x+y)⁰ = 1\n(x+y)¹ = 1·x + 1·y\n(x+y)² = 1·x² + 2·xy + 1·y²\n(x+y)³ = 1·x³ + 3·x²y + 3·xy² + 1·y³\n\n所以第 n 行第 k 个数（从 0 开始数）就是 C(n, k)。\n\n第二：第 n 行所有数之和等于 2 的 n 次方。比如第 3 行 1+3+3+1=8=2³。\n\n第三：第 n 行奇数个数等于 2 的 n 在二进制下的 1 的个数。\n\n第四：第 n 行第 k 个数 C(n, k) 模 2 等于卢卡斯定理：C(n, k) mod 2 = C(n_0, k_0) × C(n_1, k_1) × ...，其中 n_i, k_i 是 n, k 的二进制第 i 位。\n\n第五：第 n 行的数还跟斐波那契数有关——沿着帕斯卡三角画斜线，每条斜线上的数加起来就是斐波那契数！\n\n第六：第 n 行第 k 个数 C(n, k) 在组合学里超重要：从 n 个里选 k 个有多少种方法。\n\n现在请同学们自己动手：点\"生成帕斯卡三角\"，看前 10 行。验证第 5 行 1 5 10 10 5 1——它的和是 32=2⁵。验证 C(5,2)=10、C(5,3)=10。看看斜线加起来是不是斐波那契数？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"上两数之和\"的有趣结构里。",
+  audioUrl: "audio/SQ07_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq07_n" value="6" min="1" max="10"></label><button class="primary" id="sq07_run">画</button></div><div id="sq07_out" style="margin-top:12px; font-family: monospace; line-height: 1.6;"></div>`;
     document.getElementById('sq07_run').onclick = () => {
@@ -2734,7 +2734,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ07_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

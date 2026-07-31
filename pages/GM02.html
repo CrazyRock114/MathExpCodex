@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超简单的几何事实——多边形外角和恒等于 360°。\n\n什么是外角？多边形每个顶点处，外部的\"凸出\"角。比如三角形每个顶点处的外角。\n\n外角 + 内角 = 180°（因为它们组成一条直线）。\n\n任意凸多边形（每条边都向外凸），外角之和恒等于 360°！\n\n这个定理最早由欧几里得在 2000 多年前证明。看起来简单，但应用超级广泛。\n\n为什么外角和恒等于 360°？\n方法一：把多边形每个顶点处的\"外角\"想象成\"你沿着多边形走一圈，每走一步要转的角度\"。走完一圈总共转了 360°——所以外角和 = 360°。\n方法二：每个内角 + 外角 = 180°。n 个内角和 = n × 180° - 外角和 = (n-2) × 180°。所以外角和 = n × 180° - (n-2) × 180° = 360°。✓\n\n举个例子：\n- 三角形：每个内角 60°，每个外角 120°。3 个外角 = 360°。✓\n- 正方形：每个内角 90°，每个外角 90°。4 个外角 = 360°。✓\n- 五边形：每个内角 108°，每个外角 72°。5 个外角 = 360°。✓\n- 六边形：每个内角 120°，每个外角 60°。6 个外角 = 360°。✓\n- n 边形：每个内角 (n-2) × 180°/n，每个外角 180°/n。n 个外角 = 180°。等等，不对，让我重算。\n\n外角 = 180° - 内角 = 180° - (n-2) × 180°/n = (180n - 180n + 360)/n = 360°/n。\nn 个外角 = n × 360°/n = 360°。✓\n\n外角和 = 360° 的应用：\n- 测量：可以走一圈来测量多边形\n- 机器人：自动转向一圈\n- 建筑：转角设计\n- 设计：每转 360° 走完整路径\n\n这个定理还在 GPS 路径规划、计算机图形学、机器人学里广泛应用。\n\n凸多边形外角和恒等于 360°。但凹多边形（有一个内角大于 180°）外角和有正有负，代数和仍然是 360°。\n\n现在请同学们自己动手：点\"外角和\"，看 n=3..12 的外角。验证三角形 120°、正方形 90°、五边形 72°。看 n × 外角是不是 360°？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一次\"绕一圈回到原点\"的有趣几何里。",
+  audioUrl: "audio/GM02_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>验证 n = <input type="number" id="gm02_n" value="5" min="3" max="20"></label><button class="primary" id="gm02_run">验证</button></div><div id="gm02_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gm02_run').onclick = () => {
@@ -2731,7 +2731,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GM02_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

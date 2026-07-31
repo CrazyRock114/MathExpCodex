@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一种很\"对称\"的素数——回文素数。\n\n什么叫回文素数？既是素数又是回文数。回文数就是正着读反着读都一样——11、22、121、1331、12321。\n\n最前面的几个回文素数：2、3、5、7、11、101、131、151、181、191、313、353、373、383、727、757、787、797、919、929。\n\n注意 11 既是回文数也是素数。101、131、151 等等也是。\n\n100 以内有 20 个回文素数：2、3、5、7、11、101、131、151、181、191、313、353、373、383、727、757、787、797、919、929。\n1000 以内有 48 个。\n10000 以内有 113 个。\n\n但有个超级神奇的发现：除了 11，所有回文素数的位数都是奇数！\n\n为什么？因为偶数位的回文数一定能被 11 整除。证明：比如 ABBA 等于 1000A 加 100B 加 10B 加 A = 1001A + 110B = 11 乘 (91A + 10B)，一定被 11 整除。所以 4 位、6 位、8 位的\"回文数\"都不是素数（除了 11）。\n\n最长已知的回文素数有几十万位。\n\n但等等——回文素数有无穷多个吗？这是个未解之谜！数学家普遍认为有无穷多个，但严格证明一直没有。\n\n现在请同学们自己动手：点\"找回文素数\"，扫 1 到 1000。找到 20 个：2、3、5、7、11、101、131、151、181、191、313、353、373、383、727、757、787、797、919、929。看看 10000 以内有几个？百万以内呢？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"正反都一样\"的素数里。",
+  audioUrl: "audio/NT15_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt15_n" value="10000" min="100"></label><button class="primary" id="nt15_run">找</button></div><div id="nt15_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('nt15_run').onclick = () => {
@@ -2732,7 +2732,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/NT15_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

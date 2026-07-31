@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超简单但超有用的图论定理——树的边数。\n\n什么是树？连通无环的图。看起来\"长得像树\"的图。\n\n树的性质：\n- 任何两个顶点之间恰有一条简单路径\n- 加任意一条边会产生环\n- 减任意一条边会断开（不连通）\n- 树有 n-1 条边（n 个顶点）\n\n树的边数 = n - 1（n 个顶点的树）\n\n证明：用归纳法。\n- n=1：树有 0 条边。✓\n- 假设 n 个顶点的树有 n-1 条边。\n- n+1 个顶点的树：选一个叶子（度 1 的顶点），去掉它和它的唯一边。剩下 n 个顶点的树有 n-1 条边（归纳假设）。所以原树有 (n-1) + 1 = n 条边。✓\n\n树的应用超级广泛：\n- 决策树：决策分析\n- 语法树：编译器\n- 文件系统：目录和文件\n- 家族树：血缘关系\n- 组织架构：公司层级\n- 因特网路由：OSPF 算法建最短路径树\n- 生物进化：进化树\n- 博弈树：国际象棋 AI\n\n树的种类：\n- 二叉树：每个节点最多 2 个子节点\n- 平衡树：左右子树高度差 ≤ 1\n- 堆：父节点 ≥（或 ≤）子节点\n- BST：左子 < 根 < 右子\n- 红黑树：自平衡 BST\n- B 树：数据库索引\n- Trie：前缀树\n\n生成树：连通图的极小连通子图——包含所有顶点、n-1 条边、连通、无环。\n\n最小生成树：边有权重时，权重和最小的生成树。算法：Kruskal（按边权排序 + 并查集）、Prim（贪心加点）。\n\n举例：5 个顶点 7 条边的图，生成树有 4 条边。最小生成树是 4 条边中权重最小的组合。\n\n树的递归结构：任何树都包含一个根 + 几棵子树。子数 = 森林。\n\n现在请同学们自己动手：点\"树边数\"，看一个树。验证边数 = 顶点数 - 1。试试加一条边（变成有环的图），看是不是不再是树。减一条边（变森林），看是不是不连通了。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"长得像树\"的有趣结构里。",
+  audioUrl: "audio/GR10_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>顶点数 n <input type="number" id="gr10_n" value="6" min="2" max="12"></label><button class="primary" id="gr10_run">生成</button></div><div id="gr10_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gr10_run').onclick = () => {
@@ -2732,7 +2732,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GR10_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超神奇的\"模拟生命\"游戏——Conway 生命游戏。\n\n生命游戏：无限网格上，每个格子是一个\"细胞\"。每个细胞有 2 个状态：活（黑）或死（白）。\n\n演化规则（每\"代\"）：\n1. 活细胞：2-3 个活邻居 → 继续活\n2. 活细胞：< 2 个活邻居 → 孤独死\n3. 活细胞：> 3 个活邻居 → 拥挤死\n4. 死细胞：恰好 3 个活邻居 → 复活\n5. 其他情况不变\n\n邻居：上、下、左、右 + 4 个对角 = 8 个邻居。\n\n生命游戏由英国数学家 John Conway 在 1970 年发明。\n\n生命游戏是\"细胞自动机\"——按规则自动演化，超级简单但能产生惊人的复杂行为。\n\n生命游戏能产生的\"结构\"：\n第一条：静止（Still life）：方块、面包、蜂巢\n第二条：振荡子（Oscillator）：眨眼、灯、烽火\n第三条：滑翔机（Glider）：在网格上移动\n第四条：飞船（Spaceship）：轻量级、中量级、重型\n第五条：枪（Gun）：无限产生滑翔机\n第六条：滋生者（Puff）：能吞噬其他结构\n\n经典\"高斯帕滑翔机枪\"（Gosper glider gun）：1970 年发现的第一个\"枪\"，周期 30，能无限产生滑翔机。\n\n滑翔机是生命游戏最重要的\"信息载体\"——它能传递信息，就像生物 DNA 编码。\n\n生命游戏\"图灵完备\"——任何计算机能计算的事，生命游戏都能模拟。\n\n生命游戏哲学：\n- 简单规则 → 复杂行为\n- 元胞 → 涌现\n- 生命 → 自组织\n- 现实 → 计算\n\n生命游戏影响：\n- 复杂性科学\n- 人工生命\n- 涌现理论\n- 演化算法\n- 元胞自动机理论\n\n应用：\n- 生物学：细胞分裂建模\n- 计算机：并行计算\n- 物理：粒子系统\n- 艺术：元胞艺术\n\n具体例子：滑翔机 4 个细胞形成\"X\"形：\n.X.\n..X\nXXX\n\n它每 4 代向对角移动 1 格。可以无限移动。\n\n经典\"繁衍者\"（Breeder）：用滑翔机枪组合，每代产生更多滑翔机。\n\n具体 5×5 振荡子（\"灯\"）：十字形细胞\n.X.\n.X.\n.X.\n它周期 2 闪烁。\n\n现在请同学们自己动手：点\"生命游戏\"，看 20×20 网格。点\"随机\"看初始状态。点\"开始\"看演化。试试\"高斯帕枪\"：点\"预设\"选滑翔机枪。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"4 条简单规则\"的有趣涌现生命里。",
+  audioUrl: "audio/OT10_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>大小 n <input type="number" id="ot10_n" value="20" min="5" max="40"></label><label>速度 <input type="number" id="ot10_sp" value="100" min="20" max="500"></label><button class="primary" id="ot10_start">开始</button><button class="ghost" id="ot10_stop">停</button><button class="ghost" id="ot10_reset">重置</button></div><canvas id="ot10_cv" width="400" height="400" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
     let grid = [], n = 20, timer = null;
@@ -2759,7 +2759,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/OT10_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

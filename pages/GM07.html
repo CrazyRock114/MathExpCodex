@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超美的几何公式——欧拉多面体公式。\n\n欧拉公式：V - E + F = 2\n\n其中 V = 顶点数，E = 边数，F = 面数。\n\n这个公式对所有凸多面体（表面没有\"洞\"的多面体）成立！\n\n举个例子：\n- 立方体：V=8, E=12, F=6。8 - 12 + 6 = 2。✓\n- 四面体：V=4, E=6, F=4。4 - 6 + 4 = 2。✓\n- 八面体：V=6, E=12, F=8。6 - 12 + 8 = 2。✓\n- 十二面体：V=20, E=30, F=12。20 - 30 + 12 = 2。✓\n- 二十面体：V=12, E=30, F=20。12 - 30 + 20 = 2。✓\n\n所有的柏拉图立体都满足欧拉公式。\n\n其他例子：\n- 三棱柱：V=6, E=9, F=5。6 - 9 + 5 = 2。✓\n- 五棱锥：V=6, E=10, F=6。6 - 10 + 6 = 2。✓\n- 圆环（轮胎）：V=0, E=1, F=1。0 - 1 + 1 = 0 ≠ 2。❌ 圆环有\"洞\"，不满足！\n\n欧拉公式是欧几里得的学生阿基米德最早研究的，1750 年欧拉证明并推广，所以叫欧拉公式。\n\n欧拉公式的推广：V - E + F = 2 - 2g，其中 g 是\"亏格\"（表面洞数）。\n- 球：g=0，V - E + F = 2\n- 圆环（1 个洞）：g=1，V - E + F = 0\n- 双圆环（2 个洞）：g=2，V - E + F = -2\n\n这个推广是拓扑学的基础——它告诉我们\"洞的个数\"是个拓扑不变量。\n\n欧拉公式的应用：\n- 验证多面体的合法性\n- 拓扑学：描述曲面\n- 组合学：平面图、地图染色\n- 化学：分子结构\n\n证明 V - E + F = 2：\n方法一：数学归纳法。先证明对简单多面体（用对角线切分），再扩展。\n方法二：投影到平面（施莱格尔图），用平面图的 V - E + F = 2（Euler 公式对平面图成立）。\n方法三：用欧拉示性数的代数拓扑。\n\n现在请同学们自己动手：点\"欧拉公式验证\"，选几个多面体：立方体、四面体、三棱柱、五棱锥。验证 V - E + F = 2。试试圆环（V=0, E=1, F=1），看公式不成立。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"顶点减边加面等于 2\"的有趣恒等式里。",
+  audioUrl: "audio/GM07_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>顶点数 V <input type="number" id="gm07_v" value="8" min="4"></label><label>棱数 E <input type="number" id="gm07_e" value="12" min="6"></label><label>面数 F <input type="number" id="gm07_f" value="6" min="4"></label><button class="primary" id="gm07_run">验证</button></div><div id="gm07_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gm07_run').onclick = () => {
@@ -2729,7 +2729,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GM07_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

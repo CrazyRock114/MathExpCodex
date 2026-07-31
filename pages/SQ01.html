@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超级有名的数列——斐波那契数列。\n\n什么是斐波那契数列？前两项是 1、1，从第 3 项起，每一项都等于前两项之和。所以第 3 项是 1+1=2，第 4 项是 1+2=3，第 5 项是 2+3=5...\n\n前 20 个斐波那契数：1、1、2、3、5、8、13、21、34、55、89、144、233、377、610、987、1597、2584、4181、6765。\n\n这个数列是意大利数学家斐波那契在 1202 年提出的，最早是用来描述兔子的繁殖：1 对小兔子，1 个月后成熟，成熟后每月生 1 对新兔子。那么每月兔子对数就是 1、1、2、3、5、8、13、21、34、55...\n\n斐波那契数列在自然界无处不在！向日葵的种子按斐波那契螺旋排列。松果的鳞片也是。菠萝的方格块是。鹦鹉螺的壳生长比例是。树枝的分叉角度跟斐波那契相关。\n\n斐波那契数列还有超级多美妙的性质：\n- 连续两项最大公约数都是 1（互素）。\n- 任何 3 个连续斐波那契数 a、b、c 满足 a 平方加 b 平方等于 c 平方？不对，斐波那契数不满足勾股定理。但有卡西尼恒等式：F_{n-1} 乘 F_{n+1} - F_n 平方 等于 (-1) 的 n 次方。\n- 任意两个相邻斐波那契数都互素。\n- 任意 F_n 都能被 1 整除，F_n 整除 F_{nk}。\n\nF_100 等于 354224848179261915075。F_200 是个 41 位数。F_1000 是个 209 位数。F_100000 有 20899 位！\n\n现在请同学们自己动手：点\"生成斐波那契\"，看 100 项。F_30 等于多少？F_50 呢？F_100 呢？验证 1、1、2、3、5 开头对不对。看看哪些是偶数（每 3 个有一个偶数）。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一次兔子繁殖、每一片向日葵种子、每一只鹦鹉螺里。",
+  audioUrl: "audio/SQ01_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq01_n" value="20" min="1"></label><button class="primary" id="sq01_run">生成</button></div><div id="sq01_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('sq01_run').onclick = () => {
@@ -2729,7 +2729,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ01_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

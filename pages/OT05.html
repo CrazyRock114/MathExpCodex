@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超有趣的组合问题——棋盘多米诺铺瓦。\n\n什么是多米诺铺瓦？用 1×2 或 2×1 的多米诺骨牌铺满 m × n 棋盘，要求完全覆盖、无重叠。\n\n经典问题：\n- 8×8 棋盘：能铺满（用 32 个多米诺）\n- m × n 棋盘（m × n 是偶数）：能铺满\n- m × n 棋盘（m × n 是奇数）：不能铺满\n\n为什么？因为 m × n 是奇数，棋盘格子数是奇数，但每个多米诺覆盖 2 个格子，所以总格子数必须是偶数。\n\n但这只是必要条件。充分条件是：m × n 偶数。\n\n具体定理：\n- 棋盘 m × n 能被多米诺铺满的充要条件是：m × n 是偶数，且 (m ≠ 1 或 n ≠ 1)\n  - 即：m × n 是偶数，且 m ≥ 2 且 n ≥ 2\n\n等等，如果 m = 1, n = 2（1×2 棋盘），能不能铺？1 个 1×2 多米诺刚好铺满。✓\n但 1×1 棋盘（1 个格子）铺不了——1 是奇数。\n\n所以准确条件：m × n 是偶数。\n\n但等等，1 × 2 棋盘 m × n = 2 是偶数，能铺。✓\n1 × 3 棋盘 m × n = 3 是奇数，不能铺。✓\n1 × 4 棋盘 m × n = 4 是偶数，能铺（用 2 个 1×2）。✓\n\n实际上：\n- 1 × 偶数：能铺（用 1×2 多米诺）\n- 1 × 奇数：不能铺\n- m × n 都是偶数（m, n 都偶）：能铺\n- m × n 都是奇数（m, n 都奇）：不能铺\n- m × n 一奇一偶：能铺（如 2×3, 3×4）\n\n定理：m × n 棋盘能铺满 ↔ m × n 是偶数。\n\n但还要考虑另一个条件：如果棋盘有奇数个\"指定位置\"被去掉，可能铺不满。\n\n经典\"残缺棋盘问题\"：\n8×8 棋盘去掉对角的 2 个格（共 62 个格子），能不能铺满？\n答案：不能。\n证明：把棋盘涂成黑白格（每个多米诺必覆盖一黑一白），8×8 棋盘黑格 32 个、白格 32 个。去掉对角的 2 个同色格（都白或都黑），剩下 30 个白 + 32 个黑（或反之），不等。铺不满。\n\n变种问题：\n- 8×8 去掉 2 个对角同色格：不能铺\n- 8×8 去掉 2 个不同色格：能铺\n- 5×5 棋盘去掉对角 2 个：不能铺（25-2=23 奇数）\n- 4×4 棋盘：能铺（用 8 个多米诺）\n\n多米诺铺瓦数：m × n 棋盘的多米诺铺瓦方案数是\nf(m, n) = Π [cos²(kπ/(m+1)) + cos²(lπ/(n+1))]^(1/4) ... 这个公式超级复杂。\n\n具体：\n- 1×2：1 种\n- 2×2：2 种（横或竖）\n- 2×4：5 种\n- 4×4：36 种\n- 8×8：12,988,816,588 种（约 129 亿）\n\n应用：\n- 统计力学：二聚物问题\n- 组合数学：铺瓦数\n- 物理：晶格铺瓦\n- 艺术：瓷砖铺装\n\n现在请同学们自己动手：点\"棋盘多米诺\"，画 4×4 棋盘，铺满。试试 8×8。验证 5×5 铺不满（格子数奇数）。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"2 个格子一组的覆盖\"的有趣铺装里。",
+  audioUrl: "audio/OT05_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>m <input type="number" id="ot05_m" value="4" min="2" max="8"></label><label>n <input type="number" id="ot05_n" value="6" min="2" max="8"></label><button class="primary" id="ot05_run">铺</button></div><canvas id="ot05_cv" width="400" height="280" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
     document.getElementById('ot05_run').onclick = () => {
@@ -2759,7 +2759,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/OT05_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

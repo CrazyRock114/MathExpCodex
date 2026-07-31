@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一种很美的三角形——黄金三角形（Golden Triangle）。\n\n什么是黄金三角形？等腰三角形，底角是 72°，顶角是 36°。底边与腰的比是 1:φ（φ 是黄金比例 ≈ 1.618）。\n\n黄金三角形 5 个：底 1、腰 φ、底角 72°、顶角 36°、面积 0.5 × 1 × φ × sin(36°) ≈ 0.5。\n\n黄金三角形的美丽性质：\n\n第一条：底角平分线把对边分成 1 和 φ-1 两部分（φ-1 = 1/φ）。神奇！1 : 1/φ = φ : 1。\n\n第二条：顶角平分线把对边分成 φ-1 和 1-1/φ = 1-1/φ = (φ-1)/φ = 1/φ²。\n\n第三条：黄金三角形里能内嵌一个更小的黄金三角形！无限递归下去。\n\n第四条：五角星是由 5 个黄金三角形组成的（5 个等腰三角形围绕中心）。\n\n第五条：正十边形可以分成 10 个黄金三角形。\n\n黄金三角形的应用：\n- 五角星（美国国旗）\n- 黄金比建筑设计\n- 美学（人体黄金比例）\n- 数学教育（直观理解 φ）\n\n黄金三角形的代数证明：\n设底 = 1，腰 = x。底角 = 72°，顶角 = 36°。由正弦定理：\n1/sin(36°) = x/sin(72°)\nx = sin(72°)/sin(36°) = 2cos(36°) = 1 + 2cos(72°) - 1 = 1 + 2 × 0.309 - 1 ≈ 1.618 = φ\n\n或者由\"角平分线定理\"：底角平分线把对边分成 1:φ-1 的两段，因为 72° 的角平分线对应 36° 的角。\n\n黄金三角形的对称美：底角是顶角的 2 倍（72°/36° = 2），腰是底的 φ 倍。\n\n五角星是 5 个黄金三角形的 5 个顶角汇聚。每个黄金三角形的腰与底之比都是 φ，5 个腰交错成五角星的 5 条线。\n\n现在请同学们自己动手：点\"黄金三角形\"，看一个底 1、腰 φ 的等腰三角形。验证底角 72°、顶角 36°。看看它的内嵌小黄金三角形。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"等腰但不等边\"的有趣黄金比例里。",
+  audioUrl: "audio/GM08_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div style="text-align: center; padding: 16px;">
       <svg width="240" height="200" viewBox="0 0 240 200">
@@ -2735,7 +2735,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GM08_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

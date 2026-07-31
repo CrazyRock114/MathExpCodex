@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一种\"友好\"的数——Harshad 数（也叫 Niven 数）。\n\n什么叫 Harshad 数？就是一个正整数 n，能被它各位数字之和整除。比如 12：各位数字之和 1 加 2 等于 3，12 除以 3 等于 4 整除，所以 12 是 Harshad 数。\n\n再来一个：18：1 加 8 等于 9，18 除以 9 等于 2，所以 18 也是 Harshad 数。\n\n这种数是印度数学家 Kaprekar 命名的，\"Harshad\"在梵文里是\"大欢喜\"的意思——能被自己\"包容\"。\n\n10 以内的 Harshad 数：1、2、3、4、5、6、7、8、9（每个数都被自己 1 整除，10 个）。\n100 以内有 22 个 Harshad 数，比如 10、12、18、20、21、24、27、30、36、40、42、45、48、50、54、60、63、70、72、80、81、84。\n1000 以内有 156 个。\n\nHarshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必定有 Harshad 数。比如 11 的倍数 11、22、33、44、55、66、77、88、99、110、121、132、143、154、165、176、187、198、209... 一直到 209 都是 Harshad 数。\n\n更神奇的是，Harshad 数还可以串起来——比如 12 + 12 = 24，24 + 24 = 48，48 + 48 = 96，96 + 96 = 192... 这些都是 Harshad 数。\n\n现在请同学们自己动手：点\"找 Harshad 数\"，扫 1 到 1000。找到 156 个。看看 10000 以内有几个？100000 呢？密度有什么规律？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"被自己包容\"的数字里。",
+  audioUrl: "audio/NT06_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt06_n" value="200" min="10"></label><button class="primary" id="nt06_run">找</button></div><div id="nt06_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('nt06_run').onclick = () => {
@@ -2731,7 +2731,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/NT06_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

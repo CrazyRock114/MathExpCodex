@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个三维的数列——四面体数。\n\n什么叫四面体数？就是能\"摆成四面体\"的石子数：1 个、4 个、10 个、20 个、35 个、56 个、84 个...\n\n第 n 个四面体数怎么算？Tetra_n 等于 n 乘 (n+1) 乘 (n+2) 除以 6。比如 Tetra_4 等于 4 乘 5 乘 6 除以 6 等于 20。\n\n为什么叫四面体？因为 1 个石子是一个点，1 加 3 等于 4 个石子能摆成三角锥，1 加 3 加 6 等于 10 个石子能摆成更密的三角锥，1 加 3 加 6 加 10 等于 20 个石子能摆成再密一层的三角锥。\n\n前 10 个四面体数：1、4、10、20、35、56、84、120、165、220。\n\n四面体数有什么性质？\n\n第一：每个四面体数等于前 n 个三角形数之和。比如 Tetra_4 = 20 等于 T_1 加 T_2 加 T_3 加 T_4 = 1 加 3 加 6 加 10 等于 20。\n第二：四面体数 = C(n+2, 3) = 三角形数 × (n+2) / 3。\n第三：四面体数都是三角数的 1/3 倍乘 (n+2)。\n\n四面体数在物理上很有用：4 个面、6 条棱、4 个顶点的三角锥（最稳定结构）。足球比赛里四面体阵型、骰子（4 面体）、分子结构里甲烷（CH4）的 4 个氢原子顶点——都是四面体。\n\n还有帕斯卡三角和四面体数的关系：帕斯卡三角每行的二项式系数加起来就是 2 的 n 次方，而它的列加起来就是四面体数。\n\n现在请同学们自己动手：点\"找四面体数\"，扫 1 到 1000。你会找到 17 个四面体数。验证 T_1 加 T_2 加 T_3 等于 10？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"能堆成三角锥\"的有趣石子数里。",
+  audioUrl: "audio/NT13_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="nt13_n" value="10" min="1"></label><button class="primary" id="nt13_run">生成</button></div><div id="nt13_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('nt13_run').onclick = () => {
@@ -2728,7 +2728,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/NT13_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

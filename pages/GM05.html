@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看两个超有用的公式——圆柱的体积和表面积。\n\n什么是圆柱？两个平行的圆面 + 一个曲面围成的立体。铅笔、罐头、水杯、管道——都是圆柱形。\n\n圆柱的体积公式：V = πr²h（底面积 × 高）\n\n圆柱的表面积公式（包含上下两个圆面 + 侧面）：\nA = 2πr² + 2πrh = 2πr(r + h)\n\n举例：半径 3 厘米、高 10 厘米的圆柱。\n- 体积 V = π × 3² × 10 = 90π ≈ 282.7 立方厘米\n- 表面积 A = 2π × 3 × (3 + 10) = 78π ≈ 245.0 平方厘米\n\n圆柱的几个小性质：\n- 体积是 r² × h 关系（r 翻倍，V 变 4 倍；h 翻倍，V 变 2 倍）\n- 侧面积是 2πrh（类似矩形长 × 宽 = 周长 × 高）\n- 底面积 = πr²（圆的面积）\n\n注意：圆柱体积公式只对\"直圆柱\"成立。斜圆柱（顶面和底面平行但不垂直于侧面）体积一样，因为可以\"投影\"成直圆柱。\n\n圆柱的实际应用：\n- 储水罐：圆柱形最省材料\n- 管道：水流量与截面积成正比\n- 印刷：圆柱形滚筒\n- 建筑：圆柱形柱子是古希腊罗马最爱\n\n古代圆柱建筑：\n- 万神殿（罗马）：直径 43.3 米，顶部有一个 8.8 米的圆孔采光\n- 圆柱大厅（埃及卡纳克）：122 根圆柱，每根直径 2.5 米、高 13 米\n\n圆柱的\"亲戚\"：\n- 圆锥：底面是圆、尖顶\n- 圆柱管：空心圆柱（管道）\n- 椭圆柱：底面是椭圆\n- 棱柱：底面是多边形\n\n还有\"圆柱螺线\"——一只虫子在圆柱上爬行的轨迹。\n\n现在请同学们自己动手：点\"圆柱体积/表面积\"，输入 r 和 h 比如 (3, 10)、(5, 8)、(1, 20)。验证 r=1, h=10 时 V = 31.4, A = 69.1。看看不同 r/h 比例下哪个更省材料？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"上下两个圆\"的有趣立体里。",
+  audioUrl: "audio/GM05_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>半径 r <input type="number" id="gm05_r" value="3" min="0.1"></label><label>高 h <input type="number" id="gm05_h" value="10" min="0.1"></label><button class="primary" id="gm05_run">算</button></div><div id="gm05_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gm05_run').onclick = () => {
@@ -2729,7 +2729,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GM05_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个有趣的过程——回文数迭代。\n\n什么叫回文数？正着读反着读都一样——11、22、121、1331、12321。\n\n但大部分数不是回文数。如果我们把一个数加上它的倒序数，反复迭代，很多数最终都会变成回文数。\n\n举个例子：87 不是回文。87 加 78 等于 165。165 加 561 等于 726。726 加 627 等于 1353。1353 加 3531 等于 4884。4884 加 4884 等于 9768。等等——4884 是回文！87 经过 4 步变成 4884。\n\n再来一个 47：47 加 74 等于 121——121 是回文！只用了 1 步。\n\n大部分 2 位数用 1-2 步就能变成回文。但 89 比较顽固：89 加 98 等于 187，187 加 781 等于 968，968 加 869 等于 1837...要 24 步才到 8813200023188——回文！\n\n196 是\"最难\"的数——数学家们用超级计算机算了 10 亿步，还是没得到回文。196 被称为\"候选 Lychrel 数\"。Lychrel 猜想说：有些数永远迭代不到回文。但还没人证明！\n\n3 位数通常 1-6 步到回文。4 位数 1-7 步。位数越多，平均步数越多。\n\n现在请同学们自己动手：输入一个 2 位数比如 47、58、69，看要几步到回文。挑战一下：89 要 24 步！196 算到 100 步能到回文吗？明天带过来我们比一比谁跳得最久。\n\n记住：数学不只藏在书本里——藏在每一个\"正反都一样\"的有趣旅程里。",
+  audioUrl: "audio/NT08_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>输入 n <input type="number" id="nt08_n" value="87" min="1"></label><button class="primary" id="nt08_run">迭代</button></div><div id="nt08_seq" class="sequence" style="margin-top:12px;"></div><div id="nt08_out" class="stat" style="margin-top:12px;"><div class="k">步数</div><div class="v">—</div></div>`;
     document.getElementById('nt08_run').onclick = () => {
@@ -2736,7 +2736,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/NT08_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

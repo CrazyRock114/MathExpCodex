@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超重要但超简单的原理——容斥原理。\n\n容斥原理：把多个集合的并集的大小，用它们单独的大小和交集来表示。\n\n最简单的版本（2 个集合）：\n|A ∪ B| = |A| + |B| - |A ∩ B|\n\n为什么减一次？因为 |A| + |B| 把 A∩B 加了两次，要减去一次。\n\n3 个集合：\n|A ∪ B ∪ C| = |A| + |B| + |C| - |A ∩ B| - |A ∩ C| - |B ∩ C| + |A ∩ B ∩ C|\n\n加减规律：\"奇数加，偶数减\"。\n\nn 个集合：\n|A₁ ∪ A₂ ∪ ... ∪ Aₙ| = Σ|Aᵢ| - Σ|Aᵢ ∩ Aⱼ| + Σ|Aᵢ ∩ Aⱼ ∩ Aₖ| - ... + (-1)ⁿ⁺¹ |A₁ ∩ A₂ ∩ ... ∩ Aₙ|\n\n举例：1 到 100 中，能被 2 整除或能被 3 整除的数有几个？\n- A = {能被 2 整除}：50 个\n- B = {能被 3 整除}：33 个\n- A ∩ B = {能被 6 整除}：16 个\n- |A ∪ B| = 50 + 33 - 16 = 67 个\n\n验证：100 以内 67 个数能被 2 或 3 整除。\n\n举例：1 到 100 中，能被 2、3、5 之一整除的数有几个？\n- A = {能被 2 整除}：50\n- B = {能被 3 整除}：33\n- C = {能被 5 整除}：20\n- A ∩ B = {能被 6 整除}：16\n- A ∩ C = {能被 10 整除}：10\n- B ∩ C = {能被 15 整除}：6\n- A ∩ B ∩ C = {能被 30 整除}：3\n- |A ∪ B ∪ C| = 50 + 33 + 20 - 16 - 10 - 6 + 3 = 74\n\n容斥原理的应用：\n- 计数：满足某些条件的数有几个\n- 概率：满足某些事件的事件概率\n- 数论：欧拉 φ 函数\n- 组合学：错排公式\n- 容错：集合的\"所有不满足\"\n\n容斥原理是 19 世纪英国数学家 Sylvester 和 Poincaré 推广的。\n\n经典例子：\"错排\"问题（之前讲过）就是用容斥原理算的：n 个元素的错排数 = n! × Σ (-1)ᵏ/k!。\n\n欧拉 φ 函数：φ(n) 等于 1 到 n 中跟 n 互素的数的个数，可以用容斥原理从 n 中减去能被 n 的素因子整除的数。\n\n现在请同学们自己动手：点\"容斥原理\"，输入 1 到 N 范围，选择若干素因子。计算能被这些素因子整除的数有几个。验证手算和系统算的答案一致。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"集合求并\"的有趣加减里。",
+  audioUrl: "audio/GR06_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>|A| <input type="number" id="gr06_a" value="20"></label><label>|B| <input type="number" id="gr06_b" value="15"></label><label>|C| <input type="number" id="gr06_c" value="10"></label><label>|A∩B| <input type="number" id="gr06_ab" value="5"></label><label>|A∩C| <input type="number" id="gr06_ac" value="3"></label><label>|B∩C| <input type="number" id="gr06_bc" value="2"></label><label>|A∩B∩C| <input type="number" id="gr06_abc" value="1"></label><button class="primary" id="gr06_run">算</button></div><div id="gr06_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gr06_run').onclick = () => {
@@ -2733,7 +2733,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GR06_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

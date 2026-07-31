@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一种很巧妙的数——Smith 数。\n\n什么叫 Smith 数？合数 n 的各位数字之和，等于它所有素因子（带重数）的各位数字之和。\n\n举个例子：4 = 2 乘 2。4 的各位数字和是 4。素因子 2、2 的各位数字和是 2 加 2 等于 4。相等！所以 4 是 Smith 数。\n\n再来一个：22 = 2 乘 11。22 的各位数字和是 2 加 2 等于 4。素因子 2、11 的各位数字和是 2 加 1 加 1 等于 4。相等！所以 22 是 Smith 数。\n\n这种数是 Albert Wilansky 在 1982 年发现的，当时他在看他姐夫 Harold Smith 的电话号码 4937775——发现这个数很特别。他把这个数就叫\"Smith 数\"。\n\n最小的几个 Smith 数：4、22、27、58、85、94、121、166、202、265、274、319、346、355、378、382、391、438、454、483。\n\n注意 Smith 数一定是合数（素数不是 Smith 数）。一个数如果不是 Smith 数，就是\"非 Smith 数\"。\n\n数学家猜想：Smith 数有无穷多个，但这个猜想还没证明。\n\n2022 年，已知最大的 Smith 数有几十万位——这已经够大了。\n\n现在请同学们自己动手：点\"找 Smith 数\"，扫 1 到 1000。你会找到这些：4、22、27、58、85、94、121、166、202、265、274、319、346、355、378、382、391、438、454、483——大约 30 个。看看 10000 以内有几个？100000 呢？密度有什么变化？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"内外数字和相等\"的合数里。",
+  audioUrl: "audio/NT10_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt10_n" value="2000" min="100"></label><button class="primary" id="nt10_run">找</button></div><div id="nt10_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('nt10_run').onclick = () => {
@@ -2736,7 +2736,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/NT10_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

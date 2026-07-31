@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超简单但超有用的原理——抽屉原理（也叫鸽巢原理）。\n\n抽屉原理：把 n+1 个物品放进 n 个抽屉，必有 1 个抽屉里至少有 2 个物品。\n\n简单吧？但应用超级广泛。\n\n举几个例子：\n\n第一条：13 个人中必有 2 个人同月生日（一年 12 个月，13 > 12）。\n\n第二条：367 个人中必有 2 个人同天生日（一年 366 天，367 > 366）。\n\n第三条：从 1 到 10 中选 6 个数，必有 2 个数相差 1？不对，1 2 3 4 5 6 满足。改成 5 个数：1 3 5 7 9 间隔 2，差可能 4。所以抽屉原理说：n+1 个数放进 n 个抽屉必有重复。11 个数放进 1-10 的抽屉必有 2 个相同——不，是 11 个数放进 10 个抽屉必有 1 个抽屉里 2 个数。\n\n更一般的抽屉原理：\n- n 个抽屉，每个至少 a 个 → 总数 n × a\n- 倒过来：m 个物品放进 n 个抽屉，必有抽屉里 ≥ ⌈m/n⌉ 个物品\n\n推广 1：n+1 个物品放进 n 个抽屉，至少 1 个抽屉里 2 个物品。\n推广 2：n+2 个物品放进 n 个抽屉，至少 1 个抽屉里 3 个物品？不对，是至少 1 个抽屉 ≥ ⌈(n+2)/n⌉ = 2 个物品。\n推广 3：mn+1 个物品放进 n 个抽屉，必有 1 个抽屉里 ≥ m+1 个物品。\n\n更复杂的应用：\n第四条：任取 5 个整数，必有 3 个数之和能被 3 整除。为什么？每个数 mod 3 后是 0、1、2 之一。5 个数必有 ≥ 2 个同余。等等——抽屉原理 + 同余证明。\n\n第五条：在 1 到 2n 中任选 n+1 个数，必有 1 个数能整除另一个。证明：每个数写成 2ᵏ × m（m 是奇数）。n+1 个数中必有 2 个的奇数部分相同，再比较 2 的幂次。\n\n应用：\n- 集合论：无穷集合有可数子集\n- 数论：算术级数、模运算\n- 概率论：生日悖论\n- 计算机：哈希冲突\n- 组合：拉姆齐定理\n\n应用示例——\"无穷鸽巢\"：每个实数都能写成整数 + 小数部分。0 到 1 区间放无穷多个实数，必有 2 个差小于 ε——无穷鸽巢原理。\n\n抽屉原理看起来\"显然\"，但威力巨大。\n\n现在请同学们自己动手：点\"抽屉原理\"，看 n 个抽屉、n+1 个物品的动画。验证某个抽屉里至少 2 个物品。试试 m=20, n=5——4 个抽屉里至少 1 个有 5 个物品？不对，是 ≥ ⌈20/5⌉ = 4 个。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"东西多、抽屉少\"的有趣必然性里。",
+  audioUrl: "audio/GR07_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>物品数 <input type="number" id="gr07_n" value="11" min="2"></label><label>抽屉数 <input type="number" id="gr07_k" value="10" min="1"></label><button class="primary" id="gr07_run">随机分配</button></div><div id="gr07_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gr07_run').onclick = () => {
@@ -2730,7 +2730,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GR07_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超有趣的数列——整数分拆 p(n)。\n\n什么是整数分拆？把一个正整数 n 写成若干正整数之和（不计较顺序）。\n\n举个例子：5 能怎么分？\n- 5\n- 4 + 1\n- 3 + 2\n- 3 + 1 + 1\n- 2 + 2 + 1\n- 2 + 1 + 1 + 1\n- 1 + 1 + 1 + 1 + 1\n\n总共 7 种。所以 p(5) = 7。\n\n前 10 个 p 值：p(1)=1, p(2)=2, p(3)=3, p(4)=5, p(5)=7, p(6)=11, p(7)=15, p(8)=22, p(9)=30, p(10)=42。\n\n整数分拆函数 p(n) 是 Srinivasa Ramanujan 研究的。他和 Hardy 一起发现了 p(n) 的很多神奇性质。\n\np(n) 增长很快：p(20) = 627, p(50) = 204226, p(100) = 190569292, p(200) = 3972999029388（约 4 千万亿）。\n\nRamanujan 还发现了几个神奇同余：\n- p(5n + 4) 能被 5 整除\n- p(7n + 5) 能被 7 整除\n- p(11n + 6) 能被 11 整除\n\n整数分拆的递推公式（五边形数定理）：\np(n) = Σ (-1)^{k+1} × p(n - k(3k-1)/2) + Σ (-1)^{k+1} × p(n - k(3k+1)/2)\n\n这是个五边形相关的递推。\n\n整数分拆的应用：\n- 物理学：统计力学的配分函数\n- 化学：分子对称性分类\n- 密码学：组合加密\n- 数论：模形式理论\n\n现在请同学们自己动手：点\"算分拆数\"，看前 15 项。验证 p(5)=7（5 种分法）、p(6)=11。看看 p(10)=42 怎么分？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"加法怎么凑\"的有趣问题里。",
+  audioUrl: "audio/SQ08_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq08_n" value="20" min="2" max="40"></label><button class="primary" id="sq08_run">算</button></div><div id="sq08_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('sq08_run').onclick = () => {
@@ -2736,7 +2736,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ08_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

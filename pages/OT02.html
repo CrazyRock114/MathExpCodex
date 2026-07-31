@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超经典的递归问题——河内塔（汉诺塔）。\n\n汉诺塔：3 根柱子 A、B、C，n 个大小不同的盘从 A 移到 C。要求：\n- 一次只能移动 1 个盘\n- 大盘不能压在小盘上面\n- 借助 B 作为中转\n\n汉诺塔的最少步数：2ⁿ - 1（n 个盘）。\n\nn=1：1 步\nn=2：3 步\nn=3：7 步\nn=4：15 步\nn=5：31 步\nn=10：1023 步\nn=20：约 100 万步\nn=64：约 1.8 × 10¹⁹ 步\n\n递归解法（伪代码）：\nhanoi(n, from, to, via):\n  if n == 1: move(from, to)\n  else:\n    hanoi(n-1, from, via, to)  // 把上面 n-1 个盘移到 via\n    move(from, to)              // 把最大盘从 from 移到 to\n    hanoi(n-1, via, to, from)  // 把 n-1 个盘从 via 移到 to\n\n递归树的节点数 = 2ⁿ⁺¹ - 1（总操作数 + 1）。\n\n汉诺塔的变种：\n第一条：4 根柱子（Reve's puzzle）：用 Frame-Stewart 算法\n第二条：移动方向限制\n第三条：多盘同时移动\n第四条：限时汉诺塔\n\n应用：\n- 算法教学：递归的经典例子\n- 计算机科学：分治算法\n- 心理学：问题解决\n- 数学：递归函数\n\n汉诺塔跟二进制的关系：第 k 步移动的盘号 = k 的最低非零位所在的位置 + 1。\n\n举例：n=3，步数 1-7。\nk=1（001）移动盘 1\nk=2（010）移动盘 2\nk=3（011）移动盘 1\nk=4（100）移动盘 3\nk=5（101）移动盘 1\nk=6（110）移动盘 2\nk=7（111）移动盘 1\n\n对应：1, 2, 1, 3, 1, 2, 1。\n\n如果 64 个金盘按 1 秒 1 步的速度移动，需要 2⁶⁴ - 1 秒 ≈ 5850 亿年——比宇宙年龄还长。\n\n汉诺塔跟其他递归问题：\n- 二叉树遍历\n- 阶乘\n- 斐波那契\n- 河内塔（最经典）\n\nB 树、二项堆等高级数据结构都基于类似的\"分治 + 递归\"。\n\n现在请同学们自己动手：点\"河内塔\"，看 1-10 个盘的最少步数。验证 1 盘 1 步、2 盘 3 步、3 盘 7 步。试试手动走 3 盘汉诺塔，看怎么走最少。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"大盘不能压小盘\"的有趣递归里。",
+  audioUrl: "audio/OT02_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>盘数 n <input type="number" id="ot02_n" value="3" min="1" max="6"></label><button class="primary" id="ot02_run">演示</button></div><div id="ot02_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('ot02_run').onclick = () => {
@@ -2734,7 +2734,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/OT02_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

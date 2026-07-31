@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个有趣的数列——错排（Derangement）。\n\n什么是错排？n 个元素的排列中，没有任何元素在原位的排列数。\n\n举个例子：D_3 等于多少？3 个元素 1、2、3 的全排列有 6 个：123、132、213、231、312、321。其中\"每个元素都不在原位\"的有 213、231——共 2 个。所以 D_3 = 2。\n\nD_4 = ? 4 个元素的全排列有 24 个，其中\"全错位\"的有 9 个。所以 D_4 = 9。\n\n前 8 个错排数：D_0=1, D_1=0, D_2=1, D_3=2, D_4=9, D_5=44, D_6=265, D_7=1854, D_8=14833。\n\n错排有一个非常简单的递推公式：\nD_n = (n-1) × (D_{n-1} + D_{n-2})\n\n为什么？考虑第 n 个元素：\n- 它可以放到前面 n-1 个位置中的任意一个，假设放到了位置 k。\n- 现在位置 k 也有两种情况：\n  - 元素 k 放到了位置 n（\"互换\"）：剩下 n-2 个元素需要全错位，即 D_{n-2} 种。\n  - 元素 k 没放到位置 n：剩下 n-1 个元素需要全错位（除了位置 n 给了原 n 元素），即 D_{n-1} 种。\n- 总共 (n-1) × (D_{n-1} + D_{n-2}) 种。\n\n错排还有一个重要公式：\nD_n = n! × Σ_{k=0}^{n} (-1)^k / k!\n\n当 n 很大时，D_n ≈ n! / e（除以自然常数 e）！\n\n错排在生活中很有用：\n- 5 封信随机放进 5 个信封，全部放错的概率 = D_5/5! = 44/120 ≈ 36.7%\n- 6 对夫妻围坐圆桌，男女都错开相邻的坐法 = D_n 形式\n\n错排也叫\"次错位排列\"或\"完全错位\"。\n\n现在请同学们自己动手：点\"算错排\"，看前 15 项。验证 D_3=2、D_4=9、D_5=44、D_6=265。看看 5 封信全放错有多少种？44 种。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"全都错位\"的有趣排列里。",
+  audioUrl: "audio/SQ06_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq06_n" value="8" min="1" max="10"></label><button class="primary" id="sq06_run">生成</button></div><div id="sq06_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('sq06_run').onclick = () => {
@@ -2728,7 +2728,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ06_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

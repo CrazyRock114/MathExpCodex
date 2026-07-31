@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看另一个超重要的统计定理——大数定律（LLN）。\n\n大数定律：n 次独立同分布（i.i.d.）试验的样本均值 X̄，随 n 趋近无穷，几乎必然趋近期望 E[X] = μ。\n\n简单说：试验次数越多，平均值越接近真实期望。\n\n这是统计学最基本的定理！没有 LLN，就没有\"用样本估计总体\"这种方法。\n\n举个例子：抛硬币 1000 次，正面次数比例 X̄。LLN 说 X̄ 趋近 0.5。\n\n大数定律的两种形式：\n第一种：弱大数定律（WLLN）：X̄ 以概率趋近 μ（收敛 in probability）\n第二种：强大数定律（SLLN）：X̄ 几乎必然趋近 μ（收敛 almost surely）\n\n实际差别：WLLN 说\"频率收敛\"，SLLN 说\"样本路径几乎处处收敛\"。\n\n弱 vs 强：\n- 弱：可以想成\"跑无穷次试验，每次的样本均值都接近 μ\"\n- 强：可以想成\"固定一次试验，无穷样本均值一定接近 μ\"\n\n弱和强的区别很微妙。SLLN 强于 WLLN。\n\n大数定律 vs 中心极限定理：\n- LLN：X̄ → μ（点收敛）\n- CLT：X̄ → N(μ, σ²/n)（分布收敛）\n\nLLN 不告诉你\"怎么接近\"，CLT 告诉你\"接近的分布形状\"。\n\n举例：抛 10000 次硬币：\n- LLN：正面比例 X̄ 趋近 0.5（保证）\n- CLT：X̄ 近似 N(0.5, 0.25/10000) = N(0.5, 0.000025)，标准差 0.5%\n\n所以抛 10000 次硬币后，正面比例在 0.49 到 0.51 之间的概率约 95%（μ ± 2σ）。\n\nLLN 的应用：\n- 频率替代概率：长跑下来频率 ≈ 概率\n- 样本均值：统计估计的基础\n- 蒙特卡洛方法：模拟估计\n- 机器学习：训练集大时泛化好\n- 保险：保单数多时损失稳定\n\nLLN 不要求分布特殊：只要 i.i.d. + 有限均值，就成立。\n\n举例：抛 1000 次骰子，样本均值 趋近 3.5（即使单次分布是 1/6, 1/6, ..., 1/6 这种离散分布）。\n\nLLN 的反例：如果 i.i.d. 但方差无穷（如柯西分布），LLN 不成立——但中心极限定理也不成立。\n\n实际应用举例：\n- 民意调查：1000 个样本，95% 置信区间 ±3%\n- 物理实验：测 1000 次求平均减小误差\n- 蒙特卡洛模拟：n 越大估计越准\n\n现在请同学们自己动手：点\"大数定律\"，看 1000 次硬币正面比例的演变。看 X̄ 是不是越来越接近 0.5？看标准差是不是 √(0.25/n)？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"试验越多平均越准\"的有趣必然性里。",
+  audioUrl: "audio/PB06_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>试验次数 n <input type="number" id="pb06_n" value="10000" min="100"></label><button class="primary" id="pb06_run">跑</button></div><div id="pb06_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pb06_run').onclick = () => {
@@ -2734,7 +2734,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PB06_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

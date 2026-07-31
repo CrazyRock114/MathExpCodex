@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看哥德巴赫猜想的可视化——把每个偶数拆成两素数之和，看有多少种拆法。\n\n还记得哥德巴赫猜想吗？任何大于 2 的偶数都能写成两个素数之和。数学家用计算机验证到了 4 乘以 10 的 18 次方（4 亿亿），全都成立。但严格证明还没有。\n\n今天我们看看每个偶数有多少种\"哥德巴赫拆分\"。\n\n4 = 2 + 2（1 种）\n6 = 3 + 3（1 种）\n8 = 3 + 5（1 种）\n10 = 3 + 7 = 5 + 5（2 种）\n12 = 5 + 7（1 种）\n14 = 3 + 11 = 7 + 7（2 种）\n16 = 3 + 13 = 5 + 11（2 种）\n18 = 5 + 13 = 7 + 11（2 种）\n20 = 3 + 17 = 7 + 13（2 种）\n100 = 3 + 97 = 11 + 89 = 17 + 83 = 29 + 71 = 47 + 53（共 6 种）\n\n你发现规律了吗？偶数越大，能拆的种类越多。100 以内平均 2-3 种。1000 以内平均 8-10 种。10000 以内平均几十种。\n\n数学家还研究了\"Goldbach 弱猜想\"——任何大于 5 的奇数都能写成 3 个素数之和。2013 年秘鲁数学家 Helfgott 用 3 年的努力证明了弱猜想——但严格证明 100 多年的\"强哥德巴赫\"仍然没完成。\n\n现在请同学们自己动手：点\"哥德巴赫拆分\"，扫 1 到 100。每个偶数都能拆成两素数之和吗？能拆几种？100 这个数有 6 种：3+97、11+89、17+83、29+71、47+53。试试 1000 以内最多拆几对？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"两个素数相加成偶数\"的有趣拆解里。",
+  audioUrl: "audio/NT20_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>偶数 N <input type="number" id="nt20_n" value="100" min="4" max="10000"></label><button class="primary" id="nt20_run">拆</button></div><div id="nt20_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('nt20_run').onclick = () => {
@@ -2733,7 +2733,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/NT20_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

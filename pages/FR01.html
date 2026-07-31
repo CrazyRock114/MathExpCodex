@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超美的分形——曼德博集合（Mandelbrot Set）。\n\n什么是曼德博集合？在复平面上，所有\"迭代不发散\"的复数 c 构成的集合。\n\n迭代公式：z₀ = 0, z_{n+1} = zₙ² + c\n\n判定方法：迭代最多 1000 步，如果 |z| 一直小于 2，就认为 c 在集合内；否则在集合外。\n\n曼德博集合由数学家 Benoit Mandelbrot 在 1980 年发现。它是数学史上最复杂的对象之一——分形几何的标志。\n\n曼德博集合的形状：\n- 主心形：中心 (-0.5, 0) 附近\n- 周围环绕着大大小小的\"小球\"——这些是分形\n- 放大看，每个小球还有更小的球\n- 无限细节、自相似\n\n具体地说，曼德博集合位于复平面上：\n- 中心：c = 0（z = 0 → 0² + 0 = 0，永远不逃逸）\n- 主心形：-1 ≤ Re(c) ≤ 0.25\n- 圆盘：|c| ≤ 1/4 内的点都在集合内\n- 边界：极端复杂（无限细节）\n\n举例：\n- c = 0：|z| 永远 0，在集合内\n- c = 1：z = 0, 1, 2, 5, 26, ...，很快逃逸，不在集合内\n- c = -1：z = 0, -1, 0, -1, 0, ... 振荡，在集合内\n- c = -2：z = 0, -2, 2, 2, 6, ...，逃逸，不在集合内\n- c = -0.5 + 0.5i：z 复杂振荡，在集合内\n- c = 0.25 + 0i：边界点（数学上属于\"主心形\"）\n\n曼德博集合的渲染：\n- 集合内：黑色\n- 集合外：根据逃逸速度染色（迭代次数 → 颜色）\n\n无限细节：放大曼德博集合的边界，每次放大都看到新的结构——像分形海马、分形螺旋、分形花朵。\n\n数学性质：\n- 连通：单连通区域（朱利亚定理）\n- 边界：无限复杂（不是分形线段，是分形曲线）\n- 面积：有限但精确值未知（介于 1.50 和 1.57 之间）\n\n应用：\n- 复分析\n- 动力系统\n- 混沌理论\n- 计算机图形学\n\n计算机画曼德博：1000 步迭代、屏幕每个像素是一个 c，循环看是否逃逸。\n\n计算复杂度：每个像素 1000 步，10 万像素 = 1 亿步。所以渲染慢。\n\n加速：用 SIMD 指令、GPU 并行。\n\n现在请同学们自己动手：点\"曼德博集合\"，看主心形。放大看边界细节，看到新的分形结构。试试拖动改变 c。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"迭代到发散\"的有趣无限细节里。",
+  audioUrl: "audio/FR01_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>最大迭代 <input type="number" id="fr01_i" value="50" min="10" max="200"></label><label>分辨率 <input type="number" id="fr01_r" value="80" min="40" max="200"></label><button class="primary" id="fr01_run">画</button></div><canvas id="fr01_cv" width="400" height="300" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
     document.getElementById('fr01_run').onclick = () => {
@@ -2752,7 +2752,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/FR01_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

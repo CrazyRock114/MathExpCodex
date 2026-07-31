@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超实用的分布——几何分布。\n\n什么是几何分布？独立伯努利试验（每次成功概率 p），首次成功需要的试验次数 X 的分布。\n\nP(X = k) = (1-p)ᵏ⁻¹ × p\n\n几何分布的均值：E[X] = 1/p\n几何分布的方差：Var(X) = (1-p)/p²\n几何分布的标准差：σ = √(1-p)/p\n\n举个例子：抛硬币直到正面，p = 0.5。\n- P(X=1) = 0.5（第一次就正面）\n- P(X=2) = 0.5 × 0.5 = 0.25（第一次反面、第二次正面）\n- P(X=3) = 0.5² × 0.5 = 0.125\n- P(X=k) = (0.5)ᵏ\n\n均值 = 1/0.5 = 2（平均要 2 次才出正面）。\n方差 = 0.5/0.25 = 2，标准差 = √2 ≈ 1.41。\n\n几何分布有一个特殊性质——\"无记忆性\"：\nP(X > m + n | X > m) = P(X > n)\n\n意思是\"已经等了 m 次还没成功，再等 n 次才成功的概率 = 第一次等 n 次才成功的概率\"。\n\n举例：抛硬币 5 次都没正面，再抛 5 次的分布 = 重新开始抛 5 次的分布。无记忆！\n\n这个性质让几何分布在工程中很有用——比如设备故障、维修等待、顾客到达时间建模。\n\n几何分布的应用：\n- 设备故障：首次故障时间\n- 顾客到达：下次顾客到达时间\n- 股票价格：首次突破某价格的时间\n- 抽奖：首次中奖次数\n- 找硬币正面：抛几次才出正面\n- 产品出货：第一次质检通过需要几次\n\n几何分布 vs 负二项分布：几何分布是\"首次成功需要几次\"，负二项分布是\"第 r 次成功需要几次\"。\n\n举例：抛硬币直到第 3 次正面，需要的次数 X ~ 负二项分布。X 可以是 3、4、5、6、7...。\n\n几何分布的累积分布：F(k) = P(X ≤ k) = 1 - (1-p)ᵏ。\n\n举例：p=0.1, k=10。F(10) = 1 - 0.9¹⁰ = 1 - 0.349 = 0.651。所以 10 次内首次成功的概率是 65.1%。\n\n现在请同学们自己动手：点\"几何分布\"，输入 p，比如 0.5（硬币）、0.1（罕见事件）、0.9（常发生）。看 P(X=1)、P(X=2)、...P(X=10)。看均值是不是 1/p。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"首次成功需要多久\"的有趣等待里。",
+  audioUrl: "audio/PB04_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>p <input type="number" id="pb04_p" value="0.3" min="0.01" max="1" step="0.05"></label><label>显示前 k 项 <input type="number" id="pb04_k" value="10" min="2" max="30"></label><button class="primary" id="pb04_run">算</button></div><div id="pb04_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pb04_run').onclick = () => {
@@ -2732,7 +2732,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PB04_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

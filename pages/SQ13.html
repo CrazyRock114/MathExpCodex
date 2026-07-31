@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超级重要的数列——Stirling 数（第二类）。\n\n什么是第二类 Stirling 数？S(n, k) = 把 n 个不同的元素划分到 k 个非空子集的方法数。\n\n举个例子：S(3, 2) = 3。3 个元素 {1, 2, 3} 划分到 2 个非空子集的方法：\n{{1}, {2, 3}}\n{{2}, {1, 3}}\n{{3}, {1, 2}}\n共 3 种。✓\n\nS(4, 2) = 7。4 个元素 {1, 2, 3, 4} 划分到 2 个非空子集的方法：\n1-3, 1-2, 1-1 三种划分（k=1 时是 1 种，k=2 时是 7 种，k=3 时是 6 种，k=4 时是 1 种）。\n\n第二类 Stirling 数矩阵 n=1..5：\nn=1: S(1,1)=1\nn=2: S(2,1)=1, S(2,2)=1\nn=3: S(3,1)=1, S(3,2)=3, S(3,3)=1\nn=4: S(4,1)=1, S(4,2)=7, S(4,3)=6, S(4,4)=1\nn=5: S(5,1)=1, S(5,2)=15, S(5,3)=25, S(5,4)=10, S(5,5)=1\n\n注意 S(5, 2) = 15 = Bell 数 B(4)。这是因为 S(n, k) 对 k 求和等于 Bell 数 B(n)。\n\n第二类 Stirling 数有个递推公式：\nS(n, k) = k × S(n-1, k) + S(n-1, k-1)\n\n这个递推非常类似帕斯卡三角！\n\nStirling 数还满足：\n- S(n, 0) = 0（n>0）\n- S(n, n) = 1\n- S(n, 1) = 1\n- x^n = Σ S(n, k) × x × (x-1) × ... × (x-k+1)（x 的 n 次方用\"下降阶乘幂\"表示）\n- Σ S(n, k) = B(n)（Bell 数）\n\n应用：\n- 概率论：多项分布\n- 组合学：集合划分\n- 计算机科学：哈希函数\n- 数论：数的分解\n\n现在请同学们自己动手：点\"生成 Stirling 数\"，看前 7 行。验证 S(3,2)=3、S(4,2)=7、S(5,2)=15。看看 S(5,3)=25 怎么数出来？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"集合划分\"的有趣方法里。",
+  audioUrl: "audio/SQ13_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq13_n" value="6" min="2" max="8"></label><button class="primary" id="sq13_run">生成</button></div><div id="sq13_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('sq13_run').onclick = () => {
@@ -2740,7 +2740,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ13_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

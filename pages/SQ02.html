@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超级美的常数——黄金比例 φ。\n\n什么是黄金比例？它等于 1 加 5 的平方根除以 2，约等于 1.6180339887。\n\n黄金比例最神奇的地方：它跟斐波那契数列有超级紧密的联系！两个连续斐波那契数的比值，越往后越接近黄金比例：\nF_2/F_1 = 1/1 = 1\nF_3/F_2 = 2/1 = 2\nF_4/F_3 = 3/2 = 1.5\nF_5/F_4 = 5/3 ≈ 1.6667\nF_6/F_5 = 8/5 = 1.6\nF_10/F_9 = 55/34 ≈ 1.6176\nF_20/F_19 ≈ 1.6180339\nF_30/F_29 ≈ 1.6180339887\n\n看！越往后越接近 1.6180339887——这就是黄金比例！\n\n为什么？因为 F_{n+1}/F_n = (F_n + F_{n-1})/F_n = 1 + F_{n-1}/F_n。当 n 很大时，F_n 和 F_{n-1} 都非常大，但 F_{n-1}/F_n 趋近 φ - 1 = 1/φ。所以 F_{n+1}/F_n = 1 + 1/φ = φ。这就是 φ 满足的方程 φ² = φ + 1。\n\n黄金比例在自然界、艺术、建筑里到处都是：\n- 巴黎圣母院的比例符合 φ\n- 米洛斯的维纳斯（断臂维纳斯）的身高与腿长比是 φ\n- 蒙娜丽莎的脸长宽比是 φ\n- 向日葵种子的螺旋每圈比例是 φ\n- 鹦鹉螺壳的每个房间大小比例是 φ\n- 你手指的指节之间比例是 φ\n\n黄金矩形是宽高比 1:φ 的矩形。这个矩形里能切出一个正方形，剩下的还是黄金矩形！可以无限切下去。\n\n现在请同学们自己动手：点\"验证黄金比例\"，看 50 项斐波那契的比值。F_20/F_19 是不是已经很接近 1.618 了？F_30/F_29 是不是更接近？看看怎么用连分数表示 φ。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"看起来最美\"的比例里。",
+  audioUrl: "audio/SQ02_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq02_n" value="20" min="2"></label><button class="primary" id="sq02_run">比值</button></div><div id="sq02_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('sq02_run').onclick = () => {
@@ -2730,7 +2730,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ02_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

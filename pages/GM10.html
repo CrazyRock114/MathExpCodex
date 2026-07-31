@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超基础但超有用的问题——n 边形的对角线数。\n\n什么是多边形的对角线？连接两个不相邻顶点的线段。\n\nn 边形有多少条对角线？\n\n每个顶点可以画 (n-3) 条对角线（不能连自己，也不能连相邻的 2 个顶点）。\nn 个顶点共画 n × (n-3) 条。\n但每条对角线被两个顶点共享，所以要除以 2。\n\n对角线数 = n × (n-3) / 2\n\n举个例子：\n- 三角形（n=3）：3 × 0 / 2 = 0 条对角线。✓ 三角形没对角线\n- 四边形（n=4）：4 × 1 / 2 = 2 条对角线。✓ 四边形有 2 条对角线\n- 五边形（n=5）：5 × 2 / 2 = 5 条对角线。✓ 五边形有 5 条对角线（连起来是五角星）\n- 六边形（n=6）：6 × 3 / 2 = 9 条对角线。✓\n- 七边形（n=7）：7 × 4 / 2 = 14 条对角线\n- 八边形（n=8）：8 × 5 / 2 = 20 条对角线\n- 九边形（n=9）：9 × 6 / 2 = 27 条对角线\n- 十边形（n=10）：10 × 7 / 2 = 35 条对角线\n\nn 边形总共有 n(n-1)/2 条线段（所有顶点两两相连），其中 n 条是边，所以对角线数 = n(n-1)/2 - n = n(n-3)/2。\n\n对角线数的应用：\n- 验证几何性质（比如 5 边形的 5 条对角线围成 5 角星）\n- 计算多边形内部区域数\n- 组合学：图论里的\"对角线图\"\n\n对角线还分\"长对角线\"和\"短对角线\"——比如六边形里有 3 条\"长对角线\"（穿过中心）和 6 条\"短对角线\"（不穿过）。\n\n凸多边形里所有对角线都在内部，凹多边形里有些对角线会跑到外部（不叫\"对角线\"了）。\n\n数学家还研究了\"非交叉对角线数\"——把多边形内部不交叉的对角线数。这是 Catalan 数 C(n-2)。比如：\n- 四边形：1 种不交叉对角线\n- 五边形：2 种（5 角星不算）\n- 六边形：5 种\n- 七边形：14 种\n- 八边形：42 种\n\n现在请同学们自己动手：点\"对角线数\"，看 n=3..15 的对角线数。验证三角形 0、四边形 2、五边形 5。看看 n=20 多少？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"不相邻的顶点连线\"的有趣几何里。",
+  audioUrl: "audio/GM10_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="gm10_n" value="6" min="3" max="20"></label><button class="primary" id="gm10_run">算</button></div><div id="gm10_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('gm10_run').onclick = () => {
@@ -2727,7 +2727,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/GM10_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

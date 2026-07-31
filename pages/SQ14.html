@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个神秘的数列——幸运数（lucky numbers）。\n\n什么是幸运数？用一个奇特的\"筛法\"生成：\n1. 从奇数序列开始：1、3、5、7、9、11、13、15、17、19、21、23、25、27、29、31...\n2. 第二个数是 3。删除所有第 3 个数（3、9、15、21、27、33、39、45、51、57、63、69...）\n3. 现在下一个数是 7。删除所有第 7 个数。\n4. 下一个数是 9。删除所有第 9 个数。\n5. ... 一直继续。\n\n结果剩下的数就叫幸运数：1、3、7、9、13、15、21、25、31、33、37、43、49、51、63、67、69、73、75、79...\n\n幸运数看起来跟素数很像——100 以内有 25 个素数，23 个幸运数，密度接近。\n\n但幸运数跟素数不同：幸运数有\"筛法生成\"，但这种筛法跟 Eratosthenes 素数筛不一样——它是动态的，每步删除的位置数会变。\n\n幸运数是 1955 年被波兰数学家 Stanisław Ulam 发现的，他还发现了乌拉姆螺旋——把自然数按螺旋排列，质数和对角线有关系。\n\n幸运数的性质：\n- 100 以内有 23 个幸运数\n- 1000 以内有 75 个\n- 10000 以内有 564 个\n\n幸运数有没有无穷多个？数学家普遍认为有，但严格证明还没有——和素数无穷性的证明不同。\n\n还有\"双重幸运数\"——既是素数又是幸运数的数：3、7、13、31、37、43、67、73、79、127...\n\n现在请同学们自己动手：点\"生成幸运数\"，看前 30 个。看看哪些既是素数又是幸运数？双重幸运数有 11 个。验证筛法：3 之后的 6（不在列表），9 之后的 18（不在列表），等等。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"动态筛法\"的有趣数字里。",
+  audioUrl: "audio/SQ14_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>生成前 N 个 <input type="number" id="sq14_n" value="30" min="5" max="200"></label><button class="primary" id="sq14_run">生成</button></div><div id="sq14_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('sq14_run').onclick = () => {
@@ -2740,7 +2740,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/SQ14_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

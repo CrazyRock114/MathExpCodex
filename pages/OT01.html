@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超神奇的中国古代数学——幻方（Magic Square）。\n\n幻方：n×n 网格填 1 到 n²，每个数恰好一次。每行、每列、每条对角线之和都相等。\n\n最简单的 3×3 幻方叫\"洛书\"——中国传说 4000 多年前大禹治水时，洛水中浮出一只神龟，龟背上有这个图案：\n\n4 9 2\n3 5 7\n8 1 6\n\n每行、每列、对角线之和都是 15。神奇吧？\n\n3×3 幻方只有 1 个本质解（去掉旋转和镜像后）。所有 8 个变体是它的旋转和镜像。\n\n3×3 幻方之和 = (1+2+...+9) / 3 = 45/3 = 15。✓\n\n为什么 5 在中心？因为 1-9 的平均是 5，中心数 = 平均数。\n\n4×4 幻方有 880 个本质解。最有名的是 1514 年丢勒画的《忧郁 I》——画面右下角的 4×4 幻方：\n\n16 3 2 13\n5 10 11 8\n9 6 7 12\n4 15 14 1\n\n每行、每列、对角线之和都是 34。底行中间两个数 15、14 暗示创作年份（公元 1514 年）。\n\n4×4 幻方之和 = (1+2+...+16) / 4 = 136/4 = 34。✓\n\n5×5 幻方有 2 亿 7 千多万个本质解。幻方数随 n 增长极快。\n\n幻方的构造方法：\n- 暹罗法（Siamese method）：从中间开始，按\"右上、左下\"斜对角填数\n  1. 把 1 填在第一行中间\n  2. 下一个数填在右上方（行减 1、列加 1）\n  3. 如果超出边界，从另一边进\n  4. 如果位置已填，下一个填正下方\n  5. 重复\n\n举例 n=3：\n4 9 2\n3 5 7\n8 1 6 ✓\n\nn=5（用暹罗法构造）：\n11 24 7 20 3\n4 12 25 8 16\n17 5 13 21 9\n10 18 1 14 22\n23 6 19 2 15\n\n每行每列对角线之和 = 65。\n\n幻方的应用：\n第一条：组合数学\n第二条：密码学（幻方密码）\n第三条：艺术（丢勒、Escher 都画过）\n第四条：游戏（数独的祖先）\n第五条：算法（构造、计数、性质）\n\n幻方的推广：\n- 高维幻方\n- 泛对角线幻方\n- 乘法幻方（每行每列乘积相等）\n- 加减乘除混合\n\n著名数学家：欧拉、本·富兰克林（最爱 8×8 幻方）、Bachet 都研究过幻方。\n\n现在请同学们自己动手：点\"幻方\"，看 3×3 洛书。验证每行/列/对角线之和 = 15。看 4×4 丢勒幻方之和 = 34。试试 5×5 暹罗法构造。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"行/列/对角线之和相等\"的中国古代神龟背上。",
+  audioUrl: "audio/OT01_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div style="text-align: center; padding: 16px;">
       <div style="display: inline-grid; grid-template-columns: repeat(3, 60px); gap: 4px;">
@@ -2727,7 +2727,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/OT01_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

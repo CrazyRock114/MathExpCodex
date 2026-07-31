@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "",
   tryit: "",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超级反直觉的概率问题——生日悖论。\n\n生日悖论说：23 个人中至少 2 人同生日的概率超过 50%！\n\n听起来违反直觉——23 人 vs 365 天，怎么会过半概率撞日？\n\n让我算给你看。23 个人中没人生日相同（全部互不相同）的概率：\n\n第 1 个人：随便，概率 1\n第 2 个人：不跟第 1 个人同生日。365 天里选 364 天，概率 364/365 ≈ 99.7%\n第 3 个人：不跟前 2 个人同生日。概率 363/365 ≈ 99.5%\n第 4 个人：362/365 ≈ 99.2%\n...\n第 23 个人：343/365 ≈ 94%\n\n全不相同的概率 = 365/365 × 364/365 × 363/365 × ... × 343/365\n= (365 × 364 × ... × 343) / 365²³\n= 365! / (342! × 365²³)\n\n算出来约 0.4927，约 49.3%。\n\n所以至少 2 人同生日的概率 = 1 - 49.3% = 50.7% > 50%。✓\n\n更多数字：\n- 23 人：50.7%\n- 30 人：70.6%\n- 40 人：89.1%\n- 50 人：97.0%\n- 60 人：99.4%\n- 70 人：99.92%\n\n70 个人就几乎肯定有 2 人同生日！\n\n这叫\"生日悖论\"——因为直觉上 23 << 365，概率应该很小，但实际超过 50%。\n\n为什么？关键：不是 1 个人跟另 1 个人比，是 23 个人里任意 2 个组合比。组合数 C(23, 2) = 253，所以\"至少有 2 人同生日\"实际是 253 个配对的\"任一配对撞日\"——这就把小概率累加成大概率。\n\n生日悖论的应用：\n- 哈希函数碰撞概率\n- 密码学：生日攻击\n- 随机数生成：检验生日\n- 鸽巢原理的具体应用\n\n经典应用：128 位哈希值（生日攻击）需要 2⁶⁴ = 1.8 × 10¹⁹ 次尝试才 50% 概率碰撞——看似很多，其实只用 2⁶⁴ 次。\n\n生日悖论也被用来破解加密：128 位密码需要 2⁶⁴ 次，比暴力破解的 2¹²⁸ 次少很多。\n\n现在请同学们自己动手：点\"生日悖论\"，输入班级人数比如 23、30、50。看概率值。试试自己班级多少人能 50% 概率撞日。明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"反直觉但正确\"的有趣概率里。",
+  audioUrl: "audio/PB01_explain.mp3",
   render: function(h) {
     h.innerHTML = `<div class="row"><label>人数 n <input type="number" id="pb01_n" value="23" min="2" max="80"></label><button class="primary" id="pb01_run">算概率</button><button class="ghost" id="pb01_run2">模拟 10000 次</button></div><div id="pb01_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('pb01_run').onclick = () => {
@@ -2744,7 +2744,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PB01_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');
