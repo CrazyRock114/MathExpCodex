@@ -12482,6 +12482,1608 @@ function initStage_PE08_initAll() { initStage_PE08(); }
 function initStage_PE09_initAll() { initStage_PE09(); }
 function initStage_PE10_initAll() { initStage_PE10(); }
 
+// ============== NT11-20 5 步直观讲解 ==============
+// ============== NT11-20 5 步直观讲解 getStages + initStage ==============
+function getStagesNT11() {
+  return [
+    {
+      emoji: '🧛', title: '吸血鬼数（位咬合）', content: `
+        <p class="lead">偶数位合数 n = a × b，a、b 各含 n 一半位数，n 的位是 a + b 位的重排——<strong style="color:#7c3aed;">吸血鬼数</strong>！</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fecaca, #fecaca); border: 2px solid #ef4444; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #7f1d1d;">1395</div>
+            <div style="font-size: 12px; color: #7f1d1d; margin-top: 6px;">= 15 × 93</div>
+            <div style="font-size: 11px; color: #991b1b; margin-top: 4px;">1 3 9 5 ↔ 1 5 9 3 ✓</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #1e3a8a;">1435</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">= 35 × 41</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">1 4 3 5 ↔ 3 5 4 1 ✓</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #14532d;">7 个</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">1000 内有 7 个</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">百万内 148480 个</div>
+          </div>
+        </div>
+        <div class="next-hint">🧛 <strong>1994</strong> 皮卡洛汽车公司论文首次提出吸血鬼数</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '验算吸血鬼数', content: `
+        <p class="lead">输入 N，找所有吸血鬼数：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="nt11s2-n" min="1000" max="100000" value="10000" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt11s2-preset" data-n="5000">N=5000</button>
+              <button class="ghost small nt11s2-preset" data-n="20000">N=2万</button>
+              <button class="ghost small nt11s2-preset" data-n="100000">N=10万</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt11s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>密度</strong>：10000 内 7 个，百万内 148480 个（密度 ≈ N / 10⁵）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '扫描 1-10000 密度', content: `
+        <p class="lead">看吸血鬼数密度随 N 增长：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>扫到 N = <input type="number" id="nt11s3-n" min="1000" max="100000" value="10000" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="nt11s3-run">▶ 扫</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt11s3-result" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔭 <strong>观察</strong>：N 增 10 倍，吸血鬼数大约增 10 倍（密度 ~ N/10⁵）</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '假吸血鬼数（双 fangs）', content: `
+        <p class="lead">有些 n 有多组"咬合"方式（多个 fangs）：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+          例：6880 = 80×86（不行，0 结尾）<br>
+          例：10920 = 210×52（不可）<br>
+          一些吸血鬼数有两组 fangs：<br>
+          125460 = 204×615 = 246×510
+        </div>
+        <div class="next-hint">🔬 <strong>研究</strong>：双 fangs 吸血鬼数很罕见，需要进一步分类</div>
+      `
+    },
+    {
+      emoji: '📅', title: '吸血鬼数小史', content: `
+        <p class="lead">1994 提出 → 2002 立项 OEIS → 2007 Pietro Catalan 提出更严格定义</p>
+        <div class="viz">
+          <div id="nt11s5-timeline"></div>
+        </div>
+        <div class="next-hint">💡 <strong>争议</strong>：原始定义允许"末位 0"的情况，2002 年 Rivera 等人讨论后收紧定义</div>
+      `
+    },
+  ];
+}
+function getStagesNT12() {
+  return [
+    {
+      emoji: '🔺', title: '三角形数 T_n = n(n+1)/2', content: `
+        <p class="lead">n(n+1)/2 = 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...<br>能<strong style="color:#7c3aed;">摆成三角形</strong>的石子数！</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 30px; font-weight: 900; color: #1e3a8a;">1, 3, 6, 10</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">T₁, T₂, T₃, T₄</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">1+2+3+4 = 10</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 30px; font-weight: 900; color: #92400e;">15, 21, 28, 36</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">T₅, T₆, T₇, T₈</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">5/6/7/8 行</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 30px; font-weight: 900; color: #14532d;">3+6=9</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">T₂+T₃ = 3²</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">连续和 = 平方！</div>
+          </div>
+        </div>
+        <div class="next-hint">🔺 <strong>规律</strong>：连续两三角形数之和 = 平方数</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '三角形数生成器', content: `
+        <p class="lead">输入 n，生成前 n 个三角形数：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>n = <input type="number" id="nt12s2-n" min="1" max="30" value="10" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt12s2-preset" data-n="5">n=5</button>
+              <button class="ghost small nt12s2-preset" data-n="10">n=10</button>
+              <button class="ghost small nt12s2-preset" data-n="20">n=20</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt12s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>判定</strong>：N 是三角形数 ↔ 8N+1 是完全平方数</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '扫 1-1000 的三角数', content: `
+        <p class="lead">1000 内有 44 个三角形数：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>扫到 N = <input type="number" id="nt12s3-n" min="100" max="5000" value="500" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="nt12s3-run">▶ 扫</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt12s3-result" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔭 <strong>密度</strong>：三角数密度 ~ 1/√(2N)，N=1000 → 44 个（≈ 1000/√2000 ≈ 22 但实际 44，因 8N+1 完全平方）</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '连续和 = 平方', content: `
+        <p class="lead">验证 T_n + T_{n+1} = (n+1)²：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>n = <input type="number" id="nt12s4-n" min="1" max="20" value="10" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="nt12s4-run">▶ 验证</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt12s4-result" style="padding: 14px; background: #fef3c7; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>应用</strong>：物理最密堆积、面心立方晶格都跟三角形数有关</div>
+      `
+    },
+    {
+      emoji: '📅', title: '三角数小史', content: `
+        <p class="lead">毕达哥拉斯 → 费马 1636 猜想 → 高斯 1796 证明</p>
+        <div class="viz">
+          <div id="nt12s5-timeline"></div>
+        </div>
+        <div class="next-hint">❓ <strong>高斯 1796</strong>：每个正整数 = 3 个三角形数之和（也是著名的"3-角数定理"）</div>
+      `
+    },
+  ];
+}
+function getStagesNT13() {
+  return [
+    {
+      emoji: '🔷', title: '四面体数（3D 三角形）', content: `
+        <p class="lead">Tetra_n = n(n+1)(n+2)/6 = 1, 4, 10, 20, 35, 56, 84, 120, 165, 220, ...</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 30px; font-weight: 900; color: #1e3a8a;">1, 4, 10, 20</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">Tetra₁, ₂, ₃, ₄</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">1+3+6+10 = 20</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 30px; font-weight: 900; color: #92400e;">35, 56, 84</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">Tetra₅, ₆, ₇</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">5/6/7 层</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 30px; font-weight: 900; color: #14532d;">= 20</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">T₁+T₂+T₃+T₄</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">= Tetra₄</div>
+          </div>
+        </div>
+        <div class="next-hint">🔷 <strong>核心</strong>：Tetra_n = T_1 + T_2 + ... + T_n（前 n 个三角形数之和）</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '四面体数生成器', content: `
+        <p class="lead">输入 n，生成前 n 个四面体数：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>n = <input type="number" id="nt13s2-n" min="1" max="30" value="10" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt13s2-preset" data-n="5">n=5</button>
+              <button class="ghost small nt13s2-preset" data-n="10">n=10</button>
+              <button class="ghost small nt13s2-preset" data-n="20">n=20</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt13s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>公式</strong>：Tetra_n = n(n+1)(n+2)/6 = C(n+2, 3)</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '扫 1-1000 四面体数', content: `
+        <p class="lead">1000 内 17 个四面体数：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>扫到 N = <input type="number" id="nt13s3-n" min="100" max="5000" value="1000" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="nt13s3-run">▶ 扫</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt13s3-result" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔭 <strong>密度</strong>：N=1000 内 17 个，约 ∛N 个四面体数 ≤ N</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '可视化三角堆', content: `
+        <p class="lead">看 Tetra_4 = 20 个石子堆成三角锥：</p>
+        <div class="viz" style="text-align: center; padding: 16px; background: #fef3c7; border-radius: 12px;">
+          <svg viewBox="0 0 240 180" style="max-width: 240px;">
+            <g transform="translate(120, 20)">
+              ${[1,2,3,4].map(layer => {
+                const sz = layer * 8;
+                const yPos = (4 - layer) * 30;
+                return `<g transform="translate(${-sz/2}, ${yPos})">
+                  ${Array.from({length: layer}, (_, r) => Array.from({length: layer}, (_, c) =>
+                    `<circle cx="${c*8}" cy="${r*8}" r="3.5" fill="#f59e0b" stroke="#92400e" stroke-width="0.5"/>`
+                  ).join('')).join('')}
+                </g>`;
+              }).join('')}
+            </g>
+          </svg>
+        </div>
+        <div class="next-hint">🔬 <strong>应用</strong>：4 面体分子（CH4）、骰子、足球练习阵型</div>
+      `
+    },
+    {
+      emoji: '📅', title: '四面体数小史', content: `
+        <p class="lead">欧几里得 → 帕斯卡三角 → 19 世纪命名</p>
+        <div class="viz">
+          <div id="nt13s5-timeline"></div>
+        </div>
+        <div class="next-hint">💡 <strong>关系</strong>：帕斯卡三角第 n 行前 3 列 = 第 n 个四面体数</div>
+      `
+    },
+  ];
+}
+function getStagesNT14() {
+  return [
+    {
+      emoji: '🌀', title: '数字根：mod 9 之美', content: `
+        <p class="lead">反复加各位数字 → 一位数 = <strong style="color:#7c3aed;">数字根</strong>。38 → 11 → 2；987654321 → 45 → 9</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 28px; font-weight: 900; color: #1e3a8a;">38 → 2</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">3+8=11, 1+1=2</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">38 mod 9 = 2 ✓</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 28px; font-weight: 900; color: #92400e;">987654321 → 9</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">→ 45 → 9</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">9 位数 = 1 位 9</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 28px; font-weight: 900; color: #14532d;">999...9 → 9</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">全 9 → 9</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">9 的特征</div>
+          </div>
+        </div>
+        <div class="next-hint">🌀 <strong>核心</strong>：数字根 = n mod 9（余 0 时为 9）</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '数字根计算器', content: `
+        <p class="lead">输入 n，看迭代路径：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>n = <input type="number" id="nt14s2-n" min="1" max="999999999999" value="12345" style="width: 140px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt14s2-preset" data-n="38">38</button>
+              <button class="ghost small nt14s2-preset" data-n="987654321">987654321</button>
+              <button class="ghost small nt14s2-preset" data-n="999999999">999999999</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt14s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>规律</strong>：数字根 = n mod 9（如果 n mod 9 = 0，数字根 = 9）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '扫描 1-100 数字根分布', content: `
+        <p class="lead">看数字根在 1-100 出现次数：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="nt14s3-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>规律</strong>：1-8 各出现 11 次，9 出现 12 次（含 99）</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '乘法：数字根相乘', content: `
+        <p class="lead">数字根相乘的数字根 = 原数相乘的数字根：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>a = <input type="number" id="nt14s4-a" min="1" max="999" value="38"></label>
+            <label>b = <input type="number" id="nt14s4-b" min="1" max="999" value="25"></label>
+            <button class="primary" id="nt14s4-run">▶ 验</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt14s4-result" style="padding: 14px; background: #f0fdf4; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>原理</strong>：乘积 mod 9 = (a mod 9) × (b mod 9) mod 9</div>
+      `
+    },
+    {
+      emoji: '📅', title: '数字根小史', content: `
+        <p class="lead">毕达哥拉斯 → 印度九宫格 → 现代数论</p>
+        <div class="viz">
+          <div id="nt14s5-timeline"></div>
+        </div>
+        <div class="next-hint">❓ <strong>应用</strong>：中国九宫格（洛书）、现代密码学（mod 9 校验）</div>
+      `
+    },
+  ];
+}
+function getStagesNT15() {
+  return [
+    {
+      emoji: '🔁', title: '回文素数（正反都素）', content: `
+        <p class="lead">既是素数又是回文数：2, 3, 5, 7, 11, 101, 131, 151, 181, 191, 313...</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 28px; font-weight: 900; color: #1e3a8a;">2, 3, 5, 7, 11</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">5 个 1 位</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">+ 1 个 2 位</div>
+          </div>
+          <div style="flex: 1 1 220px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 22px; font-weight: 900; color: #92400e; font-family: monospace;">101, 131, 151, 181, 191</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">5 个 3 位</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">3 位共 15 个</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 28px; font-weight: 900; color: #14532d;">4 位 0</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">(4 位回文 = 11 倍数)</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">奇位数 = 素数</div>
+          </div>
+        </div>
+        <div class="next-hint">🔁 <strong>定理</strong>：除 11 外，所有回文素数位数都是奇数</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '回文素数扫描器', content: `
+        <p class="lead">输入 N，找所有回文素数：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="nt15s2-n" min="100" max="100000" value="10000" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt15s2-preset" data-n="1000">N=1000</button>
+              <button class="ghost small nt15s2-preset" data-n="10000">N=10⁴</button>
+              <button class="ghost small nt15s2-preset" data-n="100000">N=10⁵</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt15s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>密度</strong>：100 内 20 个、1000 内 48 个、10000 内 113 个</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '奇/偶位柱状图', content: `
+        <p class="lead">奇数位 vs 偶数位回文素数对比：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="nt15s3-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>证明</strong>：偶数位回文数一定能被 11 整除（除 11 本身）</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '奇数位回文数都素？', content: `
+        <p class="lead">生成 5 位回文数看是否素：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>位数 = <input type="number" id="nt15s4-n" min="1" max="7" value="5" style="width: 100px; padding: 4px;"></label>
+            <button class="primary" id="nt15s4-run">▶ 列</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt15s4-result" style="padding: 14px; background: #f0fdf4; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>观察</strong>：5 位回文数共 900 个，素数 53 个；密度 ~ 6%</div>
+      `
+    },
+    {
+      emoji: '📅', title: '回文素数小史', content: `
+        <p class="lead">古希腊发现 → 现代 GIMPS 找大数 → 仍是开放问题</p>
+        <div class="viz">
+          <div id="nt15s5-timeline"></div>
+        </div>
+        <div class="next-hint">❓ <strong>未解</strong>：回文素数有无穷多个？2017 年证明弱猜想（5+ 奇数 = 3 素数和）</div>
+      `
+    },
+  ];
+}
+function getStagesNT16() {
+  return [
+    {
+      emoji: '🕳️', title: '素数间隙：越来越稀', content: `
+        <p class="lead">相邻素数之差。1, 2, 2, 4, 2, 4, 2, 4, 6, 2, 6, 4...<br>最大间隙随 N<strong style="color:#7c3aed;">趋向无穷</strong>！</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #1e3a8a;">1, 2, 2</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">2-3, 3-5, 5-7</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">前 3 个间隙</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #92400e;">14</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">100 内最大间隙</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">113-127 = 14</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #14532d;">282</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">10⁹ 内最大间隙</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">陶哲轩 2014 证明</div>
+          </div>
+        </div>
+        <div class="next-hint">🕳️ <strong>核心</strong>：间隙 → ∞（任意大）— 陶哲轩 2014 证明</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '素数间隙扫描', content: `
+        <p class="lead">输入 N 算所有间隙：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="nt16s2-n" min="100" max="5000" value="500" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt16s2-preset" data-n="100">N=100</button>
+              <button class="ghost small nt16s2-preset" data-n="500">N=500</button>
+              <button class="ghost small nt16s2-preset" data-n="2000">N=2000</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt16s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.7; max-height: 240px; overflow-y: auto;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>平均</strong>：到 N 的平均间隙 ~ ln N（Cramer 猜想：max ~ ln²N）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '最大间隙随 N 增长', content: `
+        <p class="lead">看 N 翻倍时最大间隙变化：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="nt16s3-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>规律</strong>：最大间隙 ~ (ln N)² (Cramer 猜想 1936，未证)</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '间隙分布柱状图', content: `
+        <p class="lead">500 内 95 个间隙长度分布：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="nt16s4-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔬 <strong>观察</strong>：偶数间隙（除 2 之外）多 = 孪生素数；最大间隙位置随机</div>
+      `
+    },
+    {
+      emoji: '📅', title: '素数间隙小史', content: `
+        <p class="lead">欧几里得 2300 年前证素数无穷 → 2014 陶哲轩证明间隙 → ∞</p>
+        <div class="viz">
+          <div id="nt16s5-timeline"></div>
+        </div>
+        <div class="next-hint">❓ <strong>未解</strong>：最大间隙与 N 的精确关系（Cramer 猜想）</div>
+      `
+    },
+  ];
+}
+function getStagesNT17() {
+  return [
+    {
+      emoji: '⏰', title: '模运算（mod m）', content: `
+        <p class="lead">n mod m = n 除以 m 的余数。<strong style="color:#7c3aed;">模运算</strong>在密码学、时钟、星期计算中无处不在！</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #1e3a8a;">17 mod 5 = 2</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">17 ÷ 5 = 3 余 2</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">基本模运算</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #92400e;">10 + 8 = 6</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">时间 18 mod 12 = 6</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">时钟应用</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #14532d;">RSA</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">大数模幂加密</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">现代密码学</div>
+          </div>
+        </div>
+        <div class="next-hint">⏰ <strong>核心</strong>：mod m 形成一个"循环世界"——加减乘都在 m 内闭合</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '模序列生成器', content: `
+        <p class="lead">输入 m 和 N，看 0..N 模 m 的序列：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>m = <input type="number" id="nt17s2-m" min="2" max="50" value="7" style="width: 100px; padding: 4px;"></label>
+            <label>N = <input type="number" id="nt17s2-n" min="10" max="100" value="30" style="width: 100px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt17s2-preset" data-m="7" data-n="30">m=7, N=30</button>
+              <button class="ghost small nt17s2-preset" data-m="13" data-n="40">m=13</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt17s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>规律</strong>：n 增加 1，余数增加 1（归零时 mod m = 0）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '模 7 的循环', content: `
+        <p class="lead">mod 7 = 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, ... 循环：</p>
+        <div class="viz" style="text-align: center; padding: 16px; background: #f0f9ff; border-radius: 12px;">
+          <svg viewBox="0 0 360 100" style="max-width: 360px;">
+            ${[0,1,2,3,4,5,6].map((r, i) => {
+              const x = 30 + i * 45;
+              const colors = ['#ef4444', '#f59e0b', '#eab308', '#10b981', '#3b82f6', '#8b5cf6', '#ec4899'];
+              return `<circle cx="${x}" cy="50" r="18" fill="${colors[i]}" stroke="#1f2937" stroke-width="2"/>
+                <text x="${x}" y="55" text-anchor="middle" font-size="16" font-weight="700" fill="white">${r}</text>`;
+            }).join('')}
+          </svg>
+        </div>
+        <div class="next-hint">🔭 <strong>循环</strong>：任何 a ≡ b mod m 等价 a-b ≡ 0 mod m</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '大数 mod 技巧', content: `
+        <p class="lead">大数 mod m 的速算：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+          10 ≡ 1 (mod 9)<br>
+          100 ≡ 1 (mod 9)<br>
+          1234 ≡ (1+2+3+4) ≡ 10 ≡ 1 (mod 9)<br>
+          <br>
+          <strong>推广</strong>：10ᵏ ≡ 1 (mod 9) 所以 n ≡ 各位数字和 (mod 9)
+        </div>
+        <div class="next-hint">🔬 <strong>应用</strong>：身份证校验、银行账号 mod 9 校验（防止错位）</div>
+      `
+    },
+    {
+      emoji: '📅', title: '模运算小史', content: `
+        <p class="lead">欧几里得 → 高斯《算术研究》1801 → 现代密码学</p>
+        <div class="viz">
+          <div id="nt17s5-timeline"></div>
+        </div>
+        <div class="next-hint">💡 <strong>关键</strong>：RSA 加密基于"大数分解很难"——本质是大数 mod 运算的难解性</div>
+      `
+    },
+  ];
+}
+function getStagesNT18() {
+  return [
+    {
+      emoji: '🔗', title: '欧拉 φ 函数（互素计数）', content: `
+        <p class="lead">φ(n) = 跟 n 互素且 ≤ n 的正整数个数。<br>例：φ(10) = 4（1, 3, 7, 9）</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 28px; font-weight: 900; color: #1e3a8a;">φ(10) = 4</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">{1, 3, 7, 9}</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">跟 10 互素</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 28px; font-weight: 900; color: #92400e;">φ(7) = 6</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">p 是素数 → φ(p)=p-1</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">素数性质</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 28px; font-weight: 900; color: #14532d;">φ(12) = 4</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">12=2²·3 → 4</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">公式验证</div>
+          </div>
+        </div>
+        <div class="next-hint">🔗 <strong>公式</strong>：φ(n) = n × Π(1 - 1/p)，p 跑遍 n 的素因子</div>
+      `
+    },
+    {
+      emoji: '🧮', title: 'φ 计算器', content: `
+        <p class="lead">输入 n，算 φ(n) + 列出互素数：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>n = <input type="number" id="nt18s2-n" min="2" max="500" value="36" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt18s2-preset" data-n="30">n=30</button>
+              <button class="ghost small nt18s2-preset" data-n="60">n=60</button>
+              <button class="ghost small nt18s2-preset" data-n="100">n=100</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt18s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>验证</strong>：φ(30) = 30 × (1-1/2) × (1-1/3) × (1-1/5) = 8</div>
+      `
+    },
+    {
+      emoji: '🔭', title: 'φ 增长曲线', content: `
+        <p class="lead">前 50 个 φ 值：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="nt18s3-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>规律</strong>：素数处 φ(p) = p-1（峰值），p² 处 φ(p²) = p(p-1)</div>
+      `
+    },
+    {
+      emoji: '🔬', title: 'φ 求和公式', content: `
+        <p class="lead">Σ φ(d) = n，d 跑遍 n 的所有正因子：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>n = <input type="number" id="nt18s4-n" min="2" max="100" value="12" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="nt18s4-run">▶ 验</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt18s4-result" style="padding: 14px; background: #f0fdf4; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>应用</strong>：RSA 加密基于"大数分解难"——欧拉定理是关键</div>
+      `
+    },
+    {
+      emoji: '📅', title: 'φ 函数小史', content: `
+        <p class="lead">欧拉 1760 提出 → 现代密码学 RSA 1977 奠基</p>
+        <div class="viz">
+          <div id="nt18s5-timeline"></div>
+        </div>
+        <div class="next-hint">💡 <strong>欧拉定理</strong>：a^φ(n) ≡ 1 (mod n)——RSA 加密的数学基础</div>
+      `
+    },
+  ];
+}
+function getStagesNT19() {
+  return [
+    {
+      emoji: '⚡', title: '梅森素数 2^p - 1', content: `
+        <p class="lead">形如 2^p - 1 的素数（p 必须也是素数）：3, 7, 31, 127, 8191, 131071...</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #1e3a8a;">3, 7, 31, 127</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">p=2, 3, 5, 7</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">前 4 个</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #92400e;">2147483647</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">p=31 → 2^31 - 1</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">欧拉 1772 发现</div>
+          </div>
+          <div style="flex: 1 1 220px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 22px; font-weight: 900; color: #14532d;">51 个</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">已发现 51 个</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">最大 24862048 位</div>
+          </div>
+        </div>
+        <div class="next-hint">⚡ <strong>规律</strong>：p 为合数时 2^p - 1 必为合数（无需测试）</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '找梅森素数', content: `
+        <p class="lead">输入 p 上限，找所有梅森素数：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>p ≤ <input type="number" id="nt19s2-p" min="2" max="40" value="25" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt19s2-preset" data-p="15">p≤15</button>
+              <button class="ghost small nt19s2-preset" data-p="25">p≤25</button>
+              <button class="ghost small nt19s2-preset" data-p="31">p≤31</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt19s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>结果</strong>：p≤25 找到 5 个（3, 7, 31, 127, 8191）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '梅森素数与完全数', content: `
+        <p class="lead">欧拉发现：每个偶完全数 = 2^(p-1) × (2^p - 1)：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.9;">
+          2¹ × 3 = 6 ✓<br>
+          2² × 7 = 28 ✓<br>
+          2⁴ × 31 = 496 ✓<br>
+          2⁶ × 127 = 8128 ✓
+        </div>
+        <div class="next-hint">🔭 <strong>核心</strong>：偶完全数 ↔ 梅森素数一一对应</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '梅森素数与 GIMPS', content: `
+        <p class="lead">GIMPS（互联网梅森素数大搜索）项目：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;">
+          1996 启动，全球志愿者用家用电脑搜索<br>
+          到 2024 年已发现 21 个梅森素数<br>
+          最大：2^82589933 - 1（24862048 位）<br>
+          2018 年由 Patrick Laroche 发现
+        </div>
+        <div class="next-hint">🔬 <strong>应用</strong>：大梅森素数用于测试计算机硬件、加密学</div>
+      `
+    },
+    {
+      emoji: '📅', title: '梅森素数小史', content: `
+        <p class="lead">梅森 1644 提出 → 欧拉 1772 → GIMPS 1996 至今</p>
+        <div class="viz">
+          <div id="nt19s5-timeline"></div>
+        </div>
+        <div class="next-hint">❓ <strong>未解</strong>：梅森素数有无穷多个？仍是猜想</div>
+      `
+    },
+  ];
+}
+function getStagesNT20() {
+  return [
+    {
+      emoji: '🪙', title: '哥德巴赫拆分（偶数 = 两素数和）', content: `
+        <p class="lead">每个偶数 = 两素数之和的拆分对数。<br>100 = 3+97 = 11+89 = 17+83 = 29+71 = 47+53（6 种）</p>
+        <div class="viz" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #1e3a8a;">6 种</div>
+            <div style="font-size: 12px; color: #1e3a8a; margin-top: 6px;">100 的拆法数</div>
+            <div style="font-size: 11px; color: #312e81; margin-top: 4px;">3+97, 11+89, ...</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #92400e;">8 种</div>
+            <div style="font-size: 12px; color: #92400e; margin-top: 6px;">1000 的拆法数</div>
+            <div style="font-size: 11px; color: #b45309; margin-top: 4px;">越大拆法越多</div>
+          </div>
+          <div style="flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
+            <div style="font-size: 26px; font-weight: 900; color: #14532d;">4×10¹⁸</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">已验证范围</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">计算机强证明</div>
+          </div>
+        </div>
+        <div class="next-hint">🪙 <strong>1742</strong> 哥德巴赫写信给欧拉提出，至今未严格证明</div>
+      `
+    },
+    {
+      emoji: '🧮', title: '哥德巴赫拆分器', content: `
+        <p class="lead">输入偶数 N，列出所有拆分：</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>N = <input type="number" id="nt20s2-n" min="4" max="500" value="100" style="width: 120px; padding: 4px;"></label>
+            <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+              <button class="primary small nt20s2-preset" data-n="50">N=50</button>
+              <button class="ghost small nt20s2-preset" data-n="100">N=100</button>
+              <button class="ghost small nt20s2-preset" data-n="200">N=200</button>
+            </div>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt20s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">💡 <strong>例子</strong>：100 = 3+97 = 11+89 = 17+83 = 29+71 = 47+53（共 6 种）</div>
+      `
+    },
+    {
+      emoji: '🔭', title: '扫描 1-200 拆分柱状图', content: `
+        <p class="lead">偶数越大，拆分对数越多（≈ N/ln²N）：</p>
+        <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
+          <canvas id="nt20s3-chart" style="max-width: 100%;"></canvas>
+        </div>
+        <div class="next-hint">🔭 <strong>Hardy-Littlewood</strong>：拆分对数 ~ C × N/ln²N (C = 2∏(1-1/(p-1)²))</div>
+      `
+    },
+    {
+      emoji: '🔬', title: '拆不开的偶数？', content: `
+        <p class="lead">到 4×10¹⁸ 全部能拆——但严格证明？</p>
+        <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1 1 200px;">
+            <label>扫到 N = <input type="number" id="nt20s4-n" min="4" max="200" value="100" style="width: 120px; padding: 4px;"></label>
+            <button class="primary" id="nt20s4-run">▶ 扫</button>
+          </div>
+          <div style="flex: 2 1 300px;">
+            <div id="nt20s4-result" style="padding: 14px; background: #f0fdf4; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"></div>
+          </div>
+        </div>
+        <div class="next-hint">🔬 <strong>状态</strong>：弱猜想（5+ 奇数 = 3 素数之和）2013 年 Helfgott 证明；强猜想未证</div>
+      `
+    },
+    {
+      emoji: '📅', title: '哥德巴赫猜想小史', content: `
+        <p class="lead">1742 提出 → 至今未严格证明</p>
+        <div class="viz">
+          <div id="nt20s5-timeline"></div>
+        </div>
+        <div class="next-hint">❓ <strong>悬赏</strong>：100 万美元给证明者（陈景润 1966 证明"1+2"，最接近）</div>
+      `
+    },
+  ];
+}
+
+// Init functions
+function initStage_NT11_s1() {}
+function initStage_NT11_s2() {
+  const nInput = document.getElementById('nt11s2-n');
+  const resultEl = document.getElementById('nt11s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(1000, Math.min(100000, parseInt(nInput.value) || 10000));
+    const out = [];
+    for (let n = 1000; n <= N; n++) {
+      if (String(n).length % 2 !== 0) continue;
+      const ns = String(n);
+      const half = ns.length / 2;
+      const sorted = ns.split('').sort().join('');
+      for (let a = 10; a < Math.sqrt(n); a++) {
+        if (n % a !== 0) continue;
+        const b = n / a;
+        if (String(a).length !== half || String(b).length !== half) continue;
+        if (String(a).endsWith('0') || String(b).endsWith('0')) continue;
+        if ((String(a) + String(b)).split('').sort().join('') === sorted) {
+          out.push([n, a, b]);
+          break;
+        }
+      }
+    }
+    resultEl.innerHTML = out.length > 0
+      ? `${N} 内有 <strong style="color: #7c3aed;">${out.length}</strong> 个吸血鬼数：<br>` + out.map(([n, a, b]) => `${n} = ${a} × ${b}`).join('  ·  ')
+      : 'N 范围内没找到';
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.nt11s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_NT11_s3() {
+  const nInput = document.getElementById('nt11s3-n');
+  const runBtn = document.getElementById('nt11s3-run');
+  const resultEl = document.getElementById('nt11s3-result');
+  if (!runBtn) return;
+  const update = () => {
+    const N = Math.max(1000, Math.min(100000, parseInt(nInput.value) || 10000));
+    const out = [];
+    for (let n = 1000; n <= N; n++) {
+      if (String(n).length % 2 !== 0) continue;
+      const ns = String(n);
+      const half = ns.length / 2;
+      const sorted = ns.split('').sort().join('');
+      for (let a = 10; a < Math.sqrt(n); a++) {
+        if (n % a !== 0) continue;
+        const b = n / a;
+        if (String(a).length !== half || String(b).length !== half) continue;
+        if (String(a).endsWith('0') || String(b).endsWith('0')) continue;
+        if ((String(a) + String(b)).split('').sort().join('') === sorted) {
+          out.push([n, a, b]);
+          break;
+        }
+      }
+    }
+    resultEl.innerHTML = `${N} 内有 <strong style="color: #7c3aed; font-size: 18px;">${out.length}</strong> 个吸血鬼数<br>前 10 个：${out.slice(0, 10).map(([n, a, b]) => `${n}=${a}×${b}`).join('  ·  ')}`;
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_NT11_s4() {}
+function initStage_NT11_s5() {
+  const tl = document.getElementById('nt11s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1994', text: '皮卡洛汽车公司论文首次提出吸血鬼数', color: '#7c3aed' },
+    { year: '2002', text: 'OEIS A014575 立项，列出所有吸血鬼数', color: '#f59e0b' },
+    { year: '2007', text: 'Pietro Catalan 提出更严格定义（末位非 0）', color: '#10b981' },
+    { year: '今天', text: '百万内 148480 个，密度 ≈ N/10⁵', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT11() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT11_${s}`] === 'function') window[`initStage_NT11_${s}`](); } catch(e) { console.error('initStage_NT11_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT12_s1() {}
+function initStage_NT12_s2() {
+  const nInput = document.getElementById('nt12s2-n');
+  const resultEl = document.getElementById('nt12s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const n = Math.max(1, Math.min(30, parseInt(nInput.value) || 10));
+    const out = [];
+    for (let i = 1; i <= n; i++) out.push(i * (i+1) / 2);
+    resultEl.innerHTML = `T₁ 到 T_${n}：<br>${out.map((v, i) => `<span style="color: ${i%2===0 ? '#7c3aed' : '#1e3a8a'}; font-weight: 700;">T${i+1}=${v}</span>`).join(', ')}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.nt12s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_NT12_s3() {
+  const nInput = document.getElementById('nt12s3-n');
+  const runBtn = document.getElementById('nt12s3-run');
+  const resultEl = document.getElementById('nt12s3-result');
+  if (!runBtn) return;
+  const update = () => {
+    const N = Math.max(100, Math.min(5000, parseInt(nInput.value) || 500));
+    const out = [];
+    for (let i = 1; i * (i+1) / 2 <= N; i++) out.push(i * (i+1) / 2);
+    resultEl.innerHTML = `${N} 内有 <strong style="color: #7c3aed; font-size: 18px;">${out.length}</strong> 个三角形数：<br>${out.join(', ')}`;
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_NT12_s4() {
+  const nInput = document.getElementById('nt12s4-n');
+  const runBtn = document.getElementById('nt12s4-run');
+  const resultEl = document.getElementById('nt12s4-result');
+  if (!runBtn) return;
+  const update = () => {
+    const n = Math.max(1, Math.min(20, parseInt(nInput.value) || 10));
+    const lines = [];
+    for (let i = 1; i <= n; i++) {
+      const Tn = i*(i+1)/2, Tn1 = (i+1)*(i+2)/2;
+      const sum = Tn + Tn1, sqrt = Math.sqrt(sum);
+      const ok = Number.isInteger(sqrt);
+      lines.push(`T${i}+T${i+1} = ${Tn}+${Tn1} = ${sum} = ${sqrt}² ${ok ? '✓' : '✗'}`);
+    }
+    resultEl.innerHTML = lines.map(l => `<div>${l}</div>`).join('');
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_NT12_s5() {
+  const tl = document.getElementById('nt12s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '~530 BC', text: '毕达哥拉斯研究"三角数"概念', color: '#f59e0b' },
+    { year: '~300 BC', text: '欧几里得《几何原本》证明 T_n+T_{n+1}=(n+1)²', color: '#7c3aed' },
+    { year: '1636', text: '费马猜想"每个 n = 3 个三角数之和"', color: '#10b981' },
+    { year: '1796', text: '高斯证明"3-角数定理"（Eureka 笔记）', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT12() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT12_${s}`] === 'function') window[`initStage_NT12_${s}`](); } catch(e) { console.error('initStage_NT12_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT13_s1() {}
+function initStage_NT13_s2() {
+  const nInput = document.getElementById('nt13s2-n');
+  const resultEl = document.getElementById('nt13s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const n = Math.max(1, Math.min(30, parseInt(nInput.value) || 10));
+    const out = [];
+    for (let i = 1; i <= n; i++) out.push(i * (i+1) * (i+2) / 6);
+    resultEl.innerHTML = `Tetra₁ 到 Tetra_${n}：<br>${out.map((v, i) => `<span style="color: #7c3aed; font-weight: 700;">Tetra${i+1}=${v}</span>`).join(', ')}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.nt13s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_NT13_s3() {
+  const nInput = document.getElementById('nt13s3-n');
+  const runBtn = document.getElementById('nt13s3-run');
+  const resultEl = document.getElementById('nt13s3-result');
+  if (!runBtn) return;
+  const update = () => {
+    const N = Math.max(100, Math.min(5000, parseInt(nInput.value) || 1000));
+    const out = [];
+    for (let i = 1; i * (i+1) * (i+2) / 6 <= N; i++) out.push(i * (i+1) * (i+2) / 6);
+    resultEl.innerHTML = `${N} 内有 <strong style="color: #7c3aed; font-size: 18px;">${out.length}</strong> 个四面体数：<br>${out.join(', ')}`;
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_NT13_s4() {}
+function initStage_NT13_s5() {
+  const tl = document.getElementById('nt13s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '~300 BC', text: '欧几里得研究"三角数堆叠"成四面体', color: '#7c3aed' },
+    { year: '1世纪', text: 'Plutarch 描述"四面体数"概念', color: '#f59e0b' },
+    { year: '17世纪', text: '帕斯卡三角研究四面体数与二项式系数', color: '#10b981' },
+    { year: '19世纪', text: '正式命名为 Tetrahedral number', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT13() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT13_${s}`] === 'function') window[`initStage_NT13_${s}`](); } catch(e) { console.error('initStage_NT13_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT14_s1() {}
+function initStage_NT14_s2() {
+  const nInput = document.getElementById('nt14s2-n');
+  const resultEl = document.getElementById('nt14s2-result');
+  if (!nInput) return;
+  const sumDigits = x => String(x).split('').reduce((a, d) => a + +d, 0);
+  const update = () => {
+    let n = Math.max(1, Math.min(999999999999, parseInt(nInput.value) || 12345));
+    const path = [n];
+    while (n >= 10) { n = sumDigits(n); path.push(n); }
+    resultEl.innerHTML = `${path[0]} 路径：${path.join(' → ')}<br>数字根 = <strong style="color: #7c3aed; font-size: 18px;">${n}</strong><br>${path[0]} mod 9 = ${path[0] % 9 === 0 ? 9 : path[0] % 9}（验证 ✓）`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.nt14s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_NT14_s3() {
+  const ctx = document.getElementById('nt14s3-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  const counts = Array(10).fill(0);
+  for (let n = 1; n <= 100; n++) counts[n === 0 ? 9 : n % 9]++;
+  const labels = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  ctx._chart = new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ label: '次数', data: counts.slice(0, 9), backgroundColor: '#7c3aed' }] },
+    options: { plugins: { legend: { display: false } } }
+  });
+}
+function initStage_NT14_s4() {
+  const aInput = document.getElementById('nt14s4-a');
+  const bInput = document.getElementById('nt14s4-b');
+  const runBtn = document.getElementById('nt14s4-run');
+  const resultEl = document.getElementById('nt14s4-result');
+  if (!runBtn) return;
+  const sumDigits = x => String(x).split('').reduce((a, d) => a + +d, 0);
+  const digitalRoot = x => { while (x >= 10) x = sumDigits(x); return x; };
+  const update = () => {
+    const a = Math.max(1, parseInt(aInput.value) || 38);
+    const b = Math.max(1, parseInt(bInput.value) || 25);
+    const drA = digitalRoot(a), drB = digitalRoot(b);
+    const drProd = digitalRoot(a * b);
+    const drProdOfDR = digitalRoot(drA * drB);
+    resultEl.innerHTML = `${a} × ${b} = ${a*b}<br>数字根: dr(${a})=${drA}, dr(${b})=${drB}<br>dr(a×b) = dr(${a*b}) = <strong>${drProd}</strong><br>dr(dr(a)×dr(b)) = dr(${drA}×${drB}) = dr(${drA*drB}) = <strong>${drProdOfDR}</strong><br>${drProd === drProdOfDR ? '✓ 相等（乘法守恒）' : '✗ 不等'}`;
+  };
+  aInput.oninput = update; bInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_NT14_s5() {
+  const tl = document.getElementById('nt14s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '~530 BC', text: '毕达哥拉斯"万物皆数"思想', color: '#f59e0b' },
+    { year: '古代中国', text: '九宫格（洛书）实践数字根', color: '#7c3aed' },
+    { year: '1202', text: '斐波那契《算盘书》系统介绍 mod 运算', color: '#10b981' },
+    { year: '1801', text: '高斯《算术研究》系统化模运算', color: '#3b82f6' },
+    { year: '20世纪', text: '应用：信用卡校验、密码学', color: '#a855f7' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT14() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT14_${s}`] === 'function') window[`initStage_NT14_${s}`](); } catch(e) { console.error('initStage_NT14_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT15_s1() {}
+function initStage_NT15_s2() {
+  const nInput = document.getElementById('nt15s2-n');
+  const resultEl = document.getElementById('nt15s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(100, Math.min(100000, parseInt(nInput.value) || 10000));
+    const out = [];
+    for (let n = 2; n <= N; n++) {
+      if (!isPrimeSmall(n)) continue;
+      const s = String(n);
+      if (s === s.split('').reverse().join('')) out.push(n);
+    }
+    resultEl.innerHTML = `${N} 内有 <strong style="color: #7c3aed; font-size: 18px;">${out.length}</strong> 个回文素数<br>前 30 个：${out.slice(0, 30).join(', ')}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.nt15s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_NT15_s3() {
+  const ctx = document.getElementById('nt15s3-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  // 统计 1-7 位回文素数
+  const counts = { odd: {}, even: {} };
+  for (let n = 2; n <= 1000000; n++) {
+    if (!isPrimeSmall(n)) continue;
+    const s = String(n);
+    if (s !== s.split('').reverse().join('')) continue;
+    const digits = s.length;
+    if (digits > 7) continue;
+    if (digits % 2 === 0) counts.even[digits] = (counts.even[digits] || 0) + 1;
+    else counts.odd[digits] = (counts.odd[digits] || 0) + 1;
+  }
+  const labels = ['1', '3', '5', '7'];
+  const data = labels.map(d => counts.odd[+d] || 0);
+  ctx._chart = new Chart(ctx, {
+    type: 'bar',
+    data: { labels: labels.map(d => d + '位'), datasets: [{ label: '奇数位回文素数', data, backgroundColor: '#7c3aed' }] },
+    options: { plugins: { legend: { display: false } } }
+  });
+}
+function initStage_NT15_s4() {
+  const nInput = document.getElementById('nt15s4-n');
+  const runBtn = document.getElementById('nt15s4-run');
+  const resultEl = document.getElementById('nt15s4-result');
+  if (!runBtn) return;
+  const update = () => {
+    const digits = Math.max(1, Math.min(7, parseInt(nInput.value) || 5));
+    const half = Math.ceil(digits / 2);
+    const palindromes = [];
+    const start = half === 1 ? 1 : Math.pow(10, half - 1);
+    const end = Math.pow(10, half);
+    for (let i = start; i < end; i++) {
+      const s = String(i);
+      let p = s;
+      if (digits % 2 === 0) p = s + s.split('').reverse().join('');
+      else p = s + s.slice(0, -1).split('').reverse().join('');
+      palindromes.push(+p);
+    }
+    const primes = palindromes.filter(n => isPrimeSmall(n));
+    resultEl.innerHTML = `${digits} 位回文数共 ${palindromes.length} 个，其中素数 ${primes.length} 个<br>素数：${primes.slice(0, 30).join(', ')}`;
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_NT15_s5() {
+  const tl = document.getElementById('nt15s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '古希腊', text: '欧几里得研究回文数', color: '#f59e0b' },
+    { year: '1966', text: '回文素数系统枚举开始', color: '#7c3aed' },
+    { year: '2002', text: 'GIMPS 项目用大回文素数测试', color: '#10b981' },
+    { year: '2013', text: 'Helfgott 证明弱哥德巴赫（含回文素数）', color: '#3b82f6' },
+    { year: '今天', text: '回文素数是否有无穷多？仍是未解', color: '#a855f7' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT15() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT15_${s}`] === 'function') window[`initStage_NT15_${s}`](); } catch(e) { console.error('initStage_NT15_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT16_s1() {}
+function initStage_NT16_s2() {
+  const nInput = document.getElementById('nt16s2-n');
+  const resultEl = document.getElementById('nt16s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(100, Math.min(5000, parseInt(nInput.value) || 500));
+    const gaps = [];
+    let prev = 2;
+    for (let n = 3; n <= N; n++) {
+      if (isPrimeSmall(n)) { gaps.push([prev, n, n - prev]); prev = n; }
+    }
+    let maxG = 0, maxA = 0, maxB = 0;
+    for (const [a, b, g] of gaps) if (g > maxG) { maxG = g; maxA = a; maxB = b; }
+    resultEl.innerHTML = `${N} 内 ${gaps.length} 个间隙<br>最大间隙 = <strong>${maxG}</strong>（在 ${maxA} 和 ${maxB} 之间）<br><br>前 20 个间隙：${gaps.slice(0, 20).map(([a, b, g]) => `${b}-${a}=${g}`).join(' · ')}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.nt16s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_NT16_s3() {
+  const ctx = document.getElementById('nt16s3-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  const labels = [], data = [];
+  for (let N = 100; N <= 5000; N *= 2) {
+    let prev = 2, maxG = 0;
+    for (let n = 3; n <= N; n++) {
+      if (isPrimeSmall(n)) { if (n - prev > maxG) maxG = n - prev; prev = n; }
+    }
+    labels.push(`N=${N}`);
+    data.push(maxG);
+  }
+  ctx._chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets: [{ label: '最大间隙', data, borderColor: '#7c3aed', fill: false }] },
+    options: { plugins: { legend: { display: false } } }
+  });
+}
+function initStage_NT16_s4() {
+  const ctx = document.getElementById('nt16s4-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  const dist = Array(15).fill(0);
+  let prev = 2;
+  for (let n = 3; n <= 500; n++) {
+    if (isPrimeSmall(n)) { const g = n - prev; if (g < 15) dist[g]++; prev = n; }
+  }
+  ctx._chart = new Chart(ctx, {
+    type: 'bar',
+    data: { labels: dist.map((_, i) => `${i}`), datasets: [{ label: '次数', data: dist, backgroundColor: '#10b981' }] },
+    options: { plugins: { legend: { display: false } } }
+  });
+}
+function initStage_NT16_s5() {
+  const tl = document.getElementById('nt16s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '~300 BC', text: '欧几里得证明素数有无穷多', color: '#f59e0b' },
+    { year: '1936', text: 'Cramer 猜想：max gap ~ ln²N', color: '#7c3aed' },
+    { year: '2014', text: '陶哲轩证明素数间隙 → 无穷', color: '#10b981' },
+    { year: '2024', text: '最长间隙 1476 (10¹⁸ 范围内)', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT16() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT16_${s}`] === 'function') window[`initStage_NT16_${s}`](); } catch(e) { console.error('initStage_NT16_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT17_s1() {}
+function initStage_NT17_s2() {
+  const mInput = document.getElementById('nt17s2-m');
+  const nInput = document.getElementById('nt17s2-n');
+  const resultEl = document.getElementById('nt17s2-result');
+  if (!mInput) return;
+  const update = () => {
+    const m = Math.max(2, Math.min(50, parseInt(mInput.value) || 7));
+    const N = Math.max(10, Math.min(100, parseInt(nInput.value) || 30));
+    const out = [];
+    for (let n = 0; n <= N; n++) out.push(`${n}→${n % m}`);
+    resultEl.innerHTML = `mod ${m} 序列：<br>${out.join(' · ')}`;
+  };
+  mInput.oninput = update; nInput.oninput = update;
+  document.querySelectorAll('.nt17s2-preset').forEach(btn => {
+    btn.onclick = () => { mInput.value = btn.dataset.m; nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_NT17_s3() {}
+function initStage_NT17_s4() {}
+function initStage_NT17_s5() {
+  const tl = document.getElementById('nt17s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '~300 BC', text: '欧几里得《几何原本》提及模运算', color: '#f59e0b' },
+    { year: '1801', text: '高斯《算术研究》系统化模运算', color: '#7c3aed' },
+    { year: '1977', text: 'RSA 加密算法诞生（基于大数模幂）', color: '#10b981' },
+    { year: '今天', text: '现代密码学、区块链、哈希函数核心', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT17() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT17_${s}`] === 'function') window[`initStage_NT17_${s}`](); } catch(e) { console.error('initStage_NT17_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT18_s1() {}
+function initStage_NT18_s2() {
+  const nInput = document.getElementById('nt18s2-n');
+  const resultEl = document.getElementById('nt18s2-result');
+  if (!nInput) return;
+  const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+  const update = () => {
+    const n = Math.max(2, Math.min(500, parseInt(nInput.value) || 36));
+    const coprime = [];
+    for (let i = 1; i <= n; i++) if (gcd(i, n) === 1) coprime.push(i);
+    const factors = factorize(n);
+    const formula = factors.length > 0 ? `n × Π(1 - 1/p) = ${n} × ${factors.map(p => `(1 - 1/${p})`).join(' × ')} = ${coprime.length}` : `${n} = 1 → φ = 1`;
+    resultEl.innerHTML = `n = ${n} = ${factors.join('×')}<br>互素数：${coprime.join(', ')}<br>φ(${n}) = <strong>${coprime.length}</strong><br><br>公式验证：${formula}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.nt18s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_NT18_s3() {
+  const ctx = document.getElementById('nt18s3-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+  const labels = [], data = [];
+  for (let n = 1; n <= 50; n++) {
+    let c = 0;
+    for (let i = 1; i <= n; i++) if (gcd(i, n) === 1) c++;
+    labels.push(n);
+    data.push(c);
+  }
+  ctx._chart = new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ label: 'φ(n)', data, backgroundColor: '#7c3aed' }] },
+    options: { plugins: { legend: { display: false } } }
+  });
+}
+function initStage_NT18_s4() {
+  const nInput = document.getElementById('nt18s4-n');
+  const runBtn = document.getElementById('nt18s4-run');
+  const resultEl = document.getElementById('nt18s4-result');
+  if (!runBtn) return;
+  const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+  const update = () => {
+    const n = Math.max(2, Math.min(100, parseInt(nInput.value) || 12));
+    const divisors = [];
+    for (let d = 1; d <= n; d++) if (n % d === 0) divisors.push(d);
+    const phiValues = divisors.map(d => {
+      let c = 0;
+      for (let i = 1; i <= d; i++) if (gcd(i, d) === 1) c++;
+      return [d, c];
+    });
+    const sum = phiValues.reduce((a, [_, c]) => a + c, 0);
+    resultEl.innerHTML = `n = ${n}<br>正因子：${divisors.join(', ')}<br>Σ φ(d) = ${phiValues.map(([d, c]) => `φ(${d})=${c}`).join(' + ')} = ${sum}<br>${sum === n ? '✓ 等于 n' : '✗ 不等于 n'}`;
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_NT18_s5() {
+  const tl = document.getElementById('nt18s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1760', text: '欧拉首次系统研究 φ 函数', color: '#7c3aed' },
+    { year: '1801', text: '高斯《算术研究》给出欧拉定理', color: '#f59e0b' },
+    { year: '1977', text: 'RSA 加密诞生（基于大素数 + 欧拉定理）', color: '#10b981' },
+    { year: '今天', text: '互联网加密、区块链、电子签名核心', color: '#3b82f6' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT18() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT18_${s}`] === 'function') window[`initStage_NT18_${s}`](); } catch(e) { console.error('initStage_NT18_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT19_s1() {}
+function initStage_NT19_s2() {
+  const pInput = document.getElementById('nt19s2-p');
+  const resultEl = document.getElementById('nt19s2-result');
+  if (!pInput) return;
+  const update = () => {
+    const P = Math.max(2, Math.min(40, parseInt(pInput.value) || 25));
+    const out = [];
+    for (let p = 2; p <= P; p++) {
+      if (!isPrimeSmall(p)) continue;
+      let m = 1n;
+      for (let i = 0; i < p; i++) m *= 2n;
+      m -= 1n;
+      if (m < 1000000n) {
+        if (isPrimeSmall(Number(m))) out.push({ p, m: m.toString() });
+      } else {
+        let isPrime = true;
+        for (let d = 2; d * d <= Number(m > 1000000n ? 10000 : Number(m)); d++) {
+          if (m % BigInt(d) === 0n) { isPrime = false; break; }
+        }
+        if (isPrime) out.push({ p, m: m.toString() });
+      }
+    }
+    resultEl.innerHTML = `p ≤ ${P} 时梅森素数：<br>` + out.map(x => `<strong>2<sup>${x.p}</sup> - 1 = ${x.m}</strong>`).join('  ·  ');
+  };
+  pInput.oninput = update;
+  document.querySelectorAll('.nt19s2-preset').forEach(btn => {
+    btn.onclick = () => { pInput.value = btn.dataset.p; update(); };
+  });
+  update();
+}
+function initStage_NT19_s3() {}
+function initStage_NT19_s4() {}
+function initStage_NT19_s5() {
+  const tl = document.getElementById('nt19s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1644', text: '梅森最早系统研究 2^p - 1', color: '#f59e0b' },
+    { year: '1772', text: '欧拉证明 2^31 - 1 = 2147483647 是素数', color: '#7c3aed' },
+    { year: '1876', text: 'Lucas 测试梅森素数（Lucas-Lehmer）', color: '#10b981' },
+    { year: '1996', text: 'GIMPS 项目启动，全球分布式搜索', color: '#3b82f6' },
+    { year: '2018', text: '2^82589933 - 1（24862048 位）', color: '#ec4899' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT19() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT19_${s}`] === 'function') window[`initStage_NT19_${s}`](); } catch(e) { console.error('initStage_NT19_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT20_s1() {}
+function initStage_NT20_s2() {
+  const nInput = document.getElementById('nt20s2-n');
+  const resultEl = document.getElementById('nt20s2-result');
+  if (!nInput) return;
+  const update = () => {
+    const N = Math.max(4, Math.min(500, parseInt(nInput.value) || 100));
+    if (N % 2 !== 0) { resultEl.innerHTML = '请输入偶数'; return; }
+    const pairs = [];
+    for (let p = 2; p <= N/2; p++) {
+      if (isPrimeSmall(p) && isPrimeSmall(N - p)) pairs.push([p, N - p]);
+    }
+    resultEl.innerHTML = `${N} = ?<br>共 <strong style="color: #7c3aed; font-size: 18px;">${pairs.length}</strong> 种拆分：<br>${pairs.map(([a, b]) => `${a} + ${b}`).join('  ·  ')}`;
+  };
+  nInput.oninput = update;
+  document.querySelectorAll('.nt20s2-preset').forEach(btn => {
+    btn.onclick = () => { nInput.value = btn.dataset.n; update(); };
+  });
+  update();
+}
+function initStage_NT20_s3() {
+  const ctx = document.getElementById('nt20s3-chart');
+  if (!ctx) return;
+  if (ctx._chart) { ctx._chart.destroy(); ctx._chart = null; }
+  const labels = [], data = [];
+  for (let N = 4; N <= 200; N += 2) {
+    let count = 0;
+    for (let p = 2; p <= N/2; p++) {
+      if (isPrimeSmall(p) && isPrimeSmall(N - p)) count++;
+    }
+    labels.push(N);
+    data.push(count);
+  }
+  ctx._chart = new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ label: '拆分对数', data, backgroundColor: '#7c3aed' }] },
+    options: { plugins: { legend: { display: false } } }
+  });
+}
+function initStage_NT20_s4() {
+  const nInput = document.getElementById('nt20s4-n');
+  const runBtn = document.getElementById('nt20s4-run');
+  const resultEl = document.getElementById('nt20s4-result');
+  if (!runBtn) return;
+  const update = () => {
+    const N = Math.max(4, Math.min(200, parseInt(nInput.value) || 100));
+    const lines = [];
+    for (let e = 4; e <= N; e += 2) {
+      let count = 0;
+      for (let p = 2; p <= e/2; p++) if (isPrimeSmall(p) && isPrimeSmall(e - p)) count++;
+      lines.push(`${e}: ${count} 种`);
+    }
+    resultEl.innerHTML = lines.map(l => `<div>${l}</div>`).join('');
+  };
+  nInput.oninput = update; runBtn.onclick = update; update();
+}
+function initStage_NT20_s5() {
+  const tl = document.getElementById('nt20s5-timeline');
+  if (!tl) return;
+  const events = [
+    { year: '1742', text: '哥德巴赫写信给欧拉提出猜想', color: '#f59e0b' },
+    { year: '1937', text: 'Vinogradov 证明奇数情形', color: '#7c3aed' },
+    { year: '1966', text: '陈景润证明"1+2"（最接近）', color: '#10b981' },
+    { year: '2013', text: 'Helfgott 证明弱哥德巴赫', color: '#3b82f6' },
+    { year: '今天', text: '强猜想仍未证明（悬赏 100 万美元）', color: '#ec4899' },
+  ];
+  tl.innerHTML = events.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    return `<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; ${isLeft ? '' : 'flex-direction: row-reverse;'}">
+      <div style="flex: 1; ${isLeft ? 'text-align: right;' : 'text-align: left;'}">
+        <div style="display: inline-block; padding: 6px 12px; background: white; border-left: 4px solid ${e.color}; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+          <div style="font-size: 13px; font-weight: 900; color: ${e.color};">${e.year}</div>
+          <div style="font-size: 12px; color: #1f2937;">${e.text}</div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px; background: ${e.color}; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px ${e.color}; flex-shrink: 0;"></div>
+      <div style="flex: 1;"></div>
+    </div>`;
+  }).join('');
+}
+function initStage_NT20() {
+  ['s1', 's2', 's3', 's4', 's5'].forEach(s => {
+    try { if (typeof window[`initStage_NT20_${s}`] === 'function') window[`initStage_NT20_${s}`](); } catch(e) { console.error('initStage_NT20_' + s + ' err:', e); }
+  });
+}
+
+function initStage_NT11_initAll() { initStage_NT11(); }
+function initStage_NT12_initAll() { initStage_NT12(); }
+function initStage_NT13_initAll() { initStage_NT13(); }
+function initStage_NT14_initAll() { initStage_NT14(); }
+function initStage_NT15_initAll() { initStage_NT15(); }
+function initStage_NT16_initAll() { initStage_NT16(); }
+function initStage_NT17_initAll() { initStage_NT17(); }
+function initStage_NT18_initAll() { initStage_NT18(); }
+function initStage_NT19_initAll() { initStage_NT19(); }
+function initStage_NT20_initAll() { initStage_NT20(); }
+
 // ============== 剩余 65 个 5 步直观讲解 (v13) ==============
 
 // ========== GM01-10 5 步 ==========
@@ -23424,7 +25026,7 @@ const EXPERIMENTS = [{
   svgDemo: "",
   explain: "同学们好！今天我们来看一个非常有趣的现象——素数间隙（Prime Gaps）。\n\n什么是素数间隙？两个相邻素数之间的差。比如 7 减 5 等于 2，11 减 7 等于 4，13 减 11 等于 2。\n\n前 10 个素数：2、3、5、7、11、13、17、19、23、29。间隙：1、2、2、4、2、4、2、4、6。\n\n规律：2 跟 3 之间差 1（这是唯一的，因为 2 是唯一的偶素数），其他都至少差 2。\n\n素数间隙有什么规律？最大间隙随 N 怎么增长？这是数论最难的未解问题之一。\n\n数学家发现：到 N 等于 10 的时候，最大间隙是 4。到 100 时是 14。到 1000 时是 20。到 100 万时是 154。到 10 亿时是 282。\n\n但 2014 年，陶哲轩（Terence Tao）证明了一个惊人的结论：素数间隙趋向于\"任意大\"——任意给定 N，都能找到两个素数之间差大于 N！这是反直觉的，因为素数越来越稀疏。\n\n虽然陶哲轩的结果已经非常惊人，但要精确描述\"最大间隙\"和 N 的关系，仍是未解之谜。\n\n最佳猜测：最大间隙约为 log 平方 N（这个猜想叫 Cramer 猜想，目前未被证明）。\n\n实际最长素数间隙：到 10 的 18 次方，史上最长的素数间隙是 1476（在 1425172824437699411 附近）。\n\n现在请同学们自己动手：点\"扫素数间隙\"，扫 1 到 1000。看哪些间隙最大？1 跟 2 之间是 1。2 跟 3 之间是 1。等等——1000 内的最大间隙是多少？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"素数之间\"的空白里。",
   audioUrl: "audio/NT16_explain.mp3",
-  stages: [],
+  stages: [{"emoji": "🕳️", "title": "素数间隙：越来越稀", "content": "\n        <p class=\"lead\">相邻素数之差。1, 2, 2, 4, 2, 4, 2, 4, 6, 2, 6, 4...<br>最大间隙随 N<strong style=\"color:#7c3aed;\">趋向无穷</strong>！</p>\n        <div class=\"viz\" style=\"display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;\">\n          <div style=\"flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #dbeafe, #dbeafe); border: 2px solid #3b82f6; border-radius: 12px; text-align: center;\">\n            <div style=\"font-size: 26px; font-weight: 900; color: #1e3a8a;\">1, 2, 2</div>\n            <div style=\"font-size: 12px; color: #1e3a8a; margin-top: 6px;\">2-3, 3-5, 5-7</div>\n            <div style=\"font-size: 11px; color: #312e81; margin-top: 4px;\">前 3 个间隙</div>\n          </div>\n          <div style=\"flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #fde68a, #fde68a); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;\">\n            <div style=\"font-size: 26px; font-weight: 900; color: #92400e;\">14</div>\n            <div style=\"font-size: 12px; color: #92400e; margin-top: 6px;\">100 内最大间隙</div>\n            <div style=\"font-size: 11px; color: #b45309; margin-top: 4px;\">113-127 = 14</div>\n          </div>\n          <div style=\"flex: 1 1 200px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;\">\n            <div style=\"font-size: 26px; font-weight: 900; color: #14532d;\">282</div>\n            <div style=\"font-size: 12px; color: #14532d; margin-top: 6px;\">10⁹ 内最大间隙</div>\n            <div style=\"font-size: 11px; color: #15803d; margin-top: 4px;\">陶哲轩 2014 证明</div>\n          </div>\n        </div>\n        <div class=\"next-hint\">🕳️ <strong>核心</strong>：间隙 → ∞（任意大）— 陶哲轩 2014 证明</div>\n      "}, {"emoji": "🧮", "title": "素数间隙扫描", "content": "\n        <p class=\"lead\">输入 N 算所有间隙：</p>\n        <div class=\"viz\" style=\"display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;\">\n          <div style=\"flex: 1 1 200px;\">\n            <label>N = <input type=\"number\" id=\"nt16s2-n\" min=\"100\" max=\"5000\" value=\"500\" style=\"width: 120px; padding: 4px;\"></label>\n            <div style=\"display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;\">\n              <button class=\"primary small nt16s2-preset\" data-n=\"100\">N=100</button>\n              <button class=\"ghost small nt16s2-preset\" data-n=\"500\">N=500</button>\n              <button class=\"ghost small nt16s2-preset\" data-n=\"2000\">N=2000</button>\n            </div>\n          </div>\n          <div style=\"flex: 2 1 300px;\">\n            <div id=\"nt16s2-result\" style=\"padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.7; max-height: 240px; overflow-y: auto;\"></div>\n          </div>\n        </div>\n        <div class=\"next-hint\">💡 <strong>平均</strong>：到 N 的平均间隙 ~ ln N（Cramer 猜想：max ~ ln²N）</div>\n      "}, {"emoji": "🔭", "title": "最大间隙随 N 增长", "content": "\n        <p class=\"lead\">看 N 翻倍时最大间隙变化：</p>\n        <div class=\"viz\" style=\"padding: 14px; background: #f0f9ff; border-radius: 8px;\">\n          <canvas id=\"nt16s3-chart\" style=\"max-width: 100%;\"></canvas>\n        </div>\n        <div class=\"next-hint\">🔭 <strong>规律</strong>：最大间隙 ~ (ln N)² (Cramer 猜想 1936，未证)</div>\n      "}, {"emoji": "🔬", "title": "间隙分布柱状图", "content": "\n        <p class=\"lead\">500 内 95 个间隙长度分布：</p>\n        <div class=\"viz\" style=\"padding: 14px; background: #f0f9ff; border-radius: 8px;\">\n          <canvas id=\"nt16s4-chart\" style=\"max-width: 100%;\"></canvas>\n        </div>\n        <div class=\"next-hint\">🔬 <strong>观察</strong>：偶数间隙（除 2 之外）多 = 孪生素数；最大间隙位置随机</div>\n      "}, {"emoji": "📅", "title": "素数间隙小史", "content": "\n        <p class=\"lead\">欧几里得 2300 年前证素数无穷 → 2014 陶哲轩证明间隙 → ∞</p>\n        <div class=\"viz\">\n          <div id=\"nt16s5-timeline\"></div>\n        </div>\n        <div class=\"next-hint\">❓ <strong>未解</strong>：最大间隙与 N 的精确关系（Cramer 猜想）</div>\n      "}],
   render: function(h) {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt16_n" value="500" min="100"></label><button class="primary" id="nt16_run">算间隙</button></div><div id="nt16_out" class="sequence" style="margin-top:12px;"></div><div id="nt16_max" class="stat" style="margin-top:12px;"><div class="k">最大间隙</div><div class="v">—</div></div>`;
     document.getElementById('nt16_run').onclick = () => {
