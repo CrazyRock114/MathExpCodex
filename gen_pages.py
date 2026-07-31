@@ -78,6 +78,8 @@ for exp in exps:
         explain = exp['explain']
         audio_url = exp['audioUrl']
         render_func = to_function(exp['renderSrc'])
+        # 5 步直观讲解 stages（数组：[{emoji, title, content}, ...]）
+        stages = exp.get('stages', [])
 
         cat_class = PLAZA_CATS.get(cat, 'cat-ot')
 
@@ -154,6 +156,7 @@ const EXPERIMENTS = [{{
   svgDemo: {json.dumps(svg_demo, ensure_ascii=False)},
   explain: {json.dumps(explain, ensure_ascii=False)},
   audioUrl: {json.dumps(audio_url, ensure_ascii=False)},
+  stages: {json.dumps(stages, ensure_ascii=False)},
   render: {render_func}
 }}];
 

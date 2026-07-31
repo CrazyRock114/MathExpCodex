@@ -6,15 +6,27 @@ const html = fs.readFileSync('index.html', 'utf-8');
 const m = html.match(/const EXPERIMENTS = \[(.+?)\];\s*\/\/\s*EXPERIMENTS 结束/s);
 if (!m) { console.error('找不到 EXPERIMENTS 数组'); process.exit(1); }
 
+// 收集所有依赖的 getStagesXxx() 函数：从 EXPERIMENTS 数组中匹配
 const expSrc = '[' + m[1] + ']';
-// 调 eval
-const EXPERIMENTS = eval(expSrc);
+const depMatches = [...m[1].matchAll(/getStages(\w+)\s*\(\s*\)/g)];
+const depFns = [...new Set(depMatches.map(x => `getStages${x[1]}`))];
+// 从 index.html 中抽取这些函数定义
+const fnDefs = depFns.map(fnName => {
+  const fnRegex = new RegExp(`function\\s+${fnName}\\s*\\([^)]*\\)\\s*{[\\s\\S]*?^}`, 'm');
+  const fnMatch = html.match(fnRegex);
+  return fnMatch ? fnMatch[0] : `function ${fnName}() { return []; }`;
+}).join('\n\n');
+
+// 把函数定义和 EXPERIMENTS 一起 eval
+const EXPERIMENTS = eval(fnDefs + '\n' + expSrc);
 
 const out = EXPERIMENTS.map(e => ({
   id: e.id, cat: e.cat, title: e.title, intro: e.intro,
   principle: e.principle || '', history: e.history || '',
   tryit: e.tryit || '', svgDemo: e.svgDemo || '',
   explain: e.explain || '', audioUrl: e.audioUrl || '',
+  // 5 步直观讲解 stages（数组：[{emoji, title, content}, ...]）
+  stages: e.stages || [],
   // render 函数体（去掉箭头函数语法，直接保留函数体）
   // 实际上要把 "(h) => ..." 转成 "function(h) { ... }" 才能嵌入到 <script>
   // 简化处理：把整个 render 表达式转字符串
