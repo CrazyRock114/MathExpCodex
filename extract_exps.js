@@ -3,8 +3,17 @@ const fs = require('fs');
 const path = require('path');
 
 const html = fs.readFileSync('index.html', 'utf-8');
-const m = html.match(/const EXPERIMENTS = \[(.+?)\];\s*\/\/\s*EXPERIMENTS 结束/s);
-if (!m) { console.error('找不到 EXPERIMENTS 数组'); process.exit(1); }
+// 从 // EXPERIMENTS 结束 标记往前找 EXPERIMENTS 数组结束
+const expEndIdx = html.indexOf('// EXPERIMENTS 结束');
+if (expEndIdx === -1) { console.error('找不到 EXPERIMENTS 结束标记'); process.exit(1); }
+// 找 // EXPERIMENTS 结束 之前最近的 "  },\n// EXPERIMENTS 结束"
+// 实际上找 EXPERIMENTS 数组末尾的 '},' + '\n\n// EXPERIMENTS 结束'
+const beforeEnd = html.lastIndexOf('},', expEndIdx);
+const expStartIdx = html.indexOf('const EXPERIMENTS = [');
+if (expStartIdx === -1) { console.error('找不到 EXPERIMENTS = ['); process.exit(1); }
+// 数组内容 = 从 'const EXPERIMENTS = [' 后到 beforeEnd+2
+const arrayContent = html.substring(expStartIdx + 'const EXPERIMENTS = ['.length, beforeEnd + 2);
+const m = ['EXPERIMENTS 数组', arrayContent, arrayContent];
 
 // 收集所有依赖的 getStagesXxx() 函数：从 EXPERIMENTS 数组中匹配
 const expSrc = '[' + m[1] + ']';
@@ -18,7 +27,7 @@ const fnDefs = depFns.map(fnName => {
 }).join('\n\n');
 
 // 把函数定义和 EXPERIMENTS 一起 eval
-const EXPERIMENTS = eval(fnDefs + '\n' + expSrc);
+const EXPERIMENTS = eval(fnDefs + '\n[' + m[1] + ']');
 
 const out = EXPERIMENTS.map(e => ({
   id: e.id, cat: e.cat, title: e.title, intro: e.intro,

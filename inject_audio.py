@@ -21,26 +21,15 @@ if start < 0:
     print('找不到 EXPERIMENTS 数组')
     exit(1)
 
-# 数组结束: 找到对应的 ];
-# 简单方法：从 start 往后找 '];' 配对
-# 但要小心字符串里的 ];
-pos = start
-bracket_count = 0
-in_array = False
-arr_start = -1
-arr_end = -1
-for i in range(start, len(html)):
-    c = html[i]
-    if c == '[':
-        bracket_count += 1
-        in_array = True
-        if arr_start < 0:
-            arr_start = i
-    elif c == ']':
-        bracket_count -= 1
-        if in_array and bracket_count == 0:
-            arr_end = i + 1
-            break
+# 数组结束: 用 // EXPERIMENTS 结束 标记 + 往前找最近的 },
+end_marker = html.find('// EXPERIMENTS 结束')
+if end_marker < 0:
+    print('找不到 EXPERIMENTS 结束标记')
+    exit(1)
+# 找 end_marker 之前最近的 },
+before_end = html.rfind('},', end_marker)
+arr_start = html.find('const EXPERIMENTS = [')
+arr_end = before_end + 2  # 包含 '},'
 
 if arr_end < 0:
     print('找不到数组结束')
