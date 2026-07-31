@@ -2151,6 +2151,37 @@ const EXPERIMENTS = [
 {
   id: 'PR01', cat: '几何', title: '投针算 π (Buffon 1733)',
   intro: '把长度为 L 的针扔到画着等距平行线（间距 d）的纸上，针跨线概率 P = 2L/(πd)，反推 π。',
+  explain: `同学们好！今天我们一起来做一件很有意思的事情——用一根针，算出圆周率 π。
+
+π 是谁？3.14159265……一个无穷无尽的数，藏在每一个圆里。但是你拿尺子量一个真实的圆，量出来的 π 永远会有误差。
+
+今天我们要做的事情，比拿尺子量要酷多了。我们要让"扔针"——完全是随机的、没有任何规律的扔针——告诉人类 π 到底等于几。
+
+这个想法是 1733 年一个法国人叫布丰想出来的。他想：如果在一张纸上画很多条等距的平行线，然后把一根针扔上去，针跨过一条线的概率，居然跟 π 有关系！
+
+关系是什么？我来推一遍。针长我们叫 L，两条线之间的距离我们叫 d。如果 L 比 d 大很多，针肯定跨线；如果 L 比 d 小很多，针就只可能跨过一条线或者不跨。针的方向呢，从完全平到完全竖，角度 θ 在 0 到 180 度之间随机。离最近的一条线的距离 y 在 0 到 d/2 之间随机。
+
+现在关键来了：针跨线的条件是 L 除以 2 乘以 sinθ 大于 y。这个条件随机的概率是多少？把所有可能的 θ 和 y 算出来，得到的结果就是 2L 除以 πd。
+
+反过来，我们就能从跨线的概率反推出 π 了。你看，反推公式是 π 等于 2L 乘以 N，除以 d 乘以 n。N 是扔的总次数，n 是跨线的次数。
+
+现在请你想一个问题：如果扔 1 根针，跨线概率能算准吗？不能！可能跨，可能不跨。但如果扔 100 根呢？1000 根呢？10000 根呢？
+
+投 1 根针：π 估值可能是 4.0，也可能是 2.0，波动非常大。
+投 100 根：π 估值会落在 3.0 到 3.3 之间。
+投 1000 根：3.10 到 3.18。
+投 10000 根：3.13 到 3.15——误差 1% 以内。
+
+你看，扔得越多，越准。随机里面藏着规律。
+
+但最有意思的是：哪怕你扔 10000 根针，精度也只能到小数点后 1 位。而我们的祖冲之，1500 年前，算了 7 位小数！比布丰的投针实验还早了 1200 年。
+
+现在请同学们做一件事：点开始，投 1000 根针，看看你的 π 估值是多少。然后你能不能自己扔一根针？点画布上任意一个位置——告诉你的同桌，这根针为什么跨线，或者为什么不跨线？
+
+回家作业：找一张草稿纸，画 5 条平行线，然后拿一根牙签扔 50 次，记下来跨了几次。算一算你的 π 估值是多少。明天带到课堂上，看谁的 π 最准。
+
+记住：数学不只藏在书本里——藏在每一次随机、每一次巧合、每一次你认真观察的瞬间。`,
+  audioUrl: 'audio/PR01_explain.mp3',
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>想象你往画着等距平行线的纸上扔一根针。每根针的位置 <em>(x, y)</em> 和角度 <em>θ</em> 都是<strong>完全随机</strong>的——但每根针跨不跨线，居然有 <strong>精确的数学概率</strong>，而且这个概率里藏着 π。</p>
 <h4>📐 概率怎么算的？</h4>
@@ -5255,17 +5286,24 @@ function plazaRenderGrid() {
     </div>`
   ).join('');
   plazaGrid.querySelectorAll('.plaza-card').forEach(card => {
-    card.onclick = () => plazaOpen(card.dataset.id);
+    card.onclick = () => plazaOpen(card.dataset.id, true);
   });
   const cnt = document.getElementById('plazaCount');
   if (cnt) cnt.textContent = `共 ${EXPERIMENTS.length} 个实验（显示 ${filtered.length}）`;
 }
 
-function plazaOpen(id) {
+function plazaOpen(id, setHash = true) {
   const exp = EXPERIMENTS.find(e => e.id === id);
   if (!exp) return;
   plazaCurrentExp = exp;
   plazaDetail.style.display = 'block';
+  if (setHash) {
+    // 用 hash 路由让每个实验有独立可分享 URL
+    history.replaceState(null, '', `#${id}`);
+    // 同步更新 <title>，方便分享/收藏
+    document.title = `${exp.title}（${exp.id}） | 数学小实验广场`;
+  }
+
   const prompt = `你是一位给小学数学竞赛班讲题的 AI 老师。请用 5 分钟能讲完、5 岁小孩能听懂的方式，给孩子们讲一下这个实验："${exp.title}"。
 
 背景：${exp.intro}
@@ -5342,6 +5380,21 @@ function plazaOpen(id) {
       <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
     </div>` : '';
 
+  // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
+  const mavisSection = exp.audioUrl ? `
+    <details style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
+      <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
+        <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
+        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 8px; margin-top: 8px;">
+          <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
+          ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
+        </div>
+        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
+      </div>
+    </details>` : '';
+
   plazaDetail.innerHTML = `<div class="plaza-detail">
     <button class="back ghost small" id="plazaBack">← 返回列表</button>
     <h2 style="margin: 8px 0 4px;">${exp.title} <span class="cat-tag ${PLAZA_CATEGORIES[exp.cat]}" style="font-size: 12px;">${exp.cat}</span> <span class="id-tag" style="font-size: 12px;">${exp.id}</span></h2>
@@ -5351,6 +5404,7 @@ function plazaOpen(id) {
     ${historySection}
     ${tryitSection}
     ${svgDemo}
+    ${mavisSection}
 
     <details open style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #b91c1c;">🎯 互动演示（点开玩）</summary>
@@ -5371,9 +5425,39 @@ function plazaOpen(id) {
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
+    // 清掉 hash
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+      document.title = '数学小实验广场（108 个） | AI 数学课堂';
+    }
   };
   plazaDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+// 监听 hash 变化（前进/后退按钮）
+window.addEventListener('hashchange', () => {
+  const h = (location.hash || '').replace(/^#/, '').trim();
+  if (!h) {
+    plazaDetail.style.display = 'none';
+    plazaCurrentExp = null;
+    document.title = '数学小实验广场（108 个） | AI 数学课堂';
+  } else {
+    const exp = EXPERIMENTS.find(e => e.id === h);
+    if (exp) plazaOpen(h, false);
+  }
+});
+
+// 页面加载时检查 hash（支持直接打开 #PR01）
+window.addEventListener('DOMContentLoaded', () => {
+  const h = (location.hash || '').replace(/^#/, '').trim();
+  if (h) {
+    const exp = EXPERIMENTS.find(e => e.id === h);
+    if (exp) {
+      // 延迟一点等 plazaRenderGrid 完成
+      setTimeout(() => plazaOpen(h, false), 100);
+    }
+  }
+});
 
 // 自动生成"AI 通常会怎么讲"模板
 function buildExampleExplain(exp) {
