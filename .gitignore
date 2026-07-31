@@ -1,22 +1,2 @@
-# OS
 .DS_Store
-Thumbs.db
-
-# Editor
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Build / temp
-*.tmp
-*.bak
-*.orig
-
-.deploy/
+_check_js.js

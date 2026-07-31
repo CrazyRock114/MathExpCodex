@@ -5278,16 +5278,13 @@ function plazaRenderGrid() {
     return true;
   });
   plazaGrid.innerHTML = filtered.map(e =>
-    `<div class="plaza-card" data-id="${e.id}">
+    `<a class="plaza-card" href="pages/${e.id}.html" data-id="${e.id}" style="text-decoration: none; color: inherit; display: block;">
       <span class="cat-tag ${PLAZA_CATEGORIES[e.cat]}">${e.cat}</span>
       <span class="id-tag">${e.id}</span>
       <div class="title">${e.title}</div>
       <p class="intro">${e.intro}</p>
-    </div>`
+    </a>`
   ).join('');
-  plazaGrid.querySelectorAll('.plaza-card').forEach(card => {
-    card.onclick = () => plazaOpen(card.dataset.id, true);
-  });
   const cnt = document.getElementById('plazaCount');
   if (cnt) cnt.textContent = `共 ${EXPERIMENTS.length} 个实验（显示 ${filtered.length}）`;
 }
