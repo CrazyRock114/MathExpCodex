@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "<p><strong>1928 年</strong>，<strong>Frank P. Ramsey</strong>（1903-1930，英国数学家）在论文 <em>On a problem of formal logic</em> 中提出\"组合数学中的拉姆齐定理\"——但他证明的是无限版本。</p>\n<p><strong>1930 年</strong>，<strong>Theodore Motzkin</strong> 第一次给出 R(3,3)=6 的有限版本证明。</p>\n<p><strong>1935 年</strong>，<strong>Paul Erdős</strong> 和 <strong>George Szekeres</strong> 发表 <em>A combinatorial problem in geometry</em>，奠定<strong>拉姆齐理论</strong>的现代基础。\"幸福结局问题\"（任意 5 个点中必有 4 个构成凸四边形）也来自这篇。</p>\n<p><strong>1935 年</strong>，<strong>Issai Schur</strong> 把 R(3,3) 联系到<strong>Schur 数</strong>（同色 x+y=z 解）——拉姆齐数的代数版本。</p>\n<p><strong>1960s-</strong>，<strong>Stanisław Radziszowski</strong> 持续维护 R(s, t) 已知值的小型百科，是这个领域的标准参考。</p>\n<p><strong>现代意义</strong>：拉姆齐理论是<strong>组合学、概率论、逻辑学</strong>的交叉核心。它告诉我们\"完全混乱\"是不可能的——任何大系统必有规律结构。</p>",
   tryit: "<ol>\n  <li><strong>手动点边</strong>：默认所有边是灰色（未设）。点 1-2 边变红（认识），再点 1-3 边变蓝（不认识），体验三态切换。</li>\n  <li><strong>看单色三角形计数</strong>：每改一条边，黄色高亮立刻出现，<strong>实时</strong>告诉你有几个单色三角形。</li>\n  <li><strong>故意造无单色三角的 6 节点图</strong>：试 100 次都失败——证明 R(3,3) ≤ 6。</li>\n  <li><strong>点\"AI 出反例：找无单色三角的 K₅\"</strong>：看 AI 展示经典 C₅ 圈反例——5 人<strong>可以</strong>无单色三角形。</li>\n  <li><strong>跑 100 次</strong>：100 个随机 6 人配置，统计含单色三角的比例——应该<strong>100%</strong>。</li>\n  <li><strong>孩子最难的问题</strong>：5 人聚会有可能无单色三角形吗？—— 让孩子先猜，再用 AI 按钮验证。</li>\n  <li><strong>下载 PNG</strong>：把你设计的 6 人关系图下载，给同学出题\"你能找到单色三角形吗？\"。</li>\n  <li><strong>进阶思考</strong>：如果每条边有 3 种颜色（红/蓝/绿），6 人还能无单色三角形吗？（不能，R(3,3,3) = 17）</li>\n</ol>",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们做一个超简单的聚会游戏，但里面藏着一个惊人的数学定理。\n\n想象 6 个小朋友围坐一桌。每两个人之间，要么\"认识\"（画红线），要么\"不认识\"（画蓝线）。现在问：是不是一定有 3 个人互相都认识，或者 3 个人互相都不认识？\n\n答案是：一定有。这就是拉姆齐 R(3,3) 等于 6。\n\n为什么呢？我们来推一下。先看其中一个人，比如小明。小明跟其他 5 个人各有关系——认识或不认识。5 个人里，至少有 3 个跟小明是同一种关系（鸽笼原理）。假设小李、小王、小张这 3 个都认识小明。\n\n现在看小李和小王：如果他俩认识，那小李、小王、小明就互相认识了——找到一个\"3 人互识\"组。如果他俩不认识，那小李、小王、小张这 3 人之间呢？也得分类讨论……不管怎么分，都能找到一个 3 人组。\n\n所以 6 人聚会，必有 3 人互识或互不识。听起来很玄乎，其实就是个组合问题。\n\n数学家 Frank Ramsey 在 1930 年研究这个问题，他提出一个更一般的数 R(s,t)：在 2-着色完全图里，必含 s-单色团或 t-单色团的最小顶点数。R(3,3) 等于 6 是其中最简单的非平凡情况。\n\n这个定理有什么用呢？社交网络分析里，R(3,3) 告诉我们：6 个人的小群体里，\"小圈子\"或\"陌生人圈子\"必然存在。朋友推荐、社交图谱、推荐算法，背后都是这个思想。\n\n现在请同学们自己来：和同桌一起，6 个小朋友一组。每个人写下自己认识或不认识的人，看看你们组能不能找到\"3 人互识\"或\"3 人互不识\"。然后看：换成 5 个人呢？结论还成立吗？\n\n记住：数学不只藏在书本里——藏在每一次聚会、每一个朋友圈、每一次\"咦怎么这么巧\"的瞬间里。",
+  audioUrl: "audio/PR05_explain.mp3",
   render: function(h) { return setupRamsey(h); }
 }];
 
@@ -2234,6 +2234,8 @@ function plazaOpen(id, setHash = true) {
 
   // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+  // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
+  void exampleExplain;
 
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
@@ -2262,23 +2264,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  const aiSection = `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
-      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
-        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
-        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
-          ${exampleExplain}
-        </div>
-        <h4>📋 完整 prompt 文本</h4>
-        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-        <div class="row" style="margin-top: 12px;">
-          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-        </div>
-      </div>
-    </details>`;
+  // AI 讲解模块已移除（Mavis 讲解替代），推荐 prompt 存到项目目录 prompts/{分类}.md
+  const aiSection = '';
 
   // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
   // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
@@ -2290,24 +2277,24 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 如果没有 principle 等区，直接给个简短的引导
-  const fallbackSection = !hasRichContent ? `
-    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
-      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
-    </div>` : '';
-
   // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
   const mavisSection = exp.audioUrl ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
       <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
         <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
-        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
-        <div class="row" style="gap: 8px; margin-top: 8px;">
+        <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
+          <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+          <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisAudio-${exp.id}">0.75×</button>
+          <button class="ghost small rate-btn" data-rate="1" data-audio="mavisAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+          <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisAudio-${exp.id}">1.25×</button>
+          <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisAudio-${exp.id}">1.5×</button>
+          <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
+          <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
           ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
       </div>
     </details>` : '';
 
@@ -2328,16 +2315,26 @@ function plazaOpen(id, setHash = true) {
         <div id="plazaBody"></div>
       </div>
     </details>
-
-    ${aiSection}
-    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
-  const aiBtn = document.getElementById('plazaAI');
-  if (aiBtn) {
-    aiBtn.dataset.orig = '📋 复制 prompt';
-    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
-  }
+  // 倍速播放按钮事件绑定
+  document.querySelectorAll('.rate-btn').forEach(btn => {
+    btn.onclick = () => {
+      const audio = document.getElementById(btn.dataset.audio);
+      if (!audio) return;
+      const rate = parseFloat(btn.dataset.rate);
+      audio.playbackRate = rate;
+      // 更新按钮高亮
+      document.querySelectorAll(`.rate-btn[data-audio="${btn.dataset.audio}"]`).forEach(b => {
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--accent)';
+    };
+  });
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
@@ -2723,7 +2720,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PR05_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

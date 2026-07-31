@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "<p><strong>1849 年</strong>，<strong>Alphonse de Polignac</strong> 提出更广的猜想：每个偶数都是某对素数之差（不只 2）——孪生猜想是特例。</p>\n<p><strong>1912 年</strong>，<strong>Edmund Landau</strong> 在国际数学家大会列出 4 个未解问题，\"孪生素数猜想\"排第 2——著名的 <strong>Landau 问题</strong>。</p>\n<p><strong>1923 年</strong>，<strong>Godfrey Hardy</strong> 和 <strong>John Littlewood</strong> 用<strong>圆法</strong>证明：在<strong>广义黎曼猜想</strong>下，孪生猜想成立。给出 <strong>C₂ = 0.66016...</strong>。</p>\n<p><strong>1966 年</strong>，<strong>Chen Jingrun</strong>（陈景润）证明：每个大偶数 = p + q（p 素数，q 几乎素数至多 2 因子）——<strong>陈氏定理</strong>，哥德巴赫问题的\"几乎证明\"。</p>\n<p><strong>2005 年</strong>，<strong>Daniel Goldston</strong>、<strong>János Pintz</strong>、<strong>Cem Yıldırım</strong> 证明：素数对差距 <strong>趋于 0</strong>（无穷多对差距任意小）。但具体差几还是不知道。</p>\n<p><strong>2013 年 5 月 13 日</strong>，<strong>Yitang Zhang</strong>（张益唐）独自投稿到 <em>Annals of Mathematics</em>，证明无穷多对差 &lt; 7000 万。审稿人 <strong>Henryk Iwaniec</strong> 和 <strong>Kevin Ford</strong> 4 月就收到，但 5 月才意识到重大。发表当天登上 <em>Nature</em>、<em>New York Times</em> 头条。</p>\n<p><strong>2013 年 8 月</strong>，<strong>Terence Tao</strong> 发起 <strong>Polymath 8</strong> 计划（开放式合作），几个月内把 7000 万压到 246。Maynard 独立给出更好的界。</p>\n<p><strong>2014 年至今</strong>，差距\"246\" 仍是最强界，差 2（真正的孪生）仍未证——但距目标越来越近。</p>",
   tryit: "<ol>\n  <li><strong>输入 100</strong>：看孪生对 (71, 73) 等。问孩子\"为什么 (3, 5) 后下一个是 (5, 7)？\"(因为 4 不是素数)。</li>\n  <li><strong>输入 1000</strong>：35 对孪生，最大 (881, 883)。散点图呈现\"沿 y=x+2 分布\"。</li>\n  <li><strong>输入 10000</strong>：205 对孪生。问孩子\"为什么密度变低？\"（素数越来越稀疏）。</li>\n  <li><strong>验证单数</strong>：输入 41 → 41 和 43 都是素数 → 孪生 ✓。输入 100 → 100 不是素数 → 不是孪生 ✗。</li>\n  <li><strong>看孪生 / 素数比</strong>：1000 内 168 个素数，35 对孪生 → 约 21%。10000 内 1229 个素数，205 对孪生 → 约 17%——密度递减但仍可观。</li>\n  <li><strong>扫到 100000</strong>：1224 对孪生，约 8 秒。问孩子\"如果扫到 1 亿呢？\"——100 亿对，约 10000 秒（3 小时）。</li>\n  <li><strong>张益唐的故事</strong>：跟孩子讲\"一个曾任赛百味店员的数学家，58 岁默默无闻，59 岁一鸣惊人——给全世界上了一节'坚持'课\"。</li>\n  <li><strong>教学金句</strong>：\"数学家验证到 4×10¹⁸ 都没反例，但证明不了——这就是数学的'看得见摸不着'。\"</li>\n</ol>",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看素数里最有意思的一对——孪生素数。\n\n什么叫孪生素数？就是两个素数相差 2。3 和 5、5 和 7、11 和 13、17 和 19、29 和 31 都是孪生素数。注意 2 和 3 相差 1，不算。\n\n数学家们早就发现：孪生素数似乎有无穷多对。但 1000 以内有 35 对，10000 以内有 122 对，100 万以内有 8169 对——越往后越稀疏，但还是源源不断地冒出来。\n\n问题是：到底有没有无穷多对孪生素数？这就是\"孪生素数猜想\"。\n\n这个问题困扰了数学家 100 多年，看起来简单，但严格证明一直没有。\n\n直到公元二零一三年，华人数学家张益唐在数学顶刊《Annals of Mathematics》发表了一篇石破天惊的论文。他证明了：存在无穷多对素数，它们之间的差小于 7 乘以 10 的 7 次方，也就是 7000 万！\n\n虽然不是\"差等于 2\"——差是 7000 万——但这是有史以来第一次证明\"相邻素数之间的差有上界\"，是质数分布理论的重大突破！\n\n后来，Polymath 8 计划把这个上界从 7000 万降到了 246。2014 年，数学家 James Maynard 用一种全新方法，几乎同时把上界降到了 600。距离\"差等于 2\"还差一步，但这一步是最难的。\n\n现在已知的最大孪生素数对是 2,003,663,613 乘以 2 的 195000 次方减 1 和加 1，大约 58000 位数字——超级大！\n\n现在请同学们自己找：扫一段区间，看孪生素数有多密。Top 10 表格会列出蹦得最久的 10 个数。看看 1000 以内哪一对孪生素数最密？明天带过来我们比比谁找得多。\n\n记住：数学不只藏在书本里——藏在每一次\"看似无规律、实则有规律\"的素数海洋里。",
+  audioUrl: "audio/PR07_explain.mp3",
   render: function(h) { return setupTwin(h); }
 }];
 
@@ -2234,6 +2234,8 @@ function plazaOpen(id, setHash = true) {
 
   // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+  // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
+  void exampleExplain;
 
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
@@ -2262,23 +2264,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  const aiSection = `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
-      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
-        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
-        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
-          ${exampleExplain}
-        </div>
-        <h4>📋 完整 prompt 文本</h4>
-        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-        <div class="row" style="margin-top: 12px;">
-          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-        </div>
-      </div>
-    </details>`;
+  // AI 讲解模块已移除（Mavis 讲解替代），推荐 prompt 存到项目目录 prompts/{分类}.md
+  const aiSection = '';
 
   // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
   // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
@@ -2290,24 +2277,24 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 如果没有 principle 等区，直接给个简短的引导
-  const fallbackSection = !hasRichContent ? `
-    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
-      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
-    </div>` : '';
-
   // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
   const mavisSection = exp.audioUrl ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
       <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
         <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
-        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
-        <div class="row" style="gap: 8px; margin-top: 8px;">
+        <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
+          <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+          <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisAudio-${exp.id}">0.75×</button>
+          <button class="ghost small rate-btn" data-rate="1" data-audio="mavisAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+          <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisAudio-${exp.id}">1.25×</button>
+          <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisAudio-${exp.id}">1.5×</button>
+          <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
+          <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
           ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
       </div>
     </details>` : '';
 
@@ -2328,16 +2315,26 @@ function plazaOpen(id, setHash = true) {
         <div id="plazaBody"></div>
       </div>
     </details>
-
-    ${aiSection}
-    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
-  const aiBtn = document.getElementById('plazaAI');
-  if (aiBtn) {
-    aiBtn.dataset.orig = '📋 复制 prompt';
-    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
-  }
+  // 倍速播放按钮事件绑定
+  document.querySelectorAll('.rate-btn').forEach(btn => {
+    btn.onclick = () => {
+      const audio = document.getElementById(btn.dataset.audio);
+      if (!audio) return;
+      const rate = parseFloat(btn.dataset.rate);
+      audio.playbackRate = rate;
+      // 更新按钮高亮
+      document.querySelectorAll(`.rate-btn[data-audio="${btn.dataset.audio}"]`).forEach(b => {
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--accent)';
+    };
+  });
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
@@ -2723,7 +2720,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PR07_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

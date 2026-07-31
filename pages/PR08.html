@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "<p><strong>公元前 250 年</strong>，<strong>Archimedes</strong>（阿基米德，287-212 BC）用 96 边形得 <span class=\"formula\">3.1408 &lt; π &lt; 3.1429</span>——人类首次给出 π 的误差范围。</p>\n<p><strong>公元 480 年</strong>，中国数学家 <strong>祖冲之</strong>（429-500）给出 <span class=\"formula\">3.1415926 &lt; π &lt; 3.1415927</span>，还算了 355/113（密率）和 22/7（疏率）——<strong>领先欧洲 1000 年</strong>。</p>\n<p><strong>1424 年</strong>，<strong>Jamshīd al-Kāshī</strong>（波斯）算 π 到 16 位小数。</p>\n<p><strong>1674 年</strong>，<strong>Gottfried Leibniz</strong> 发现 π/4 = 1 - 1/3 + 1/5 - 1/7 + ...——简单优雅但慢。</p>\n<p><strong>1706 年</strong>，<strong>John Machin</strong>（英国天文学教授）给出 Machin 公式 π/4 = 4·arctan(1/5) - arctan(1/239)，手算到 100 位。</p>\n<p><strong>1761 年</strong>，<strong>Johann Lambert</strong> 证明 π 是<strong>无理数</strong>。<br>\n<strong>1882 年</strong>，<strong>Ferdinand von Lindemann</strong> 证明 π 是<strong>超越数</strong>（不是任何有理系数多项式的根）——解决\"化圆为方\"不可能。</p>\n<p><strong>1948 年</strong>，<strong>Lev Toropov</strong> 等算出 π 203 位（含错误）。<br>\n<strong>1985 年</strong>，<strong>Bill Gosper</strong> 算到 1700 万位。<br>\n<strong>2002 年</strong>，<strong>金田康正</strong>（日本）算到 12411 亿位。</p>\n<p><strong>1988 年</strong>，<strong>David 和 Gregory Chudnovsky</strong> 兄弟（俄裔美国数学家）发表 Chudnovsky 公式——<strong>现代工业标准</strong>。</p>\n<p><strong>2022 年 6 月</strong>，<strong>Timothy Mullican</strong> 用家用电脑算到 100 万亿位，用 Chudnovsky + 54 天。<br>\n<strong>2024 年</strong>，存储优化版到 202 万亿位。</p>\n<p>π 的\"为什么无穷多位还不循环\"问题（圆周率是无理数），仍然是个开放数学问题——尽管答案已证（π 无理），但具体的\"第 1 万亿位是什么\"在变。</p>",
   tryit: "<ol>\n  <li><strong>先看静止画面</strong>：4 条线，Machin 和 Chudnovsky 已经接近 3.14xxx，阿基米德在 3.0-3.1 跳动，Leibniz 几乎水平线。</li>\n  <li><strong>按\"开始计算\" N=10</strong>：Leibniz 还是 3.0 附近，Machin 已到 3.141592，Chudnovsky 一步到位 3.14159265358979。</li>\n  <li><strong>改成 N=100</strong>：4 条线<strong>几乎都收敛</strong>到真实 π。但误差数量级：Leibniz 仍 1%，Machin 0.0000001%，Chudnovsky 远超双精度。</li>\n  <li><strong>改成 N=10000</strong>：Leibniz 才刚到 3.141，Chudnovsky 完全没变化（因为算不动 N=10000）。</li>\n  <li><strong>看每条线的\"速度\"</strong>：Leibniz 是最慢的蓝线，几乎 45° 直角走。Chudnovsky 黄线是\"阶跃函数\"——1 项就到顶。</li>\n  <li><strong>教学金句</strong>：跟孩子说\"人类花 2000 年才把 π 算到 1 亿位，今天 1 个手机 1 秒就能算。这就是数学的积累。\"</li>\n  <li><strong>祖冲之的 7 位</strong>：用阿基米德方法，祖冲之算的精度到小数点后 7 位——比欧洲早 1000 年。</li>\n  <li><strong>Chudnovsky 公式</strong>：把公式抄下来给孩子看——\"你不需要懂每个符号，但要感受'公式越复杂、算得越快'的震撼\"。</li>\n</ol>",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看 4 种完全不同的算 π 方法——阿基米德割圆、Leibniz 级数、Machin 公式、Chudnovsky 公式。\n\n同样算 π，这 4 种方法的差距有多大？答案是 6 个数量级！也就是说，最慢的算 1 万次还没最快的方法算 1 次准。\n\n先说阿基米德割圆，公元前 250 年发明的最古老方法。思路是：圆的内接正多边形边数越多，周长越接近圆周长。阿基米德从正 6 边形开始，加倍到 12、24、48、96 边形，用 96 边形算出 π 在 3.1408 到 3.1429 之间——相当厉害了，但只有 2 位精度。\n\n第二种是 Leibniz 级数，1674 年发明。公式是 π 除以 4 等于 1 减 1/3 加 1/5 减 1/7 加 1/9 减……简单到令人发指，但收敛速度是 1/N——要算 1 万次才到 3.14，算 100 万次才到 3.141593。慢得令人抓狂。\n\n第三种是 Machin 公式，1706 年发明。π 除以 4 等于 4 乘 arctan(1/5) 减 arctan(1/239)。arctan(1/5) 的项以 1/5、1/125、1/3125 速度下降，arctan(1/239) 更快——10 项就到 12 位精度！比 Leibniz 快了几万倍。\n\n第四种是 Chudnovsky 公式，1988 年发明。公式长得吓人：1/π 等于 12 乘以一个超级复杂的级数。但每加 1 项，精度就增加 14 位！是目前算 π 到万亿位的工业标准。2022 年瑞士团队用这个公式算到了 100 万亿位，用了 54 天。\n\n为什么差距这么大？因为 π 是个\"超越数\"——1882 年林德曼证明的——它不可能用有理数的代数式精确表达。但我们可以用越来越聪明的级数和公式，逼近到任意精度。\n\n现在请同学们点\"开始计算\"，看 4 条线一起画出来——红线 Leibniz 几乎不动，黄线 Chudnovsky 一步到位。一万次迭代后，谁最准？明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一个\"看似简单的公式、实则威力无穷\"的智慧里。",
+  audioUrl: "audio/PR08_explain.mp3",
   render: function(h) { return setupPiAlg(h); }
 }];
 
@@ -2234,6 +2234,8 @@ function plazaOpen(id, setHash = true) {
 
   // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+  // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
+  void exampleExplain;
 
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
@@ -2262,23 +2264,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  const aiSection = `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
-      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
-        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
-        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
-          ${exampleExplain}
-        </div>
-        <h4>📋 完整 prompt 文本</h4>
-        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-        <div class="row" style="margin-top: 12px;">
-          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-        </div>
-      </div>
-    </details>`;
+  // AI 讲解模块已移除（Mavis 讲解替代），推荐 prompt 存到项目目录 prompts/{分类}.md
+  const aiSection = '';
 
   // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
   // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
@@ -2290,24 +2277,24 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 如果没有 principle 等区，直接给个简短的引导
-  const fallbackSection = !hasRichContent ? `
-    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
-      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
-    </div>` : '';
-
   // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
   const mavisSection = exp.audioUrl ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
       <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
         <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
-        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
-        <div class="row" style="gap: 8px; margin-top: 8px;">
+        <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
+          <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+          <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisAudio-${exp.id}">0.75×</button>
+          <button class="ghost small rate-btn" data-rate="1" data-audio="mavisAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+          <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisAudio-${exp.id}">1.25×</button>
+          <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisAudio-${exp.id}">1.5×</button>
+          <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
+          <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
           ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
       </div>
     </details>` : '';
 
@@ -2328,16 +2315,26 @@ function plazaOpen(id, setHash = true) {
         <div id="plazaBody"></div>
       </div>
     </details>
-
-    ${aiSection}
-    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
-  const aiBtn = document.getElementById('plazaAI');
-  if (aiBtn) {
-    aiBtn.dataset.orig = '📋 复制 prompt';
-    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
-  }
+  // 倍速播放按钮事件绑定
+  document.querySelectorAll('.rate-btn').forEach(btn => {
+    btn.onclick = () => {
+      const audio = document.getElementById(btn.dataset.audio);
+      if (!audio) return;
+      const rate = parseFloat(btn.dataset.rate);
+      audio.playbackRate = rate;
+      // 更新按钮高亮
+      document.querySelectorAll(`.rate-btn[data-audio="${btn.dataset.audio}"]`).forEach(b => {
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--accent)';
+    };
+  });
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
@@ -2723,7 +2720,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PR08_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

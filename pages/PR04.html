@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "<p><strong>1852 年</strong>，<strong>Francis Guthrie</strong>（伦敦大学学生）在给英国地图涂色时发现：似乎 4 种颜色就够了。他问弟弟 Frederick，弟弟去问老师 <strong>Augustus De Morgan</strong>，De Morgan 写信给 <strong>William Hamilton</strong>——但 Hamilton 没兴趣。</p>\n<p><strong>1878 年</strong>，<strong>Arthur Cayley</strong> 在伦敦数学会正式提出\"四色猜想\"。<br>\n<strong>1879 年</strong>，<strong>Alfred Kempe</strong> 发表\"证明\"——被公认 11 年。</p>\n<p><strong>1890 年</strong>，<strong>Percy Heawood</strong> 指出 Kempe 的证明有漏洞（但修正后能证 5 色）。<br>\n<strong>1922 年</strong>，<strong>Philip Franklin</strong> 证明 ≤ 25 区域时四色成立。<br>\n<strong>1960s</strong>，逐步推进到 ≤ 40 区域。</p>\n<p><strong>1976 年 6 月</strong>，<strong>Kenneth Appel</strong> 和 <strong>Wolfgang Haken</strong> 在伊利诺伊大学用计算机<strong>穷举 1936 个不可约构型</strong>，终于证明。发表在 <em>Illinois Journal of Mathematics</em>。</p>\n<p><strong>2005 年</strong>，<strong>Georges Gonthier</strong> 用 <strong>Coq 证明助手</strong>给出<strong>完全形式化证明</strong>——机器检查机器写的证明。</p>\n<p><strong>争议</strong>：数学家至今争论\"计算机辅助证明\"算不算\"真证明\"。但 Gonthier 之后，没人再怀疑四色定理。</p>",
   tryit: "<ol>\n  <li><strong>先看 6×6 网格</strong>：点任意格子涂红色，再点隔壁——是不是变蓝？再点隔壁——变绿？体验\"相邻必不同色\"。</li>\n  <li><strong>挑战 3 色</strong>：点\"挑战 3 色\"按钮——4 号色被锁住。试试 6×6 网格能不能只用 3 色——<strong>2 色就够</strong>！</li>\n  <li><strong>切到 Voronoi 模式</strong>：地图变不规则，14 个国家。这时 3 色<strong>不够</strong>——至少要 4 色。验证！</li>\n  <li><strong>让 AI 涂</strong>：点\"AI 用 4 色涂\"——看 AI 的回溯算法怎么一格格涂色。AI <strong>一定能涂出来</strong>（这就是定理）。</li>\n  <li><strong>自创国家数</strong>：国家数改成 20，地图更复杂，AI 也能搞定。</li>\n  <li><strong>下载 PNG</strong>：把你涂的地图下载下来——给同学出题：\"这个地图最少要几色？\"</li>\n  <li><strong>教学金句</strong>：跟孩子说\"这条定理 1852 年提出，1976 年才证出来——足足 124 年！而且最后还靠了电脑！数学家也怕电脑抢饭碗吗？\"</li>\n</ol>",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个超有趣的定理——四色定理。\n\n先想象你手上有中国地图，上面有好多省。两个省如果共享一段边界，就叫\"相邻\"。现在要你给每个省涂一种颜色，要求相邻的省颜色不能相同。最少需要几种颜色？\n\n答案是 4 种就够了。这就是四色定理。\n\n为什么不是 2 种或者 3 种？画三个互相挨着的国家，它们必须三种不同颜色。2 种肯定不够。3 种呢？画一个中心加三个围城——中心要跟三个围城都不同色，但只剩一种颜色了，所以 3 种也不够。\n\n那为什么 4 种就够了？数学家想了很久，从公元一八五二年 Francis Guthrie 第一次提出，到公元一九七六年才被证明，足足 124 年！而且最后还是靠计算机帮忙——Kenneth Appel 和 Wolfgang Haken 用计算机穷举了 1936 种基本构型，才终于证明。\n\n这是数学史上第一个必须靠计算机才能完成的著名定理。所以有人开玩笑说：\"数学家也怕电脑抢饭碗吗？\"\n\n实际上，四色定理看似是\"画图\"问题，但背后是图论的核心：把地图转成平面图，平面图能归约到 1800 种基本图，每种基本图都能 4-着色，所以任何平面图都能 4-着色。\n\n这个定理还有大用处——芯片布线、频段分配、课程表排课，全都跟\"图着色\"有关。\n\n现在请同学们动动手：点 6 乘 6 网格的任意格子涂色，相邻的格子会自动变不同颜色。然后切到\"挑战 3 色\"——看看只用 3 种颜色能不能涂完整个网格？2 种就够了！但切到 Voronoi 模式，画不规则地图——3 种就不够了，4 种刚好。\n\n记住：数学不只藏在书本里——藏在每一次\"看似显然但难以证明\"的直觉里。",
+  audioUrl: "audio/PR04_explain.mp3",
   render: function(h) { return setupFourColor(h); }
 }];
 
@@ -2234,6 +2234,8 @@ function plazaOpen(id, setHash = true) {
 
   // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+  // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
+  void exampleExplain;
 
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
@@ -2262,23 +2264,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  const aiSection = `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
-      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
-        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
-        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
-          ${exampleExplain}
-        </div>
-        <h4>📋 完整 prompt 文本</h4>
-        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-        <div class="row" style="margin-top: 12px;">
-          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-        </div>
-      </div>
-    </details>`;
+  // AI 讲解模块已移除（Mavis 讲解替代），推荐 prompt 存到项目目录 prompts/{分类}.md
+  const aiSection = '';
 
   // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
   // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
@@ -2290,24 +2277,24 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 如果没有 principle 等区，直接给个简短的引导
-  const fallbackSection = !hasRichContent ? `
-    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
-      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
-    </div>` : '';
-
   // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
   const mavisSection = exp.audioUrl ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
       <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
         <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
-        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
-        <div class="row" style="gap: 8px; margin-top: 8px;">
+        <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
+          <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+          <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisAudio-${exp.id}">0.75×</button>
+          <button class="ghost small rate-btn" data-rate="1" data-audio="mavisAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+          <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisAudio-${exp.id}">1.25×</button>
+          <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisAudio-${exp.id}">1.5×</button>
+          <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
+          <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
           ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
       </div>
     </details>` : '';
 
@@ -2328,16 +2315,26 @@ function plazaOpen(id, setHash = true) {
         <div id="plazaBody"></div>
       </div>
     </details>
-
-    ${aiSection}
-    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
-  const aiBtn = document.getElementById('plazaAI');
-  if (aiBtn) {
-    aiBtn.dataset.orig = '📋 复制 prompt';
-    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
-  }
+  // 倍速播放按钮事件绑定
+  document.querySelectorAll('.rate-btn').forEach(btn => {
+    btn.onclick = () => {
+      const audio = document.getElementById(btn.dataset.audio);
+      if (!audio) return;
+      const rate = parseFloat(btn.dataset.rate);
+      audio.playbackRate = rate;
+      // 更新按钮高亮
+      document.querySelectorAll(`.rate-btn[data-audio="${btn.dataset.audio}"]`).forEach(b => {
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--accent)';
+    };
+  });
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
@@ -2723,7 +2720,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PR04_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

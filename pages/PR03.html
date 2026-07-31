@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "<p><strong>公元前 1900-1600 年</strong>，古巴比伦人已经在泥板上记录 (3,4,5)、(5,12,13)、(8,15,17) 等勾股数——但他们不知道为什么\"对\"。</p>\n<p><strong>公元前 6 世纪</strong>，希腊数学家 <strong>Pythagoras</strong>（毕达哥拉斯）证明直角三角形 a²+b²=c² 永远成立——这就是<strong>勾股定理</strong>。</p>\n<p><strong>公元前 300 年</strong>，<strong>Euclid</strong>（欧几里得）在《几何原本》第 X 卷命题 29 给出<strong>本原勾股数公式</strong>——这是人类第一次\"完整构造\"所有勾股数。</p>\n<p><strong>1740 年前后</strong>，瑞士数学家 <strong>Leonhard Euler</strong> 给出 m, n 互素且 m-n 奇的条件（Euclid 原著只说 m > n）。</p>\n<p><strong>现代推广</strong>：勾股数对应<strong>高斯整数</strong>（复整数）的分解，把\"找勾股数\"转化为\"算 a² + b²\"——这是代数数论的经典案例。</p>",
   tryit: "<ol>\n  <li><strong>工厂试滑块</strong>：把 m 调到 5、n 调到 4——得到 (9, 40, 41)？验证 9² + 40² = 81 + 1600 = 1681 = 41² ✓</li>\n  <li><strong>试 m=4, n=2</strong>：得到 (12, 16, 20)，但\"非本原\"——因为 gcd(4,2)=2, 4-2=偶。提示：本原要求 m-n 奇！</li>\n  <li><strong>挑战模式</strong>：点\"换一题\"，AI 随机选一个本原勾股数（如 7-24-25），你用 8 步内猜出来。</li>\n  <li><strong>先问\"包含数字 7\"？</strong> 候选项会缩到几十个。再问\"最大边 &lt; 30\"？剩几个。再问\"m=4\"？锁定！</li>\n  <li><strong>直接问 m 或 n</strong>：这是\"绝杀\"问题——m, n 直接决定一组。问对了立刻就剩 1 个。</li>\n  <li><strong>看\"偷看答案\"按钮</strong>：放弃就直接看。</li>\n  <li><strong>看候选池</strong>：每次提问后候选池会刷新，体会\"二分\"的强大。</li>\n  <li><strong>全表浏览</strong>：右下角\"本原勾股数表\"列出全部 158 个，按 c 排序——问孩子\"为什么 5-12-13 后下一个是 8-15-17？\"</li>\n</ol>",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们玩一个猜数游戏——猜勾股数。\n\n勾股数大家应该都学过：三个正整数 a、b、c 满足 a 的平方加 b 的平方等于 c 的平方。最有名的是 3、4、5：3 的平方是 9，4 的平方是 16，9 加 16 等于 25，5 的平方就是 25。\n\n如果这三个数两两互质——也就是没有公因数——就叫\"本原勾股数\"。1000 以内有 158 个本原勾股数。\n\n数学家告诉我们：所有本原勾股数都有一个通用公式！这就是欧几里得公式。\n\n公式是这样的：取两个正整数 m 和 n，要求 m 大于 n，m 和 n 互质，而且 m 减 n 是奇数。那么 a 等于 m 的平方减 n 的平方，b 等于 2mn，c 等于 m 的平方加 n 的平方。这一组就一定是本原勾股数！\n\n举个例子：m 等于 3，n 等于 2。a 等于 9 减 4 等于 5。b 等于 2 乘 3 乘 2 等于 12。c 等于 9 加 4 等于 13。所以 5、12、13 是一组。验证：5 的平方是 25，12 的平方是 144，加起来 169，13 的平方正好是 169！\n\n最厉害的是，这个公式是双向的——所有本原勾股数都能这样造出来。1000 以内只有 158 个本原勾股数，所以理论上最多问 8 个二分问题就能锁定一个，8 步 100% 猜中！\n\n现在请同学们动动手：把 m 调到 5，n 调到 4，看看得到什么？9、40、41——验证一下，9 的平方加 40 的平方等于 1681，41 的平方也是 1681！完美！\n\n然后挑战自己：点\"换一题\"，让 AI 随机选一个本原勾股数，你用 8 步内猜出来。试试问\"包含数字 7 吗？\"、\"最大边小于 30 吗？\"，看能不能像二分法一样锁定。\n\n记住：数学不只藏在书本里——藏在每一个能被一条优雅公式描述的规律里。",
+  audioUrl: "audio/PR03_explain.mp3",
   render: function(h) { return setupPythagorean(h); }
 }];
 
@@ -2234,6 +2234,8 @@ function plazaOpen(id, setHash = true) {
 
   // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+  // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
+  void exampleExplain;
 
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
@@ -2262,23 +2264,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  const aiSection = `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
-      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
-        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
-        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
-          ${exampleExplain}
-        </div>
-        <h4>📋 完整 prompt 文本</h4>
-        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-        <div class="row" style="margin-top: 12px;">
-          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-        </div>
-      </div>
-    </details>`;
+  // AI 讲解模块已移除（Mavis 讲解替代），推荐 prompt 存到项目目录 prompts/{分类}.md
+  const aiSection = '';
 
   // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
   // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
@@ -2290,24 +2277,24 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 如果没有 principle 等区，直接给个简短的引导
-  const fallbackSection = !hasRichContent ? `
-    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
-      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
-    </div>` : '';
-
   // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
   const mavisSection = exp.audioUrl ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
       <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
         <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
-        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
-        <div class="row" style="gap: 8px; margin-top: 8px;">
+        <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
+          <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+          <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisAudio-${exp.id}">0.75×</button>
+          <button class="ghost small rate-btn" data-rate="1" data-audio="mavisAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+          <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisAudio-${exp.id}">1.25×</button>
+          <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisAudio-${exp.id}">1.5×</button>
+          <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
+          <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
           ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
       </div>
     </details>` : '';
 
@@ -2328,16 +2315,26 @@ function plazaOpen(id, setHash = true) {
         <div id="plazaBody"></div>
       </div>
     </details>
-
-    ${aiSection}
-    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
-  const aiBtn = document.getElementById('plazaAI');
-  if (aiBtn) {
-    aiBtn.dataset.orig = '📋 复制 prompt';
-    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
-  }
+  // 倍速播放按钮事件绑定
+  document.querySelectorAll('.rate-btn').forEach(btn => {
+    btn.onclick = () => {
+      const audio = document.getElementById(btn.dataset.audio);
+      if (!audio) return;
+      const rate = parseFloat(btn.dataset.rate);
+      audio.playbackRate = rate;
+      // 更新按钮高亮
+      document.querySelectorAll(`.rate-btn[data-audio="${btn.dataset.audio}"]`).forEach(b => {
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--accent)';
+    };
+  });
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
@@ -2723,7 +2720,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PR03_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

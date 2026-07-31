@@ -2158,7 +2158,7 @@ const EXPERIMENTS = [{
   history: "<p><strong>1733 年</strong>，法国博物学家 <strong>Georges-Louis Leclerc, Comte de Buffon</strong>（布丰）第一次提出这个问题。他以百科全书式的 <em>Histoire Naturelle</em> 闻名，同时还是概率论的先驱。</p>\n<p><strong>1850 年</strong>，瑞士天文学家 <strong>Rudolf Wolf</strong> 亲手扔了 <strong>5000 根针</strong>，得到 π ≈ 3.1596——相对误差 0.5%，在当时惊人地精确。</p>\n<p><strong>1901 年</strong>，意大利数学家 <strong>Mario Lazzarini</strong> 用精心设计的针长（针长 = 线距的 5/6）扔了 3408 根，得到 <strong>π ≈ 3.1415929...</strong>，前 6 位都正确——但后来被怀疑数据有\"优化\"嫌疑。</p>\n<p><strong>现代意义</strong>：蒙特卡洛方法（1940s-）就是 Buffon 思想的\"徒孙\"。MCMC、粒子物理、期权定价，<strong>全都是用随机模拟算确定性答案</strong>。</p>",
   tryit: "<ol>\n  <li><strong>看孩子预测</strong>：让孩子先猜\"投 100 根针，π 估值会落 3 到 4 之间吗？\"——会。猜\"会落 3.14 附近吗？\"——投得越多越接近。</li>\n  <li><strong>点画布自己扔针</strong>：鼠标点画布上任意位置就扔一根。问孩子\"这根针跨线了吗？为什么？\"</li>\n  <li><strong>投 1 根</strong>：看 π 估值从\"—\"变成\"3.14xxx\"——单次波动可能很大（3.0 ~ 4.0）。</li>\n  <li><strong>投 100 根</strong>：π 估值在 3.05 ~ 3.25 之间。问孩子\"为什么还是不准？\"——因为 100 个样本太小。</li>\n  <li><strong>投 1000 根</strong>：现在 3.10 ~ 3.18 范围。</li>\n  <li><strong>投 10000 根</strong>：3.13 ~ 3.15 范围——<strong>误差 1% 以内</strong>，但还是不及 祖冲之 1500 年前的精度！</li>\n  <li><strong>改变参数再玩</strong>：把 L 改成 100、d 改成 80——理论跨线率变 80%，重新投，验证理论。</li>\n  <li><strong>下载 PNG</strong>：把你投的结果存为图片，跟同学比谁投得\"分布最均匀\"。</li>\n</ol>",
   svgDemo: "",
-  explain: "同学们好！今天我们一起来做一件很有意思的事情——用一根针，算出圆周率 π。\n\nπ 是谁？3.14159265……一个无穷无尽的数，藏在每一个圆里。但是你拿尺子量一个真实的圆，量出来的 π 永远会有误差。\n\n今天我们要做的事情，比拿尺子量要酷多了。我们要让\"扔针\"——完全是随机的、没有任何规律的扔针——告诉人类 π 到底等于几。\n\n这个想法是 1733 年一个法国人叫布丰想出来的。他想：如果在一张纸上画很多条等距的平行线，然后把一根针扔上去，针跨过一条线的概率，居然跟 π 有关系！\n\n关系是什么？我来推一遍。针长我们叫 L，两条线之间的距离我们叫 d。如果 L 比 d 大很多，针肯定跨线；如果 L 比 d 小很多，针就只可能跨过一条线或者不跨。针的方向呢，从完全平到完全竖，角度 θ 在 0 到 180 度之间随机。离最近的一条线的距离 y 在 0 到 d/2 之间随机。\n\n现在关键来了：针跨线的条件是 L 除以 2 乘以 sinθ 大于 y。这个条件随机的概率是多少？把所有可能的 θ 和 y 算出来，得到的结果就是 2L 除以 πd。\n\n反过来，我们就能从跨线的概率反推出 π 了。你看，反推公式是 π 等于 2L 乘以 N，除以 d 乘以 n。N 是扔的总次数，n 是跨线的次数。\n\n现在请你想一个问题：如果扔 1 根针，跨线概率能算准吗？不能！可能跨，可能不跨。但如果扔 100 根呢？1000 根呢？10000 根呢？\n\n投 1 根针：π 估值可能是 4.0，也可能是 2.0，波动非常大。\n投 100 根：π 估值会落在 3.0 到 3.3 之间。\n投 1000 根：3.10 到 3.18。\n投 10000 根：3.13 到 3.15——误差 1% 以内。\n\n你看，扔得越多，越准。随机里面藏着规律。\n\n但最有意思的是：哪怕你扔 10000 根针，精度也只能到小数点后 1 位。而我们的祖冲之，1500 年前，算了 7 位小数！比布丰的投针实验还早了 1200 年。\n\n现在请同学们做一件事：点开始，投 1000 根针，看看你的 π 估值是多少。然后你能不能自己扔一根针？点画布上任意一个位置——告诉你的同桌，这根针为什么跨线，或者为什么不跨线？\n\n回家作业：找一张草稿纸，画 5 条平行线，然后拿一根牙签扔 50 次，记下来跨了几次。算一算你的 π 估值是多少。明天带到课堂上，看谁的 π 最准。\n\n记住：数学不只藏在书本里——藏在每一次随机、每一次巧合、每一次你认真观察的瞬间。",
+  explain: "同学们好！今天我们一起来做一件很有意思的事情——用一根针，算出圆周率 π。\n\nπ 是谁？3.14159265……一个无穷无尽的数，藏在每一个圆里。但是你拿尺子量一个真实的圆，量出来的 π 永远会有误差。\n\n今天我们要做的事情，比拿尺子量要酷多了。我们要让\"扔针\"——完全是随机的、没有任何规律的扔针——告诉人类 π 到底等于几。\n\n这个想法是公元一七三三年，一个法国人叫布丰想出来的。他想：如果在一张纸上画很多条等距的平行线，然后把一根针扔上去，针跨过一条线的概率，居然跟 π 有关系！\n\n关系是什么？我来推一遍。针长我们叫 L，两条线之间的距离我们叫 d。如果 L 比 d 大很多，针肯定跨线；如果 L 比 d 小很多，针就只可能跨过一条线或者不跨。针的方向呢，从完全平到完全竖，角度 θ 在 0 到 180 度之间随机。离最近的一条线的距离 y 在 0 到 d/2 之间随机。\n\n现在关键来了：针跨线的条件是 L 除以 2 乘以 sinθ 大于 y。这个条件随机的概率是多少？把所有可能的 θ 和 y 算出来，得到的结果就是 2L 除以 πd。\n\n反过来，我们就能从跨线的概率反推出 π 了。你看，反推公式是 π 等于 2L 乘以 N，除以 d 乘以 n。N 是扔的总次数，n 是跨线的次数。\n\n现在请你想一个问题：如果扔 1 根针，跨线概率能算准吗？不能！可能跨，可能不跨。但如果扔 100 根呢？1000 根呢？10000 根呢？\n\n投 1 根针：π 估值可能是 4.0，也可能是 2.0，波动非常大。\n投 100 根：π 估值会落在 3.0 到 3.3 之间。\n投 1000 根：3.10 到 3.18。\n投 10000 根：3.13 到 3.15——误差 1% 以内。\n\n你看，扔得越多，越准。随机里面藏着规律。\n\n但最有意思的是：哪怕你扔 10000 根针，精度也只能到小数点后 1 位。而我们的祖冲之，一千五百年前，算了 7 位小数！比布丰的投针实验还早了一千二百年。\n\n现在请同学们做一件事：点开始，投 1000 根针，看看你的 π 估值是多少。然后你能不能自己扔一根针？点画布上任意一个位置——告诉你的同桌，这根针为什么跨线，或者为什么不跨线？\n\n回家作业：找一张草稿纸，画 5 条平行线，然后拿一根牙签扔 50 次，记下来跨了几次。算一算你的 π 估值是多少。明天带到课堂上，看谁的 π 最准。\n\n记住：数学不只藏在书本里——藏在每一次随机、每一次巧合、每一次你认真观察的瞬间。",
   audioUrl: "audio/PR01_explain.mp3",
   render: function(h) { return setupBuffon(h); }
 }];
@@ -2234,6 +2234,8 @@ function plazaOpen(id, setHash = true) {
 
   // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+  // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
+  void exampleExplain;
 
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
@@ -2262,23 +2264,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  const aiSection = `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
-      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
-        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
-        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
-          ${exampleExplain}
-        </div>
-        <h4>📋 完整 prompt 文本</h4>
-        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-        <div class="row" style="margin-top: 12px;">
-          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-        </div>
-      </div>
-    </details>`;
+  // AI 讲解模块已移除（Mavis 讲解替代），推荐 prompt 存到项目目录 prompts/{分类}.md
+  const aiSection = '';
 
   // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
   // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
@@ -2290,24 +2277,24 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 如果没有 principle 等区，直接给个简短的引导
-  const fallbackSection = !hasRichContent ? `
-    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
-      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
-    </div>` : '';
-
   // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
   const mavisSection = exp.audioUrl ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
       <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
         <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
-        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
-        <div class="row" style="gap: 8px; margin-top: 8px;">
+        <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
+          <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+          <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisAudio-${exp.id}">0.75×</button>
+          <button class="ghost small rate-btn" data-rate="1" data-audio="mavisAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+          <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisAudio-${exp.id}">1.25×</button>
+          <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisAudio-${exp.id}">1.5×</button>
+          <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
+          <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
           ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
       </div>
     </details>` : '';
 
@@ -2328,16 +2315,26 @@ function plazaOpen(id, setHash = true) {
         <div id="plazaBody"></div>
       </div>
     </details>
-
-    ${aiSection}
-    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
-  const aiBtn = document.getElementById('plazaAI');
-  if (aiBtn) {
-    aiBtn.dataset.orig = '📋 复制 prompt';
-    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
-  }
+  // 倍速播放按钮事件绑定
+  document.querySelectorAll('.rate-btn').forEach(btn => {
+    btn.onclick = () => {
+      const audio = document.getElementById(btn.dataset.audio);
+      if (!audio) return;
+      const rate = parseFloat(btn.dataset.rate);
+      audio.playbackRate = rate;
+      // 更新按钮高亮
+      document.querySelectorAll(`.rate-btn[data-audio="${btn.dataset.audio}"]`).forEach(b => {
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--accent)';
+    };
+  });
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;

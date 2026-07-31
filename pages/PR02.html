@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "<p><strong>1930 年代</strong>，德国汉堡大学的 <strong>Lothar Collatz</strong>（1910-1990）研究差分方程时发现了这个规律。1950 年他第一次在国际会议上提出来，被当成\"玩具问题\"。</p>\n<p><strong>1960-1970 年代</strong>，<strong>Bryan Thwaites</strong>（英国数学家）猜测这个猜想永远成立，但没证明。<strong>Shizuo Kakutani</strong>（日裔美国数学家）把这个问题在耶鲁大学数学系传开，大家叫它 <em>\"Kakutani's 3n+1 problem\"</em>。</p>\n<p><strong>1970s</strong>，<strong>Paul Erdős</strong>（20 世纪最多产的数学家之一）公开悬赏 500 美元求证明或反例，至今没人领到。</p>\n<p><strong>1990s</strong>，<strong>Geoffrey Lagarias</strong> 整理了 Collatz 问题，写了 50 页综述<em>\"The 3x+1 problem: an annotated bibliography\"</em>。今天 Lagarias 是这个领域最权威的专家之一。</p>\n<p><strong>2010s</strong>，<strong>Terence Tao</strong>（2006 菲尔兹奖得主）证明了一个<strong>几乎</strong>版本：几乎所有 n 都会\"很接近\"地收敛。但离完全证明还很远。</p>",
   tryit: "<ol>\n  <li><strong>试小数字</strong>：输入 6、11、27，看序列变化。问孩子\"为什么 27 要蹦 112 步？\"</li>\n  <li><strong>找规律</strong>：让孩子手动算 1-10 的\"步数表\"：1→0步, 2→1, 3→7, 4→2, 5→5, 6→8, 7→16, 8→3, 9→19, 10→6。问\"哪个蹦得最久？\"——7 (16 步) 和 9 (19 步)。</li>\n  <li><strong>挑战：找反例</strong>：扫描到 10000，让孩子<strong>亲自</strong>找 1 个反例（找不到，赢 500 美元 Erdős 悬赏！）</li>\n  <li><strong>看峰值</strong>：n = 27 蹦到峰值 9232，n = 871 蹦到峰值 190747 —— 问\"为什么有些 n 这么拧巴？\"</li>\n  <li><strong>观察散点图</strong>：扫 5000，看哪些点是红的——红 = 步数超 5% 的\"反常起点\"。</li>\n  <li><strong>Top 10 表</strong>：扫描完成后看 Top 10——1 万以内蹦得最久的 10 个数是哪些？</li>\n  <li><strong>单步模式</strong>：用\"单步\"按钮看每一步怎么变化，感受\"奇数 ×3+1 后必偶 /2\"的节奏。</li>\n</ol>",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个让全世界数学家都挠头的简单问题——Collatz 猜想，也叫冰雹猜想。\n\n这个猜想超级简单，简单到小学生都能做：选一个正整数 n。\n\n如果 n 是偶数，就除以 2。\n如果 n 是奇数，就乘以 3 再加 1。\n\n一直做下去，最后会蹦到 1 吗？听起来好像很简单对吧？\n\n我来举个例子：n 等于 6，是偶数，除以 2，变成 3。3 是奇数，乘 3 加 1，变成 10。10 除 2 等于 5。5 乘 3 加 1 等于 16。16 除 2 等于 8。8 除 2 等于 4。4 除 2 等于 2。2 除 2 等于 1。蹦完了！9 步从 6 蹦到 1。\n\n再来一个：n 等于 11。11 乘 3 加 1 等于 34。34 除 2 等于 17。17 乘 3 加 1 等于 52……一路蹦下去，要 15 步才到 1。\n\n最有意思的是 n 等于 27。它要先蹦 112 步，蹦到中间峰值高达 9232，才最终蹦回 1！\n\n现在问题来了：这个规则对所有正整数都成立吗？数学家们用计算机验证了 5.76 乘以 10 的 18 次方，也就是 58 亿亿个数字，全都蹦到了 1。但数学证明呢？还没有！\n\n著名数学家 Erdős——得过沃尔夫奖的那个——公开悬赏 500 美元：谁能证明或推翻这个猜想，就给谁 500 美元。到现在没人领到。\n\n为什么这么难？看起来奇数乘 3 加 1 后会变大，偶数除以 2 会变小，平均起来应该往 1 收缩。但要严格证明\"对所有数都成立\"，要处理无数种边界情况，数学工具暂时不够用。\n\n现在请同学们自己挑一个数，比如 7 或者 9，看看你能不能蹦到 1。然后告诉你的同桌：哪个数蹦得最久？为什么？\n\n回家作业：在纸上写下 1 到 20 这 20 个数，挨个算每步蹦几，总共蹦几步。看看哪个数蹦得最久，明天带过来我们比一比。\n\n记住：数学不只藏在书本里——藏在每一次看似简单、其实深不见底的问题里。",
+  audioUrl: "audio/PR02_explain.mp3",
   render: function(h) { return setupCollatz(h); }
 }];
 
@@ -2234,6 +2234,8 @@ function plazaOpen(id, setHash = true) {
 
   // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+  // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
+  void exampleExplain;
 
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
@@ -2262,23 +2264,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  const aiSection = `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
-      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
-        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
-        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
-          ${exampleExplain}
-        </div>
-        <h4>📋 完整 prompt 文本</h4>
-        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-        <div class="row" style="margin-top: 12px;">
-          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-        </div>
-      </div>
-    </details>`;
+  // AI 讲解模块已移除（Mavis 讲解替代），推荐 prompt 存到项目目录 prompts/{分类}.md
+  const aiSection = '';
 
   // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
   // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
@@ -2290,24 +2277,24 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 如果没有 principle 等区，直接给个简短的引导
-  const fallbackSection = !hasRichContent ? `
-    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
-      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
-    </div>` : '';
-
   // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
   const mavisSection = exp.audioUrl ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
       <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
         <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
-        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
-        <div class="row" style="gap: 8px; margin-top: 8px;">
+        <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
+          <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+          <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisAudio-${exp.id}">0.75×</button>
+          <button class="ghost small rate-btn" data-rate="1" data-audio="mavisAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+          <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisAudio-${exp.id}">1.25×</button>
+          <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisAudio-${exp.id}">1.5×</button>
+          <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
+          <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
           ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
       </div>
     </details>` : '';
 
@@ -2328,16 +2315,26 @@ function plazaOpen(id, setHash = true) {
         <div id="plazaBody"></div>
       </div>
     </details>
-
-    ${aiSection}
-    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
-  const aiBtn = document.getElementById('plazaAI');
-  if (aiBtn) {
-    aiBtn.dataset.orig = '📋 复制 prompt';
-    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
-  }
+  // 倍速播放按钮事件绑定
+  document.querySelectorAll('.rate-btn').forEach(btn => {
+    btn.onclick = () => {
+      const audio = document.getElementById(btn.dataset.audio);
+      if (!audio) return;
+      const rate = parseFloat(btn.dataset.rate);
+      audio.playbackRate = rate;
+      // 更新按钮高亮
+      document.querySelectorAll(`.rate-btn[data-audio="${btn.dataset.audio}"]`).forEach(b => {
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--accent)';
+    };
+  });
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
@@ -2723,7 +2720,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PR02_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

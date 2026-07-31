@@ -2158,8 +2158,8 @@ const EXPERIMENTS = [{
   history: "<p><strong>1742 年 6 月 7 日</strong>，普鲁士数学家 <strong>Christian Goldbach</strong>（哥德巴赫，1690-1764）在给 <strong>Leonhard Euler</strong> 的信中提出：\"每个大于 2 的整数 = 三个素数之和\"。</p>\n<p><strong>同年 6 月 30 日</strong>，Euler 回信：把这个猜想改成\"每个大于 2 的偶数 = 两个素数之和\"——因为加 1 改 2 等价。注意 <strong>当时 1 算素数</strong>（19 世纪才把 1 排除）。</p>\n<p><strong>1859 年</strong>，<strong>Bernhard Riemann</strong> 发表 <em>Über die Anzahl der Primzahlen unter einer gegebenen Größe</em>（关于小于给定值的素数个数），给出<strong>黎曼 ζ 函数</strong>——<strong>素数分布的钥匙</strong>。但黎曼猜想至今未证（2000 年克莱数学所悬赏 100 万美元）。</p>\n<p><strong>1923 年</strong>，<strong>Godfrey Hardy</strong> 和 <strong>John Littlewood</strong> 证明：在<strong>广义黎曼猜想</strong>成立下，每个大偶数能写成 a+b（a, b 素数）。</p>\n<p><strong>1937 年</strong>，<strong>Ivan Vinogradov</strong> 用<strong>圆法</strong>无假设地证明：每个足够大的奇数 = 三个素数之和——即<strong>弱哥德巴赫猜想</strong>。</p>\n<p><strong>2013 年</strong>，<strong>Harald Helfgott</strong>（秘鲁裔美国数学家）补完 Vinogradov 的边界，<strong>完全证明</strong>弱哥德巴赫猜想（每个 ≥ 7 的奇数 = 三素数之和）。</p>\n<p><strong>强版</strong>：至今未证。2024 年 <strong>Terence Tao</strong> 给出\"几乎证明\"：每个偶数能写成 a+b（a 素数、b 几乎素数）。</p>",
   tryit: "<ol>\n  <li><strong>输入小偶数</strong>：试 4, 6, 10, 100, 1000——看配对数从 1 个涨到 28 个。</li>\n  <li><strong>输入大偶数</strong>：试 10000、100000——配对数会更多，<strong>偶数越大反而越容易配</strong>。</li>\n  <li><strong>故意找反例</strong>：扫到 50000，看 AI 有没有\"反例\"——100% 没有（迄今 4×10¹⁸ 都没）。</li>\n  <li><strong>观察规律</strong>：100 = 3+97 = 11+89 = 17+83 = 29+71 = 41+59 = 47+53——总是对称的。问孩子\"为什么 4 一定是 2+2？\"（因为 1 不算素数）。</li>\n  <li><strong>孪生素数 vs 哥德巴赫</strong>：孪生素数是\"p, p+2 都是素数\"；哥德巴赫是\"p1 + p2 = 偶数 N\"。让孩子对比两条未解之谜。</li>\n  <li><strong>AI 帮你\"撞\"配对</strong>：从 2 试到 N/2，第一个命中的就是配对——比人类快得多。</li>\n  <li><strong>教学金句</strong>：\"数学家验证到 400 亿亿都没反例，但'找不到反例'不等于'证明没有反例'——这就是数学的严谨。\"</li>\n</ol>",
   svgDemo: "",
-  explain: "",
-  audioUrl: "",
+  explain: "同学们好！今天我们来看一个简单到不可思议的猜想——哥德巴赫猜想。\n\n这个猜想说：任何大于 2 的偶数，都能写成两个素数之和。举个例子：4 等于 2 加 2，6 等于 3 加 3，8 等于 3 加 5，10 等于 3 加 7 也等于 5 加 5，12 等于 5 加 7……是不是都对？\n\n听起来很简单对吧？但数学家们为这个猜想已经琢磨了 280 多年了！\n\n这个猜想是公元一七四二年，数学家 Christian Goldbach 写信给大数学家欧拉时提出来的。欧拉回信说：\"我觉得这是对的，但我证明不了。\"从此成了悬案。\n\n数学家们开始一点点推进。1920 年，挪威数学家 Brun 证明了\"9 个素数之积可以表示任何偶数\"——已经很厉害了，但还是 9 个，不是 2 个。1937 年，苏联数学家 Vinogradov 证明：对于足够大的奇数，它可以表示成 3 个素数之和。2013 年，秘鲁数学家 Helfgott 完成了\"弱哥德巴赫猜想\"——任何大于 7 的奇数都能写成 3 个素数之和。\n\n但\"强哥德巴赫猜想\"——任何偶数等于两个素数之和——至今没有人能证明！用计算机已经验证到了 4 乘以 10 的 18 次方，也就是 4 亿亿个偶数，全都成立。但证明呢？还是没有。\n\n为什么这么难？看起来\"两个素数加起来能凑出所有偶数\"很合理，但要严格证明，要处理素数的分布规律，而素数在数轴上怎么分布，连数学家都没完全搞明白。\n\n现在请同学们自己挑几个偶数试试：14 等于 3 加 11；18 等于 5 加 13 也等于 7 加 11；20 等于 3 加 17 也等于 7 加 13——能找出多少种配法？明天带过来我们比一比谁找得多。\n\n记住：数学不只藏在书本里——藏在每一个看似显然、实则深邃的问题里。",
+  audioUrl: "audio/PR06_explain.mp3",
   render: function(h) { return setupGoldbach(h); }
 }];
 
@@ -2234,6 +2234,8 @@ function plazaOpen(id, setHash = true) {
 
   // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+  // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
+  void exampleExplain;
 
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
@@ -2262,23 +2264,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  const aiSection = `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
-      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
-        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
-        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
-          ${exampleExplain}
-        </div>
-        <h4>📋 完整 prompt 文本</h4>
-        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-        <div class="row" style="margin-top: 12px;">
-          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-        </div>
-      </div>
-    </details>`;
+  // AI 讲解模块已移除（Mavis 讲解替代），推荐 prompt 存到项目目录 prompts/{分类}.md
+  const aiSection = '';
 
   // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
   // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
@@ -2290,24 +2277,24 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 如果没有 principle 等区，直接给个简短的引导
-  const fallbackSection = !hasRichContent ? `
-    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
-      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
-    </div>` : '';
-
   // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
   const mavisSection = exp.audioUrl ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
       <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
         <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
-        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
-        <div class="row" style="gap: 8px; margin-top: 8px;">
+        <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
+          <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+          <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisAudio-${exp.id}">0.75×</button>
+          <button class="ghost small rate-btn" data-rate="1" data-audio="mavisAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+          <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisAudio-${exp.id}">1.25×</button>
+          <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisAudio-${exp.id}">1.5×</button>
+          <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
+          <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
           ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
       </div>
     </details>` : '';
 
@@ -2328,16 +2315,26 @@ function plazaOpen(id, setHash = true) {
         <div id="plazaBody"></div>
       </div>
     </details>
-
-    ${aiSection}
-    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
-  const aiBtn = document.getElementById('plazaAI');
-  if (aiBtn) {
-    aiBtn.dataset.orig = '📋 复制 prompt';
-    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
-  }
+  // 倍速播放按钮事件绑定
+  document.querySelectorAll('.rate-btn').forEach(btn => {
+    btn.onclick = () => {
+      const audio = document.getElementById(btn.dataset.audio);
+      if (!audio) return;
+      const rate = parseFloat(btn.dataset.rate);
+      audio.playbackRate = rate;
+      // 更新按钮高亮
+      document.querySelectorAll(`.rate-btn[data-audio="${btn.dataset.audio}"]`).forEach(b => {
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--accent)';
+    };
+  });
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
@@ -2723,7 +2720,7 @@ function piRunAll() {
 
 // ========== 4. 修复 audio 路径（独立页面 audio 在 ../audio/）============
 (function fixAudioPaths() {
-  if (!"") return;
+  if (!"audio/PR06_explain.mp3") return;
   const audios = document.querySelectorAll('audio[src*="audio/"]');
   audios.forEach(a => { a.src = '../' + a.getAttribute('src'); });
   const links = document.querySelectorAll('a[href*="audio/"]');

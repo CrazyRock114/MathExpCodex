@@ -2157,7 +2157,7 @@ const EXPERIMENTS = [
 
 今天我们要做的事情，比拿尺子量要酷多了。我们要让"扔针"——完全是随机的、没有任何规律的扔针——告诉人类 π 到底等于几。
 
-这个想法是 1733 年一个法国人叫布丰想出来的。他想：如果在一张纸上画很多条等距的平行线，然后把一根针扔上去，针跨过一条线的概率，居然跟 π 有关系！
+这个想法是公元一七三三年，一个法国人叫布丰想出来的。他想：如果在一张纸上画很多条等距的平行线，然后把一根针扔上去，针跨过一条线的概率，居然跟 π 有关系！
 
 关系是什么？我来推一遍。针长我们叫 L，两条线之间的距离我们叫 d。如果 L 比 d 大很多，针肯定跨线；如果 L 比 d 小很多，针就只可能跨过一条线或者不跨。针的方向呢，从完全平到完全竖，角度 θ 在 0 到 180 度之间随机。离最近的一条线的距离 y 在 0 到 d/2 之间随机。
 
@@ -2174,7 +2174,7 @@ const EXPERIMENTS = [
 
 你看，扔得越多，越准。随机里面藏着规律。
 
-但最有意思的是：哪怕你扔 10000 根针，精度也只能到小数点后 1 位。而我们的祖冲之，1500 年前，算了 7 位小数！比布丰的投针实验还早了 1200 年。
+但最有意思的是：哪怕你扔 10000 根针，精度也只能到小数点后 1 位。而我们的祖冲之，一千五百年前，算了 7 位小数！比布丰的投针实验还早了一千二百年。
 
 现在请同学们做一件事：点开始，投 1000 根针，看看你的 π 估值是多少。然后你能不能自己扔一根针？点画布上任意一个位置——告诉你的同桌，这根针为什么跨线，或者为什么不跨线？
 
@@ -2222,6 +2222,33 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 {
   id: 'PR02', cat: '数论', title: '冰雹蹦跳 (Collatz 猜想)',
   intro: '选一个正整数 n：偶数就除 2，奇数就 ×3+1，一直蹦下去，最后必到 1。',
+  explain: `同学们好！今天我们来看一个让全世界数学家都挠头的简单问题——Collatz 猜想，也叫冰雹猜想。
+
+这个猜想超级简单，简单到小学生都能做：选一个正整数 n。
+
+如果 n 是偶数，就除以 2。
+如果 n 是奇数，就乘以 3 再加 1。
+
+一直做下去，最后会蹦到 1 吗？听起来好像很简单对吧？
+
+我来举个例子：n 等于 6，是偶数，除以 2，变成 3。3 是奇数，乘 3 加 1，变成 10。10 除 2 等于 5。5 乘 3 加 1 等于 16。16 除 2 等于 8。8 除 2 等于 4。4 除 2 等于 2。2 除 2 等于 1。蹦完了！9 步从 6 蹦到 1。
+
+再来一个：n 等于 11。11 乘 3 加 1 等于 34。34 除 2 等于 17。17 乘 3 加 1 等于 52……一路蹦下去，要 15 步才到 1。
+
+最有意思的是 n 等于 27。它要先蹦 112 步，蹦到中间峰值高达 9232，才最终蹦回 1！
+
+现在问题来了：这个规则对所有正整数都成立吗？数学家们用计算机验证了 5.76 乘以 10 的 18 次方，也就是 58 亿亿个数字，全都蹦到了 1。但数学证明呢？还没有！
+
+著名数学家 Erdős——得过沃尔夫奖的那个——公开悬赏 500 美元：谁能证明或推翻这个猜想，就给谁 500 美元。到现在没人领到。
+
+为什么这么难？看起来奇数乘 3 加 1 后会变大，偶数除以 2 会变小，平均起来应该往 1 收缩。但要严格证明"对所有数都成立"，要处理无数种边界情况，数学工具暂时不够用。
+
+现在请同学们自己挑一个数，比如 7 或者 9，看看你能不能蹦到 1。然后告诉你的同桌：哪个数蹦得最久？为什么？
+
+回家作业：在纸上写下 1 到 20 这 20 个数，挨个算每步蹦几，总共蹦几步。看看哪个数蹦得最久，明天带过来我们比一比。
+
+记住：数学不只藏在书本里——藏在每一次看似简单、其实深不见底的问题里。`,
+  audioUrl: 'audio/PR02_explain.mp3',
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>Collatz 猜想是人类数学里<strong>最简单又最难</strong>的未解之谜之一。它的规则简单到小学生都能做：</p>
 <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 15px;">
@@ -2262,6 +2289,26 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 {
   id: 'PR03', cat: '数论', title: '猜勾股数 (Euclid 公式)',
   intro: '本原勾股数 (a, b, c) 满足 a² + b² = c²。Euclid 公式：所有本原勾股数都长 (m²−n², 2mn, m²+n²)。',
+  explain: `同学们好！今天我们玩一个猜数游戏——猜勾股数。
+
+勾股数大家应该都学过：三个正整数 a、b、c 满足 a 的平方加 b 的平方等于 c 的平方。最有名的是 3、4、5：3 的平方是 9，4 的平方是 16，9 加 16 等于 25，5 的平方就是 25。
+
+如果这三个数两两互质——也就是没有公因数——就叫"本原勾股数"。1000 以内有 158 个本原勾股数。
+
+数学家告诉我们：所有本原勾股数都有一个通用公式！这就是欧几里得公式。
+
+公式是这样的：取两个正整数 m 和 n，要求 m 大于 n，m 和 n 互质，而且 m 减 n 是奇数。那么 a 等于 m 的平方减 n 的平方，b 等于 2mn，c 等于 m 的平方加 n 的平方。这一组就一定是本原勾股数！
+
+举个例子：m 等于 3，n 等于 2。a 等于 9 减 4 等于 5。b 等于 2 乘 3 乘 2 等于 12。c 等于 9 加 4 等于 13。所以 5、12、13 是一组。验证：5 的平方是 25，12 的平方是 144，加起来 169，13 的平方正好是 169！
+
+最厉害的是，这个公式是双向的——所有本原勾股数都能这样造出来。1000 以内只有 158 个本原勾股数，所以理论上最多问 8 个二分问题就能锁定一个，8 步 100% 猜中！
+
+现在请同学们动动手：把 m 调到 5，n 调到 4，看看得到什么？9、40、41——验证一下，9 的平方加 40 的平方等于 1681，41 的平方也是 1681！完美！
+
+然后挑战自己：点"换一题"，让 AI 随机选一个本原勾股数，你用 8 步内猜出来。试试问"包含数字 7 吗？"、"最大边小于 30 吗？"，看能不能像二分法一样锁定。
+
+记住：数学不只藏在书本里——藏在每一个能被一条优雅公式描述的规律里。`,
+  audioUrl: 'audio/PR03_explain.mp3',
   principle: `<h4>🔍 勾股数是什么？</h4>
 <p>三个正整数 a, b, c 满足 <span class="formula">a² + b² = c²</span>，就是一组<strong>勾股数</strong>。最有名的是 (3, 4, 5)：3² + 4² = 9 + 16 = 25 = 5²。</p>
 <p>如果三个数<strong>两两互素</strong>（gcd=1），叫<strong>本原勾股数</strong>。1000 以内有 158 个本原勾股数。</p>
@@ -2300,6 +2347,26 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 {
   id: 'PR04', cat: '图论', title: '四色定理 (Appel-Haken 1976)',
   intro: '任何平面地图只用 4 种颜色，就能让相邻区域不同色。第一个必须靠计算机证明的著名定理。',
+  explain: `同学们好！今天我们来看一个超有趣的定理——四色定理。
+
+先想象你手上有中国地图，上面有好多省。两个省如果共享一段边界，就叫"相邻"。现在要你给每个省涂一种颜色，要求相邻的省颜色不能相同。最少需要几种颜色？
+
+答案是 4 种就够了。这就是四色定理。
+
+为什么不是 2 种或者 3 种？画三个互相挨着的国家，它们必须三种不同颜色。2 种肯定不够。3 种呢？画一个中心加三个围城——中心要跟三个围城都不同色，但只剩一种颜色了，所以 3 种也不够。
+
+那为什么 4 种就够了？数学家想了很久，从公元一八五二年 Francis Guthrie 第一次提出，到公元一九七六年才被证明，足足 124 年！而且最后还是靠计算机帮忙——Kenneth Appel 和 Wolfgang Haken 用计算机穷举了 1936 种基本构型，才终于证明。
+
+这是数学史上第一个必须靠计算机才能完成的著名定理。所以有人开玩笑说："数学家也怕电脑抢饭碗吗？"
+
+实际上，四色定理看似是"画图"问题，但背后是图论的核心：把地图转成平面图，平面图能归约到 1800 种基本图，每种基本图都能 4-着色，所以任何平面图都能 4-着色。
+
+这个定理还有大用处——芯片布线、频段分配、课程表排课，全都跟"图着色"有关。
+
+现在请同学们动动手：点 6 乘 6 网格的任意格子涂色，相邻的格子会自动变不同颜色。然后切到"挑战 3 色"——看看只用 3 种颜色能不能涂完整个网格？2 种就够了！但切到 Voronoi 模式，画不规则地图——3 种就不够了，4 种刚好。
+
+记住：数学不只藏在书本里——藏在每一次"看似显然但难以证明"的直觉里。`,
+  audioUrl: 'audio/PR04_explain.mp3',
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>假设你有一张地图（中国地图、欧洲地图、自己画的 Voronoi 图……），上面有几个国家（区域），两国<strong>共享一段边界</strong>叫"相邻"。问题：<strong>最少需要几种颜色</strong>，才能给每个国家涂一种颜色、且相邻两国颜色不同？</p>
 <p>答案：<strong>4 种就够</strong>。这条定理就是 <strong>四色定理</strong>。</p>
@@ -2341,6 +2408,26 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 {
   id: 'PR05', cat: '图论', title: '拉姆齐 R(3,3) = 6',
   intro: '6 个人聚会，必有 3 人互相认识或 3 人互不认识。等价于 K₆ 的红蓝着色必含单色三角形。',
+  explain: `同学们好！今天我们做一个超简单的聚会游戏，但里面藏着一个惊人的数学定理。
+
+想象 6 个小朋友围坐一桌。每两个人之间，要么"认识"（画红线），要么"不认识"（画蓝线）。现在问：是不是一定有 3 个人互相都认识，或者 3 个人互相都不认识？
+
+答案是：一定有。这就是拉姆齐 R(3,3) 等于 6。
+
+为什么呢？我们来推一下。先看其中一个人，比如小明。小明跟其他 5 个人各有关系——认识或不认识。5 个人里，至少有 3 个跟小明是同一种关系（鸽笼原理）。假设小李、小王、小张这 3 个都认识小明。
+
+现在看小李和小王：如果他俩认识，那小李、小王、小明就互相认识了——找到一个"3 人互识"组。如果他俩不认识，那小李、小王、小张这 3 人之间呢？也得分类讨论……不管怎么分，都能找到一个 3 人组。
+
+所以 6 人聚会，必有 3 人互识或互不识。听起来很玄乎，其实就是个组合问题。
+
+数学家 Frank Ramsey 在 1930 年研究这个问题，他提出一个更一般的数 R(s,t)：在 2-着色完全图里，必含 s-单色团或 t-单色团的最小顶点数。R(3,3) 等于 6 是其中最简单的非平凡情况。
+
+这个定理有什么用呢？社交网络分析里，R(3,3) 告诉我们：6 个人的小群体里，"小圈子"或"陌生人圈子"必然存在。朋友推荐、社交图谱、推荐算法，背后都是这个思想。
+
+现在请同学们自己来：和同桌一起，6 个小朋友一组。每个人写下自己认识或不认识的人，看看你们组能不能找到"3 人互识"或"3 人互不识"。然后看：换成 5 个人呢？结论还成立吗？
+
+记住：数学不只藏在书本里——藏在每一次聚会、每一个朋友圈、每一次"咦怎么这么巧"的瞬间里。`,
+  audioUrl: 'audio/PR05_explain.mp3',
   principle: `<h4>🔍 这个问题为什么有趣？</h4>
 <p>想象 <strong>6 个人</strong>围坐一桌。两人之间要么"认识"（红边）要么"不认识"（蓝边）。问：<strong>是否一定有 3 人互相全认识，或 3 人互相全不认识？</strong></p>
 <p>答案是：<strong>一定</strong>。</p>
@@ -2384,6 +2471,24 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 {
   id: 'PR06', cat: '数论', title: '哥德巴赫配糖 (Goldbach 1742)',
   intro: '任何大于 2 的偶数都能写成两个素数之和。强版至今未证，弱版（Helfgott 2013）已证。',
+  explain: `同学们好！今天我们来看一个简单到不可思议的猜想——哥德巴赫猜想。
+
+这个猜想说：任何大于 2 的偶数，都能写成两个素数之和。举个例子：4 等于 2 加 2，6 等于 3 加 3，8 等于 3 加 5，10 等于 3 加 7 也等于 5 加 5，12 等于 5 加 7……是不是都对？
+
+听起来很简单对吧？但数学家们为这个猜想已经琢磨了 280 多年了！
+
+这个猜想是公元一七四二年，数学家 Christian Goldbach 写信给大数学家欧拉时提出来的。欧拉回信说："我觉得这是对的，但我证明不了。"从此成了悬案。
+
+数学家们开始一点点推进。1920 年，挪威数学家 Brun 证明了"9 个素数之积可以表示任何偶数"——已经很厉害了，但还是 9 个，不是 2 个。1937 年，苏联数学家 Vinogradov 证明：对于足够大的奇数，它可以表示成 3 个素数之和。2013 年，秘鲁数学家 Helfgott 完成了"弱哥德巴赫猜想"——任何大于 7 的奇数都能写成 3 个素数之和。
+
+但"强哥德巴赫猜想"——任何偶数等于两个素数之和——至今没有人能证明！用计算机已经验证到了 4 乘以 10 的 18 次方，也就是 4 亿亿个偶数，全都成立。但证明呢？还是没有。
+
+为什么这么难？看起来"两个素数加起来能凑出所有偶数"很合理，但要严格证明，要处理素数的分布规律，而素数在数轴上怎么分布，连数学家都没完全搞明白。
+
+现在请同学们自己挑几个偶数试试：14 等于 3 加 11；18 等于 5 加 13 也等于 7 加 11；20 等于 3 加 17 也等于 7 加 13——能找出多少种配法？明天带过来我们比一比谁找得多。
+
+记住：数学不只藏在书本里——藏在每一个看似显然、实则深邃的问题里。`,
+  audioUrl: 'audio/PR06_explain.mp3',
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>取任何<strong>大于 2 的偶数 N</strong>，问：能不能写成<strong>两个素数之和</strong>？</p>
 <p>例子：<br>
@@ -2425,6 +2530,28 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 {
   id: 'PR07', cat: '数论', title: '孪生素数 (Twin Primes)',
   intro: '相差 2 的素数对：(3,5)、(5,7)、(11,13)、(17,19)、(29,31)... 张益唐 2013 年里程碑证明。',
+  explain: `同学们好！今天我们来看素数里最有意思的一对——孪生素数。
+
+什么叫孪生素数？就是两个素数相差 2。3 和 5、5 和 7、11 和 13、17 和 19、29 和 31 都是孪生素数。注意 2 和 3 相差 1，不算。
+
+数学家们早就发现：孪生素数似乎有无穷多对。但 1000 以内有 35 对，10000 以内有 122 对，100 万以内有 8169 对——越往后越稀疏，但还是源源不断地冒出来。
+
+问题是：到底有没有无穷多对孪生素数？这就是"孪生素数猜想"。
+
+这个问题困扰了数学家 100 多年，看起来简单，但严格证明一直没有。
+
+直到公元二零一三年，华人数学家张益唐在数学顶刊《Annals of Mathematics》发表了一篇石破天惊的论文。他证明了：存在无穷多对素数，它们之间的差小于 7 乘以 10 的 7 次方，也就是 7000 万！
+
+虽然不是"差等于 2"——差是 7000 万——但这是有史以来第一次证明"相邻素数之间的差有上界"，是质数分布理论的重大突破！
+
+后来，Polymath 8 计划把这个上界从 7000 万降到了 246。2014 年，数学家 James Maynard 用一种全新方法，几乎同时把上界降到了 600。距离"差等于 2"还差一步，但这一步是最难的。
+
+现在已知的最大孪生素数对是 2,003,663,613 乘以 2 的 195000 次方减 1 和加 1，大约 58000 位数字——超级大！
+
+现在请同学们自己找：扫一段区间，看孪生素数有多密。Top 10 表格会列出蹦得最久的 10 个数。看看 1000 以内哪一对孪生素数最密？明天带过来我们比比谁找得多。
+
+记住：数学不只藏在书本里——藏在每一次"看似无规律、实则有规律"的素数海洋里。`,
+  audioUrl: 'audio/PR07_explain.mp3',
   principle: `<h4>🔍 孪生素数是什么？</h4>
 <p>两个素数 p 和 p+2（相差 2）就是一对<strong>孪生素数</strong>。例子：<br>
   (3, 5)、(5, 7)、(11, 13)、(17, 19)、(29, 31)、(41, 43)、(59, 61)、(71, 73)...</p>
@@ -2463,6 +2590,24 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 {
   id: 'PR08', cat: 'π·e', title: 'π 的多算法对比（4 种并行）',
   intro: '阿基米德割圆 / Leibniz / Machin / Chudnovsky——同一目标 π，4 种完全不同的算法，差距 6 个数量级。',
+  explain: `同学们好！今天我们来看 4 种完全不同的算 π 方法——阿基米德割圆、Leibniz 级数、Machin 公式、Chudnovsky 公式。
+
+同样算 π，这 4 种方法的差距有多大？答案是 6 个数量级！也就是说，最慢的算 1 万次还没最快的方法算 1 次准。
+
+先说阿基米德割圆，公元前 250 年发明的最古老方法。思路是：圆的内接正多边形边数越多，周长越接近圆周长。阿基米德从正 6 边形开始，加倍到 12、24、48、96 边形，用 96 边形算出 π 在 3.1408 到 3.1429 之间——相当厉害了，但只有 2 位精度。
+
+第二种是 Leibniz 级数，1674 年发明。公式是 π 除以 4 等于 1 减 1/3 加 1/5 减 1/7 加 1/9 减……简单到令人发指，但收敛速度是 1/N——要算 1 万次才到 3.14，算 100 万次才到 3.141593。慢得令人抓狂。
+
+第三种是 Machin 公式，1706 年发明。π 除以 4 等于 4 乘 arctan(1/5) 减 arctan(1/239)。arctan(1/5) 的项以 1/5、1/125、1/3125 速度下降，arctan(1/239) 更快——10 项就到 12 位精度！比 Leibniz 快了几万倍。
+
+第四种是 Chudnovsky 公式，1988 年发明。公式长得吓人：1/π 等于 12 乘以一个超级复杂的级数。但每加 1 项，精度就增加 14 位！是目前算 π 到万亿位的工业标准。2022 年瑞士团队用这个公式算到了 100 万亿位，用了 54 天。
+
+为什么差距这么大？因为 π 是个"超越数"——1882 年林德曼证明的——它不可能用有理数的代数式精确表达。但我们可以用越来越聪明的级数和公式，逼近到任意精度。
+
+现在请同学们点"开始计算"，看 4 条线一起画出来——红线 Leibniz 几乎不动，黄线 Chudnovsky 一步到位。一万次迭代后，谁最准？明天带过来我们比一比。
+
+记住：数学不只藏在书本里——藏在每一个"看似简单的公式、实则威力无穷"的智慧里。`,
+  audioUrl: 'audio/PR08_explain.mp3',
   principle: `<h4>🔍 为什么有这么多算法？</h4>
 <p>π 是个<strong>超越数</strong>（林德曼 1882 证明），所以不可能用有理数代数式精确表达。但我们可以用<strong>无穷级数</strong>或<strong>几何逼近</strong>算到任意精度。</p>
 <p>不同算法的"收敛速度"差距巨大——同样算 1 万次迭代，Leibniz 只到 3.14，Chudnovsky 已到小数点后 14 位。</p>
@@ -2519,6 +2664,26 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 {
   id: 'NT01', cat: '数论', title: '完美数搜索',
   intro: '若 n 的真因子之和等于 n，则 n 是完美数。6 = 1+2+3、28 = 1+2+4+7+14...',
+  explain: `同学们好！今天我们来找一种很特别的数——完美数。
+
+什么叫完美数？如果一个正整数 n，它的所有真因子——就是除了自己以外的因子——加起来正好等于 n 本身，那 n 就是完美数。
+
+举个例子：6 的真因子有 1、2、3。1 加 2 加 3 等于 6，所以 6 是完美数。
+
+再来：28 的真因子有 1、2、4、7、14。1 加 2 加 4 加 7 加 14 等于 28，所以 28 也是完美数。
+
+下一个完美数是 496，再下一个是 8128。你会发现这些数都很特别——它们既不多也不罕见，但也没那么常见。
+
+数学家已经证明：所有偶完美数都长成 2 的 p-1 次方乘以 2 的 p 次方减 1 这种形式，其中 2 的 p 次方减 1 必须是素数。这种素数叫"梅森素数"。所以找完美数，本质上就是找梅森素数。
+
+现在已知的完美数有 51 个。最大的完美数有接近 5000 万位！是 2018 年用 GIMPS 分布式计算项目找到的。
+
+但有一个问题：有没有奇完美数？数学家们用超级计算机算到了 10 的 1500 次方——这么大的范围——都没找到。绝大多数数学家相信奇完美数不存在，但没人能证明。
+
+现在请同学们自己动手：点"找完美数"，搜索 1 到 1000。你会找到 4 个完美数：6、28、496、8128。看看 10000 以内有几个？100000 以内呢？再试试 1000 以内的"相亲数对"——两个数互为对方的真因子之和，比如 220 和 284。明天带过来我们比一比谁找得多。
+
+记住：数学不只藏在书本里——藏在每一个"刚刚好"刚刚等于自己的数字里。`,
+  audioUrl: 'audio/NT01_explain.mp3',
   render: (h) => {
     h.innerHTML = `<div class="row"><label>搜索到 N <input type="number" id="nt01_n" value="10000" min="100"></label><button class="primary" id="nt01_run">找完美数</button></div><div id="nt01_out" class="sequence" style="margin-top:12px;">点"找完美数"</div>`;
     document.getElementById('nt01_run').onclick = () => {
@@ -3208,6 +3373,33 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 {
   id: 'PE01', cat: 'π·e', title: 'Wallis 乘积',
   intro: 'π/2 = 2·2·4·4·6·6.../1·3·3·5·5·7... 收敛慢但优雅。',
+  explain: `同学们好！今天我们来看一个最优雅的算 π 公式——Wallis 乘积。
+
+这个公式 1655 年由 John Wallis 发现。π/2 等于 2 乘 2 乘 4 乘 4 乘 6 乘 6 乘 8 乘 8 一直乘下去，除以 1 乘 3 乘 3 乘 5 乘 5 乘 7 乘 7 乘 9 一直除下去。
+
+听起来很神奇对吧？奇偶交叉相乘，居然能逼近 π/2！
+
+更神奇的是：每一步，你都能算出 π 的近似值。比如只算前 4 项：分子 2 乘 2 乘 4 乘 4 等于 64，分母 1 乘 3 乘 3 乘 5 等于 45，π 约等于 2.844。
+
+算前 100 项：π 约等于 3.13。
+算前 1000 项：π 约等于 3.1408。
+算前 10000 项：π 约等于 3.14149。
+算前 100000 项：π 约等于 3.14157。
+
+你看，项数越多越准，但越来越慢——这就是"收敛慢"。跟 Leibniz 级数差不多慢，但 Wallis 乘积的分子分母都是整数，特别适合小学生算！
+
+为什么这个公式成立呢？它可以用积分来证明：π/2 等于 sin(x) 从 0 到 π/2 的积分。sin(x) 用泰勒级数展开，相邻项一比，就得到 Wallis 公式。
+
+数学家后来发现，Wallis 公式和 Stirling 公式——算 n 的阶乘近似值的公式——有直接关系。从这个公式出发，可以推出很多重要结论。
+
+现在请同学们自己动手：把项数 N 调到 1000，看 π 估值是多少。调到 10000 呢？100000 呢？你会发现：每加 10 倍项数，π 估值多准一位——这叫"线性收敛"。
+
+再对比 Leibniz 公式——π/4 等于 1 减 1/3 加 1/5 减 1/7——也是线性收敛。两种方法收敛速度一样，但 Wallis 公式更优雅。
+
+明天请同学们比一比：1000 项的 Wallis 和 1000 项的 Leibniz，谁更准？
+
+记住：数学不只藏在书本里——藏在每一个"看似无规律、实则收敛到 π"的乘积里。`,
+  audioUrl: 'audio/PE01_explain.mp3',
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：奇偶分子对分子相消</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">把 π/2 写成 N 个<strong>分数</strong>的乘积。每个分数都是 <code>(2k·2k) / ((2k-1)(2k+1))</code>：分子分母"差 1"交错。</p>
 <svg viewBox="0 0 600 200" style="width: 100%; max-width: 600px; background: #fefce8; border-radius: 6px; border: 1px solid #fde68a;">
@@ -5315,6 +5507,8 @@ function plazaOpen(id, setHash = true) {
 
   // 自动生成"AI 通常会怎么讲"模板
   const exampleExplain = buildExampleExplain(exp);
+  // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
+  void exampleExplain;
 
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
@@ -5343,23 +5537,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  const aiSection = `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #6b21a8;">🤖 ④ AI 讲解（直接用）</summary>
-      <div style="background: linear-gradient(to right, #faf5ff, #fdf4ff); border-left: 5px solid #a855f7; padding: 18px 22px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-top: 8px;">
-        <h4 style="margin-top: 0;">💡 AI 通常会怎么讲</h4>
-        <div style="background: rgba(255,255,255,0.6); padding: 14px; border-radius: 6px; margin-bottom: 14px;">
-          ${exampleExplain}
-        </div>
-        <h4>📋 完整 prompt 文本</h4>
-        <pre style="background: #1e293b; color: #e2e8f0; padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin-top: 8px;">${escapeHtml(prompt)}</pre>
-        <div class="row" style="margin-top: 12px;">
-          <button class="primary small" id="plazaAI">📋 复制 prompt</button>
-          <a class="ghost small" href="https://www.doubao.com/chat/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🥒 豆包</a>
-          <a class="ghost small" href="https://chat.deepseek.com/" target="_blank" rel="noopener" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">🤖 DeepSeek</a>
-        </div>
-      </div>
-    </details>`;
+  // AI 讲解模块已移除（Mavis 讲解替代），推荐 prompt 存到项目目录 prompts/{分类}.md
+  const aiSection = '';
 
   // 渲染时如果该实验 SVG 在 PRINCIPLE 里有动画部分，会在原理区已显示
   // 这里我们做一个"公式图解"区：针对 PE01-10 用 SVG 演示算法
@@ -5371,24 +5550,24 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 如果没有 principle 等区，直接给个简短的引导
-  const fallbackSection = !hasRichContent ? `
-    <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 14px 18px; border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.7;">
-      <strong>💡 小贴士</strong>：${exp.intro} 这个实验主要看下方"互动演示"区的具体操作——边玩边想。
-    </div>` : '';
-
   // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
   const mavisSection = exp.audioUrl ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
       <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
         <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
-        <audio controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
-        <div class="row" style="gap: 8px; margin-top: 8px;">
+        <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
+        <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
+          <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+          <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisAudio-${exp.id}">0.75×</button>
+          <button class="ghost small rate-btn" data-rate="1" data-audio="mavisAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+          <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisAudio-${exp.id}">1.25×</button>
+          <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisAudio-${exp.id}">1.5×</button>
+          <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
+          <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
           ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
         </div>
-        <p style="font-size: 12px; color: var(--muted); margin: 8px 0 0;">💡 用 TTS 生成的"温润青年"音色讲解（约 1.5-2 分钟），可下载到本地给学生课前播放。</p>
       </div>
     </details>` : '';
 
@@ -5409,16 +5588,26 @@ function plazaOpen(id, setHash = true) {
         <div id="plazaBody"></div>
       </div>
     </details>
-
-    ${aiSection}
-    ${fallbackSection}
   </div>`;
   exp.render(document.getElementById('plazaBody'));
-  const aiBtn = document.getElementById('plazaAI');
-  if (aiBtn) {
-    aiBtn.dataset.orig = '📋 复制 prompt';
-    aiBtn.onclick = () => copyAIPrompt(aiBtn, prompt);
-  }
+  // 倍速播放按钮事件绑定
+  document.querySelectorAll('.rate-btn').forEach(btn => {
+    btn.onclick = () => {
+      const audio = document.getElementById(btn.dataset.audio);
+      if (!audio) return;
+      const rate = parseFloat(btn.dataset.rate);
+      audio.playbackRate = rate;
+      // 更新按钮高亮
+      document.querySelectorAll(`.rate-btn[data-audio="${btn.dataset.audio}"]`).forEach(b => {
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+      });
+      btn.style.background = 'var(--accent)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--accent)';
+    };
+  });
   document.getElementById('plazaBack').onclick = () => {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
