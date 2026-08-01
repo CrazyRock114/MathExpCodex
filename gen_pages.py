@@ -212,6 +212,14 @@ if (document.readyState === 'loading') {{
 
         with open(f'pages/{exp_id}.html', 'w', encoding='utf-8') as f:
             f.write(html)
+        # 修复 knowledge.html 链接（pages/ 目录下需要 ../）
+        with open(f'pages/{exp_id}.html', 'r', encoding='utf-8') as f:
+            page_html = f.read()
+        # 修复 HTML href + JS 字符串里出现的 'knowledge.html'
+        page_html = page_html.replace('"knowledge.html', '"../knowledge.html')
+        page_html = page_html.replace("'knowledge.html", "'../knowledge.html")
+        with open(f'pages/{exp_id}.html', 'w', encoding='utf-8') as f:
+            f.write(page_html)
     except Exception as e:
         errors.append((exp['id'], str(e)))
 

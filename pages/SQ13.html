@@ -29404,6 +29404,196 @@ const PLAZA_CATEGORIES = {
 // 实验注册表：每个实验 { id, cat, title, intro, render(host, getValue) }
 // render 负责把交互注入 host，并返回 cleanup 函数
 
+const KNOWLEDGE_POINTS = {
+  "K01": {name: '加减乘除', tier: 1, cat: '基础', desc: '四则运算：加法、减法、乘法、除法', prereq: []},
+  "K02": {name: '分数小数', tier: 1, cat: '基础', desc: '分数、小数、百分数互化', prereq: ['K01']},
+  "K03": {name: '偶数奇数', tier: 1, cat: '基础', desc: '整数按能否被 2 整除分为偶数和奇数', prereq: ['K01']},
+  "K04": {name: '因数倍数', tier: 1, cat: '基础', desc: '因数（因子）和倍数的概念，公因数公倍数', prereq: ['K01']},
+  "K05": {name: '素数合数', tier: 1, cat: '基础', desc: '素数：只有 1 和自己两个因数；合数：还有其他因数', prereq: ['K04']},
+  "K06": {name: '比例', tier: 1, cat: '基础', desc: '两个比相等的式子，a:b = c:d', prereq: ['K01', 'K02']},
+  "K07": {name: '三角形', tier: 2, cat: '几何', desc: '三角形的分类（锐角/钝角/直角/等边/等腰）', prereq: []},
+  "K08": {name: '长方形正方形', tier: 2, cat: '几何', desc: '长方形和正方形的边和角', prereq: []},
+  "K09": {name: '圆与 π', tier: 2, cat: '几何', desc: '圆的概念，圆周率 π = 3.14159...', prereq: []},
+  "K10": {name: '面积周长', tier: 2, cat: '几何', desc: '计算各种图形的周长和面积', prereq: ['K07', 'K08', 'K09', 'K01']},
+  "K11": {name: '多边形', tier: 2, cat: '几何', desc: '由直线段围成的闭合图形', prereq: ['K07', 'K10']},
+  "K12": {name: '体积', tier: 2, cat: '几何', desc: '立体图形占空间的大小', prereq: ['K10']},
+  "K13": {name: '坐标系', tier: 3, cat: '代数', desc: '直角坐标系 (x, y)，平面上的点', prereq: []},
+  "K14": {name: '一次函数', tier: 3, cat: '代数', desc: 'y = kx + b，斜率和截距', prereq: ['K13']},
+  "K15": {name: '二次函数', tier: 3, cat: '代数', desc: 'y = ax² + bx + c，抛物线、顶点、对称轴', prereq: ['K14', 'K13']},
+  "K16": {name: '指数对数', tier: 3, cat: '代数', desc: 'a^n 指数，log 底数对数，e ≈ 2.718', prereq: ['K14', 'K13']},
+  "K17": {name: '三角函数', tier: 3, cat: '代数', desc: 'sin/cos/tan，角度和边长的比', prereq: ['K07', 'K13']},
+  "K18": {name: '复数', tier: 3, cat: '代数', desc: 'a + bi，i² = -1，复平面 (高斯平面)', prereq: ['K13']},
+  "K19": {name: '勾股定理', tier: 4, cat: '几何', desc: '直角三角形：a² + b² = c²', prereq: ['K07', 'K08']},
+  "K20": {name: '相似三角形', tier: 4, cat: '几何', desc: '形状相同大小不同，对应边成比例', prereq: ['K07', 'K19']},
+  "K21": {name: '立体几何', tier: 4, cat: '几何', desc: '正多面体、对称、旋转、拓扑', prereq: ['K11', 'K12']},
+  "K22": {name: '同余模运算', tier: 5, cat: '数论', desc: 'a ≡ b (mod m)，整除与余数', prereq: ['K03', 'K01']},
+  "K23": {name: '平方数立方数', tier: 5, cat: '数论', desc: 'n² 和 n³ 的性质，差分、连续关系', prereq: ['K01']},
+  "K24": {name: '三角数四面体数', tier: 5, cat: '数论', desc: 'T_n = n(n+1)/2，Tetra_n = n(n+1)(n+2)/6', prereq: ['K01']},
+  "K25": {name: '完全数', tier: 5, cat: '数论', desc: '真因子之和等于自己（如 6 = 1+2+3）', prereq: ['K04', 'K05']},
+  "K26": {name: '阶乘组合', tier: 5, cat: '数论', desc: 'n! = 1×2×...×n，C(n,k) 组合数', prereq: ['K01']},
+  "K27": {name: '数字根与位操作', tier: 5, cat: '数论', desc: '数字根 = 数 mod 9，位数和重排', prereq: ['K22', 'K01']},
+  "K28": {name: '概率基础', tier: 6, cat: '概率', desc: '事件概率 = 发生次数 / 总次数', prereq: ['K01', 'K02']},
+  "K29": {name: '排列组合', tier: 6, cat: '概率', desc: 'A(n,k) 和 C(n,k)，加法乘法原理', prereq: ['K28']},
+  "K30": {name: '期望方差', tier: 6, cat: '概率', desc: 'E(X) = 加权平均，Var(X) = E(X²) - E(X)²', prereq: ['K28', 'K02']},
+  "K31": {name: '条件概率贝叶斯', tier: 6, cat: '概率', desc: 'P(A|B) = P(B|A)·P(A)/P(B)', prereq: ['K28']},
+  "K32": {name: '正态分布', tier: 6, cat: '概率', desc: '钟形分布 f(x) = (1/√(2π)) e^(-x²/2)', prereq: ['K28', 'K44']},
+  "K33": {name: '蒙特卡洛', tier: 6, cat: '概率', desc: '用随机抽样求数值解', prereq: ['K28']},
+  "K34": {name: '马尔可夫链', tier: 6, cat: '概率', desc: '无记忆的随机过程，转移矩阵 P', prereq: ['K31', 'K46']},
+  "K35": {name: '随机矩阵', tier: 6, cat: '概率', desc: '元素随机的矩阵，特征值分布', prereq: ['K32', 'K46']},
+  "K36": {name: '递归', tier: 7, cat: '算法', desc: '自己调用自己，终止条件', prereq: ['K01']},
+  "K37": {name: '排序算法', tier: 7, cat: '算法', desc: '冒泡/选择/插入/快速/归并排序', prereq: ['K01', 'K26']},
+  "K38": {name: '图论基础', tier: 7, cat: '算法', desc: '顶点 + 边，路径、环、连通性', prereq: ['K01']},
+  "K39": {name: '树', tier: 7, cat: '算法', desc: '无环连通图，二叉树、生成树', prereq: ['K38']},
+  "K40": {name: '分治', tier: 7, cat: '算法', desc: '大问题拆成小问题，递归解决', prereq: ['K36', 'K37']},
+  "K41": {name: '搜索回溯', tier: 7, cat: '算法', desc: '深度优先搜索，剪枝', prereq: ['K36']},
+  "K42": {name: '极限', tier: 8, cat: '大学', desc: 'f(x) → L 当 x → a，无穷小、收敛', prereq: ['K01', 'K15']},
+  "K43": {name: '无穷级数', tier: 8, cat: '大学', desc: 'Σ a_n 收敛与发散', prereq: ['K42']},
+  "K44": {name: '积分', tier: 8, cat: '大学', desc: '∫ f(x) dx，定积分（曲线下面积）', prereq: ['K42']},
+  "K45": {name: '导数微分', tier: 8, cat: '大学', desc: "f'(x) 瞬时变化率", prereq: ['K42']},
+  "K46": {name: '矩阵线性代数', tier: 8, cat: '大学', desc: '矩阵乘法、特征值、行列式', prereq: ['K13', 'K15']},
+  "K47": {name: '复分析', tier: 8, cat: '大学', desc: '复变函数、保角映射、留数', prereq: ['K18', 'K44']},
+  "K48": {name: '群论', tier: 8, cat: '大学', desc: '(G, ·) 集合 + 满足结合律的单位元逆元', prereq: ['K22']},
+  "K49": {name: '微分方程', tier: 8, cat: '大学', desc: '含未知函数导数的方程，ODE/PDE', prereq: ['K45', 'K44']},
+  "K50": {name: '拓扑学', tier: 9, cat: '前沿', desc: '研究形状的"软"性质（连通、紧致、定向）', prereq: ['K11', 'K10']},
+  "K51": {name: '椭圆曲线', tier: 9, cat: '前沿', desc: 'y² = x³ + ax + b，点的阿贝尔群', prereq: ['K15', 'K22']},
+  "K52": {name: '密码学', tier: 9, cat: '前沿', desc: '公钥/私钥，Diffie-Hellman，ECC', prereq: ['K22', 'K48']},
+  "K53": {name: '黎曼 ζ 函数', tier: 9, cat: '前沿', desc: 'ζ(s) = Σ 1/n^s，黎曼猜想', prereq: ['K47', 'K43']},
+  "K54": {name: '量子力学', tier: 9, cat: '前沿', desc: '波函数 ψ、薛定谔方程、量子态', prereq: ['K49', 'K45']},
+  "K55": {name: '同伦群', tier: 9, cat: '前沿', desc: '环路分类，π₀、π₁ 基本群', prereq: ['K50', 'K48']},
+};
+const EXPERIMENT_KPS = {
+  "PR01": ['K28', 'K09', 'K10', 'K42'],
+  "PR02": ['K03', 'K01', 'K27'],
+  "PR03": ['K19', 'K23'],
+  "PR04": ['K38'],
+  "PR05": ['K38', 'K29'],
+  "PR06": ['K05', 'K01'],
+  "PR07": ['K05'],
+  "PR08": ['K09', 'K43', 'K33'],
+  "NT01": ['K25', 'K04', 'K05'],
+  "NT02": ['K36', 'K24'],
+  "NT03": ['K05'],
+  "NT04": ['K22'],
+  "NT05": ['K23'],
+  "NT06": ['K27', 'K01'],
+  "NT07": ['K26'],
+  "NT08": ['K05'],
+  "NT09": ['K19', 'K23'],
+  "NT10": ['K23'],
+  "NT11": ['K27'],
+  "NT12": ['K24'],
+  "NT13": ['K24', 'K23'],
+  "NT14": ['K27', 'K22'],
+  "NT15": ['K05', 'K27'],
+  "NT16": ['K05'],
+  "NT17": ['K22'],
+  "NT18": ['K22', 'K04'],
+  "NT19": ['K05'],
+  "NT20": ['K05'],
+  "SQ01": ['K36', 'K24'],
+  "SQ02": ['K36'],
+  "SQ03": ['K24'],
+  "SQ04": ['K01'],
+  "SQ05": ['K16', 'K01'],
+  "SQ06": ['K42', 'K43'],
+  "SQ07": ['K26'],
+  "SQ08": ['K29', 'K26'],
+  "SQ09": ['K29', 'K26'],
+  "SQ10": ['K17'],
+  "SQ11": ['K29', 'K41'],
+  "SQ12": ['K36'],
+  "SQ13": ['K36', 'K03'],
+  "SQ14": ['K21', 'K11'],
+  "SQ15": ['K23'],
+  "PE01": ['K09', 'K02', 'K43'],
+  "PE02": ['K09', 'K02', 'K43'],
+  "PE03": ['K09', 'K43', 'K42'],
+  "PE04": ['K09', 'K43'],
+  "PE05": ['K09', 'K33', 'K28'],
+  "PE06": ['K16', 'K26', 'K42'],
+  "PE07": ['K16', 'K42'],
+  "PE08": ['K06', 'K02'],
+  "PE09": ['K42', 'K43'],
+  "PE10": ['K09'],
+  "GM01": ['K07'],
+  "GM02": ['K19'],
+  "GM03": ['K09', 'K10'],
+  "GM04": ['K09', 'K10'],
+  "GM05": ['K11'],
+  "GM06": ['K12'],
+  "GM07": ['K20', 'K19'],
+  "GM08": ['K07'],
+  "GM09": ['K07', 'K09'],
+  "GM10": ['K15', 'K09'],
+  "GR01": ['K38'],
+  "GR02": ['K38'],
+  "GR03": ['K38'],
+  "GR04": ['K39', 'K38'],
+  "GR05": ['K38'],
+  "GR06": ['K13', 'K10'],
+  "GR07": ['K38', 'K29'],
+  "GR08": ['K38'],
+  "GR09": ['K38'],
+  "GR10": ['K38'],
+  "PB01": ['K28', 'K02'],
+  "PB02": ['K28'],
+  "PB03": ['K28', 'K29'],
+  "PB04": ['K28'],
+  "PB05": ['K31', 'K28'],
+  "PB06": ['K30', 'K28'],
+  "PB07": ['K28', 'K42'],
+  "PB08": ['K32', 'K28'],
+  "PB09": ['K28', 'K42'],
+  "PB10": ['K28', 'K29'],
+  "AL01": ['K37', 'K26'],
+  "AL02": ['K37'],
+  "AL03": ['K37'],
+  "AL04": ['K37', 'K40'],
+  "AL05": ['K37', 'K40'],
+  "AL06": ['K37', 'K41'],
+  "AL07": ['K36', 'K24'],
+  "AL08": ['K36'],
+  "AL09": ['K41', 'K29'],
+  "AL10": ['K05'],
+  "FR01": ['K18', 'K42'],
+  "FR02": ['K36', 'K07'],
+  "FR03": ['K36', 'K10'],
+  "FR04": ['K36', 'K14'],
+  "FR05": ['K18', 'K42'],
+  "OT01": ['K01', 'K06'],
+  "OT02": ['K36'],
+  "OT03": ['K09', 'K14'],
+  "OT04": ['K27'],
+  "OT05": ['K29'],
+  "OT06": ['K46'],
+  "OT07": ['K01'],
+  "OT08": ['K38', 'K41'],
+  "OT09": ['K31'],
+  "OT10": ['K38'],
+  "EX01": ['K09', 'K10'],
+  "EX02": ['K50', 'K10'],
+  "EX03": ['K50', 'K21'],
+  "EX04": ['K11', 'K20'],
+  "EX05": ['K07', 'K19'],
+  "EX06": ['K18', 'K13'],
+  "EX07": ['K18', 'K46'],
+  "EX08": ['K51', 'K15', 'K48'],
+  "EX09": ['K50', 'K20'],
+  "EX10": ['K18', 'K47'],
+  "EX11": ['K53', 'K47', 'K43'],
+  "EX12": ['K18', 'K05'],
+  "EX13": ['K17'],
+  "EX14": ['K35', 'K46', 'K32'],
+  "EX15": ['K47', 'K48'],
+  "EX16": ['K52', 'K51', 'K48'],
+  "EX17": ['K54', 'K49', 'K45'],
+  "EX18": ['K34', 'K46'],
+  "EX19": ['K55', 'K50'],
+  "EX20": ['K32', 'K44', 'K42'],
+};
+const KP_TIER_NAMES = {1: '小学基础', 2: '小学几何', 3: '初中代数', 4: '初中几何', 5: '数论竞赛', 6: '概率统计', 7: '离散算法', 8: '大学数学', 9: '前沿交叉'};
+const KP_TIER_COLORS = {1: '#10b981', 2: '#14b8a6', 3: '#3b82f6', 4: '#6366f1', 5: '#8b5cf6', 6: '#ec4899', 7: '#f59e0b', 8: '#ef4444', 9: '#7c3aed'};
+
 // ========== 2. 当前实验（独立页面只含一个） ==========
 const EXPERIMENTS = [{
   id: "SQ13",
@@ -29483,6 +29673,65 @@ function plazaRenderGrid() {
   ).join('');
   const cnt = document.getElementById('plazaCount');
   if (cnt) cnt.textContent = `共 ${EXPERIMENTS.length} 个实验（显示 ${filtered.length}）`;
+}
+
+
+/* ========== KP 标签渲染 ========== */
+function renderKPTags(expId) {
+  const tagsEl = document.getElementById('plazaKPTags');
+  if (!tagsEl || typeof EXPERIMENT_KPS === 'undefined') return;
+  const kps = EXPERIMENT_KPS[expId] || [];
+  if (kps.length === 0) return;
+  const sep = document.createElement('span');
+  sep.style.cssText = 'font-size: 11px; color: var(--muted); font-weight: 600;';
+  sep.textContent = '📚 前置知识：';
+  // 清空 placeholder
+  tagsEl.innerHTML = '';
+  tagsEl.appendChild(sep);
+  kps.forEach((kpId, i) => {
+    const kp = KNOWLEDGE_POINTS[kpId];
+    if (!kp) return;
+    const tag = document.createElement('a');
+    const color = KP_TIER_COLORS[kp.tier] || '#6b7280';
+    tag.href = '../knowledge.html#kp-' + kpId;
+    tag.target = '_blank';
+    tag.title = kp.desc + (kp.prereq.length ? '（前置：' + kp.prereq.map(p => KNOWLEDGE_POINTS[p]?.name || p).join('、') + '）' : '');
+    tag.style.cssText = `
+      display: inline-block;
+      padding: 3px 10px;
+      background: ${color}1a;
+      color: ${color};
+      border: 1.5px solid ${color}66;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+    `;
+    tag.onmouseover = () => { tag.style.background = color; tag.style.color = 'white'; };
+    tag.onmouseout = () => { tag.style.background = color + '1a'; tag.style.color = color; };
+    tag.innerHTML = `<span style="opacity: 0.6; font-size: 10px;">${kpId}</span> ${kp.name}`;
+    tagsEl.appendChild(tag);
+  });
+  // 加个"学习路径"链接
+  const learnLink = document.createElement('a');
+  learnLink.href = '../knowledge.html?focus=' + expId;
+  learnLink.target = '_blank';
+  learnLink.style.cssText = `
+    display: inline-block;
+    padding: 3px 10px;
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1.5px solid #d1d5db;
+    border-radius: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+  `;
+  learnLink.textContent = '🗺️ 学习路径';
+  tagsEl.appendChild(learnLink);
 }
 
 function plazaOpen(id, setHash = true) {
@@ -29602,7 +29851,10 @@ function plazaOpen(id, setHash = true) {
   plazaDetail.innerHTML = `<div class="plaza-detail">
     <button class="back ghost small" id="plazaBack">← 返回列表</button>
     <h2 style="margin: 8px 0 4px;">${exp.title} <span class="cat-tag ${PLAZA_CATEGORIES[exp.cat]}" style="font-size: 12px;">${exp.cat}</span> <span class="id-tag" style="font-size: 12px;">${exp.id}</span></h2>
-    <p style="font-size: 14px; color: var(--muted); margin: 0 0 16px;">${exp.intro}</p>
+    <p style="font-size: 14px; color: var(--muted); margin: 0 0 12px;">${exp.intro}</p>
+    <div id="plazaKPTags" style="margin: 0 0 16px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+      <span style="font-size: 11px; color: var(--muted); font-weight: 600;">📚 前置知识：</span>
+    </div>
 
     ${stagesSection}
     ${principleSection}
@@ -29619,6 +29871,7 @@ function plazaOpen(id, setHash = true) {
     </details>
   </div>`;
   exp.render(document.getElementById('plazaBody'));
+  renderKPTags(exp.id);
 
   // 调用该实验的 stage 初始化函数（initStage_<id>）
   if (typeof window['initStage_' + exp.id] === 'function') {
