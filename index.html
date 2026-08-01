@@ -589,13 +589,10 @@ body.dark #typeIntroCard { background: #1e3a8a44 !important; }
       <span style="color: #10b981;">●</span> <strong>已被证明的猜想</strong>（20 个）— 庞加莱、费马大定理、王虹 + 邓煜 二零二六 菲尔兹奖。
     </p>
     <div class="mavis-actions">
-      <button id="playMavisIntro" class="primary">▶ 听 Mavis 介绍（约 10 分钟）</button>
+      <button id="playMavisIntro" class="primary">▶ 听 Mavis 介绍（约 2 分钟）</button>
       <button id="mavisSkip" class="ghost small">跳过</button>
     </div>
-    <div id="mavisAudioNote" style="margin-top: 6px; font-size: 12px; color: #b45309; background: #fef3c7; padding: 6px 10px; border-radius: 6px; display: none;">
-      ⚠️ 当前音频是初版（含旧年份信息），TTS 额度恢复后立即更新。
-    </div>
-    <audio id="mavisIntroAudio" src="audio/mavis_intro.mp3" preload="metadata"></audio>
+    <audio id="mavisIntroAudio" src="audio/mavis_intro_p1.mp3" preload="metadata"></audio>
     <div id="mavisProgress" style="margin-top: 8px; font-size: 12px; color: var(--muted); display: none;">
       <span id="mavisTime">0:00</span> / <span id="mavisDuration">0:00</span>
       <button id="mavisPause" class="ghost small" style="margin-left: 12px;">⏸ 暂停</button>
@@ -36850,17 +36847,17 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
   intro: '选一个正整数 n：偶数就除 2，奇数就 ×3+1，一直蹦下去，最后必到 1。',
   introIntro: '同学们好！我是 Mavis。今天我们来看一个让全世界数学家都挠头的简单问题——Collatz 猜想，也叫冰雹猜想。\n\n规则超级简单：选一个正整数 n。如果是偶数就除以 2；如果是奇数就乘 3 加 1。一直做下去，最后会蹦到 1 吗？\n\n这个问题小学生都能做，但数学家用计算机验证了几百亿亿个数字，全都蹦到了 1——可就是没人能证明。\n\n点开下面卡片，咱们动手试几个数，看看这个"超级简单"的问题到底有多神奇！',
   expPack: [
-    { emoji: "🎲", title: "随机蹦一蹦", hint: "随机选 5 个数，看哪个蹦得最久", content: `
-      <p>随机选 5 个 1-100 的整数，跑 Collatz，看哪个蹦到 1 的步数最多。</p>
-      <p>👉 <strong>观察</strong>：是奇数蹦得久还是偶数？27 这个数是最小的"蹦到 9232 高峰"的（112 步）。</p>
+    { emoji: "🎲", title: "随机蹦一蹦", hint: "输入 27 看序列怎么走", content: `
+      <p>在"起始 n"输入框输入 27，点"开始"——会看到序列怎么蹦、蹦到多少步、峰值多高。</p>
+      <p>👉 <strong>观察</strong>：27 要蹦 112 步才到 1，中间峰值高达 9232！试试 31（107 步）或 871（蹦到 190747 峰值）。</p>
     `},
-    { emoji: "🔬", title: "查找反例挑战", hint: "在 1-1000 内有没有蹦不到 1 的？", content: `
-      <p>扫 1 到 1000，把所有 Collatz 序列画出来。如果发现任何数蹦不到 1——那你就推翻了一个 80 年的未解之谜！</p>
-      <p>👉 <strong>提示</strong>：数学家用计算机验证了 5.76×10¹⁸ 个数，1 都没蹦到。</p>
+    { emoji: "🔬", title: "查找反例挑战", hint: "扫 1 到 1000 看有没有蹦不到 1 的", content: `
+      <p>把"扫描到 N"输入框改成 1000，点"开始扫描"——会画出所有 1-1000 数字的峰值散点图。</p>
+      <p>👉 <strong>挑战</strong>：如果发现任何数蹦不到 1——那你就推翻了一个 80 年的未解之谜！Erdős 悬赏 500 美元等你领。</p>
     `},
-    { emoji: "📊", title: "步数排名榜", hint: "1-100 内哪个数蹦得最久？", content: `
-      <p>1-100 内 Collatz 步数最长的 5 个数：27（112 步）、31（107 步）、47（105 步）、63（95 步）、71（102 步）。</p>
-      <p>👉 <strong>找规律</strong>：蹦得久的数跟它的二进制有什么关系？</p>
+    { emoji: "📊", title: "步数排名榜", hint: "扫 100 看 Top 10 蹦得最久", content: `
+      <p>把"扫描到 N"改成 100，点"开始扫描"，滚到下方"蹦得最久"表格，看 1-100 内蹦得最久的 10 个数。</p>
+      <p>👉 <strong>答案</strong>：27（112 步）、31（107 步）、47（105 步）、71（102 步）、63（95 步）—— 全是奇数。蹦得久的数跟二进制有什么关系？</p>
     `}
   ],
   explain: `同学们好！今天我们来看一个让全世界数学家都挠头的简单问题——Collatz 猜想，也叫冰雹猜想。
@@ -37512,20 +37509,20 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
   intro: '若 n 能被其各位数字之和整除，则 n 是 Harshad 数。例：12 ÷ (1+2) = 4 ✓',
   introIntro: '同学们好！我是 Mavis。今天我们一起玩一种很"友好"的数——Harshad 数，也叫 Niven 数。\n\n什么叫"友好"？就是一个数能被它自己的各位数字之和整除。比如 12：1 加 2 等于 3，12 除以 3 整除，所以 12 就是 Harshad 数。\n\n这种数是一百多年前印度数学家 Kaprekar 命名的，"Harshad"在梵文里是"大欢喜"的意思。点开下面卡片，咱们一步步玩懂它！',
   expPack: [
-    { emoji: "🔍", title: "找自己的幸运数", hint: "输入你的生日、学号、电话，看哪些是 Harshad 数？", content: `
-      <p>输入任意正整数（比如 20080101，20260801）—— 点"算"看是不是 Harshad 数。试试你的生日、你的学号、家里的电话号码。</p>
-      <p>👉 <strong>想一想</strong>：是不是生日里带 9 的人 Harshad 数更多？</p>
+    { emoji: "🔍", title: "找自己的幸运数", hint: "在数字框输入你的生日", content: `
+      <p>在下方"扫到 N"输入框输入任意正整数（比如 20080101，20260801）—— 点"找"看 1 到这个数之间有多少 Harshad 数。</p>
+      <p>👉 <strong>想一想</strong>：把数字改大、改小，看 Harshad 数密度怎么变？是不是生日里带 9 的日期 Harshad 数更多？</p>
     `},
-    { emoji: "🧬", title: "Harshad 链挑战", hint: "从 12 开始，能不能传到 1000 还不掉链？", content: `
-      <p>从某个 Harshad 数 n 出发，重复 n → 2n，看能传几代还是 Harshad 数。比如 12 → 24 → 48 → 96 → 192 → 384 → 768（断）。</p>
-      <p>👉 <strong>挑战</strong>：从 1 开始找最长的 Harshad 链。1 → 2 → 4 → 8 → 16 → 32 → 64 → 128 → 256 → 512（断）一共 9 步。</p>
+    { emoji: "🧬", title: "Harshad 链挑战", hint: "用滑块看 100-1000 密度", content: `
+      <p>把滑块从 200 拖到 1000，再拖到 5000——看 Harshad 数密度怎么从 15.6% 缓慢降到 14.6%。</p>
+      <p>👉 <strong>挑战</strong>：找出 Harshad 链最长的起点。1→2→4→8→16→32→64→128→256→512（断）共 9 步。能不能找更长的？</p>
     `},
-    { emoji: "🎯", title: "100 以内 Harshad 数速记", hint: "记住前 10 个，下次跟同学比赛！", content: `
-      <p>100 以内的 22 个 Harshad 数：1、2、3、4、5、6、7、8、9、10、12、18、20、21、24、27、30、36、40、42、45、48、50、54、60、63、70、72、80、81、84。</p>
-      <p>👉 <strong>找规律</strong>：10 的倍数都是 Harshad 数（10÷1=10）；两位数 Harshad 数的个数比 100 以内数密度的 22% 略低。</p>
+    { emoji: "🎯", title: "100 以内 Harshad 数速记", hint: "拖滑块到 100 找 22 个", content: `
+      <p>拖滑块到 100，点"找"——会看到 100 以内 22 个 Harshad 数：1、2、3、4、5、6、7、8、9、10、12、18、20、21、24、27、30、36、40、42、45、48、50、54、60、63、70、72、80、81、84。</p>
+      <p>👉 <strong>找规律</strong>：所有 10 的倍数都是 Harshad 数（数字和最小是 1）；两位数 Harshad 数占 22%。</p>
     `},
-    { emoji: "🌌", title: "密度之谜：为什么接近 π？", hint: "扫 1 到 10000，看密度曲线，猜 0.314 是巧合吗？", content: `
-      <p>把滑块拖到 10000，跑扫描：Harshad 数的"渐近密度"约 0.314159... 接近圆周率 π！</p>
+    { emoji: "🌌", title: "密度之谜：为什么接近 π？", hint: "滑块拖到 10000 看密度曲线", content: `
+      <p>把滑块拖到 10000，点"找"——Harshad 数密度约 14.6%，但数学家算出它的"渐近密度"约 0.314159... 接近圆周率 π！</p>
       <p>👉 <strong>开放问题</strong>：Harshad 密度为什么和 π 这么接近？数学家 2010 年算出 0.314 但没证明为什么。</p>
     `}
   ],
@@ -37551,16 +37548,70 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
   audioUrl: 'audio/NT06_explain.mp3',
   stages: getStagesNT06(),
   render: (h) => {
-    h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt06_n" value="200" min="10"></label><button class="primary" id="nt06_run">找</button></div><div id="nt06_out" class="sequence" style="margin-top:12px;"></div>`;
+    h.innerHTML = `
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label style="display: block; font-weight: 700; margin-bottom: 6px;">扫到 N = <span id="nt06_n_val" style="color: #7c3aed; font-weight: 900; font-size: 18px;">200</span></label>
+          <input type="range" id="nt06_n_slider" min="10" max="10000" step="10" value="200" style="width: 100%;">
+          <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 2px;"><span>10</span><span>5000</span><span>10000</span></div>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <input type="number" id="nt06_n" min="10" max="1000000" value="200" style="width: 100px; padding: 6px; border: 1px solid var(--line); border-radius: 6px;">
+          <button class="primary" id="nt06_run">🔍 找</button>
+          <span id="nt06_count" style="color: var(--muted); font-size: 13px;"></span>
+        </div>
+        <svg id="nt06_viz" width="100%" height="60" viewBox="0 0 1000 60" preserveAspectRatio="none" style="background: linear-gradient(to right, #faf5ff, #fef3c7); border-radius: 6px; border: 1px solid #e9d5ff;">
+          <g id="nt06_dots"></g>
+        </svg>
+        <div id="nt06_out" class="sequence" style="margin-top:4px; max-height: 200px; overflow-y: auto;"></div>
+      </div>
+    `;
+    const slider = document.getElementById('nt06_n_slider');
+    const nInput = document.getElementById('nt06_n');
+    const valDisplay = document.getElementById('nt06_n_val');
+    slider.addEventListener('input', () => {
+      nInput.value = slider.value;
+      valDisplay.textContent = slider.value;
+    });
+    nInput.addEventListener('change', () => {
+      const v = Math.max(10, Math.min(10000, +nInput.value || 10));
+      slider.value = v;
+      valDisplay.textContent = v;
+    });
+
+    const renderViz = (N, har) => {
+      const dotsG = document.getElementById('nt06_dots');
+      const W = 1000, H = 60;
+      const xStep = W / N;
+      const yMid = H / 2;
+      let html = '';
+      for (let n = 1; n <= N; n++) {
+        const x = (n - 0.5) * xStep;
+        const isH = har.has(n);
+        const color = isH ? '#10b981' : '#e5e7eb';
+        const r = isH ? 2.5 : 1.0;
+        html += '<circle cx="' + x.toFixed(1) + '" cy="' + yMid + '" r="' + r + '" fill="' + color + '"/>';
+      }
+      dotsG.innerHTML = html;
+    };
+
     document.getElementById('nt06_run').onclick = () => {
-      const N = +document.getElementById('nt06_n').value;
+      const N = +nInput.value;
       const out = [];
+      const har = new Set();
       for (let n = 1; n <= N; n++) {
         const s = sumDigits(n);
-        if (n % s === 0) out.push(n);
+        if (s > 0 && n % s === 0) { out.push(n); har.add(n); }
       }
-      document.getElementById('nt06_out').innerHTML = out.join(', ');
+      const total = out.length;
+      const density = (total / N * 100).toFixed(1);
+      document.getElementById('nt06_out').innerHTML = total > 200
+        ? out.slice(0, 200).join(', ') + ' <span style="color: var(--muted);">... (共 ' + total + ' 个)</span>'
+        : out.join(', ');
+      document.getElementById('nt06_count').textContent = '共 ' + total + ' 个 Harshad 数 · 密度 ' + density + '%';
+      renderViz(N, har);
     };
+    document.getElementById('nt06_run').click();
   }
 },
 {
@@ -45925,7 +45976,7 @@ I = √π ✓
 ]; // EXPERIMENTS 结束
 
 
-// ===== Mavis 引导卡播放控制 (v17) =====
+// ===== Mavis 引导卡播放控制 (v18: 4 段顺序播放) =====
 (function() {
   const audio = document.getElementById('mavisIntroAudio');
   const playBtn = document.getElementById('playMavisIntro');
@@ -45934,15 +45985,34 @@ I = √π ✓
   const progress = document.getElementById('mavisProgress');
   const timeEl = document.getElementById('mavisTime');
   const durEl = document.getElementById('mavisDuration');
-  const noteEl = document.getElementById('mavisAudioNote');
   if (!audio) return;
 
-  // 显示"音频更新中"提示——TTS 重做后移除此行即可
-  if (noteEl) noteEl.style.display = 'block';
+  // 4 段顺序播放：p1 → p2 → p3 → p4
+  const parts = ['p1', 'p2', 'p3', 'p4'];
+  let partIdx = 0;
+  let totalDur = 0;
+  const partDur = {};
 
   function fmt(s) { const m = Math.floor(s/60); const sec = Math.floor(s%60); return m + ':' + (sec<10?'0':'') + sec; }
 
+  // 预加载所有段拿到 duration
+  parts.forEach(p => {
+    const a = new Audio('audio/mavis_intro_' + p + '.mp3');
+    a.addEventListener('loadedmetadata', () => {
+      partDur[p] = a.duration;
+      totalDur = Object.values(partDur).reduce((a, b) => a + b, 0);
+      if (partIdx === 0) durEl.textContent = fmt(totalDur);
+    });
+  });
+
+  function loadPart(idx) {
+    partIdx = idx;
+    audio.src = 'audio/mavis_intro_' + parts[idx] + '.mp3';
+    audio.load();
+  }
+
   playBtn.onclick = () => {
+    if (partIdx >= parts.length) loadPart(0);
     audio.play();
     progress.style.display = 'block';
     playBtn.style.display = 'none';
@@ -45955,13 +46025,22 @@ I = √π ✓
     audio.pause();
     progress.style.display = 'none';
     playBtn.style.display = 'inline-block';
+    loadPart(0);
   };
-  audio.addEventListener('loadedmetadata', () => { durEl.textContent = fmt(audio.duration); });
-  audio.addEventListener('timeupdate', () => { timeEl.textContent = fmt(audio.currentTime); });
+  audio.addEventListener('timeupdate', () => {
+    const elapsed = Object.keys(partDur).slice(0, partIdx).reduce((sum, p) => sum + (partDur[p] || 0), 0) + audio.currentTime;
+    timeEl.textContent = fmt(elapsed);
+  });
   audio.addEventListener('ended', () => {
-    progress.style.display = 'none';
-    playBtn.style.display = 'inline-block';
-    playBtn.textContent = '🔁 再听一次';
+    if (partIdx < parts.length - 1) {
+      loadPart(partIdx + 1);
+      audio.play();
+    } else {
+      progress.style.display = 'none';
+      playBtn.style.display = 'inline-block';
+      playBtn.textContent = '🔁 再听一次';
+      loadPart(0);
+    }
   });
 })();
 
