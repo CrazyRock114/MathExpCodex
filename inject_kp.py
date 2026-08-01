@@ -9,6 +9,9 @@ import sys, os, re
 sys.path.insert(0, '/Users/paulshi/Documents/MiniMax/π/mathexperiment')
 from knowledge_points import KPS, EXPERIMENT_KPS, TIER_NAMES, TIER_COLORS
 
+# 补全 K08 长方形正方形
+EXPERIMENT_KPS['GM05'] = ['K12', 'K08', 'K10']  # 圆柱需要长方形面积推导
+
 WORK = '/Users/paulshi/Documents/MiniMax/π/mathexperiment'
 os.chdir(WORK)
 
@@ -40,34 +43,44 @@ tier_colors_js = f'const KP_TIER_COLORS = {repr(TIER_COLORS)};'
 # 4) 注入到 EXPERIMENTS 数组前
 inject_str = f'\n{kp_js}\n{ekp_js}\n{tier_names_js}\n{tier_colors_js}\nconst EXPERIMENTS = ['
 if 'const KNOWLEDGE_POINTS' in html:
-    print('Already injected, skipping')
-else:
-    html = html.replace('const EXPERIMENTS = [', inject_str)
-    print(f'Injected KP JS ({len(kp_js) + len(ekp_js)} bytes)')
+    # 删除现有的 KP block，再插入
+    html = re.sub(
+        r'\n?const KNOWLEDGE_POINTS = \{[\s\S]*?const KP_TIER_COLORS = \{[\s\S]*?\};\n?',
+        '\n',
+        html,
+        count=1
+    )
+    print('Removed existing KP block')
+html = html.replace('const EXPERIMENTS = [', inject_str, 1)
+print(f'Injected KP JS ({len(kp_js) + len(ekp_js)} bytes)')
 
 # 5) 修改 plazaOpen：在 intro 之后插入 KP 标签
 old_marker = '<p style="font-size: 14px; color: var(--muted); margin: 0 0 16px;">${exp.intro}</p>'
+old_marker_v2 = '<p style="font-size: 14px; color: var(--muted); margin: 0 0 12px;">${exp.intro}</p>\n    <div id="plazaKPTags"'
 new_marker = '''<p style="font-size: 14px; color: var(--muted); margin: 0 0 12px;">${exp.intro}</p>
     <div id="plazaKPTags" style="margin: 0 0 16px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
       <span style="font-size: 11px; color: var(--muted); font-weight: 600;">📚 前置知识：</span>
     </div>'''
 
 if old_marker in html:
-    html = html.replace(old_marker, new_marker)
+    html = html.replace(old_marker, new_marker, 1)
     print('Replaced intro paragraph to add KP tags placeholder')
+elif old_marker_v2 in html:
+    print('Already has plazaKPTags, skipping intro replacement')
 else:
     print('WARNING: intro marker not found')
 
 # 6) 在 plazaDetail.innerHTML 之后追加 renderKPTags 调用
-# 找 exp.render(document.getElementById('plazaBody')); 之后插入
 old_render = 'exp.render(document.getElementById(\'plazaBody\'));'
-if old_render in html:
+old_render_v2 = 'exp.render(document.getElementById(\'plazaBody\'));\n  renderKPTags(exp.id);'
+if old_render in html and 'renderKPTags(exp.id);' not in html:
     new_render = old_render + '\n  renderKPTags(exp.id);'
-    html = html.replace(old_render, new_render)
+    html = html.replace(old_render, new_render, 1)
     print('Added renderKPTags call after exp.render')
+elif old_render_v2 in html:
+    print('Already has renderKPTags call, skipping')
 
 # 7) 注入 renderKPTags 函数
-# 找一个好位置插：在 plazaOpen 之前
 render_kp_fn = '''
 /* ========== KP 标签渲染 ========== */
 function renderKPTags(expId) {
@@ -130,8 +143,17 @@ function renderKPTags(expId) {
 
 # 插在 plazaOpen 之前
 target = 'function plazaOpen(id, setHash = true) {'
-if target in html and 'function renderKPTags' not in html:
-    html = html.replace(target, render_kp_fn + '\n' + target)
+if '/* ========== KP 标签渲染 ========== */' in html:
+    # 删除现有的 renderKPTags，再插入
+    html = re.sub(
+        r'/\* ========== KP 标签渲染 ========== \*/\nfunction renderKPTags[\s\S]*?\n\}\n',
+        '',
+        html,
+        count=1
+    )
+    print('Removed existing renderKPTags function')
+if 'function renderKPTags' not in html:
+    html = html.replace(target, render_kp_fn + '\n' + target, 1)
     print('Injected renderKPTags function')
 
 with open('index.html', 'w', encoding='utf-8') as f:

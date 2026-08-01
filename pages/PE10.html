@@ -29404,6 +29404,8 @@ const PLAZA_CATEGORIES = {
 // 实验注册表：每个实验 { id, cat, title, intro, render(host, getValue) }
 // render 负责把交互注入 host，并返回 cleanup 函数
 
+
+
 const KNOWLEDGE_POINTS = {
   "K01": {name: '加减乘除', tier: 1, cat: '基础', desc: '四则运算：加法、减法、乘法、除法', prereq: []},
   "K02": {name: '分数小数', tier: 1, cat: '基础', desc: '分数、小数、百分数互化', prereq: ['K01']},
@@ -29519,7 +29521,7 @@ const EXPERIMENT_KPS = {
   "GM02": ['K19'],
   "GM03": ['K09', 'K10'],
   "GM04": ['K09', 'K10'],
-  "GM05": ['K11'],
+  "GM05": ['K12', 'K08', 'K10'],
   "GM06": ['K12'],
   "GM07": ['K20', 'K19'],
   "GM08": ['K07'],
@@ -29668,6 +29670,10 @@ function plazaRenderGrid() {
   const cnt = document.getElementById('plazaCount');
   if (cnt) cnt.textContent = `共 ${EXPERIMENTS.length} 个实验（显示 ${filtered.length}）`;
 }
+
+
+
+
 
 
 /* ========== KP 标签渲染 ========== */
@@ -29865,6 +29871,7 @@ function plazaOpen(id, setHash = true) {
     </details>
   </div>`;
   exp.render(document.getElementById('plazaBody'));
+  renderKPTags(exp.id);
   renderKPTags(exp.id);
 
   // 调用该实验的 stage 初始化函数（initStage_<id>）
