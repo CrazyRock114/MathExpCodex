@@ -36709,7 +36709,23 @@ const EXPERIMENTS = [{
   id: "PR02",
   cat: "数论",
   title: "冰雹蹦跳 (Collatz 猜想)",
+  type: "conjecture_open",
   intro: "选一个正整数 n：偶数就除 2，奇数就 ×3+1，一直蹦下去，最后必到 1。",
+  introIntro: "同学们好！我是 Mavis。今天我们来看一个让全世界数学家都挠头的简单问题——Collatz 猜想，也叫冰雹猜想。\n\n规则超级简单：选一个正整数 n。如果是偶数就除以 2；如果是奇数就乘 3 加 1。一直做下去，最后会蹦到 1 吗？\n\n这个问题小学生都能做，但数学家用计算机验证了几百亿亿个数字，全都蹦到了 1——可就是没人能证明。\n\n点开下面卡片，咱们动手试几个数，看看这个\"超级简单\"的问题到底有多神奇！",
+  expPack: [
+    { emoji: "🎲", title: "随机蹦一蹦", hint: "随机选 5 个数，看哪个蹦得最久", content: `
+      <p>随机选 5 个 1-100 的整数，跑 Collatz，看哪个蹦到 1 的步数最多。</p>
+      <p>👉 <strong>观察</strong>：是奇数蹦得久还是偶数？27 这个数是最小的"蹦到 9232 高峰"的（112 步）。</p>
+    `},
+    { emoji: "🔬", title: "查找反例挑战", hint: "在 1-1000 内有没有蹦不到 1 的？", content: `
+      <p>扫 1 到 1000，把所有 Collatz 序列画出来。如果发现任何数蹦不到 1——那你就推翻了一个 80 年的未解之谜！</p>
+      <p>👉 <strong>提示</strong>：数学家用计算机验证了 5.76×10¹⁸ 个数，1 都没蹦到。</p>
+    `},
+    { emoji: "📊", title: "步数排名榜", hint: "1-100 内哪个数蹦得最久？", content: `
+      <p>1-100 内 Collatz 步数最长的 5 个数：27（112 步）、31（107 步）、47（105 步）、63（95 步）、71（102 步）。</p>
+      <p>👉 <strong>找规律</strong>：蹦得久的数跟它的二进制有什么关系？</p>
+    `}
+  ],
   principle: "<h4>🔍 这到底是怎么回事？</h4>\n<p>Collatz 猜想是人类数学里<strong>最简单又最难</strong>的未解之谜之一。它的规则简单到小学生都能做：</p>\n<div style=\"background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px 16px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 15px;\">\n如果 n 是<strong>偶数</strong>：n → n/2<br>\n如果 n 是<strong>奇数</strong>：n → 3n+1\n</div>\n<p>从任何正整数 n 出发，反复应用这个规则，<strong>似乎最终都会蹦到 1</strong>（然后在 1 → 4 → 2 → 1 循环）。</p>\n<h4>📊 看几个例子</h4>\n<p><strong>n = 6</strong>：6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1（9 步到 1）<br>\n<strong>n = 11</strong>：11 → 34 → 17 → 52 → 26 → 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1（15 步）<br>\n<strong>n = 27</strong>：蹦 112 步，<strong>峰值高达 9232</strong>，才最终到 1</p>\n<h4>🧠 为什么这么难证？</h4>\n<p>看起来\"奇数 ×3+1 变大，偶数 /2 变小\"，平均起来应该往 1 收缩。数学家能证明：<strong>几乎所有 n 蹦几次后都掉回小数值</strong>。但要证明\"对所有 n 都成立\"，要处理无数种边界情况。</p>\n<p>已验证的范围：<strong>5.76 × 10¹⁸</strong>（约 58 亿亿）。但数学证明？<strong>没有</strong>。Paul Erdős 说：\"这种问题数学还没准备好解决。\"</p>\n<h4>💡 直观：为什么它\"应该\"成立？</h4>\n<ul>\n  <li>奇数 ×3+1 后是<strong>偶数</strong>（因为 3×奇=奇，奇+1=偶），下一步必然 /2</li>\n  <li>所以\"奇数 → 偶数\"平均损失约 1/4 的大小</li>\n  <li>整个序列的\"几何均值\"约 3/4（<em>3/4 &lt; 1</em>），所以长期必收敛</li>\n  <li>但这不严格——有可能\"奇数大跳\"积累到突破边界</li>\n</ul>",
   history: "<p><strong>1930 年代</strong>，德国汉堡大学的 <strong>Lothar Collatz</strong>（1910-1990）研究差分方程时发现了这个规律。1950 年他第一次在国际会议上提出来，被当成\"玩具问题\"。</p>\n<p><strong>1960-1970 年代</strong>，<strong>Bryan Thwaites</strong>（英国数学家）猜测这个猜想永远成立，但没证明。<strong>Shizuo Kakutani</strong>（日裔美国数学家）把这个问题在耶鲁大学数学系传开，大家叫它 <em>\"Kakutani's 3n+1 problem\"</em>。</p>\n<p><strong>1970s</strong>，<strong>Paul Erdős</strong>（20 世纪最多产的数学家之一）公开悬赏 500 美元求证明或反例，至今没人领到。</p>\n<p><strong>1990s</strong>，<strong>Geoffrey Lagarias</strong> 整理了 Collatz 问题，写了 50 页综述<em>\"The 3x+1 problem: an annotated bibliography\"</em>。今天 Lagarias 是这个领域最权威的专家之一。</p>\n<p><strong>2010s</strong>，<strong>Terence Tao</strong>（2006 菲尔兹奖得主）证明了一个<strong>几乎</strong>版本：几乎所有 n 都会\"很接近\"地收敛。但离完全证明还很远。</p>",
   tryit: "<ol>\n  <li><strong>试小数字</strong>：输入 6、11、27，看序列变化。问孩子\"为什么 27 要蹦 112 步？\"</li>\n  <li><strong>找规律</strong>：让孩子手动算 1-10 的\"步数表\"：1→0步, 2→1, 3→7, 4→2, 5→5, 6→8, 7→16, 8→3, 9→19, 10→6。问\"哪个蹦得最久？\"——7 (16 步) 和 9 (19 步)。</li>\n  <li><strong>挑战：找反例</strong>：扫描到 10000，让孩子<strong>亲自</strong>找 1 个反例（找不到，赢 500 美元 Erdős 悬赏！）</li>\n  <li><strong>看峰值</strong>：n = 27 蹦到峰值 9232，n = 871 蹦到峰值 190747 —— 问\"为什么有些 n 这么拧巴？\"</li>\n  <li><strong>观察散点图</strong>：扫 5000，看哪些点是红的——红 = 步数超 5% 的\"反常起点\"。</li>\n  <li><strong>Top 10 表</strong>：扫描完成后看 Top 10——1 万以内蹦得最久的 10 个数是哪些？</li>\n  <li><strong>单步模式</strong>：用\"单步\"按钮看每一步怎么变化，感受\"奇数 ×3+1 后必偶 /2\"的节奏。</li>\n</ol>",
@@ -36861,10 +36877,31 @@ function plazaOpen(id, setHash = true) {
   // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
   void exampleExplain;
 
-  // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
-  const hasRichContent = exp.principle || exp.history || exp.tryit;
+  // 🤖 Mavis 总介绍折叠卡（v18：默认折叠，不挡 5 步玩懂）
+  const mavisIntroSection = `
+    <details style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #7c3aed;">🤖 Mavis 总介绍（1 分钟，先听一下）</summary>
+      <div style="background: linear-gradient(135deg, #faf5ff 0%, #fef3c7 100%); border-left: 5px solid #a855f7; padding: 14px 18px; border-radius: 8px; margin-top: 8px;">
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="font-size: 36px; line-height: 1;">🎓</div>
+          <div style="flex: 1; min-width: 0;">
+            <p style="margin: 0 0 10px; font-size: 14px; line-height: 1.7; color: #1f2937; white-space: pre-wrap;">${exp.introIntro || exp.intro || ''}</p>
+            <audio id="mavisIntroAudio-${exp.id}" controls preload="none" style="width: 100%; max-width: 500px; margin: 4px 0;" src="audio/${exp.id}_intro.mp3"></audio>
+            <div class="row" style="gap: 6px; margin-top: 6px; align-items: center; flex-wrap: wrap;">
+              <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+              <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisIntroAudio-${exp.id}">0.75×</button>
+              <button class="ghost small rate-btn" data-rate="1" data-audio="mavisIntroAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+              <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisIntroAudio-${exp.id}">1.25×</button>
+              <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisIntroAudio-${exp.id}">1.5×</button>
+              <button class="ghost small rate-btn" data-rate="2" data-audio="mavisIntroAudio-${exp.id}">2×</button>
+              <a class="ghost small" href="audio/${exp.id}_intro.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 文字稿</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>`;
 
-  // 5 步直观讲解：精选 8 个的渐进式可视化教学
+  // 5 步直观讲解：精选 8 个的渐进式可视化教学（v18：每步加双层语音）
   const stagesSection = exp.stages && exp.stages.length ? `
     <details open style="margin-bottom: 18px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #7c3aed;">🌱 一步步玩懂（5 步直观讲解）</summary>
@@ -36881,6 +36918,14 @@ function plazaOpen(id, setHash = true) {
         <div class="stage-panels" id="stagePanels-${exp.id}">
           ${exp.stages.map((s, i) => `
             <div class="stage-panel ${i === 0 ? 'active' : ''}" data-step="${i}" id="stagePanel-${exp.id}-${i}">
+              <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px; padding: 8px 12px; background: #ede9fe; border-radius: 8px; flex-wrap: wrap;">
+                <span style="font-size: 12px; color: #6b21a8; font-weight: 700;">🎙️ Mavis 第 ${i+1} 步：</span>
+                <button class="ghost small" onclick="document.getElementById('stageShortAudio-${exp.id}-${i}').play()" style="background: #f3e8ff; border-color: #a855f7; color: #6b21a8; font-size: 12px;">▶ 短提示（5-8 秒）</button>
+                <button class="ghost small" onclick="document.getElementById('stageLongAudio-${exp.id}-${i}').play()" style="background: #a855f7; color: white; border-color: #a855f7; font-size: 12px;">📖 详细讲解（30 秒）</button>
+                <span style="font-size: 11px; color: #6b21a8; opacity: 0.7;">点上面按钮听 Mavis 讲</span>
+              </div>
+              <audio id="stageShortAudio-${exp.id}-${i}" preload="none" src="audio/${exp.id}_s${i+1}_short.mp3"></audio>
+              <audio id="stageLongAudio-${exp.id}-${i}" preload="none" src="audio/${exp.id}_s${i+1}.mp3"></audio>
               ${s.content}
             </div>
           `).join('')}
@@ -36954,7 +36999,9 @@ function plazaOpen(id, setHash = true) {
       <span style="font-size: 11px; color: var(--muted); font-weight: 600;">📚 前置知识：</span>
     </div>
 
+    ${mavisIntroSection}
     ${stagesSection}
+    ${expPackSection}
     ${principleSection}
     ${historySection}
     ${tryitSection}

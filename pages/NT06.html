@@ -36710,6 +36710,25 @@ const EXPERIMENTS = [{
   cat: "数论",
   title: "Harshad 数（Niven 数）",
   intro: "若 n 能被其各位数字之和整除，则 n 是 Harshad 数。例：12 ÷ (1+2) = 4 ✓",
+  introIntro: "同学们好！我是 Mavis。今天我们一起玩一种很\"友好\"的数——Harshad 数，也叫 Niven 数。\n\n什么叫\"友好\"？就是一个数能被它自己的各位数字之和整除。比如 12：1 加 2 等于 3，12 除以 3 整除，所以 12 就是 Harshad 数。\n\n这种数是一百多年前印度数学家 Kaprekar 命名的，\"Harshad\"在梵文里是\"大欢喜\"的意思。点开下面卡片，咱们一步步玩懂它！",
+  expPack: [
+    { emoji: "🔍", title: "找自己的幸运数", hint: "输入你的生日、学号、电话，看哪些是 Harshad 数？", content: `
+      <p>输入任意正整数（比如 20080101，20260801）—— 点"算"看是不是 Harshad 数。试试你的生日、你的学号、家里的电话号码。</p>
+      <p>👉 <strong>想一想</strong>：是不是生日里带 9 的人 Harshad 数更多？</p>
+    `},
+    { emoji: "🧬", title: "Harshad 链挑战", hint: "从 12 开始，能不能传到 1000 还不掉链？", content: `
+      <p>从某个 Harshad 数 n 出发，重复 n → 2n，看能传几代还是 Harshad 数。比如 12 → 24 → 48 → 96 → 192 → 384 → 768（断）。</p>
+      <p>👉 <strong>挑战</strong>：从 1 开始找最长的 Harshad 链。1 → 2 → 4 → 8 → 16 → 32 → 64 → 128 → 256 → 512（断）一共 9 步。</p>
+    `},
+    { emoji: "🎯", title: "100 以内 Harshad 数速记", hint: "记住前 10 个，下次跟同学比赛！", content: `
+      <p>100 以内的 22 个 Harshad 数：1、2、3、4、5、6、7、8、9、10、12、18、20、21、24、27、30、36、40、42、45、48、50、54、60、63、70、72、80、81、84。</p>
+      <p>👉 <strong>找规律</strong>：10 的倍数都是 Harshad 数（10÷1=10）；两位数 Harshad 数的个数比 100 以内数密度的 22% 略低。</p>
+    `},
+    { emoji: "🌌", title: "密度之谜：为什么接近 π？", hint: "扫 1 到 10000，看密度曲线，猜 0.314 是巧合吗？", content: `
+      <p>把滑块拖到 10000，跑扫描：Harshad 数的"渐近密度"约 0.314159... 接近圆周率 π！</p>
+      <p>👉 <strong>开放问题</strong>：Harshad 密度为什么和 π 这么接近？数学家 2010 年算出 0.314 但没证明为什么。</p>
+    `}
+  ],
   principle: "",
   history: "",
   tryit: "",
@@ -36875,7 +36894,31 @@ function plazaOpen(id, setHash = true) {
   // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
   const hasRichContent = exp.principle || exp.history || exp.tryit;
 
-  // 5 步直观讲解：精选 8 个的渐进式可视化教学
+  // 🤖 Mavis 总介绍折叠卡（v18：默认折叠，不挡 5 步玩懂）
+  const mavisIntroSection = `
+    <details style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #7c3aed;">🤖 Mavis 总介绍（1 分钟，先听一下）</summary>
+      <div style="background: linear-gradient(135deg, #faf5ff 0%, #fef3c7 100%); border-left: 5px solid #a855f7; padding: 14px 18px; border-radius: 8px; margin-top: 8px;">
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="font-size: 36px; line-height: 1;">🎓</div>
+          <div style="flex: 1; min-width: 0;">
+            <p style="margin: 0 0 10px; font-size: 14px; line-height: 1.7; color: #1f2937; white-space: pre-wrap;">${exp.introIntro || exp.intro || ''}</p>
+            <audio id="mavisIntroAudio-${exp.id}" controls preload="none" style="width: 100%; max-width: 500px; margin: 4px 0;" src="audio/${exp.id}_intro.mp3"></audio>
+            <div class="row" style="gap: 6px; margin-top: 6px; align-items: center; flex-wrap: wrap;">
+              <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+              <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisIntroAudio-${exp.id}">0.75×</button>
+              <button class="ghost small rate-btn" data-rate="1" data-audio="mavisIntroAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+              <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisIntroAudio-${exp.id}">1.25×</button>
+              <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisIntroAudio-${exp.id}">1.5×</button>
+              <button class="ghost small rate-btn" data-rate="2" data-audio="mavisIntroAudio-${exp.id}">2×</button>
+              <a class="ghost small" href="audio/${exp.id}_intro.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 文字稿</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>`;
+
+  // 5 步直观讲解：精选 8 个的渐进式可视化教学（v18：每步加双层语音）
   const stagesSection = exp.stages && exp.stages.length ? `
     <details open style="margin-bottom: 18px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #7c3aed;">🌱 一步步玩懂（5 步直观讲解）</summary>
@@ -36892,7 +36935,36 @@ function plazaOpen(id, setHash = true) {
         <div class="stage-panels" id="stagePanels-${exp.id}">
           ${exp.stages.map((s, i) => `
             <div class="stage-panel ${i === 0 ? 'active' : ''}" data-step="${i}" id="stagePanel-${exp.id}-${i}">
+              <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px; padding: 8px 12px; background: #ede9fe; border-radius: 8px; flex-wrap: wrap;">
+                <span style="font-size: 12px; color: #6b21a8; font-weight: 700;">🎙️ Mavis 第 ${i+1} 步：</span>
+                <button class="ghost small" onclick="document.getElementById('stageShortAudio-${exp.id}-${i}').play()" style="background: #f3e8ff; border-color: #a855f7; color: #6b21a8; font-size: 12px;">▶ 短提示（5-8 秒）</button>
+                <button class="ghost small" onclick="document.getElementById('stageLongAudio-${exp.id}-${i}').play()" style="background: #a855f7; color: white; border-color: #a855f7; font-size: 12px;">📖 详细讲解（30 秒）</button>
+                <span style="font-size: 11px; color: #6b21a8; opacity: 0.7;">点上面按钮听 Mavis 讲</span>
+              </div>
+              <audio id="stageShortAudio-${exp.id}-${i}" preload="none" src="audio/${exp.id}_s${i+1}_short.mp3"></audio>
+              <audio id="stageLongAudio-${exp.id}-${i}" preload="none" src="audio/${exp.id}_s${i+1}.mp3"></audio>
               ${s.content}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </details>` : '';
+
+  // 🎯 拓展实验包（v18：3-5 个子实验，学生自选挑战）
+  const expPackSection = exp.expPack && exp.expPack.length ? `
+    <details open style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #be185d;">🎯 拓展实验包（${exp.expPack.length} 个子实验，自己挑）</summary>
+      <div style="background: linear-gradient(to right, #fdf2f8, #fff7ed); border-left: 5px solid #ec4899; padding: 14px 18px; border-radius: 8px; margin-top: 8px;">
+        <p style="margin: 0 0 12px; font-size: 13px; color: var(--muted);">5 步玩懂后，挑 1-2 个子实验动手做做看。</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
+          ${exp.expPack.map((sub, i) => `
+            <div class="exp-pack-card" data-pack-id="${exp.id}-${i}" style="background: white; border: 2px solid #fbcfe8; border-radius: 10px; padding: 12px; cursor: pointer; transition: all 0.2s;" onclick="document.getElementById('expPackBody-${exp.id}-${i}').style.display = document.getElementById('expPackBody-${exp.id}-${i}').style.display === 'none' ? 'block' : 'none'; this.style.borderColor = document.getElementById('expPackBody-${exp.id}-${i}').style.display === 'none' ? '#fbcfe8' : '#ec4899';">
+              <div style="font-size: 22px; margin-bottom: 4px;">${sub.emoji || '🧪'}</div>
+              <div style="font-weight: 700; font-size: 14px; color: #831843; margin-bottom: 4px;">${sub.title}</div>
+              <div style="font-size: 12px; color: #6b7280; line-height: 1.5;">${sub.hint || ''}</div>
+            </div>
+            <div id="expPackBody-${exp.id}-${i}" style="display: none; grid-column: 1/-1; background: #fdf2f8; border-radius: 8px; padding: 14px; margin-top: 6px;">
+              <div style="font-size: 13px; line-height: 1.7; color: #1f2937;">${sub.content || ''}</div>
             </div>
           `).join('')}
         </div>
@@ -36965,7 +37037,9 @@ function plazaOpen(id, setHash = true) {
       <span style="font-size: 11px; color: var(--muted); font-weight: 600;">📚 前置知识：</span>
     </div>
 
+    ${mavisIntroSection}
     ${stagesSection}
+    ${expPackSection}
     ${principleSection}
     ${historySection}
     ${tryitSection}

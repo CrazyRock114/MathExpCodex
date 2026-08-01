@@ -36868,10 +36868,31 @@ function plazaOpen(id, setHash = true) {
   // 不再使用：Mavis 讲解替代了 AI 讲解模块，prompt 已存到项目目录
   void exampleExplain;
 
-  // 4 区布局：有 principle/history/tryit 的（精选 8 个）显示完整 4 区
-  const hasRichContent = exp.principle || exp.history || exp.tryit;
+  // 🤖 Mavis 总介绍折叠卡（v18：默认折叠，不挡 5 步玩懂）
+  const mavisIntroSection = `
+    <details style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #7c3aed;">🤖 Mavis 总介绍（1 分钟，先听一下）</summary>
+      <div style="background: linear-gradient(135deg, #faf5ff 0%, #fef3c7 100%); border-left: 5px solid #a855f7; padding: 14px 18px; border-radius: 8px; margin-top: 8px;">
+        <div style="display: flex; gap: 14px; align-items: flex-start;">
+          <div style="font-size: 36px; line-height: 1;">🎓</div>
+          <div style="flex: 1; min-width: 0;">
+            <p style="margin: 0 0 10px; font-size: 14px; line-height: 1.7; color: #1f2937; white-space: pre-wrap;">${exp.introIntro || exp.intro || ''}</p>
+            <audio id="mavisIntroAudio-${exp.id}" controls preload="none" style="width: 100%; max-width: 500px; margin: 4px 0;" src="audio/${exp.id}_intro.mp3"></audio>
+            <div class="row" style="gap: 6px; margin-top: 6px; align-items: center; flex-wrap: wrap;">
+              <span style="font-size: 12px; color: var(--muted);">倍速：</span>
+              <button class="ghost small rate-btn" data-rate="0.75" data-audio="mavisIntroAudio-${exp.id}">0.75×</button>
+              <button class="ghost small rate-btn" data-rate="1" data-audio="mavisIntroAudio-${exp.id}" style="background: var(--accent); color: white; border-color: var(--accent);">1×</button>
+              <button class="ghost small rate-btn" data-rate="1.25" data-audio="mavisIntroAudio-${exp.id}">1.25×</button>
+              <button class="ghost small rate-btn" data-rate="1.5" data-audio="mavisIntroAudio-${exp.id}">1.5×</button>
+              <button class="ghost small rate-btn" data-rate="2" data-audio="mavisIntroAudio-${exp.id}">2×</button>
+              <a class="ghost small" href="audio/${exp.id}_intro.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 文字稿</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>`;
 
-  // 5 步直观讲解：精选 8 个的渐进式可视化教学
+  // 5 步直观讲解：精选 8 个的渐进式可视化教学（v18：每步加双层语音）
   const stagesSection = exp.stages && exp.stages.length ? `
     <details open style="margin-bottom: 18px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #7c3aed;">🌱 一步步玩懂（5 步直观讲解）</summary>
@@ -36888,6 +36909,14 @@ function plazaOpen(id, setHash = true) {
         <div class="stage-panels" id="stagePanels-${exp.id}">
           ${exp.stages.map((s, i) => `
             <div class="stage-panel ${i === 0 ? 'active' : ''}" data-step="${i}" id="stagePanel-${exp.id}-${i}">
+              <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px; padding: 8px 12px; background: #ede9fe; border-radius: 8px; flex-wrap: wrap;">
+                <span style="font-size: 12px; color: #6b21a8; font-weight: 700;">🎙️ Mavis 第 ${i+1} 步：</span>
+                <button class="ghost small" onclick="document.getElementById('stageShortAudio-${exp.id}-${i}').play()" style="background: #f3e8ff; border-color: #a855f7; color: #6b21a8; font-size: 12px;">▶ 短提示（5-8 秒）</button>
+                <button class="ghost small" onclick="document.getElementById('stageLongAudio-${exp.id}-${i}').play()" style="background: #a855f7; color: white; border-color: #a855f7; font-size: 12px;">📖 详细讲解（30 秒）</button>
+                <span style="font-size: 11px; color: #6b21a8; opacity: 0.7;">点上面按钮听 Mavis 讲</span>
+              </div>
+              <audio id="stageShortAudio-${exp.id}-${i}" preload="none" src="audio/${exp.id}_s${i+1}_short.mp3"></audio>
+              <audio id="stageLongAudio-${exp.id}-${i}" preload="none" src="audio/${exp.id}_s${i+1}.mp3"></audio>
               ${s.content}
             </div>
           `).join('')}
@@ -36961,7 +36990,9 @@ function plazaOpen(id, setHash = true) {
       <span style="font-size: 11px; color: var(--muted); font-weight: 600;">📚 前置知识：</span>
     </div>
 
+    ${mavisIntroSection}
     ${stagesSection}
+    ${expPackSection}
     ${principleSection}
     ${historySection}
     ${tryitSection}
