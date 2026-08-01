@@ -7251,14 +7251,48 @@ function getStagesNT06() {
       emoji: '📅',
       title: 'Harshad 数小史',
       content: `
-        <p class="lead">Harshad 数 1962 年由<strong style="color:#7c3aed;">D. R. Kaprekar</strong>（印度）命名。</p>
+        <p class="lead">Harshad 数 1962 年由<strong style="color:#7c3aed;">印度数学家卡普雷卡</strong>命名。他一辈子研究"有趣的数"——还发现了著名的<strong style="color:#ec4899;">卡普雷卡常数 6174</strong>（你以后会遇到）。</p>
         <div class="viz">
           <div id="nt06s5-timeline"></div>
-          <div style="margin-top: 14px; padding: 12px; background: #f0fdf4; border-left: 5px solid #10b981; border-radius: 6px; font-size: 13px; line-height: 1.7;">
-            <strong>🔁 闭合定理</strong>（Cooper, Kennedy 1993）：<strong>每个自然数 n 的倍数里必有 Harshad 数</strong>。所以 Harshad 数"覆盖"了所有自然数。
+        </div>
+
+        <div style="margin-top: 18px; padding: 16px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%); border-left: 5px solid #10b981; border-radius: 8px;">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap;">
+            <button class="ghost small" onclick="document.getElementById('nt06s5a1').play()" style="background: #d1fae5; border-color: #10b981; color: #065f46; font-size: 12px;">▶ 5a-1 卡普雷卡（15 秒）</button>
+            <button class="ghost small" onclick="document.getElementById('nt06s5a2').play()" style="background: #d1fae5; border-color: #10b981; color: #065f46; font-size: 12px;">▶ 5a-2 库珀肯尼迪（20 秒）</button>
+            <button class="ghost small" onclick="document.getElementById('nt06s5a3').play()" style="background: #d1fae5; border-color: #10b981; color: #065f46; font-size: 12px;">▶ 5a-3 覆盖所有数（10 秒）</button>
+          </div>
+          <audio id="nt06s5a1" preload="none" src="audio/NT06_s5a.mp3"></audio>
+          <audio id="nt06s5a2" preload="none" src="audio/NT06_s5a_p2.mp3"></audio>
+          <audio id="nt06s5a3" preload="none" src="audio/NT06_s5a_p3.mp3"></audio>
+          <div style="font-size: 14px; line-height: 1.7;">
+            <strong style="color:#065f46;">🔁 闭合定理</strong>（库珀和肯尼迪，一千九百九十三年）：<strong>每个自然数 n 的倍数里必有 Harshad 数</strong>。<br>
+            <span style="color: var(--muted); font-size: 12px;">📖 解释：</span>
+            <ul style="margin: 8px 0; padding-left: 24px;">
+              <li><strong>什么是"倍数"</strong>？比如 12 乘 1、2、3、4... 出来 12、24、36、48——这些是 12 的倍数。</li>
+              <li><strong>什么是"必有"</strong>？就是不管你说一个多大的数（比如 100 万），数学家保证它的某个倍数（2 倍、3 倍...）一定是 Harshad 数。</li>
+              <li><strong>为什么重要</strong>？说明 Harshad 数"覆盖"了所有自然数——每个数都能跟 Harshad 数"沾上边"。</li>
+            </ul>
           </div>
         </div>
-        <div class="next-hint">🌌 <strong>未解之谜</strong>：Harshad 数的"渐近密度"精确公式 <strong>0.314...</strong>（de Bono 2010）— <strong>不是 π/10</strong>，但很接近 π。</div>
+
+        <div style="margin-top: 16px; padding: 16px; background: linear-gradient(135deg, #fef3c7 0%, #fce7f3 100%); border-left: 5px solid #f59e0b; border-radius: 8px;">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap;">
+            <button class="ghost small" onclick="document.getElementById('nt06s5b1').play()" style="background: #fef3c7; border-color: #f59e0b; color: #92400e; font-size: 12px;">▶ 5b-1 渐近密度（15 秒）</button>
+            <button class="ghost small" onclick="document.getElementById('nt06s5b2').play()" style="background: #fef3c7; border-color: #f59e0b; color: #92400e; font-size: 12px;">▶ 5b-2 巧合问题（15 秒）</button>
+          </div>
+          <audio id="nt06s5b1" preload="none" src="audio/NT06_s5b.mp3"></audio>
+          <audio id="nt06s5b2" preload="none" src="audio/NT06_s5b_p2.mp3"></audio>
+          <div style="font-size: 14px; line-height: 1.7;">
+            <strong style="color:#92400e;">🌌 未解之谜</strong>：Harshad 数的<strong>"渐近密度"约 0.314</strong>，<strong>接近圆周率 π</strong>！<br>
+            <span style="color: var(--muted); font-size: 12px;">📖 解释：</span>
+            <ul style="margin: 8px 0; padding-left: 24px;">
+              <li><strong>什么是"渐近密度"</strong>？想象你扫 1 到一千万，看 Harshad 数占的比例。扫得越远，比例越稳定在一个值——最后停在 <strong>0.314</strong>。</li>
+              <li><strong>为什么接近 π？</strong> 数学家德波诺在 2010 年算出 0.314 这个数字，但没证明为什么这么接近圆周率（3.14159...）！</li>
+              <li><strong>未解</strong>：这是巧合吗？数学家还在研究。期待你以后能解出来！</li>
+            </ul>
+          </div>
+        </div>
       `
     },
   ];
@@ -37509,21 +37543,21 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
   intro: '若 n 能被其各位数字之和整除，则 n 是 Harshad 数。例：12 ÷ (1+2) = 4 ✓',
   introIntro: '同学们好！我是 Mavis。今天玩 Harshad 数——一种"友好"的数，能被自己各位数字之和整除。比如 12：1 加 2 等于 3，12 除以 3 整除，所以 12 就是 Harshad 数。这种数 1962 年印度数学家 Kaprekar 命名。点开卡片玩起来！',
   expPack: [
-    { emoji: "🔍", title: "找自己的幸运数", hint: "在数字框输入你的生日", content: `
-      <p>在下方"扫到 N"输入框输入任意正整数（比如 20080101，20260801）—— 点"找"看 1 到这个数之间有多少 Harshad 数。</p>
-      <p>👉 <strong>想一想</strong>：把数字改大、改小，看 Harshad 数密度怎么变？是不是生日里带 9 的日期 Harshad 数更多？</p>
+    { emoji: "🔍", title: "找自己的幸运数", hint: "在功能 1 验算你的生日", content: `
+      <p>在下方"功能 1 验算任意数"的输入框里输入你的生日（比如 20080101）—— 点"算是不是 Harshad"看结果！</p>
+      <p>👉 <strong>想一想</strong>：生日里带 9 的日期（比如 20080901）是不是 Harshad 数？学号里的数字呢？</p>
     `},
     { emoji: "🧬", title: "Harshad 链挑战", hint: "用滑块看 100-1000 密度", content: `
-      <p>把滑块从 200 拖到 1000，再拖到 5000——看 Harshad 数密度怎么从 15.6% 缓慢降到 14.6%。</p>
+      <p>在下方"功能 2 扫 1 到 N"，把滑块从 200 拖到 1000，再拖到 5000——看 Harshad 数密度怎么从 15.6% 缓慢降到 14.6%。</p>
       <p>👉 <strong>挑战</strong>：找出 Harshad 链最长的起点。1→2→4→8→16→32→64→128→256→512（断）共 9 步。能不能找更长的？</p>
     `},
     { emoji: "🎯", title: "100 以内 Harshad 数速记", hint: "拖滑块到 100 找 22 个", content: `
-      <p>拖滑块到 100，点"找"——会看到 100 以内 22 个 Harshad 数：1、2、3、4、5、6、7、8、9、10、12、18、20、21、24、27、30、36、40、42、45、48、50、54、60、63、70、72、80、81、84。</p>
+      <p>在下方"功能 2"，拖滑块到 100，点"扫"——会看到 100 以内 22 个 Harshad 数：1、2、3、4、5、6、7、8、9、10、12、18、20、21、24、27、30、36、40、42、45、48、50、54、60、63、70、72、80、81、84。</p>
       <p>👉 <strong>找规律</strong>：所有 10 的倍数都是 Harshad 数（数字和最小是 1）；两位数 Harshad 数占 22%。</p>
     `},
     { emoji: "🌌", title: "密度之谜：为什么接近 π？", hint: "滑块拖到 10000 看密度曲线", content: `
-      <p>把滑块拖到 10000，点"找"——Harshad 数密度约 14.6%，但数学家算出它的"渐近密度"约 0.314159... 接近圆周率 π！</p>
-      <p>👉 <strong>开放问题</strong>：Harshad 密度为什么和 π 这么接近？数学家 2010 年算出 0.314 但没证明为什么。</p>
+      <p>把滑块拖到 10000，点"扫"——Harshad 数密度约 14.6%，但数学家算出它的"渐近密度"约 0.314159... 接近圆周率 π！</p>
+      <p>👉 <strong>开放问题</strong>：Harshad 密度为什么和 π 这么接近？数学家 2010 年算出 0.314 但没证明为什么——这是 5b 里的未解之谜。</p>
     `}
   ],
   explain: `同学们好！今天我们来看一种"友好"的数——Harshad 数（也叫 Niven 数）。
@@ -37549,23 +37583,66 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
   stages: getStagesNT06(),
   render: (h) => {
     h.innerHTML = `
-      <div style="display: flex; flex-direction: column; gap: 14px;">
-        <div>
-          <label style="display: block; font-weight: 700; margin-bottom: 6px;">扫到 N = <span id="nt06_n_val" style="color: #7c3aed; font-weight: 900; font-size: 18px;">200</span></label>
-          <input type="range" id="nt06_n_slider" min="10" max="10000" step="10" value="200" style="width: 100%;">
-          <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 2px;"><span>10</span><span>5000</span><span>10000</span></div>
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+
+        <!-- 功能 1：验算任意数（输入生日学号都行） -->
+        <div style="padding: 16px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 10px;">
+          <h3 style="margin: 0 0 8px; color: #1e3a8a; font-size: 16px;">🔍 功能 1：验算任意数（生日学号都行）</h3>
+          <p style="margin: 0 0 10px; font-size: 12px; color: var(--muted);">输入你的生日、年龄、学号、电话——看是不是 Harshad 数。</p>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <input type="number" id="nt06_check_n" placeholder="输入一个数" style="flex: 1 1 200px; padding: 8px 12px; border: 2px solid #93c5fd; border-radius: 8px; font-size: 15px;">
+            <button class="primary" id="nt06_check_btn" style="padding: 8px 16px;">算是不是 Harshad</button>
+          </div>
+          <div id="nt06_check_result" style="margin-top: 12px; padding: 12px; background: white; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 14px; min-height: 24px;"></div>
         </div>
-        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-          <input type="number" id="nt06_n" min="10" max="1000000" value="200" style="width: 100px; padding: 6px; border: 1px solid var(--line); border-radius: 6px;">
-          <button class="primary" id="nt06_run">🔍 找</button>
-          <span id="nt06_count" style="color: var(--muted); font-size: 13px;"></span>
+
+        <!-- 功能 2：扫 1 到 N 看密度（限 10000） -->
+        <div style="padding: 16px; background: linear-gradient(135deg, #faf5ff 0%, #fef3c7 100%); border-radius: 10px;">
+          <h3 style="margin: 0 0 8px; color: #7c3aed; font-size: 16px;">📊 功能 2：扫 1 到 N 看密度（最多 10000）</h3>
+          <p style="margin: 0 0 10px; font-size: 12px; color: var(--muted);">拖滑块或输入 N，扫 1 到 N，看多少个 Harshad 数 + 密度曲线。</p>
+          <div>
+            <label style="display: block; font-weight: 700; margin-bottom: 6px;">扫到 N = <span id="nt06_n_val" style="color: #7c3aed; font-weight: 900; font-size: 18px;">200</span></label>
+            <input type="range" id="nt06_n_slider" min="10" max="10000" step="10" value="200" style="width: 100%;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 2px;"><span>10</span><span>5000</span><span>10000</span></div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px;">
+            <input type="number" id="nt06_n" min="10" max="10000" value="200" style="width: 100px; padding: 6px; border: 1px solid var(--line); border-radius: 6px;">
+            <button class="primary" id="nt06_run">🔍 扫</button>
+            <span id="nt06_count" style="color: var(--muted); font-size: 13px;"></span>
+          </div>
+          <svg id="nt06_viz" width="100%" height="60" viewBox="0 0 1000 60" preserveAspectRatio="none" style="background: linear-gradient(to right, #faf5ff, #fef3c7); border-radius: 6px; border: 1px solid #e9d5ff; margin-top: 10px;">
+            <g id="nt06_dots"></g>
+          </svg>
+          <div id="nt06_out" class="sequence" style="margin-top:10px; max-height: 180px; overflow-y: auto;"></div>
         </div>
-        <svg id="nt06_viz" width="100%" height="60" viewBox="0 0 1000 60" preserveAspectRatio="none" style="background: linear-gradient(to right, #faf5ff, #fef3c7); border-radius: 6px; border: 1px solid #e9d5ff;">
-          <g id="nt06_dots"></g>
-        </svg>
-        <div id="nt06_out" class="sequence" style="margin-top:4px; max-height: 200px; overflow-y: auto;"></div>
       </div>
     `;
+
+    // ===== 功能 1：验算任意数 =====
+    document.getElementById('nt06_check_btn').onclick = () => {
+      const n = +document.getElementById('nt06_check_n').value;
+      const resultEl = document.getElementById('nt06_check_result');
+      if (!n || n < 1) {
+        resultEl.innerHTML = '<span style="color: #ef4444;">请输入大于 0 的正整数</span>';
+        return;
+      }
+      const s = sumDigits(n);
+      const isH = s > 0 && n % s === 0;
+      const digitStr = String(n).split('').join(' + ');
+      const quotient = isH ? n / s : '（除不尽）';
+      resultEl.innerHTML = isH
+        ? '<span style="color: #10b981; font-size: 18px; font-weight: 900;">✅ ' + n + ' 是 Harshad 数！</span><br>' +
+          '<span style="color: var(--muted);">数字和：</span> ' + digitStr + ' = <strong>' + s + '</strong>　' +
+          '<span style="color: var(--muted);">验证：</span> ' + n + ' ÷ ' + s + ' = <strong>' + quotient + '</strong>（整除 ✓）'
+        : '<span style="color: #ef4444; font-size: 18px; font-weight: 900;">❌ ' + n + ' 不是 Harshad 数</span><br>' +
+          '<span style="color: var(--muted);">数字和：</span> ' + digitStr + ' = <strong>' + s + '</strong>　' +
+          '<span style="color: var(--muted);">验证：</span> ' + n + ' ÷ ' + s + ' = <strong>' + (n/s).toFixed(3) + '</strong>（除不尽）';
+    };
+    document.getElementById('nt06_check_n').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('nt06_check_btn').click();
+    });
+
+    // ===== 功能 2：扫 1 到 N =====
     const slider = document.getElementById('nt06_n_slider');
     const nInput = document.getElementById('nt06_n');
     const valDisplay = document.getElementById('nt06_n_val');
@@ -37574,7 +37651,10 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
       valDisplay.textContent = slider.value;
     });
     nInput.addEventListener('change', () => {
-      const v = Math.max(10, Math.min(10000, +nInput.value || 10));
+      let v = +nInput.value;
+      if (v < 10) v = 10;
+      if (v > 10000) v = 10000;
+      nInput.value = v;
       slider.value = v;
       valDisplay.textContent = v;
     });
@@ -37596,7 +37676,7 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
     };
 
     document.getElementById('nt06_run').onclick = () => {
-      const N = +nInput.value;
+      const N = Math.max(10, Math.min(10000, +nInput.value));
       const out = [];
       const har = new Set();
       for (let n = 1; n <= N; n++) {
