@@ -2857,6 +2857,7 @@ function initStage_PR01() {
   try { if (typeof initStage_PR01_s4 === 'function') initStage_PR01_s4(); } catch(e) { console.error('initStage_PR01_s4 err:', e); }
   try { if (typeof initStage_PR01_s5 === 'function') initStage_PR01_s5(); } catch(e) { console.error('initStage_PR01_s5 err:', e); }
 }
+function initStage_PR01_initAll() { initStage_PR01(); }
 
 /* ===================== 5 步直观讲解：PR02 冰雹蹦跳 ===================== */
 function getStagesPR02() {
@@ -3331,6 +3332,7 @@ function initStage_PR02() {
   try { if (typeof initStage_PR02_s4 === 'function') initStage_PR02_s4(); } catch(e) { console.error('initStage_PR02_s4 err:', e); }
   try { if (typeof initStage_PR02_s5 === 'function') initStage_PR02_s5(); } catch(e) { console.error('initStage_PR02_s5 err:', e); }
 }
+function initStage_PR02_initAll() { initStage_PR02(); }
 
 /* ===================== 5 步直观讲解：PR03 猜勾股数 (Euclid 公式) ===================== */
 function getStagesPR03() {
@@ -3772,6 +3774,7 @@ function initStage_PR03() {
   try { if (typeof initStage_PR03_s4 === 'function') initStage_PR03_s4(); } catch(e) { console.error('initStage_PR03_s4 err:', e); }
   try { if (typeof initStage_PR03_s5 === 'function') initStage_PR03_s5(); } catch(e) { console.error('initStage_PR03_s5 err:', e); }
 }
+function initStage_PR03_initAll() { initStage_PR03(); }
 
 /* ===================== 5 步直观讲解：PR04 四色定理 ===================== */
 function getStagesPR04() {
@@ -4196,6 +4199,7 @@ function initStage_PR04() {
   try { if (typeof initStage_PR04_s4 === 'function') initStage_PR04_s4(); } catch(e) { console.error('initStage_PR04_s4 err:', e); }
   try { if (typeof initStage_PR04_s5 === 'function') initStage_PR04_s5(); } catch(e) { console.error('initStage_PR04_s5 err:', e); }
 }
+function initStage_PR04_initAll() { initStage_PR04(); }
 
 /* ===================== 5 步直观讲解：PR05 拉姆齐 R(3,3) = 6 ===================== */
 function getStagesPR05() {
@@ -4721,6 +4725,7 @@ function initStage_PR05() {
   try { if (typeof initStage_PR05_s4 === 'function') initStage_PR05_s4(); } catch(e) { console.error('initStage_PR05_s4 err:', e); }
   try { if (typeof initStage_PR05_s5 === 'function') initStage_PR05_s5(); } catch(e) { console.error('initStage_PR05_s5 err:', e); }
 }
+function initStage_PR05_initAll() { initStage_PR05(); }
 
 /* ===================== 5 步直观讲解：PR06 哥德巴赫猜想 ===================== */
 // 素数筛
@@ -5107,6 +5112,7 @@ function initStage_PR06() {
   try { if (typeof initStage_PR06_s4 === 'function') initStage_PR06_s4(); } catch(e) { console.error('initStage_PR06_s4 err:', e); }
   try { if (typeof initStage_PR06_s5 === 'function') initStage_PR06_s5(); } catch(e) { console.error('initStage_PR06_s5 err:', e); }
 }
+function initStage_PR06_initAll() { initStage_PR06(); }
 
 /* ===================== 5 步直观讲解：PR07 孪生素数 ===================== */
 function getStagesPR07() {
@@ -5399,6 +5405,7 @@ function initStage_PR07() {
   try { if (typeof initStage_PR07_s4 === 'function') initStage_PR07_s4(); } catch(e) { console.error('initStage_PR07_s4 err:', e); }
   try { if (typeof initStage_PR07_s5 === 'function') initStage_PR07_s5(); } catch(e) { console.error('initStage_PR07_s5 err:', e); }
 }
+function initStage_PR07_initAll() { initStage_PR07(); }
 
 /* ===================== 5 步直观讲解：PR08 π 的多算法对比 ===================== */
 function _pr08Archimedes(n) { return n * Math.sin(Math.PI / n); }
@@ -5847,6 +5854,7 @@ function initStage_PR08() {
   try { if (typeof initStage_PR08_s4 === 'function') initStage_PR08_s4(); } catch(e) { console.error('initStage_PR08_s4 err:', e); }
   try { if (typeof initStage_PR08_s5 === 'function') initStage_PR08_s5(); } catch(e) { console.error('initStage_PR08_s5 err:', e); }
 }
+function initStage_PR08_initAll() { initStage_PR08(); }
 
 /* ===================== 通用 5 步工具函数（NT 系列共用） ===================== */
 function _ntProperDivisors(n) {
@@ -6099,6 +6107,7 @@ function initStage_NT01() {
   try { if (typeof initStage_NT01_s4 === 'function') initStage_NT01_s4(); } catch(e) { console.error('initStage_NT01_s4 err:', e); }
   try { if (typeof initStage_NT01_s5 === 'function') initStage_NT01_s5(); } catch(e) { console.error('initStage_NT01_s5 err:', e); }
 }
+function initStage_NT01_initAll() { initStage_NT01(); }
 
 /* ===================== 5 步直观讲解：NT02 亲和数对 ===================== */
 function getStagesNT02() {
@@ -29677,7 +29686,7 @@ function plazaOpen(id, setHash = true) {
     // 清掉 hash
     if (location.hash) {
       history.replaceState(null, '', location.pathname + location.search);
-      document.title = '数学小实验广场（108 个） | AI 数学课堂';
+      document.title = '数学小实验广场（128 个） | AI 数学课堂';
     }
   };
   plazaDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -29689,7 +29698,7 @@ window.addEventListener('hashchange', () => {
   if (!h) {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
-    document.title = '数学小实验广场（108 个） | AI 数学课堂';
+    document.title = '数学小实验广场（128 个） | AI 数学课堂';
   } else {
     const exp = EXPERIMENTS.find(e => e.id === h);
     if (exp) plazaOpen(h, false);

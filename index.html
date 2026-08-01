@@ -10,7 +10,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='72' font-size='72' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3Eπ%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='72' font-size='72' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3Eπ%3C/text%3E%3C/svg%3E">
 <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22AI%20%E6%95%B0%E5%AD%A6%E8%AF%BE%E5%A0%82%22%2C%22short_name%22%3A%22MathClass%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23fafaf7%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22description%22%3A%22100%20%E4%B8%AA%E6%95%B0%E5%AD%A6%E5%B0%8F%E5%AE%9E%E9%AA%8C%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2527http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2527%2520viewBox%253D%25270%25200%2520100%2520100%2527%253E%253Crect%2520width%253D%2527100%2527%2520height%253D%2527100%2527%2520rx%253D%252720%2527%2520fill%253D%2527%25232563eb%2527%252F%253E%253Ctext%2520x%253D%252750%2527%2520y%253D%252772%2527%2520font-size%253D%252772%2527%2520text-anchor%253D%2527middle%2527%2520fill%253D%2527white%2527%2520font-family%253D%2527sans-serif%2527%2520font-weight%253D%2527bold%2527%253E%25CF%2580%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
-<title>数学小实验广场（108 个） |  AI 数学课堂</title>
+<title>数学小实验广场（128 个） |  AI 数学课堂</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
@@ -546,7 +546,7 @@
 <body>
 
 <header>
-  <h1>🧪 数学小实验广场（108 个）</h1>
+  <h1>🧪 数学小实验广场（128 个）</h1>
   <p>投针算 π · 冰雹蹦跳 · 猜勾股数 · 四色定理 · 拉姆齐 · 哥德巴赫 · 孪生素数 · π 多算法…  9 大类数学实验，每个都带 ① 原理讲解 ② 历史背景 ③ 互动演示 ④ AI 讲解 四区。课堂演示 / 学生自玩两相宜。</p>
   <div style="position: absolute; top: 16px; right: 24px; display: flex; gap: 8px;">
     <button id="darkToggle" class="ghost small" style="font-size: 12px;">🌙 深色</button>
@@ -555,14 +555,14 @@
 </header>
 
 <nav class="tabs">
-  <button class="active" data-tab="plaza">🧪 数学小实验广场（108 个）</button>
+  <button class="active" data-tab="plaza">🧪 数学小实验广场（128 个）</button>
   <button id="presentBtn" class="present-btn" title="进入全屏演示模式（隐藏顶部导航）">⛶ 全屏演示</button>
 </nav>
 
 <!-- ============== Experiment Plaza ============== -->
 <section class="tab-panel active" id="plaza">
   <div class="intro">
-    <strong>108 个数学小实验</strong>：覆盖数论 / 序列 / π·e / 几何 / 图论 / 概率 / 算法 / 分形 / 其他 9 大类。
+    <strong>128 个数学小实验</strong>：覆盖数论 / 序列 / π·e / 几何 / 图论 / 概率 / 算法 / 分形 / 其他 9 大类。
     搜关键字（如 "Fibonacci"、"生日"、"完美数"、"投针"）或按分类筛选。点任意卡片进入实验。
     <br><strong>前 8 个"精选实验"</strong>（投针 / Collatz / 勾股 / 四色 / 拉姆齐 / 哥德巴赫 / 孪生 / π 多算法）含完整原理讲解、历史背景、互动演示、AI 讲解四区。
   </div>
@@ -38600,7 +38600,7 @@ function plazaOpen(id, setHash = true) {
     // 清掉 hash
     if (location.hash) {
       history.replaceState(null, '', location.pathname + location.search);
-      document.title = '数学小实验广场（108 个） | AI 数学课堂';
+      document.title = '数学小实验广场（128 个） | AI 数学课堂';
     }
   };
   plazaDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -38612,7 +38612,7 @@ window.addEventListener('hashchange', () => {
   if (!h) {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
-    document.title = '数学小实验广场（108 个） | AI 数学课堂';
+    document.title = '数学小实验广场（128 个） | AI 数学课堂';
   } else {
     const exp = EXPERIMENTS.find(e => e.id === h);
     if (exp) plazaOpen(h, false);
