@@ -1,0 +1,22 @@
+[
+  {"id": "EX_PROVEN_01", "cat": "已证", "title": "挂谷集的几何构造（武士转针）", "intro": "1917 年日本数学家挂谷宗一提出'武士在小厕所转棒'问题——一根针要转 180° 至少需要多大空间？1928 年 Besicovitch 用佩龙树构造证明：可以任意小！", "kps": ["K10", "K11", "K42"]},
+  {"id": "EX_PROVEN_02", "cat": "已证", "title": "2D 挂谷猜想证明（Davies 1971）", "intro": "1971 年 Roy Davies 证明二维平面中任何挂谷集的 Hausdorff 维数都 = 2——零面积不等于零维度。这是调和分析的几何基石之一。", "kps": ["K15", "K42", "K47"]},
+  {"id": "EX_PROVEN_03", "cat": "已证", "title": "2D 黏性挂谷集（王虹+Zahl 简化）", "intro": "'黏性'挂谷集 = 所有方向的细管都抱团。证明简化版的维数 = 2，是王虹+Zahl 2022 完整 3D 证明的前置准备。", "kps": ["K15", "K42", "K47", "K18"]},
+  {"id": "EX_PROVEN_04", "cat": "已证", "title": "3D 挂谷猜想：Wolff 下界 (1999)", "intro": "Thomas Wolff 1999 年证明 3D 挂谷集维数 ≥ 2.5——这个看似微小的进步花了 20 多年，是通向 3D 完整证明的关键桥梁。", "kps": ["K15", "K42", "K47"]},
+  {"id": "EX_PROVEN_05", "cat": "已证", "title": "3D 黏性挂谷猜想（王虹+Zahl 2022）", "intro": "2022 年王虹与 Joshua Zahl 证明 3D 黏性 Kakeya 集维数 = 3——这是 3D 完整证明的第一步，奠定了 2025 终极胜利的基础。", "kps": ["K15", "K47", "K42", "K18"]},
+  {"id": "EX_PROVEN_06", "cat": "已证", "title": "3D 挂谷阿苏德维数（王虹+Zahl 2024）", "intro": "2024 年王虹+Zahl 进一步证明 3D 挂谷集的 Assouad 维数也 = 3——Assouad 维数比 Minkowski 维数更强，证明它等于 3 是关键拼图。", "kps": ["K47", "K42", "K15", "K18"]},
+  {"id": "EX_PROVEN_07", "cat": "已证", "title": "3D 挂谷猜想完整证明（王虹+Zahl 2025）", "intro": "2025 年 2 月，王虹与 Joshua Zahl 发表 127 页论文 arXiv:2502.17655，完整证明 3D 挂谷集的 Hausdorff 与 Minkowski 维数都 = 3——百年猜想终于告破。", "kps": ["K47", "K42", "K15", "K18", "K44"]},
+  {"id": "EX_PROVEN_08", "cat": "已证", "title": "Falconer 距离集 2D 突破（王虹+Guth+Du 2024）", "intro": "1985 年 Falconer 距离猜想：平面点集直径 > 1 则距离集有非零测度。2024 年王虹 + Larry Guth + Du 给出 2D 关键突破，应用 Fourier 限制估计。", "kps": ["K15", "K47", "K42", "K44"]},
+  {"id": "EX_PROVEN_09", "cat": "已证", "title": "Furstenberg 集合猜想完整证明（王虹）", "intro": "Furstenberg 1970 集合猜想：自然数中任何'上密度正'的子集，必在加法表中找到任意长等差数列。王虹与合作者**完全解决**了这个猜想。", "kps": ["K29", "K28", "K42", "K36"]},
+  {"id": "EX_PROVEN_10", "cat": "已证", "title": "调和分析猜想之塔（Fefferman-王虹）", "intro": "调和分析最关键的 4 个猜想组成'猜想之塔'：挂谷（底）→ 限制 → Bochner-Riesz → 局部光滑化（顶）。王虹 2025 的工作**夯实了整座塔的地基**。", "kps": ["K47", "K42", "K44", "K18"]},
+  {"id": "EX_PROVEN_11", "cat": "已证", "title": "希尔伯特第六问题（邓煜+马骁+Hani 2025）", "intro": "1900 年希尔伯特第 6 问题：物理学公理化（特别是流体力学）。2025 年邓煜+马骁+Zaher Hani 解决**狭义版本**——硬球 → Boltzmann → Navier-Stokes 推导链。", "kps": ["K44", "K45", "K49", "K42"]},
+  {"id": "EX_PROVEN_12", "cat": "已证", "title": "硬球系统 → 玻尔兹曼方程（邓煜+马骁+Hani）", "intro": "1 升气体 = 3×10²² 个分子，每个都在乱撞。邓煜+马骁+Hani 2025 严格推导出：硬球系统 → Boltzmann 方程——从微观到介观的桥梁。", "kps": ["K44", "K45", "K49", "K42", "K28"]},
+  {"id": "EX_PROVEN_13", "cat": "已证", "title": "Boltzmann → Navier-Stokes 推导（邓煜工作延伸）", "intro": "Boltzmann 方程（介观）→ Navier-Stokes 方程（宏观）的严格推导。邓煜工作的第二段，跨 10 个数量级（µm 毛细管到 km 河流）。", "kps": ["K44", "K45", "K49", "K42"]},
+  {"id": "EX_PROVEN_14", "cat": "已证", "title": "庞加莱猜想证明（Perelman 2003）", "intro": "1904 年庞加莱：3 维球面是唯一封闭 3-流形。2003 年 Perelman 用 Ricci flow + 手术证明——千禧年第一个解决的难题，他拒领了 100 万美元奖金。", "kps": ["K50", "K48", "K55", "K44"]},
+  {"id": "EX_PROVEN_15", "cat": "已证", "title": "Ricci flow 几何演化（Hamilton-Perelman）", "intro": "Ricci flow = 把黎曼曲率'演化'到均匀的偏微分方程。Hamilton 1982 引入，Perelman 2003 改进后用于庞加莱证明——几何分析的'神器'。", "kps": ["K44", "K45", "K50", "K48"]},
+  {"id": "EX_PROVEN_16", "cat": "已证", "title": "费马大定理证明（Wiles 1995 + Taylor-Wiles）", "intro": "1637 年费马：'xⁿ + yⁿ = zⁿ 当 n>2 无正整数解'。1995 年 Wiles 证明——358 年的世纪难题，'我有一个绝妙的证明，但页边太窄写不下'。", "kps": ["K23", "K19", "K54", "K51"]},
+  {"id": "EX_PROVEN_17", "cat": "已证", "title": "谷山-志村猜想部分证明（Wiles 1995）", "intro": "1955 年谷山丰：'每条椭圆曲线都对应一个模形式'。Wiles 证明费马大定时**间接证明**了谷山-志村（半稳定情形）——连接数论与调和分析的桥梁。", "kps": ["K51", "K54", "K47", "K48"]},
+  {"id": "EX_PROVEN_18", "cat": "已证", "title": "孪生素数有界间隙（张益唐 2013）", "intro": "孪生素数（差 2 的素数对）猜想：有无穷多对，差有界。张益唐 2013 年 4 月独立证明差 < 7000 万——沉默 7 年后一鸣惊人。", "kps": ["K05", "K22", "K28", "K42"]},
+  {"id": "EX_PROVEN_19", "cat": "已证", "title": "弱哥德巴赫证明（Helfgott 2013）", "intro": "Helfgott 2013 用圆法完成'奇数 = 三个素数之和'（弱哥德巴赫猜想）——从 Vinogradov 1937 大奇数情形到 Helfgott 2013 完整证明，跨越 76 年。", "kps": ["K05", "K22", "K44", "K43"]},
+  {"id": "EX_PROVEN_20", "cat": "已证", "title": "Calabi 猜想证明（丘成桐 1976）", "intro": "Calabi 1954：任何封闭 Kähler 流形上的 Ricci 形式都对应唯一 Kähler 度量。丘成桐 1976 证明——为弦论中的 Calabi-Yau 流形铺平道路，**首位华人菲尔兹奖**。", "kps": ["K50", "K44", "K45", "K15", "K48"]}
+]
