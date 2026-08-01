@@ -7187,14 +7187,14 @@ function getStagesNT06() {
       emoji: '📅',
       title: 'Harshad 数小史',
       content: `
-        <p class="lead">Harshad 数 1962 年由<strong style="color:#7c3aed;">D. R. Kaprekar</strong>（印度）命名。</p>
+        <p class="lead">Harshad 数 1962 年由<strong style="color:#7c3aed;">印度数学家卡普雷卡</strong>命名。</p>
         <div class="viz">
           <div id="nt06s5-timeline"></div>
           <div style="margin-top: 14px; padding: 12px; background: #f0fdf4; border-left: 5px solid #10b981; border-radius: 6px; font-size: 13px; line-height: 1.7;">
-            <strong>🔁 闭合定理</strong>（Cooper, Kennedy 1993）：<strong>每个自然数 n 的倍数里必有 Harshad 数</strong>。所以 Harshad 数"覆盖"了所有自然数。
+            <strong>🔁 闭合定理</strong>（库珀和肯尼迪，1993 年）：<strong>每个自然数 n 的倍数里必有 Harshad 数</strong>。所以 Harshad 数"覆盖"了所有自然数。
           </div>
         </div>
-        <div class="next-hint">🌌 <strong>未解之谜</strong>：Harshad 数的"渐近密度"精确公式 <strong>0.314...</strong>（de Bono 2010）— <strong>不是 π/10</strong>，但很接近 π。</div>
+        <div class="next-hint">🌌 <strong>未解之谜</strong>：Harshad 数的"渐近密度"精确公式 <strong>0.314...</strong>（德波诺 2010）— <strong>不是 π/10</strong>，但很接近 π。</div>
       `
     },
   ];
@@ -7275,10 +7275,10 @@ function initStage_NT06_s5() {
   const tl = document.getElementById('nt06s5-timeline');
   if (!tl) return;
   const events = [
-    { year: '1962', text: 'Kaprekar 命名 "Harshad"（梵文"大欢喜"）', color: '#7c3aed' },
+    { year: '1962', text: '卡普雷卡 命名 "Harshad"（梵文"大欢喜"）', color: '#7c3aed' },
     { year: '1970s', text: 'Grundy 发现 5 个 Harshad 数巧合', color: '#f59e0b' },
-    { year: '1993', text: 'Cooper-Kennedy 证明"每个 n 的倍数里有 Harshad"', color: '#10b981' },
-    { year: '2010', text: 'de Bono 估算渐近密度 0.314...', color: '#a855f7' },
+    { year: '1993', text: '库珀-肯尼迪 证明"每个 n 的倍数里有 Harshad"', color: '#10b981' },
+    { year: '2010', text: '德波诺 估算渐近密度 0.314...', color: '#a855f7' },
     { year: '今天', text: '"0.314...=π/10?" 仍是猜想 ❓', color: '#ef4444' },
   ];
   tl.innerHTML = events.map((e, i) => {
@@ -7387,7 +7387,7 @@ function getStagesNT07() {
       emoji: '📅',
       title: 'Kaprekar 小史',
       content: `
-        <p class="lead">D. R. Kaprekar（1905-1986），印度乡村数学教师，<strong style="color:#7c3aed;">无大学学位</strong>却发表多个有趣发现。</p>
+        <p class="lead">卡普雷卡（1905-1986），印度乡村数学教师，<strong style="color:#7c3aed;">无大学学位</strong>却发表多个有趣发现。</p>
         <div class="viz">
           <div id="nt07s5-timeline"></div>
           <div style="margin-top: 14px; padding: 12px; background: #f3e8ff; border-left: 5px solid #a855f7; border-radius: 6px; font-size: 13px; line-height: 1.7;">
@@ -7532,7 +7532,7 @@ function initStage_NT07_s5() {
   const tl = document.getElementById('nt07s5-timeline');
   if (!tl) return;
   const events = [
-    { year: '1949', text: 'D. R. Kaprekar 发现 6174 黑洞', color: '#7c3aed' },
+    { year: '1949', text: '卡普雷卡 发现 6174 黑洞', color: '#7c3aed' },
     { year: '1955', text: '数学家确认 3 位数黑洞 495', color: '#f59e0b' },
     { year: '1970s', text: '发现 5+ 位数无单黑洞（多循环）', color: '#10b981' },
     { year: '1999', text: '完整证明 2/3/4 位数黑洞唯一性', color: '#a855f7' },
