@@ -7310,10 +7310,9 @@ function initStage_NT06_s5() {
   if (!tl) return;
   const events = [
     { year: '1955', text: '卡普雷卡 命名 "Harshad"（梵文"大欢喜"）', color: '#7c3aed' },
-    { year: '1970s', text: 'Grundy 发现 5 个 Harshad 数巧合', color: '#f59e0b' },
     { year: '1984', text: '库珀-肯尼迪 证明"每个 n 的倍数里有 Harshad" + 渐近密度 = 0', color: '#10b981' },
     { year: '1985', text: '库珀-肯尼迪 计算渐近密度 0.314...（接近 π/10）', color: '#a855f7' },
-    { year: '今天', text: '"0.314...=π/10?" 仍是猜想 ❓', color: '#ef4444' },
+    { year: '待研究', text: '0.314... 与 π 的关系仍是开放问题', color: '#ef4444' },
   ];
   tl.innerHTML = events.map((e, i) => {
     const isLeft = i % 2 === 0;
@@ -8280,7 +8279,7 @@ function initStage_NT10_s5() {
     { year: '1982', text: 'Wilansky 发现姐夫电话 4937775 是 Smith 数', color: '#7c3aed' },
     { year: '1983', text: 'McDaniel 列出 10000 内所有 Smith 数', color: '#f59e0b' },
     { year: '1987', text: '证明 10000 以内有 329 个 Smith 数', color: '#10b981' },
-    { year: '1993', text: 'Wayland 证明"Smith 数个数 >> N/log N"', color: '#a855f7' },
+    { year: '1983', text: 'Wayland & Oltikar 构造无穷多 Smith 数', color: '#a855f7' },
     { year: '今天', text: '已知最大 Smith 数有 10⁶⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰⁰ 位 ❓', color: '#ec4899' },
   ];
   tl.innerHTML = events.map((e, i) => {

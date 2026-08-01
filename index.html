@@ -7266,7 +7266,7 @@ function getStagesNT06() {
           <audio id="nt06s5a2" preload="none" src="audio/NT06_s5a_p2.mp3"></audio>
           <audio id="nt06s5a3" preload="none" src="audio/NT06_s5a_p3.mp3"></audio>
           <div style="font-size: 14px; line-height: 1.7;">
-            <strong style="color:#065f46;">🔁 闭合定理</strong>（库珀和肯尼迪，一千九百九十三年）：<strong>每个自然数 n 的倍数里必有 Harshad 数</strong>。<br>
+            <strong style="color:#065f46;">🔁 闭合定理</strong>（库珀和肯尼迪，1984 年）：<strong>每个自然数 n 的倍数里必有 Harshad 数</strong>。<br>
             <span style="color: var(--muted); font-size: 12px;">📖 解释：</span>
             <ul style="margin: 8px 0; padding-left: 24px;">
               <li><strong>什么是"倍数"</strong>？比如 12 乘 1、2、3、4... 出来 12、24、36、48——这些是 12 的倍数。</li>
@@ -7374,10 +7374,9 @@ function initStage_NT06_s5() {
   if (!tl) return;
   const events = [
     { year: '1955', text: '卡普雷卡 命名 "Harshad"（梵文"大欢喜"）', color: '#7c3aed' },
-    { year: '1970s', text: 'Grundy 发现 5 个 Harshad 数巧合', color: '#f59e0b' },
     { year: '1984', text: '库珀-肯尼迪 证明"每个 n 的倍数里有 Harshad" + 渐近密度 = 0', color: '#10b981' },
     { year: '1985', text: '库珀-肯尼迪 计算渐近密度 0.314...（接近 π/10）', color: '#a855f7' },
-    { year: '今天', text: '"0.314...=π/10?" 仍是猜想 ❓', color: '#ef4444' },
+    { year: '待研究', text: '0.314... 与 π 的关系仍是开放问题', color: '#ef4444' },
   ];
   tl.innerHTML = events.map((e, i) => {
     const isLeft = i % 2 === 0;
