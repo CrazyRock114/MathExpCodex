@@ -8,9 +8,9 @@
 
 以 561 为例：561 等于 3 乘 11 乘 17，是个合数。但 2 的 560 次方除以 561 余 1，3 的 560 次方除以 561 也余 1，5 的 560 次方除以 561 还是余 1——看起来跟素数一样！
 
-Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还预测有无穷多个 Carmichael 数。直到 1994 年，这个猜想才被证明——是的，Carmichael 数有无穷多个。
+Carmichael 数在 一九〇九年被美国数学家 Robert Carmichael 发现。他还预测有无穷多个 Carmichael 数。直到 一九九四年，这个猜想才被证明——是的，Carmichael 数有无穷多个。
 
-数学家 Alford、Granville 和 Pomerance 在 1994 年用非常精妙的方法证明：至少有 1.2 万亿亿个 Carmichael 数。
+数学家 Alford、Granville 和 Pomerance 在 一九九四年用非常精妙的方法证明：至少有 1.2 万亿亿个 Carmichael 数。
 
 但要列出所有 Carmichael 数也很难，因为它们越来越稀疏。前 100 万个整数里只有 1 个 Carmichael 数——561。前 10 亿个里有 6000 多个。
 

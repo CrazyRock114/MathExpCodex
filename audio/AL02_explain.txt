@@ -34,7 +34,7 @@ Nim 策略的应用：
 - 经济学：寡头竞争
 - 心理学：决策
 
-Nim 是 1901 年由 Charles Bouton 命名的。
+Nim 是 一九〇一年由 Charles Bouton 命名的。
 
 Nim 变种：
 - 反向 Nim：取最后一颗的输

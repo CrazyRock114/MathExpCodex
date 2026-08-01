@@ -2,7 +2,7 @@
 
 什么是 Lychrel 数？把一个数加上它的倒序数，反复迭代，可能永远得不到回文数。Lychrel 猜想说：有些数（叫 Lychrel 数）永远迭代不到回文。
 
-Lychrel 这个名字是 Wade Van Landingham 在 1990 年代造的，他把 "Cheryl"（他女儿的名字）反过来拼——就是 Lychrel。
+Lychrel 这个名字是 Wade Van Landingham 在 一九九〇年代造的，他把 "Cheryl"（他女儿的名字）反过来拼——就是 Lychrel。
 
 哪些数被怀疑是 Lychrel 数？目前只有一个候选——196。
 

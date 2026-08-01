@@ -39,7 +39,7 @@ n 趋近无穷时，总长度 = 0（几何级数收敛，因为 1.4 < 2 但实�
 - 艺术：分形图案
 
 分形树的历史：
-- Lindenmayer 系统（L 系统）：1968 年 Aristid Lindenmayer 提出的"重写系统"
+- Lindenmayer 系统（L 系统）：一九六八年 Aristid Lindenmayer 提出的"重写系统"
 - L 系统用字符替换规则生成字符串，再渲染成图形
 - 简单规则：F → F[+F]F[-F]F（生成树状）
 - 复杂规则能生成任何植物
