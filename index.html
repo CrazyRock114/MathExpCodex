@@ -59,35 +59,6 @@
   body.dark .cat-al { background: #155e75; color: #cffafe; }
   body.dark .cat-fr { background: #831843; color: #fbcfe8; }
   body.dark .cat-ot { background: #374151; color: #f3f4f6; }
-  /* 课堂投屏模式 */
-  body.presenting {
-    --bg: #000000;
-    --card: #1a1a1a;
-    --ink: #ffffff;
-    --muted: #d1d5db;
-    --line: #4b5563;
-    --accent: #fbbf24;
-    --warn: #f87171;
-    --good: #34d399;
-    background: #000000 !important;
-    color: #ffffff !important;
-  }
-  body.presenting * {
-    font-size: 1.3em !important;
-  }
-  body.presenting .card { background: #1a1a1a; border: 2px solid #4b5563; padding: 32px; }
-  body.presenting .stat { background: #000000; border: 2px solid #4b5563; }
-  body.presenting .stat .v { font-size: 2.5em !important; color: #fbbf24 !important; }
-  body.presenting .sequence { background: #000000; border: 2px solid #4b5563; color: #ffffff; font-size: 1.2em; }
-  body.presenting button.primary { background: #fbbf24; color: #000000; font-weight: 800; font-size: 1.4em; padding: 16px 32px; }
-  body.presenting button.ghost { background: #1a1a1a; color: #ffffff; border: 2px solid #4b5563; }
-  body.presenting .plaza-card { background: #1a1a1a; border: 2px solid #4b5563; }
-  body.presenting #presenting-clock {
-    position: fixed; top: 16px; right: 24px; z-index: 9999;
-    background: #fbbf24; color: #000000; font-weight: 800; font-size: 36px;
-    padding: 12px 24px; border-radius: 12px; box-shadow: 0 4px 12px rgba(251,191,36,0.4);
-    font-family: ui-monospace, monospace;
-  }
   * { box-sizing: border-box; }
   body {
     margin: 0;
@@ -600,7 +571,6 @@ body.dark #typeIntroCard { background: #1e3a8a44 !important; }
   <p>投针算 π · 冰雹蹦跳 · 猜勾股数 · 四色定理 · 拉姆齐 · 哥德巴赫 · 孪生素数 · π 多算法…  9 大类数学实验，每个都带 ① 原理讲解 ② 历史背景 ③ 互动演示 ④ AI 讲解 四区。课堂演示 / 学生自玩两相宜。</p>
   <div style="position: absolute; top: 16px; right: 24px; display: flex; gap: 8px;">
     <button id="darkToggle" class="ghost small" style="font-size: 12px;">🌙 深色</button>
-    <button id="presentToggle" class="ghost small" style="font-size: 12px;">📺 投屏</button>
   </div>
 </header>
 
@@ -616,11 +586,14 @@ body.dark #typeIntroCard { background: #1e3a8a44 !important; }
       这里有 <strong>148 个数学小实验</strong>，分成三类：<br>
       <span style="color: #2563eb;">●</span> <strong>基础公理/定理</strong>（120 个）— 加法、勾股、圆周率，看经典结论；<br>
       <span style="color: #f59e0b;">●</span> <strong>尚未证明的猜想</strong>（8 个）— 黎曼、哥德巴赫、BSD，数学家还在努力；<br>
-      <span style="color: #10b981;">●</span> <strong>已被证明的猜想</strong>（20 个）— 庞加莱、费马大定理、王虹 2025 挂谷猜想、邓煜 2025 希尔伯特第六问题。
+      <span style="color: #10b981;">●</span> <strong>已被证明的猜想</strong>（20 个）— 庞加莱、费马大定理、王虹 + 邓煜 二零二六 菲尔兹奖。
     </p>
     <div class="mavis-actions">
-      <button id="playMavisIntro" class="primary">▶ 听 Mavis 介绍（1分30秒）</button>
+      <button id="playMavisIntro" class="primary">▶ 听 Mavis 介绍（约 10 分钟）</button>
       <button id="mavisSkip" class="ghost small">跳过</button>
+    </div>
+    <div id="mavisAudioNote" style="margin-top: 6px; font-size: 12px; color: #b45309; background: #fef3c7; padding: 6px 10px; border-radius: 6px; display: none;">
+      ⚠️ 当前音频是初版（含旧年份信息），TTS 额度恢复后立即更新。
     </div>
     <audio id="mavisIntroAudio" src="audio/mavis_intro.mp3" preload="metadata"></audio>
     <div id="mavisProgress" style="margin-top: 8px; font-size: 12px; color: var(--muted); display: none;">
@@ -631,7 +604,6 @@ body.dark #typeIntroCard { background: #1e3a8a44 !important; }
 </div>
 <nav class="tabs">
   <button class="active" data-tab="plaza">🧪 数学小实验广场（148 个）</button>
-  <button id="presentBtn" class="present-btn" title="进入全屏演示模式（隐藏顶部导航）">⛶ 全屏演示</button>
 </nav>
 
 <!-- ============== Experiment Plaza ============== -->
@@ -45928,7 +45900,11 @@ I = √π ✓
   const progress = document.getElementById('mavisProgress');
   const timeEl = document.getElementById('mavisTime');
   const durEl = document.getElementById('mavisDuration');
+  const noteEl = document.getElementById('mavisAudioNote');
   if (!audio) return;
+
+  // 显示"音频更新中"提示——TTS 重做后移除此行即可
+  if (noteEl) noteEl.style.display = 'block';
 
   function fmt(s) { const m = Math.floor(s/60); const sec = Math.floor(s%60); return m + ':' + (sec<10?'0':'') + sec; }
 
@@ -46697,45 +46673,6 @@ document.querySelectorAll('nav.tabs button[data-tab]').forEach(btn => {
   };
 });
 
-/* === 全屏演示模式 === */
-document.getElementById('presentBtn').onclick = () => {
-  document.body.classList.add('present');
-  // 隐藏 header
-  setTimeout(() => {
-    if (errChart) errChart.resize();
-    if (cPathChart) cPathChart.resize();
-    if (scanChart) scanChart.resize();
-    if (tpChart) tpChart.resize();
-    if (piChart) piChart.resize();
-  }, 100);
-};
-// 在 present 模式下，双击页面退出
-document.addEventListener('dblclick', (e) => {
-  if (document.body.classList.contains('present')) {
-    document.body.classList.remove('present');
-    setTimeout(() => {
-      if (errChart) errChart.resize();
-      if (cPathChart) cPathChart.resize();
-      if (scanChart) scanChart.resize();
-      if (tpChart) tpChart.resize();
-      if (piChart) piChart.resize();
-    }, 100);
-  }
-});
-// ESC 键也退出
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && document.body.classList.contains('present')) {
-    document.body.classList.remove('present');
-    setTimeout(() => {
-      if (errChart) errChart.resize();
-      if (cPathChart) cPathChart.resize();
-      if (scanChart) scanChart.resize();
-      if (tpChart) tpChart.resize();
-      if (piChart) piChart.resize();
-    }, 100);
-  }
-});
-
 /* === 深色模式 === */
 const darkToggle = document.getElementById('darkToggle');
 function applyDark(on) {
@@ -46753,59 +46690,6 @@ function applyDark(on) {
 }
 darkToggle.onclick = () => applyDark(!document.body.classList.contains('dark'));
 try { if (localStorage.getItem('darkMode') === '1') applyDark(true); } catch (e) {}
-
-/* === 课堂投屏模式 === */
-const presentToggle = document.getElementById('presentToggle');
-let clockTimer = null;
-let clockStart = 0;
-let clockPaused = 0;
-function presentOn() {
-  document.body.classList.add('presenting');
-  presentToggle.textContent = '📺 退出投屏';
-  // 顶部计时器
-  if (!document.getElementById('presenting-clock')) {
-    const clk = document.createElement('div');
-    clk.id = 'presenting-clock';
-    clk.onclick = () => { clockPaused = clockStart ? (clockStart - Date.now()) : 0; clockStart = 0; clk.textContent = '已暂停'; };
-    document.body.appendChild(clk);
-  }
-  clockStart = Date.now() - (clockPaused || 0);
-  clockTimer = setInterval(() => {
-    const elapsed = Math.floor((Date.now() - clockStart) / 1000);
-    const m = Math.floor(elapsed / 60), s = elapsed % 60;
-    const el = document.getElementById('presenting-clock');
-    if (el) el.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-  }, 1000);
-  setTimeout(() => {
-    if (errChart) errChart.resize();
-    if (cPathChart) cPathChart.resize();
-    if (scanChart) scanChart.resize();
-    if (tpChart) tpChart.resize();
-    if (piChart) piChart.resize();
-  }, 100);
-}
-function presentOff() {
-  document.body.classList.remove('presenting');
-  presentToggle.textContent = '📺 投屏';
-  if (clockTimer) { clearInterval(clockTimer); clockTimer = null; }
-  const clk = document.getElementById('presenting-clock');
-  if (clk) clk.remove();
-  setTimeout(() => {
-    if (errChart) errChart.resize();
-    if (cPathChart) cPathChart.resize();
-    if (scanChart) scanChart.resize();
-    if (tpChart) tpChart.resize();
-    if (piChart) piChart.resize();
-  }, 100);
-}
-presentToggle.onclick = () => {
-  if (document.body.classList.contains('presenting')) presentOff();
-  else presentOn();
-};
-// ESC 退出投屏
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && document.body.classList.contains('presenting')) presentOff();
-});
 
 /* === AI 解释（复制 prompt 模式）=== */
 function copyAIPrompt(btn, prompt) {
