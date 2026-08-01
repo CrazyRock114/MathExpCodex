@@ -10,7 +10,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='72' font-size='72' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3Eπ%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='72' font-size='72' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3Eπ%3C/text%3E%3C/svg%3E">
 <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22AI%20%E6%95%B0%E5%AD%A6%E8%AF%BE%E5%A0%82%22%2C%22short_name%22%3A%22MathClass%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23fafaf7%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22description%22%3A%22100%20%E4%B8%AA%E6%95%B0%E5%AD%A6%E5%B0%8F%E5%AE%9E%E9%AA%8C%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2527http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2527%2520viewBox%253D%25270%25200%2520100%2520100%2527%253E%253Crect%2520width%253D%2527100%2527%2520height%253D%2527100%2527%2520rx%253D%252720%2527%2520fill%253D%2527%25232563eb%2527%252F%253E%253Ctext%2520x%253D%252750%2527%2520y%253D%252772%2527%2520font-size%253D%252772%2527%2520text-anchor%253D%2527middle%2527%2520fill%253D%2527white%2527%2520font-family%253D%2527sans-serif%2527%2520font-weight%253D%2527bold%2527%253E%25CF%2580%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
-<title>数学小实验广场（128 个） |  AI 数学课堂</title>
+<title>数学小实验广场（148 个） |  AI 数学课堂</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
@@ -541,12 +541,62 @@
     font-size: 13px;
     color: #92400e;
   }
+
+/* ===== Mavis 引导卡 v17 ===== */
+.mavis-hero {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin: 16px 24px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #eff6ff 0%, #fef3c7 100%);
+  border: 2px solid var(--accent);
+  border-radius: 14px;
+  position: relative;
+}
+body.dark .mavis-hero { background: linear-gradient(135deg, #1e3a8a33 0%, #78350f33 100%); }
+.mavis-avatar {
+  font-size: 56px;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+.mavis-content { flex: 1; min-width: 0; }
+.mavis-actions { display: flex; gap: 8px; align-items: center; }
+#mavisProgress { display: flex; align-items: center; gap: 8px; }
+#playMavisIntro { font-size: 14px; }
+
+/* ===== v17 type 切换 tabs ===== */
+.type-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.type-tab {
+  padding: 8px 14px;
+  border: 2px solid;
+  background: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.type-tab:hover { transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+.type-tab .num {
+  display: inline-block;
+  background: rgba(0,0,0,0.08);
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  margin-left: 4px;
+}
+.type-tab.active .num { background: rgba(255,255,255,0.25); }
+body.dark .type-tab { background: #1e293b; }
+body.dark #typeIntroCard { background: #1e3a8a44 !important; }
+
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🧪 数学小实验广场（128 个）</h1>
+  <h1>🧪 数学小实验广场（148 个）</h1>
   <p>投针算 π · 冰雹蹦跳 · 猜勾股数 · 四色定理 · 拉姆齐 · 哥德巴赫 · 孪生素数 · π 多算法…  9 大类数学实验，每个都带 ① 原理讲解 ② 历史背景 ③ 互动演示 ④ AI 讲解 四区。课堂演示 / 学生自玩两相宜。</p>
   <div style="position: absolute; top: 16px; right: 24px; display: flex; gap: 8px;">
     <button id="darkToggle" class="ghost small" style="font-size: 12px;">🌙 深色</button>
@@ -554,15 +604,41 @@
   </div>
 </header>
 
+
+<!-- ===== Mavis 引导卡 (v17) ===== -->
+<div class="mavis-hero card">
+  <div class="mavis-avatar">🎓</div>
+  <div class="mavis-content">
+    <h2 style="margin: 0 0 8px; color: var(--ink); font-size: 20px;">
+      同学们好！我是 <span style="color: var(--accent);">Mavis</span>，你们的数学实验小助手 👋
+    </h2>
+    <p style="margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.6;">
+      这里有 <strong>148 个数学小实验</strong>，分成三类：<br>
+      <span style="color: #2563eb;">●</span> <strong>基础公理/定理</strong>（120 个）— 加法、勾股、圆周率，看经典结论；<br>
+      <span style="color: #f59e0b;">●</span> <strong>尚未证明的猜想</strong>（8 个）— 黎曼、哥德巴赫、BSD，数学家还在努力；<br>
+      <span style="color: #10b981;">●</span> <strong>已被证明的猜想</strong>（20 个）— 庞加莱、费马大定理、王虹 2025 挂谷猜想、邓煜 2025 希尔伯特第六问题。
+    </p>
+    <div class="mavis-actions">
+      <button id="playMavisIntro" class="primary">▶ 听 Mavis 介绍（1分30秒）</button>
+      <button id="mavisSkip" class="ghost small">跳过</button>
+    </div>
+    <audio id="mavisIntroAudio" src="audio/mavis_intro.mp3" preload="metadata"></audio>
+    <div id="mavisProgress" style="margin-top: 8px; font-size: 12px; color: var(--muted); display: none;">
+      <span id="mavisTime">0:00</span> / <span id="mavisDuration">0:00</span>
+      <button id="mavisPause" class="ghost small" style="margin-left: 12px;">⏸ 暂停</button>
+    </div>
+  </div>
+</div>
 <nav class="tabs">
-  <button class="active" data-tab="plaza">🧪 数学小实验广场（128 个）</button>
+  <button class="active" data-tab="plaza">🧪 数学小实验广场（148 个）</button>
   <button id="presentBtn" class="present-btn" title="进入全屏演示模式（隐藏顶部导航）">⛶ 全屏演示</button>
 </nav>
 
 <!-- ============== Experiment Plaza ============== -->
 <section class="tab-panel active" id="plaza">
   <div class="intro">
-    <strong>128 个数学小实验</strong>：覆盖数论 / 序列 / π·e / 几何 / 图论 / 概率 / 算法 / 分形 / 其他 9 大类。
+    <strong>148 个数学小实验</strong>：覆盖数论 / 序列 / π·e / 几何 / 图论 / 概率 / 算法 / 分形 / 其他 9 大类。
+  按 type 分：📘 基础公理/定理 (120) + 🔍 尚未证明的猜想 (8) + 🏆 已被证明的猜想 (20)。
     搜关键字（如 "Fibonacci"、"生日"、"完美数"、"投针"）或按分类筛选。点任意卡片进入实验。
     <br><strong>前 8 个"精选实验"</strong>（投针 / Collatz / 勾股 / 四色 / 拉姆齐 / 哥德巴赫 / 孪生 / π 多算法）含完整原理讲解、历史背景、互动演示、AI 讲解四区。
   </div>
@@ -572,6 +648,27 @@
       <input type="text" id="plazaSearch" placeholder="搜索实验（关键字、分类、ID）" style="flex: 1; min-width: 200px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 15px;">
       <button class="ghost" id="plazaClear">清空</button>
     </div>
+    
+    <!-- v17: 三类 type 切换 -->
+    <div class="type-tabs" id="typeTabs" style="margin-bottom: 16px;">
+      <button class="type-tab active" data-type="all" style="background: var(--ink); color: white; border-color: var(--ink);">
+        全部 <span class="num">148</span>
+      </button>
+      <button class="type-tab" data-type="axiom_theorem" style="border-color: #2563eb; color: #2563eb;">
+        📘 基础公理/定理 <span class="num">120</span>
+      </button>
+      <button class="type-tab" data-type="conjecture_open" style="border-color: #f59e0b; color: #f59e0b;">
+        🔍 尚未证明的猜想 <span class="num">8</span>
+      </button>
+      <button class="type-tab" data-type="conjecture_proven" style="border-color: #10b981; color: #10b981;">
+        🏆 已被证明的猜想 <span class="num">20</span>
+      </button>
+    </div>
+    <!-- v17: type 介绍卡（动态显示） -->
+    <div id="typeIntroCard" class="card" style="margin-bottom: 16px; padding: 12px 16px; background: #f0f9ff; border-left: 4px solid var(--accent); display: none;">
+      <p id="typeIntroText" style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--ink);"></p>
+    </div>
+
     <div class="row" id="plazaCats" style="margin-bottom: 16px; gap: 6px;"></div>
     <div id="plazaGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;"></div>
     <div id="plazaDetail" style="margin-top: 24px; display: none;"></div>
@@ -36705,7 +36802,7 @@ const EXPERIMENTS = [
 
 /* ===================== 精选 8 个 (含详细原理/历史/试一试) ===================== */
 {
-  id: 'PR01', cat: '几何', title: '投针算 π (Buffon 1733)',
+  id: 'PR01', type: 'axiom_theorem',  cat: '几何', title: '投针算 π (Buffon 1733)',
   intro: '把长度为 L 的针扔到画着等距平行线（间距 d）的纸上，针跨线概率 P = 2L/(πd)，反推 π。',
   explain: `同学们好！今天我们一起来做一件很有意思的事情——用一根针，算出圆周率 π。
 
@@ -36777,7 +36874,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
   render: (h) => setupBuffon(h)
 },
 {
-  id: 'PR02', cat: '数论', title: '冰雹蹦跳 (Collatz 猜想)',
+  id: 'PR02', type: 'axiom_theorem',  cat: '数论', title: '冰雹蹦跳 (Collatz 猜想)',
   intro: '选一个正整数 n：偶数就除 2，奇数就 ×3+1，一直蹦下去，最后必到 1。',
   explain: `同学们好！今天我们来看一个让全世界数学家都挠头的简单问题——Collatz 猜想，也叫冰雹猜想。
 
@@ -36845,7 +36942,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
   render: (h) => setupCollatz(h)
 },
 {
-  id: 'PR03', cat: '数论', title: '猜勾股数 (Euclid 公式)',
+  id: 'PR03', type: 'axiom_theorem',  cat: '数论', title: '猜勾股数 (Euclid 公式)',
   intro: '本原勾股数 (a, b, c) 满足 a² + b² = c²。Euclid 公式：所有本原勾股数都长 (m²−n², 2mn, m²+n²)。',
   explain: `同学们好！今天我们玩一个猜数游戏——猜勾股数。
 
@@ -36904,7 +37001,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
   render: (h) => setupPythagorean(h)
 },
 {
-  id: 'PR04', cat: '图论', title: '四色定理 (Appel-Haken 1976)',
+  id: 'PR04', type: 'axiom_theorem',  cat: '图论', title: '四色定理 (Appel-Haken 1976)',
   intro: '任何平面地图只用 4 种颜色，就能让相邻区域不同色。第一个必须靠计算机证明的著名定理。',
   explain: `同学们好！今天我们来看一个超有趣的定理——四色定理。
 
@@ -36966,7 +37063,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
   render: (h) => setupFourColor(h)
 },
 {
-  id: 'PR05', cat: '图论', title: '拉姆齐 R(3,3) = 6',
+  id: 'PR05', type: 'axiom_theorem',  cat: '图论', title: '拉姆齐 R(3,3) = 6',
   intro: '6 个人聚会，必有 3 人互相认识或 3 人互不认识。等价于 K₆ 的红蓝着色必含单色三角形。',
   explain: `同学们好！今天我们做一个超简单的聚会游戏，但里面藏着一个惊人的数学定理。
 
@@ -37030,7 +37127,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
   render: (h) => setupRamsey(h)
 },
 {
-  id: 'PR06', cat: '数论', title: '哥德巴赫配糖 (Goldbach 1742)',
+  id: 'PR06', type: 'axiom_theorem',  cat: '数论', title: '哥德巴赫配糖 (Goldbach 1742)',
   intro: '任何大于 2 的偶数都能写成两个素数之和。强版至今未证，弱版（Helfgott 2013）已证。',
   explain: `同学们好！今天我们来看一个简单到不可思议的猜想——哥德巴赫猜想。
 
@@ -37090,7 +37187,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
   render: (h) => setupGoldbach(h)
 },
 {
-  id: 'PR07', cat: '数论', title: '孪生素数 (Twin Primes)',
+  id: 'PR07', type: 'axiom_theorem',  cat: '数论', title: '孪生素数 (Twin Primes)',
   intro: '相差 2 的素数对：(3,5)、(5,7)、(11,13)、(17,19)、(29,31)... 张益唐 2013 年里程碑证明。',
   explain: `同学们好！今天我们来看素数里最有意思的一对——孪生素数。
 
@@ -37151,7 +37248,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
   render: (h) => setupTwin(h)
 },
 {
-  id: 'PR08', cat: 'π·e', title: 'π 的多算法对比（4 种并行）',
+  id: 'PR08', type: 'axiom_theorem',  cat: 'π·e', title: 'π 的多算法对比（4 种并行）',
   intro: '阿基米德割圆 / Leibniz / Machin / Chudnovsky——同一目标 π，4 种完全不同的算法，差距 6 个数量级。',
   explain: `同学们好！今天我们来看 4 种完全不同的算 π 方法——阿基米德割圆、Leibniz 级数、Machin 公式、Chudnovsky 公式。
 
@@ -37226,7 +37323,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 
 /* ===================== 数论 20 个 ===================== */
 {
-  id: 'NT01', cat: '数论', title: '完美数搜索',
+  id: 'NT01', type: 'axiom_theorem',  cat: '数论', title: '完美数搜索',
   intro: '若 n 的真因子之和等于 n，则 n 是完美数。6 = 1+2+3、28 = 1+2+4+7+14...',
   explain: `同学们好！今天我们来找一种很特别的数——完美数。
 
@@ -37265,7 +37362,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
   }
 },
 {
-  id: 'NT02', cat: '数论', title: '亲和数对搜索',
+  id: 'NT02', type: 'axiom_theorem',  cat: '数论', title: '亲和数对搜索',
   intro: '若 a 的真因子之和 = b 且 b 的真因子之和 = a，(a, b) 是亲和数。最小对：(220, 284)。',
   explain: `同学们好！今天我们来看一种很特别的关系——亲和数对。
 
@@ -37305,7 +37402,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
   }
 },
 {
-  id: 'NT03', cat: '数论', title: '过剩 / 完美 / 亏数',
+  id: 'NT03', type: 'axiom_theorem',  cat: '数论', title: '过剩 / 完美 / 亏数',
   intro: '比较 σ(n) - n 与 n：< 亏数，= 完美数，> 过剩数。',
   explain: `同学们好！今天我们来看一种给正整数"分类"的方法——按真因子之和分类。
 
@@ -37339,7 +37436,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
   }
 },
 {
-  id: 'NT04', cat: '数论', title: '自恋数（阿姆斯特朗数）',
+  id: 'NT04', type: 'axiom_theorem',  cat: '数论', title: '自恋数（阿姆斯特朗数）',
   intro: '若 n 等于其各位数字的 k 次方之和（k = 位数），则 n 是自恋数。153 = 1³+5³+3³。',
   explain: `同学们好！今天我们来看一种很自恋的数——自恋数，也叫阿姆斯特朗数。
 
@@ -37384,7 +37481,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
   }
 },
 {
-  id: 'NT05', cat: '数论', title: '快乐数',
+  id: 'NT05', type: 'axiom_theorem',  cat: '数论', title: '快乐数',
   intro: '把一个数的各位数字平方求和，迭代：最终到 1 → 快乐；进入循环 → 不快乐。',
   explain: `同学们好！今天我们来看一种会"快乐"或"忧郁"的数——快乐数。
 
@@ -37424,7 +37521,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
   }
 },
 {
-  id: 'NT06', cat: '数论', title: 'Harshad 数（Niven 数）',
+  id: 'NT06', type: 'axiom_theorem',  cat: '数论', title: 'Harshad 数（Niven 数）',
   intro: '若 n 能被其各位数字之和整除，则 n 是 Harshad 数。例：12 ÷ (1+2) = 4 ✓',
   explain: `同学们好！今天我们来看一种"友好"的数——Harshad 数（也叫 Niven 数）。
 
@@ -37461,7 +37558,7 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
   }
 },
 {
-  id: 'NT07', cat: '数论', title: 'Kaprekar 变换',
+  id: 'NT07', type: 'axiom_theorem',  cat: '数论', title: 'Kaprekar 变换',
   intro: '把 n 各位排序（大-小组成大数 - 小-大组成小数），迭代到固定点 6174（4 位数）。',
   explain: `同学们好！今天我们来看一种"自动排序"的有趣变换——Kaprekar 变换。
 
@@ -37506,7 +37603,7 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
   }
 },
 {
-  id: 'NT08', cat: '数论', title: '回文数（迭代到回文）',
+  id: 'NT08', type: 'axiom_theorem',  cat: '数论', title: '回文数（迭代到回文）',
   intro: 'n + reverse(n)，迭代：最终得到回文数。例：87 + 78 = 165 → 561 + 165 = 726 → ...',
   explain: `同学们好！今天我们来看一个有趣的过程——回文数迭代。
 
@@ -37548,7 +37645,7 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
   }
 },
 {
-  id: 'NT09', cat: '数论', title: 'Carmichael 数（绝对伪素数）',
+  id: 'NT09', type: 'axiom_theorem',  cat: '数论', title: 'Carmichael 数（绝对伪素数）',
   intro: '合数 n 若对所有与 n 互素的 b 都满足 b^(n-1) ≡ 1 (mod n)，则是 Carmichael 数。最小的 3 个：561、1105、1729。',
   explain: `同学们好！今天我们来看一种很"狡猾"的合数——Carmichael 数，也叫绝对伪素数。
 
@@ -37598,7 +37695,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT10', cat: '数论', title: 'Smith 数',
+  id: 'NT10', type: 'axiom_theorem',  cat: '数论', title: 'Smith 数',
   intro: '合数 n 若其各位数字之和 = 其所有素因子（带重数）的各位数字之和，则 n 是 Smith 数。例：4 = 2×2 → 4 = 2+2 ✓',
   explain: `同学们好！今天我们来看一种很巧妙的数——Smith 数。
 
@@ -37642,7 +37739,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT11', cat: '数论', title: '吸血鬼数',
+  id: 'NT11', type: 'axiom_theorem',  cat: '数论', title: '吸血鬼数',
   intro: '若 n = a × b（a, b 都含 n 的一半位数，且都非 0 结尾），且 n 的位是 a + b 的位重排，则 n 是吸血鬼数。例：1260 = 21 × 60。',
   explain: `同学们好！今天我们来看一种很"咬人"的数——吸血鬼数。
 
@@ -37692,7 +37789,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT12', cat: '数论', title: '三角形数',
+  id: 'NT12', type: 'axiom_theorem',  cat: '数论', title: '三角形数',
   intro: 'T_n = n(n+1)/2：1, 3, 6, 10, 15, 21, 28, 36, 45, 55...',
   explain: `同学们好！今天我们来看一个超级重要的数列——三角形数。
 
@@ -37728,7 +37825,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT13', cat: '数论', title: '四面体数',
+  id: 'NT13', type: 'axiom_theorem',  cat: '数论', title: '四面体数',
   intro: 'Tetra_n = n(n+1)(n+2)/6：1, 4, 10, 20, 35, 56, 84...',
   explain: `同学们好！今天我们来看一个三维的数列——四面体数。
 
@@ -37766,7 +37863,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT14', cat: '数论', title: '数字根（Digital Root）',
+  id: 'NT14', type: 'axiom_theorem',  cat: '数论', title: '数字根（Digital Root）',
   intro: '反复求各位数字之和直到 1 位数。例：38 → 3+8 = 11 → 1+1 = 2。',
   explain: `同学们好！今天我们来看一个超级神奇的数——数字根（Digital Root）。
 
@@ -37805,7 +37902,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT15', cat: '数论', title: '回文素数',
+  id: 'NT15', type: 'axiom_theorem',  cat: '数论', title: '回文素数',
   intro: '既是素数又是回文数的数：2, 3, 5, 7, 11, 101, 131, 151, 181, 191, 313, 353, 373, 383...',
   explain: `同学们好！今天我们来看一种很"对称"的素数——回文素数。
 
@@ -37847,7 +37944,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT16', cat: '数论', title: '素数间隙（Prime Gaps）',
+  id: 'NT16', type: 'conjecture_open',  cat: '数论', title: '素数间隙（Prime Gaps）',
   intro: '相邻素数的差。例：7-5=2、11-7=4、13-11=2。最大间隙随 N 增长。',
   explain: `同学们好！今天我们来看一个非常有趣的现象——素数间隙（Prime Gaps）。
 
@@ -37894,7 +37991,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT17', cat: '数论', title: '模运算可视化',
+  id: 'NT17', type: 'axiom_theorem',  cat: '数论', title: '模运算可视化',
   intro: '看 n mod m 在不同 n 下的余数。例：mod 7：1, 2, 3, 4, 5, 6, 0, 1, 2, ...',
   explain: `同学们好！今天我们来看一个超基础但超重要的概念——模运算（Modulo）。
 
@@ -37930,7 +38027,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT18', cat: '数论', title: '欧拉 φ 函数',
+  id: 'NT18', type: 'axiom_theorem',  cat: '数论', title: '欧拉 φ 函数',
   intro: 'φ(n) = 与 n 互素且 ≤ n 的正整数个数。例：φ(10) = 4（1, 3, 7, 9）。',
   explain: `同学们好！今天我们来看一个超美的数论函数——欧拉 φ 函数（phi）。
 
@@ -37968,7 +38065,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT19', cat: '数论', title: '梅森素数（部分）',
+  id: 'NT19', type: 'conjecture_open',  cat: '数论', title: '梅森素数（部分）',
   intro: '形如 2^p - 1 的素数（p 也必须是素数）。已知 51 个。例：3, 7, 31, 127, 8191, 131071...',
   explain: `同学们好！今天我们来看一种特殊的素数——梅森素数。
 
@@ -38026,7 +38123,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
   }
 },
 {
-  id: 'NT20', cat: '数论', title: '哥德巴赫拆分可视化',
+  id: 'NT20', type: 'conjecture_open',  cat: '数论', title: '哥德巴赫拆分可视化',
   intro: '每个偶数 = 两素数之和的分解对数。100 = 3+97, 11+89, 17+83...',
   explain: `同学们好！今天我们来看哥德巴赫猜想的可视化——把每个偶数拆成两素数之和，看有多少种拆法。
 
@@ -38072,7 +38169,7 @@ Carmichael 数在 1909 年被美国数学家 Robert Carmichael 发现。他还�
 
 /* ===================== 序列 15 个 ===================== */
 {
-  id: 'SQ01', cat: '序列', title: 'Fibonacci 数列',
+  id: 'SQ01', type: 'axiom_theorem',  cat: '序列', title: 'Fibonacci 数列',
   intro: 'F_1=F_2=1, F_n = F_{n-1} + F_{n-2}。1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144...',
   explain: `同学们好！今天我们来看一个超级有名的数列——斐波那契数列。
 
@@ -38109,7 +38206,7 @@ F_100 等于 354224848179261915075。F_200 是个 41 位数。F_1000 是个 209 
   }
 },
 {
-  id: 'SQ02', cat: '序列', title: 'Fibonacci 与黄金比例',
+  id: 'SQ02', type: 'axiom_theorem',  cat: '序列', title: 'Fibonacci 与黄金比例',
   intro: 'F_{n+1} / F_n → φ = 1.618... 越来越准。φ = (1+√5)/2。',
   explain: `同学们好！今天我们来看一个超级美的常数——黄金比例 φ。
 
@@ -38157,7 +38254,7 @@ F_30/F_29 ≈ 1.6180339887
   }
 },
 {
-  id: 'SQ03', cat: '序列', title: 'Lucas 数列',
+  id: 'SQ03', type: 'axiom_theorem',  cat: '序列', title: 'Lucas 数列',
   intro: 'L_1=1, L_2=3, L_n = L_{n-1} + L_{n-2}。1, 3, 4, 7, 11, 18, 29, 47, 76, 123...',
   explain: `同学们好！今天我们来看一个斐波那契的"亲戚"——Lucas 数列。
 
@@ -38201,7 +38298,7 @@ Lucas 数还跟勾股数有关。著名的勾股数组 (3, 4, 5) 出现在 Lucas
   }
 },
 {
-  id: 'SQ04', cat: '序列', title: 'Catalan 数',
+  id: 'SQ04', type: 'axiom_theorem',  cat: '序列', title: 'Catalan 数',
   intro: 'C_n = C(2n, n) / (n+1)。1, 1, 2, 5, 14, 42, 132, 429, 1430...',
   explain: `同学们好！今天我们来看一个超美的数列——Catalan 数。
 
@@ -38249,7 +38346,7 @@ Catalan 数增长很快：C_20 = 6564120420（约 66 亿），C_50 是个 28 位
   }
 },
 {
-  id: 'SQ05', cat: '序列', title: 'Bell 数（集合划分数）',
+  id: 'SQ05', type: 'axiom_theorem',  cat: '序列', title: 'Bell 数（集合划分数）',
   intro: 'B_n = n 个元素的集合的划分数。1, 1, 2, 5, 15, 52, 203, 877, 4140...',
   explain: `同学们好！今天我们来看一个超美的数列——Bell 数（也叫集合划分数）。
 
@@ -38305,7 +38402,7 @@ Bell 数还跟"各种"组合数有关：第二类 Stirling 数、Touchard 多项
   }
 },
 {
-  id: 'SQ06', cat: '序列', title: '错排（Derangement）',
+  id: 'SQ06', type: 'axiom_theorem',  cat: '序列', title: '错排（Derangement）',
   intro: 'D_n = n 个元素的排列中没有元素在原位的数目。1, 0, 1, 2, 9, 44, 265, 1854...',
   explain: `同学们好！今天我们来看一个有趣的数列——错排（Derangement）。
 
@@ -38354,7 +38451,7 @@ D_n = n! × Σ_{k=0}^{n} (-1)^k / k!
   }
 },
 {
-  id: 'SQ07', cat: '序列', title: '帕斯卡三角与二项式',
+  id: 'SQ07', type: 'axiom_theorem',  cat: '序列', title: '帕斯卡三角与二项式',
   intro: '(x+y)^n = Σ C(n,k) x^k y^(n-k)。帕斯卡三角每行是二项式系数。',
   explain: `同学们好！今天我们来看一个超重要的数学结构——帕斯卡三角（Pascal's Triangle）。
 
@@ -38412,7 +38509,7 @@ D_n = n! × Σ_{k=0}^{n} (-1)^k / k!
   }
 },
 {
-  id: 'SQ08', cat: '序列', title: '整数分拆 p(n)',
+  id: 'SQ08', type: 'axiom_theorem',  cat: '序列', title: '整数分拆 p(n)',
   intro: '把 n 写成若干正整数之和的方法数。p(5) = 7：5, 4+1, 3+2, 3+1+1, 2+2+1, 2+1+1+1, 1+1+1+1+1。',
   explain: `同学们好！今天我们来看一个超有趣的数列——整数分拆 p(n)。
 
@@ -38475,7 +38572,7 @@ p(n) = Σ (-1)^{k+1} × p(n - k(3k-1)/2) + Σ (-1)^{k+1} × p(n - k(3k+1)/2)
   }
 },
 {
-  id: 'SQ09', cat: '序列', title: '三角数 + 三角数 = 平方数',
+  id: 'SQ09', type: 'axiom_theorem',  cat: '序列', title: '三角数 + 三角数 = 平方数',
   intro: '两个连续三角数之和 = 平方数：T_n + T_{n+1} = (n+1)²。例：3 + 6 = 9。',
   explain: `同学们好！今天我们来看一个超美的恒等式——连续两个三角形数之和是平方数！
 
@@ -38532,7 +38629,7 @@ T_1 + T_2 + T_3 = 1 + 3 + 6 = 10 = T_4
   }
 },
 {
-  id: 'SQ10', cat: '序列', title: '斐波那契词（Fibonacci word）',
+  id: 'SQ10', type: 'axiom_theorem',  cat: '序列', title: '斐波那契词（Fibonacci word）',
   intro: 'S(0) = "0", S(1) = "01", S(n) = S(n-1) + S(n-2)。生成二进制字符串。',
   explain: `同学们好！今天我们来看一个超有趣的语言结构——斐波那契词（Fibonacci word）。
 
@@ -38584,7 +38681,7 @@ S(6) = S(5) + S(4) = "0100101001001" + "01001010" = "010010100100101001010"
   }
 },
 {
-  id: 'SQ11', cat: '序列', title: '三角数 T_n = n(n+1)/2 检验',
+  id: 'SQ11', type: 'axiom_theorem',  cat: '序列', title: '三角数 T_n = n(n+1)/2 检验',
   intro: '判断 N 是否是三角数（即存在 n 使 T_n = N）。',
   explain: `同学们好！今天我们来看一个超基础但超重要的问题——怎么判断一个数是不是三角形数。
 
@@ -38639,7 +38736,7 @@ N = 21。8 乘 21 + 1 = 169 = 13²。n = (13 - 1) / 2 = 6。T_6 = 21。✓
   }
 },
 {
-  id: 'SQ12', cat: '序列', title: 'Eulerian 数（排列的上升数）',
+  id: 'SQ12', type: 'axiom_theorem',  cat: '序列', title: 'Eulerian 数（排列的上升数）',
   intro: '⟨n, k⟩ = n 个元素的排列中恰有 k 个"上升"位置的数目。',
   explain: `同学们好！今天我们来看一个超美但超深的数列——Eulerian 数。
 
@@ -38706,7 +38803,7 @@ Eulerian 数跟二项式系数、Stirling 数、调和数有深度联系。
   }
 },
 {
-  id: 'SQ13', cat: '序列', title: 'Stirling 数（第二类）',
+  id: 'SQ13', type: 'axiom_theorem',  cat: '序列', title: 'Stirling 数（第二类）',
   intro: 'S(n, k) = n 个元素的集合分到 k 个非空子集的方法数。',
   explain: `同学们好！今天我们来看一个超级重要的数列——Stirling 数（第二类）。
 
@@ -38776,7 +38873,7 @@ Stirling 数还满足：
   }
 },
 {
-  id: 'SQ14', cat: '序列', title: '幸运数（lucky numbers）',
+  id: 'SQ14', type: 'axiom_theorem',  cat: '序列', title: '幸运数（lucky numbers）',
   intro: '由"筛法"生成：1, 3, 7, 9, 13, 15, 21, 25, 31, 33, 37, 43, 49... 与素数筛类似但更神奇。',
   explain: `同学们好！今天我们来看一个神秘的数列——幸运数（lucky numbers）。
 
@@ -38832,7 +38929,7 @@ Stirling 数还满足：
   }
 },
 {
-  id: 'SQ15', cat: '序列', title: '回文数与 Lychrel 数',
+  id: 'SQ15', type: 'axiom_theorem',  cat: '序列', title: '回文数与 Lychrel 数',
   intro: 'LyChrel 猜想：有些数（如 196）可能永远迭代不到回文数。',
   explain: `同学们好！今天我们来看一个有趣的现象——回文数与 Lychrel 数。
 
@@ -38892,7 +38989,7 @@ Lychrel 猜想：196 永远迭代不到回文。但这个猜想还没被证明�
 
 /* ===================== π / e 10 个 ===================== */
 {
-  id: 'PE01', cat: 'π·e', title: 'Wallis 乘积',
+  id: 'PE01', type: 'axiom_theorem',  cat: 'π·e', title: 'Wallis 乘积',
   intro: 'π/2 = 2·2·4·4·6·6.../1·3·3·5·5·7... 收敛慢但优雅。',
   explain: `同学们好！今天我们来看一个最优雅的算 π 公式——Wallis 乘积。
 
@@ -38978,7 +39075,7 @@ Lychrel 猜想：196 永远迭代不到回文。但这个猜想还没被证明�
   }
 },
 {
-  id: 'PE02', cat: 'π·e', title: 'Nilakantha 级数',
+  id: 'PE02', type: 'axiom_theorem',  cat: 'π·e', title: 'Nilakantha 级数',
   intro: 'π = 3 + 4/(2·3·4) - 4/(4·5·6) + 4/(6·7·8) - ... 比 Leibniz 收敛快。',
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：交错项柱状图</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">每项 = 4 / (n(n+1)(n+2))，n 从 2 开始。蓝色加、红色减，柱长代表项的<strong>大小</strong>。</p>
@@ -39064,7 +39161,7 @@ Nilakantha 公式的好处：
   }
 },
 {
-  id: 'PE03', cat: 'π·e', title: 'Ramanujan π 公式',
+  id: 'PE03', type: 'axiom_theorem',  cat: 'π·e', title: 'Ramanujan π 公式',
   intro: '1910 年拉马努金发现：1/π = (2√2/9801) Σ (4k)!(1103+26390k) / ((k!)^4 · 396^(4k))',
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：每项贡献 14 位精度</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">拉马努金的"魔法"：公式里 <code>(6k)! / ((3k)!(k!)³)</code> 让每项比上项大 <strong>~ 396⁴ⁿ</strong> 倍——但分母也大这么多——但<strong>净结果是每项多 14 位精度</strong>。</p>
@@ -39138,7 +39235,7 @@ Ramanujan 在数学界是传奇人物，他能从"无"中"看到"公式。Hardy 
   }
 },
 {
-  id: 'PE04', cat: 'π·e', title: 'BBP 算法（十六进制 π 位）',
+  id: 'PE04', type: 'axiom_theorem',  cat: 'π·e', title: 'BBP 算法（十六进制 π 位）',
   intro: '1995 年贝尔曼公式，可直接算 π 的第 n 位十六进制，无需算前 n-1 位。',
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：跳过前 n-1 位直接算第 n 位</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">普通算法要算前 100 万位才能拿第 100 万位；BBP <strong>直接跳到第 n 位</strong>。</p>
@@ -39226,7 +39323,7 @@ BBP 公式的收敛速度：每加 1 项，精度增加约 0.5 位（16 进制�
   }
 },
 {
-  id: 'PE05', cat: 'π·e', title: '蒙特卡洛 π（圆面积法）',
+  id: 'PE05', type: 'axiom_theorem',  cat: 'π·e', title: '蒙特卡洛 π（圆面积法）',
   intro: '在 1×1 正方形内随机撒点，统计落在 1/4 圆内的比例 × 4 = π。',
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：1/4 圆面积 / 正方形面积 = π/4</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">圆心 (0,0)、半径 1 的 1/4 圆。随机撒 N 个点，落在圆内的比例 = π/4。</p>
@@ -39319,7 +39416,7 @@ BBP 公式的收敛速度：每加 1 项，精度增加约 0.5 位（16 进制�
   }
 },
 {
-  id: 'PE06', cat: 'π·e', title: 'e 的泰勒展开',
+  id: 'PE06', type: 'axiom_theorem',  cat: 'π·e', title: 'e 的泰勒展开',
   intro: 'e^x = Σ x^n / n!。令 x=1：e = 1 + 1 + 1/2 + 1/6 + 1/24 + ...',
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：1/n! 阶乘递减（极快收敛）</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">阶乘增长比指数还快——1/n! 迅速逼近 0。</p>
@@ -39407,7 +39504,7 @@ e 还是无理数（连分数非循环）和超越数（不是任何有理系数
   }
 },
 {
-  id: 'PE07', cat: 'π·e', title: '复利极限 = e',
+  id: 'PE07', type: 'axiom_theorem',  cat: 'π·e', title: '复利极限 = e',
   intro: '(1 + 1/n)^n 随 n 增大趋近 e：n=10→2.59, n=100→2.70, n=1000→2.717。',
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：从离散复利到连续复利 = e</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">把 1 元存银行，年利率 100%：一年结算 N 次，每次 1/N 利率 → 极限 = e 元。</p>
@@ -39498,7 +39595,7 @@ e 是无理数（连分数形式 2; 1, 2, 1, 1, 4, 1, 1, 6, ... 很有规律）�
   }
 },
 {
-  id: 'PE08', cat: 'π·e', title: 'φ（黄金比例）的连分数',
+  id: 'PE08', type: 'axiom_theorem',  cat: 'π·e', title: 'φ（黄金比例）的连分数',
   intro: 'φ = 1 + 1/(1 + 1/(1 + 1/(1 + ...)))。',
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：所有 1 的连分数 + 黄金矩形螺旋</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">φ 是<strong>最"懒"</strong>的连分数：所有项都是 1。截断第 N 层 → 1, 2, 3/2, 5/3, 8/5, 13/8...（Fibonacci 比！）</p>
@@ -39590,7 +39687,7 @@ e 是无理数（连分数形式 2; 1, 2, 1, 1, 4, 1, 1, 6, ... 很有规律）�
   }
 },
 {
-  id: 'PE09', cat: 'π·e', title: '欧拉-马斯刻若尼常数 γ',
+  id: 'PE09', type: 'axiom_theorem',  cat: 'π·e', title: '欧拉-马斯刻若尼常数 γ',
   intro: 'γ = lim(1 + 1/2 + 1/3 + ... + 1/n - ln n) ≈ 0.5772。',
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：调和级数 Hₙ 与 ln n 的"距离"</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">调和级数 Hₙ = 1 + 1/2 + 1/3 + ... + 1/n 发散，但和 ln n 越来越接近——它们的差距就是 γ。</p>
@@ -39680,7 +39777,7 @@ n 越大越接近 0.57721...，但收敛很慢！
   }
 },
 {
-  id: 'PE10', cat: 'π·e', title: '圆周率日（3/14 课堂演示）',
+  id: 'PE10', type: 'axiom_theorem',  cat: 'π·e', title: '圆周率日（3/14 课堂演示）',
   intro: '3 月 14 日是国际数学日（π Day）。π = 3.1415926...',
   svgDemo: `<h4 style="margin-top: 0;">🎨 圆周率日（π Day）大字号 + 历史时间线</h4>
 <svg viewBox="0 0 600 320" style="width: 100%; max-width: 600px; background: linear-gradient(135deg, #fdf2f8, #fef3c7); border-radius: 8px; border: 1px solid #fbcfe8;">
@@ -39773,7 +39870,7 @@ n 越大越接近 0.57721...，但收敛很慢！
 
 /* ===================== 几何 10 个 ===================== */
 {
-  id: 'GM01', cat: '几何', title: '多边形内角和',
+  id: 'GM01', type: 'axiom_theorem',  cat: '几何', title: '多边形内角和',
   intro: 'n 边形内角和 = (n-2) × 180°。三角形 180°、四边形 360°、五边形 540°...',
   explain: `同学们好！今天我们来看一个超美的几何公式——多边形内角和。
 
@@ -39829,7 +39926,7 @@ n 越大越接近 0.57721...，但收敛很慢！
   }
 },
 {
-  id: 'GM02', cat: '几何', title: '多边形外角和 = 360°',
+  id: 'GM02', type: 'axiom_theorem',  cat: '几何', title: '多边形外角和 = 360°',
   intro: '任何凸多边形的外角和恒等于 360°。',
   explain: `同学们好！今天我们来看一个超简单的几何事实——多边形外角和恒等于 360°。
 
@@ -39884,7 +39981,7 @@ n 个外角 = n × 360°/n = 360°。✓
   }
 },
 {
-  id: 'GM03', cat: '几何', title: '海伦公式（三角形面积）',
+  id: 'GM03', type: 'axiom_theorem',  cat: '几何', title: '海伦公式（三角形面积）',
   intro: 'S = √(s(s-a)(s-b)(s-c))，其中 s = (a+b+c)/2。',
   explain: `同学们好！今天我们来看一个超实用的几何公式——海伦公式（Heron's formula）。
 
@@ -39934,7 +40031,7 @@ n 个外角 = n × 360°/n = 360°。✓
   }
 },
 {
-  id: 'GM04', cat: '几何', title: '球体积与表面积',
+  id: 'GM04', type: 'axiom_theorem',  cat: '几何', title: '球体积与表面积',
   intro: 'V = (4/3)πr³，A = 4πr²。',
   explain: `同学们好！今天我们来看两个超有用的几何公式——球的体积和表面积。
 
@@ -39991,7 +40088,7 @@ n 个外角 = n × 360°/n = 360°。✓
   }
 },
 {
-  id: 'GM05', cat: '几何', title: '圆柱表面积与体积',
+  id: 'GM05', type: 'axiom_theorem',  cat: '几何', title: '圆柱表面积与体积',
   intro: 'V = πr²h，A = 2πr² + 2πrh（含上下底）。',
   explain: `同学们好！今天我们来看两个超有用的公式——圆柱的体积和表面积。
 
@@ -40048,7 +40145,7 @@ A = 2πr² + 2πrh = 2πr(r + h)
   }
 },
 {
-  id: 'GM06', cat: '几何', title: '柏拉图立体（5 种正多面体）',
+  id: 'GM06', type: 'axiom_theorem',  cat: '几何', title: '柏拉图立体（5 种正多面体）',
   intro: '正四面体、立方体、正八面体、正十二面体、正二十面体。',
   explain: `同学们好！今天我们来看一个超美的几何——柏拉图立体（5 种正多面体）。
 
@@ -40117,7 +40214,7 @@ V=12, E=30, F=20
   }
 },
 {
-  id: 'GM07', cat: '几何', title: '欧拉多面体公式 V - E + F = 2',
+  id: 'GM07', type: 'axiom_theorem',  cat: '几何', title: '欧拉多面体公式 V - E + F = 2',
   intro: '验证：对凸多面体，V - E + F = 2。',
   explain: `同学们好！今天我们来看一个超美的几何公式——欧拉多面体公式。
 
@@ -40178,7 +40275,7 @@ V=12, E=30, F=20
   }
 },
 {
-  id: 'GM08', cat: '几何', title: '黄金三角形（等腰 36-72-72）',
+  id: 'GM08', type: 'axiom_theorem',  cat: '几何', title: '黄金三角形（等腰 36-72-72）',
   intro: '等腰三角形底与腰之比 = 1/φ 的三角形。',
   explain: `同学们好！今天我们来看一种很美的三角形——黄金三角形（Golden Triangle）。
 
@@ -40238,7 +40335,7 @@ x = sin(72°)/sin(36°) = 2cos(36°) = 1 + 2cos(72°) - 1 = 1 + 2 × 0.309 - 1 �
   }
 },
 {
-  id: 'GM09', cat: '几何', title: '正五角星与黄金比例',
+  id: 'GM09', type: 'axiom_theorem',  cat: '几何', title: '正五角星与黄金比例',
   intro: '正五角星的对角线与边之比 = φ。',
   explain: `同学们好！今天我们来看五角星里的黄金比例。
 
@@ -40299,7 +40396,7 @@ x = sin(72°)/sin(36°) = 2cos(36°) = 1 + 2cos(72°) - 1 = 1 + 2 × 0.309 - 1 �
   }
 },
 {
-  id: 'GM10', cat: '几何', title: '正多边形对角线数',
+  id: 'GM10', type: 'axiom_theorem',  cat: '几何', title: '正多边形对角线数',
   intro: 'n 边形的对角线数 = n(n-3)/2。三角形 0、四边形 2、五边形 5...',
   explain: `同学们好！今天我们来看一个超基础但超有用的问题——n 边形的对角线数。
 
@@ -40358,7 +40455,7 @@ n 边形总共有 n(n-1)/2 条线段（所有顶点两两相连），其中 n �
 
 /* ===================== 图论 10 个 ===================== */
 {
-  id: 'GR01', cat: '图论', title: '欧拉路径（Königsberg 七桥）',
+  id: 'GR01', type: 'axiom_theorem',  cat: '图论', title: '欧拉路径（Königsberg 七桥）',
   intro: '若图所有顶点度为偶数 → 欧拉回路；恰 2 个奇度 → 欧拉路径；否则不存在。',
   explain: `同学们好！今天我们来看一个超经典的问题——欧拉路径和 Königsberg 七桥。
 
@@ -40410,7 +40507,7 @@ Königsberg 七桥的图：4 个顶点，7 条边。度数：4 4 3 3（两个 3 
   }
 },
 {
-  id: 'GR02', cat: '图论', title: '旅行商（TSP）暴力 / 贪心',
+  id: 'GR02', type: 'axiom_theorem',  cat: '图论', title: '旅行商（TSP）暴力 / 贪心',
   intro: 'n 个城市间两两距离，求访问每个城市恰好一次回到起点的最短路径。暴力 = 精确；贪心 = 快速近似。',
   explain: `同学们好！今天我们来看一个超经典的优化问题——旅行商问题（TSP）。
 
@@ -40548,7 +40645,7 @@ TSP 的几何变体（欧几里得 TSP）：城市在平面上，距离是直线
   }
 },
 {
-  id: 'GR03', cat: '图论', title: '图连通性检验',
+  id: 'GR03', type: 'axiom_theorem',  cat: '图论', title: '图连通性检验',
   intro: '判断无向图是否连通（任意两顶点都有路径）。',
   explain: `同学们好！今天我们来看一个超基础但超重要的问题——图的连通性。
 
@@ -40627,7 +40724,7 @@ DFS 时间复杂度 O(V + E)，BFS 也一样。
   }
 },
 {
-  id: 'GR04', cat: '图论', title: '二叉树遍历（先序 / 中序 / 后序）',
+  id: 'GR04', type: 'axiom_theorem',  cat: '图论', title: '二叉树遍历（先序 / 中序 / 后序）',
   intro: '先序：根-左-右；中序：左-根-右；后序：左-右-根。',
   explain: `同学们好！今天我们来看一个超基础但超有用的数据结构——二叉树遍历。
 
@@ -40708,7 +40805,7 @@ Morris 遍历：不用递归也不用栈，O(1) 空间——很巧妙但难理�
   }
 },
 {
-  id: 'GR05', cat: '图论', title: '二项式 (x+y)^n 展开',
+  id: 'GR05', type: 'axiom_theorem',  cat: '图论', title: '二项式 (x+y)^n 展开',
   intro: '(x+y)^n = Σ C(n,k) x^k y^(n-k)。',
   explain: `同学们好！今天我们来看一个超级重要的代数恒等式——二项式定理。
 
@@ -40773,7 +40870,7 @@ C(n, k) = n! / (k! × (n-k)!) 是"二项式系数"——从 n 个里选 k 个的
   }
 },
 {
-  id: 'GR06', cat: '图论', title: '容斥原理 |A∪B∪C|',
+  id: 'GR06', type: 'axiom_theorem',  cat: '图论', title: '容斥原理 |A∪B∪C|',
   intro: '|A∪B∪C| = Σ|Ai| - Σ|Ai∩Aj| + |A∩B∩C|。',
   explain: `同学们好！今天我们来看一个超重要但超简单的原理——容斥原理。
 
@@ -40844,7 +40941,7 @@ n 个集合：
   }
 },
 {
-  id: 'GR07', cat: '图论', title: '抽屉原理演示',
+  id: 'GR07', type: 'axiom_theorem',  cat: '图论', title: '抽屉原理演示',
   intro: 'n+1 个物品放 n 个抽屉，必有 1 抽屉装 ≥ 2 个。',
   explain: `同学们好！今天我们来看一个超简单但超有用的原理——抽屉原理（也叫鸽巢原理）。
 
@@ -40902,7 +40999,7 @@ n 个集合：
   }
 },
 {
-  id: 'GR08', cat: '图论', title: '多项式乘法卷积',
+  id: 'GR08', type: 'axiom_theorem',  cat: '图论', title: '多项式乘法卷积',
   intro: '(1 + 2x + 3x²) × (4 + 5x) = 4 + 13x + 22x² + 15x³。',
   explain: `同学们好！今天我们来看一个超实用的代数技巧——多项式乘法和卷积。
 
@@ -40961,7 +41058,7 @@ A × B：
   }
 },
 {
-  id: 'GR09', cat: '图论', title: '握手引理：Σ 度 = 2|E|',
+  id: 'GR09', type: 'axiom_theorem',  cat: '图论', title: '握手引理：Σ 度 = 2|E|',
   intro: '所有顶点度之和 = 2 倍边数（每条边贡献 2 个端点）。',
   explain: `同学们好！今天我们来看一个超简单的图论恒等式——握手引理。
 
@@ -41034,7 +41131,7 @@ A × B：
   }
 },
 {
-  id: 'GR10', cat: '图论', title: '树的边数 = 顶点数 - 1',
+  id: 'GR10', type: 'axiom_theorem',  cat: '图论', title: '树的边数 = 顶点数 - 1',
   intro: '连通无环图（树）的边数恒等于顶点数减 1。',
   explain: `同学们好！今天我们来看一个超简单但超有用的图论定理——树的边数。
 
@@ -41102,7 +41199,7 @@ A × B：
 
 /* ===================== 概率 10 个 ===================== */
 {
-  id: 'PB01', cat: '概率', title: '生日悖论',
+  id: 'PB01', type: 'axiom_theorem',  cat: '概率', title: '生日悖论',
   intro: '23 人中至少 2 人同生日的概率 > 50%。鸽巢原理的变种。',
   explain: `同学们好！今天我们来看一个超级反直觉的概率问题——生日悖论。
 
@@ -41183,7 +41280,7 @@ A × B：
   }
 },
 {
-  id: 'PB02', cat: '概率', title: 'Monty Hall 三门问题',
+  id: 'PB02', type: 'axiom_theorem',  cat: '概率', title: 'Monty Hall 三门问题',
   intro: '选一扇门，主持人开一扇无奖的门。改选 vs 不改，胜率 2/3 vs 1/3。',
   explain: `同学们好！今天我们来看一个超经典也最反直觉的概率问题——Monty Hall 三门问题。
 
@@ -41252,7 +41349,7 @@ A × B：
   }
 },
 {
-  id: 'PB03', cat: '概率', title: '二项分布（抛硬币 n 次正面次数）',
+  id: 'PB03', type: 'axiom_theorem',  cat: '概率', title: '二项分布（抛硬币 n 次正面次数）',
   intro: 'P(X=k) = C(n,k) p^k (1-p)^(n-k)。',
   explain: `同学们好！今天我们来看一个超基础但超重要的分布——二项分布。
 
@@ -41317,7 +41414,7 @@ P(X = k) = C(n, k) × pᵏ × (1-p)ⁿ⁻ᵏ
   }
 },
 {
-  id: 'PB04', cat: '概率', title: '几何分布（首次成功）',
+  id: 'PB04', type: 'axiom_theorem',  cat: '概率', title: '几何分布（首次成功）',
   intro: 'P(X=k) = (1-p)^(k-1) p。期望 E(X) = 1/p。',
   explain: `同学们好！今天我们来看一个超实用的分布——几何分布。
 
@@ -41383,7 +41480,7 @@ P(X > m + n | X > m) = P(X > n)
   }
 },
 {
-  id: 'PB05', cat: '概率', title: '中心极限定理演示',
+  id: 'PB05', type: 'axiom_theorem',  cat: '概率', title: '中心极限定理演示',
   intro: 'n 个独立同分布随机变量之和趋近正态。例：36 次骰子点数之和近似 N(126, 105)。',
   explain: `同学们好！今天我们来看一个超重要的统计定理——中心极限定理（CLT）。
 
@@ -41455,7 +41552,7 @@ CLT 跟"大数定律"（LLN）的关系：
   }
 },
 {
-  id: 'PB06', cat: '概率', title: '大数定律演示',
+  id: 'PB06', type: 'axiom_theorem',  cat: '概率', title: '大数定律演示',
   intro: 'n 次独立试验的样本均值趋近期望。例：抛 10000 次硬币，正面比例趋近 0.5。',
   explain: `同学们好！今天我们来看另一个超重要的统计定理——大数定律（LLN）。
 
@@ -41531,7 +41628,7 @@ LLN 的反例：如果 i.i.d. 但方差无穷（如柯西分布），LLN 不成�
   }
 },
 {
-  id: 'PB07', cat: '概率', title: '赌徒破产（随机游走）',
+  id: 'PB07', type: 'axiom_theorem',  cat: '概率', title: '赌徒破产（随机游走）',
   intro: '赌徒有 A 元，每次以 p 概率赢 1 元，q=1-p 概率输 1 元，输到 0 或赢到 B 元停。',
   explain: `同学们好！今天我们来看一个超经典的概率问题——赌徒破产（Gambler's Ruin）。
 
@@ -41611,7 +41708,7 @@ P(赢到 20) ≈ 0.87
   }
 },
 {
-  id: 'PB08', cat: '概率', title: '条件概率：贝叶斯公式',
+  id: 'PB08', type: 'axiom_theorem',  cat: '概率', title: '条件概率：贝叶斯公式',
   intro: 'P(A|B) = P(B|A) · P(A) / P(B)。医学检测示例。',
   explain: `同学们好！今天我们来看一个超级重要的公式——贝叶斯公式（Bayes' Theorem）。
 
@@ -41680,7 +41777,7 @@ P(A | B) = P(B | A) × P(A) / [P(B | A) × P(A) + P(B | ~A) × P(~A)]
   }
 },
 {
-  id: 'PB09', cat: '概率', title: 'Bertrand 悖论（圆内随机弦）',
+  id: 'PB09', type: 'axiom_theorem',  cat: '概率', title: 'Bertrand 悖论（圆内随机弦）',
   intro: '"随机弦"有 3 种定义，得出不同答案。揭示"随机"需要明确定义。',
   explain: `同学们好！今天我们来看一个超深刻的概率悖论——Bertrand 悖论。
 
@@ -41733,7 +41830,7 @@ Bertrand 悖论给我们的启示：概率问题的答案依赖于"随机"的具
   }
 },
 {
-  id: 'PB10', cat: '概率', title: 'Poisson 分布（稀有事件）',
+  id: 'PB10', type: 'axiom_theorem',  cat: '概率', title: 'Poisson 分布（稀有事件）',
   intro: 'P(X=k) = λ^k e^(-λ) / k!。λ 是单位时间平均事件数。',
   explain: `同学们好！今天我们来看一个超实用的概率分布——泊松分布（Poisson）。
 
@@ -41809,7 +41906,7 @@ P(X = k) = λᵏ × e⁻λ / k!
 
 /* ===================== 算法 10 个 ===================== */
 {
-  id: 'AL01', cat: '算法', title: '24 点游戏',
+  id: 'AL01', type: 'axiom_theorem',  cat: '算法', title: '24 点游戏',
   intro: '用 4 个数字（1-13）和 + - × ÷ 算出 24。',
   explain: `同学们好！今天我们来看一个超经典的扑克牌游戏——24 点。
 
@@ -41906,7 +42003,7 @@ P(X = k) = λᵏ × e⁻λ / k!
   }
 },
 {
-  id: 'AL02', cat: '算法', title: 'Nim 游戏（人机对战）',
+  id: 'AL02', type: 'axiom_theorem',  cat: '算法', title: 'Nim 游戏（人机对战）',
   intro: 'n 堆石子，你和 AI 轮流选一堆取任意个。取完最后一颗者胜。AI 用标准 Nim 异或策略。',
   explain: `同学们好！今天我们来看一个超经典的博弈游戏——Nim（取石子）。
 
@@ -42075,7 +42172,7 @@ Nim 变种：
   }
 },
 {
-  id: 'AL03', cat: '算法', title: '约瑟夫问题（环形淘汰）',
+  id: 'AL03', type: 'axiom_theorem',  cat: '算法', title: '约瑟夫问题（环形淘汰）',
   intro: 'n 人围成一圈，每数到 k 的人被淘汰，最后剩的是谁？',
   explain: `同学们好！今天我们来看一个超经典的问题——约瑟夫问题（环形淘汰）。
 
@@ -42168,7 +42265,7 @@ n=5, k=3。从 1 开始数：1 2 3（3 淘汰）、4 5 1（1 淘汰）、2 3 4�
   }
 },
 {
-  id: 'AL04', cat: '算法', title: '汉诺塔递归',
+  id: 'AL04', type: 'axiom_theorem',  cat: '算法', title: '汉诺塔递归',
   intro: 'n 个盘从 A 移到 C，借助 B。最少 2^n - 1 步。',
   explain: `同学们好！今天我们来看一个超经典的递归问题——汉诺塔。
 
@@ -42257,7 +42354,7 @@ k=7（111）移动盘 1
   }
 },
 {
-  id: 'AL05', cat: '算法', title: '八皇后（8 皇后问题）',
+  id: 'AL05', type: 'axiom_theorem',  cat: '算法', title: '八皇后（8 皇后问题）',
   intro: '8×8 棋盘放 8 个皇后互不攻击。所有 92 个解。',
   explain: `同学们好！今天我们来看一个超经典的问题——八皇后问题。
 
@@ -42371,7 +42468,7 @@ n=14: 365596
   }
 },
 {
-  id: 'AL06', cat: '算法', title: '数独求解（4×4 简单版）',
+  id: 'AL06', type: 'axiom_theorem',  cat: '算法', title: '数独求解（4×4 简单版）',
   intro: '4×4 数独：每行/列/宫有 1-4 各一个。',
   explain: `同学们好！今天我们来看一个超经典的逻辑游戏——数独（Sudoku）。
 
@@ -42477,7 +42574,7 @@ n=14: 365596
   }
 },
 {
-  id: 'AL07', cat: '算法', title: '二分搜索（有序数组）',
+  id: 'AL07', type: 'axiom_theorem',  cat: '算法', title: '二分搜索（有序数组）',
   intro: 'O(log n) 时间找到目标。每次范围减半。',
   explain: `同学们好！今天我们来看一个超基础的算法——二分搜索（Binary Search）。
 
@@ -42568,7 +42665,7 @@ n=14: 365596
   }
 },
 {
-  id: 'AL08', cat: '算法', title: '冒泡排序可视化',
+  id: 'AL08', type: 'axiom_theorem',  cat: '算法', title: '冒泡排序可视化',
   intro: '每次遍历把最大元素"冒"到末尾。O(n²)。',
   explain: `同学们好！今天我们来看一个超基础但超经典的排序算法——冒泡排序（Bubble Sort）。
 
@@ -42658,7 +42755,7 @@ n=14: 365596
   }
 },
 {
-  id: 'AL09', cat: '算法', title: '快速排序（分治）',
+  id: 'AL09', type: 'axiom_theorem',  cat: '算法', title: '快速排序（分治）',
   intro: '选 pivot，小的放左大的放右，递归。平均 O(n log n)。',
   explain: `同学们好！今天我们来看一个超实用超快的排序算法——快速排序（Quick Sort）。
 
@@ -42762,7 +42859,7 @@ Tim 排序（Python/Java 用）：归并 + 插入，处理真实数据的"局部
   }
 },
 {
-  id: 'AL10', cat: '算法', title: '素数筛（埃拉托斯特尼）',
+  id: 'AL10', type: 'axiom_theorem',  cat: '算法', title: '素数筛（埃拉托斯特尼）',
   intro: '从 2 开始，把每个素数的倍数标记为合数。O(n log log n)。',
   explain: `同学们好！今天我们来看一个超经典的算法——埃拉托斯特尼素数筛（Eratosthenes Sieve）。
 
@@ -42853,7 +42950,7 @@ Tim 排序（Python/Java 用）：归并 + 插入，处理真实数据的"局部
 
 /* ===================== 分形 5 个 ===================== */
 {
-  id: 'FR01', cat: '分形', title: '曼德博集合',
+  id: 'FR01', type: 'axiom_theorem',  cat: '分形', title: '曼德博集合',
   intro: '复数 c：迭代 z = z² + c，若不发散则 c ∈ Mandelbrot 集。',
   explain: `同学们好！今天我们来看一个超美的分形——曼德博集合（Mandelbrot Set）。
 
@@ -42948,7 +43045,7 @@ Tim 排序（Python/Java 用）：归并 + 插入，处理真实数据的"局部
   }
 },
 {
-  id: 'FR02', cat: '分形', title: '谢尔宾斯基三角',
+  id: 'FR02', type: 'axiom_theorem',  cat: '分形', title: '谢尔宾斯基三角',
   intro: '递归：等边三角形挖中间小三角形。',
   explain: `同学们好！今天我们来看一个超美的分形——谢尔宾斯基三角（Sierpinski Triangle）。
 
@@ -43039,7 +43136,7 @@ Tim 排序（Python/Java 用）：归并 + 插入，处理真实数据的"局部
   }
 },
 {
-  id: 'FR03', cat: '分形', title: 'Koch 雪花',
+  id: 'FR03', type: 'axiom_theorem',  cat: '分形', title: 'Koch 雪花',
   intro: '每条边三等分，中间一段替换成两条等长边（凸出）。',
   explain: `同学们好！今天我们来看一个超美的分形——Koch 雪花（Koch Snowflake）。
 
@@ -43131,7 +43228,7 @@ Koch 雪花的变种：
   }
 },
 {
-  id: 'FR04', cat: '分形', title: '分形树（递归）',
+  id: 'FR04', type: 'axiom_theorem',  cat: '分形', title: '分形树（递归）',
   intro: '每根枝干分两根小枝，角度 ±30°，长度 0.7×。',
   explain: `同学们好！今天我们来看一个超美的分形——分形树（Fractal Tree）。
 
@@ -43226,7 +43323,7 @@ L 系统能生成：
   }
 },
 {
-  id: 'FR05', cat: '分形', title: 'Julia 集（z² + c 迭代）',
+  id: 'FR05', type: 'axiom_theorem',  cat: '分形', title: 'Julia 集（z² + c 迭代）',
   intro: '固定 c = -0.8 + 0.156i，看哪些 z 不发散。',
   explain: `同学们好！今天我们来看一个超美的分形——Julia 集（Julia Set）。
 
@@ -43333,7 +43430,7 @@ Julia 集 vs 曼德博集合：
 
 /* ===================== 其他 10 个 ===================== */
 {
-  id: 'OT01', cat: '其他', title: '幻方（Lo Shu 3×3 魔方）',
+  id: 'OT01', type: 'axiom_theorem',  cat: '其他', title: '幻方（Lo Shu 3×3 魔方）',
   intro: '3×3 幻方：每行/列/对角线之和 = 15。使用 1-9 各一次。',
   explain: `同学们好！今天我们来看一个超神奇的中国古代数学——幻方（Magic Square）。
 
@@ -43418,7 +43515,7 @@ n=5（用暹罗法构造）：
   }
 },
 {
-  id: 'OT02', cat: '其他', title: '河内塔（递归）',
+  id: 'OT02', type: 'axiom_theorem',  cat: '其他', title: '河内塔（递归）',
   intro: '同 AL04 但用 SVG 演示。',
   explain: `同学们好！今天我们来看一个超经典的递归问题——河内塔（汉诺塔）。
 
@@ -43505,7 +43602,7 @@ B 树、二项堆等高级数据结构都基于类似的"分治 + 递归"。
   }
 },
 {
-  id: 'OT03', cat: '其他', title: '阿基米德螺旋',
+  id: 'OT03', type: 'axiom_theorem',  cat: '其他', title: '阿基米德螺旋',
   intro: 'r = a + b·θ。等距螺旋。',
   explain: `同学们好！今天我们来看一个超美的几何曲线——阿基米德螺旋（Archimedean Spiral）。
 
@@ -43591,7 +43688,7 @@ L = (1/2) × 0.5 × (10π × √(1 + 100π²) + ln(10π + √(1 + 100π²)))
   }
 },
 {
-  id: 'OT04', cat: '其他', title: '数字根（九宫格）',
+  id: 'OT04', type: 'axiom_theorem',  cat: '其他', title: '数字根（九宫格）',
   intro: 'n 的数字根 = n mod 9（n > 0），特例 9 的根是 9。',
   explain: `同学们好！今天我们来看一个超简单但超有用的概念——数字根（Digital Root）的九宫格。
 
@@ -43679,7 +43776,7 @@ a + b 的数字根 = (a 的数字根 + b 的数字根) 的数字根
   }
 },
 {
-  id: 'OT05', cat: '其他', title: '棋盘多米诺铺瓦',
+  id: 'OT05', type: 'axiom_theorem',  cat: '其他', title: '棋盘多米诺铺瓦',
   intro: 'm × n 棋盘（m, n 都偶）一定能被多米诺骨牌铺满；m, n 都奇不能。',
   explain: `同学们好！今天我们来看一个超有趣的组合问题——棋盘多米诺铺瓦。
 
@@ -43792,7 +43889,7 @@ f(m, n) = Π [cos²(kπ/(m+1)) + cos²(lπ/(n+1))]^(1/4) ... 这个公式超级�
   }
 },
 {
-  id: 'OT06', cat: '其他', title: '螺旋矩阵（顺时针）',
+  id: 'OT06', type: 'axiom_theorem',  cat: '其他', title: '螺旋矩阵（顺时针）',
   intro: 'n × n 矩阵按顺时针填 1, 2, ..., n²。',
   explain: `同学们好！今天我们来看一个超有趣的算法——螺旋矩阵（Spiral Matrix）。
 
@@ -43892,7 +43989,7 @@ n=9：中心 41
   }
 },
 {
-  id: 'OT07', cat: '其他', title: '幻方 4×4（Dürer）',
+  id: 'OT07', type: 'axiom_theorem',  cat: '其他', title: '幻方 4×4（Dürer）',
   intro: '丢勒 1514 年画的 4×4 幻方，底部两格是 15、14 即创作年份。',
   explain: `同学们好！今天我们来看一个超著名的 4×4 幻方——丢勒的《忧郁 I》。
 
@@ -43975,7 +44072,7 @@ n=9：中心 41
   }
 },
 {
-  id: 'OT08', cat: '其他', title: 'Tic-Tac-Toe（井字棋 AI）',
+  id: 'OT08', type: 'axiom_theorem',  cat: '其他', title: 'Tic-Tac-Toe（井字棋 AI）',
   intro: '3×3 井字棋。AI 用极小化极大算法。难度可选。',
   explain: `同学们好！今天我们来看一个超经典的游戏——井字棋（Tic-Tac-Toe）。
 
@@ -44231,7 +44328,7 @@ function minimax(board, depth, isMax):
   }
 },
 {
-  id: 'OT09', cat: '其他', title: '3 个杯子猜球（贝叶斯）',
+  id: 'OT09', type: 'axiom_theorem',  cat: '其他', title: '3 个杯子猜球（贝叶斯）',
   intro: '3 杯 1 球，主持人（知道球在哪）给你提示——展示条件概率。',
   explain: `同学们好！今天我们来看一个超有趣的概率问题——3 个杯子猜球（贝叶斯思维）。
 
@@ -44318,7 +44415,7 @@ function minimax(board, depth, isMax):
   }
 },
 {
-  id: 'OT10', cat: '其他', title: '生命游戏（Conway）',
+  id: 'OT10', type: 'axiom_theorem',  cat: '其他', title: '生命游戏（Conway）',
   intro: '细胞自动机：活细胞 2-3 邻居活下来；死细胞 3 邻居复活。',
   explain: `同学们好！今天我们来看一个超神奇的"模拟生命"游戏——Conway 生命游戏。
 
@@ -44432,7 +44529,7 @@ XXX
   }
 },
 {
-  id: 'EX01', cat: '前沿', title: '莱洛三角形（等宽曲线）',
+  id: 'EX01', type: 'axiom_theorem',  cat: '前沿', title: '莱洛三角形（等宽曲线）',
   intro: '三段等长直线组成的"最像圆的三角形"，等宽曲线。',
   explain: `同学们好！今天我们要认识一个特别奇怪的三角形——叫莱洛三角形。听起来像外国人的名字，对吧？它是一个德国工程师 Franz Reuleaux 在一八七五年提出来的，所以就用他的姓来命名。
 
@@ -44468,7 +44565,7 @@ XXX
   }
 },
 {
-  id: 'EX02', cat: '前沿', title: '莫比乌斯带（拓扑入门）',
+  id: 'EX02', type: 'axiom_theorem',  cat: '前沿', title: '莫比乌斯带（拓扑入门）',
   intro: '把纸条拧 180° 再粘起来，只有一面。',
   explain: `同学们好！今天我们要认识一个特别神奇的"带子"——叫莫比乌斯带。它是一个德国数学家 August Möbius 在一八五八年想出来的。
 
@@ -44503,7 +44600,7 @@ XXX
   }
 },
 {
-  id: 'EX03', cat: '前沿', title: '克莱因瓶（不可定向曲面）',
+  id: 'EX03', type: 'axiom_theorem',  cat: '前沿', title: '克莱因瓶（不可定向曲面）',
   intro: '没有内外之分的瓶——莫比乌斯带升级版。',
   explain: `同学们好！今天我们要认识一个特别奇怪的"瓶子"——叫克莱因瓶。它是一个德国数学家 Felix Klein 在一八八二年想出来的。
 
@@ -44540,7 +44637,7 @@ XXX
   }
 },
 {
-  id: 'EX04', cat: '前沿', title: '彭罗斯铺瓦（非周期）',
+  id: 'EX04', type: 'axiom_theorem',  cat: '前沿', title: '彭罗斯铺瓦（非周期）',
   intro: '两种菱形铺满平面，不重复的图案。',
   explain: `同学们好！今天我们要认识一种特别神奇的铺地砖方式——叫彭罗斯铺瓦。它是一个英国数学家 Roger Penrose 在一九七零年代发现的。
 
@@ -44605,7 +44702,7 @@ XXX
   }
 },
 {
-  id: 'EX05', cat: '前沿', title: '欧拉线（重心-垂心-外心共线）',
+  id: 'EX05', type: 'axiom_theorem',  cat: '前沿', title: '欧拉线（重心-垂心-外心共线）',
   intro: '三角形三个心共线——欧拉 1765 年发现。',
   explain: `同学们好！今天我们要认识一个特别漂亮的定理——叫欧拉线。它是一个瑞士数学家 Leonhard Euler 在一七六五年发现的。
 
@@ -44663,7 +44760,7 @@ XXX
 
 
 {
-  id: 'EX06', cat: '前沿', title: '复数可视化（高斯平面）',
+  id: 'EX06', type: 'axiom_theorem',  cat: '前沿', title: '复数可视化（高斯平面）',
   intro: '用 (a, bi) 表示复数，加减乘都变几何变换。',
   explain: `同学们好！今天我们要认识一个特别重要的数学工具——叫复数。它是意大利数学家 Gerolamo Cardano 在一五四五年第一次提出来的，但当时大家都不喜欢它——因为它里面有 √-1，根本没人见过。
 
@@ -44725,7 +44822,7 @@ XXX
   }
 },
 {
-  id: 'EX07', cat: '前沿', title: '四元数（3D 旋转）',
+  id: 'EX07', type: 'axiom_theorem',  cat: '前沿', title: '四元数（3D 旋转）',
   intro: '复数 3D 版：i² + j² + k² = ijk = -1。',
   explain: `同学们好！今天我们要认识一个特别神奇的数——叫四元数。它是一个爱尔兰数学家 William Hamilton 在一八四三年发现的，据说他是突然灵感爆发，在一座桥上把公式刻在了桥墩上！
 
@@ -44814,7 +44911,7 @@ XXX
   }
 },
 {
-  id: 'EX08', cat: '前沿', title: '椭圆曲线 y² = x³ + ax + b',
+  id: 'EX08', type: 'conjecture_open',  cat: '前沿', title: '椭圆曲线 y² = x³ + ax + b',
   intro: 'y² 等于 x³ 加 ax 加 b，密码学核心。',
   explain: `同学们好！今天我们要认识一个特别美丽的曲线——叫椭圆曲线。它的方程看起来很简单：y² = x³ + ax + b。但是这个方程里藏着现代密码学的核心！
 
@@ -44873,7 +44970,7 @@ XXX
   }
 },
 {
-  id: 'EX09', cat: '前沿', title: '庞加莱圆盘（双曲几何）',
+  id: 'EX09', type: 'axiom_theorem',  cat: '前沿', title: '庞加莱圆盘（双曲几何）',
   intro: '把无穷远点挤进单位圆内——非欧几何。',
   explain: `同学们好！今天我们要认识一个特别神奇的几何世界——叫双曲几何。它是十九世纪数学家 Lobachevsky、Bolyai、Riemann 各自独立发现的，其中最直观的模型叫"庞加莱圆盘"。
 
@@ -44947,7 +45044,7 @@ XXX
   }
 },
 {
-  id: 'EX10', cat: '前沿', title: '莫比乌斯变换（保角映射）',
+  id: 'EX10', type: 'axiom_theorem',  cat: '前沿', title: '莫比乌斯变换（保角映射）',
   intro: '复平面的"分数线性变换"，把圆映到圆。',
   explain: `同学们好！今天我们要认识一个特别强大的数学工具——叫莫比乌斯变换。它是复平面上的"分式线性变换"：f(z) = (az + b) / (cz + d)，其中 a、b、c、d 是复数。
 
@@ -45063,7 +45160,7 @@ XXX
 
 
 {
-  id: 'EX11', cat: '前沿', title: '黎曼 ζ 函数可视化',
+  id: 'EX11', type: 'conjecture_open',  cat: '前沿', title: '黎曼 ζ 函数可视化',
   intro: 'Σ 1/n^s，s=1 时发散；s=2 时等于 π²/6。',
   explain: `同学们好！今天我们要认识一个数学里最美的函数——叫黎曼 ζ 函数。它是德国数学家 Bernhard Riemann 在一八五九年研究的，现在仍然是数学里最大的未解之谜之一。
 
@@ -45120,7 +45217,7 @@ Riemann 还发现了一件神奇的事：ζ(s) = 0 的时候，有一些很特�
 // EX12
 //================================================================
 {
-  id: 'EX12', cat: '前沿', title: '高斯素数（高斯整数环）',
+  id: 'EX12', type: 'axiom_theorem',  cat: '前沿', title: '高斯素数（高斯整数环）',
   intro: '复数 a+bi 中的素数——a²+b² 形式分解。',
   explain: `同学们好！今天我们要去复数世界里找"素数"——叫高斯素数。它是一个德国数学家 Carl Friedrich Gauss 在一八三二年系统研究的。
 
@@ -45183,7 +45280,7 @@ Riemann 还发现了一件神奇的事：ζ(s) = 0 的时候，有一些很特�
 // EX13
 //================================================================
 {
-  id: 'EX13', cat: '前沿', title: '切比雪夫多项式',
+  id: 'EX13', type: 'axiom_theorem',  cat: '前沿', title: '切比雪夫多项式',
   intro: 'T_n(cos θ) = cos(nθ)，最小化最大误差的多项式。',
   explain: `同学们好！今天我们要认识一个特别有用的多项式家族——叫切比雪夫多项式。它是一个俄罗斯数学家 Pafnuty Chebyshev 在十九世纪提出来的，他在研究机械工程的时候发现了这个巧妙的工具。
 
@@ -45237,7 +45334,7 @@ Riemann 还发现了一件神奇的事：ζ(s) = 0 的时候，有一些很特�
 // EX14
 //================================================================
 {
-  id: 'EX14', cat: '前沿', title: '随机矩阵特征值分布',
+  id: 'EX14', type: 'conjecture_open',  cat: '前沿', title: '随机矩阵特征值分布',
   intro: 'N×N 随机矩阵特征值在复平面上形成圆形分布。',
   explain: `同学们好！今天我们要认识一个让物理学家和数学家都疯狂的领域——叫随机矩阵理论。它研究的是"随机填的矩阵"的特征值分布。
 
@@ -45325,7 +45422,7 @@ Riemann 还发现了一件神奇的事：ζ(s) = 0 的时候，有一些很特�
 // EX15
 //================================================================
 {
-  id: 'EX15', cat: '前沿', title: '模形式（双周期函数）',
+  id: 'EX15', type: 'conjecture_open',  cat: '前沿', title: '模形式（双周期函数）',
   intro: 'f(z) = f(z+1) = f(z+i)——双周期解析函数。',
   explain: `同学们好！今天我们要认识一个数学里最神秘的对象之一——叫模形式。它是十九世纪末数学家研究的"双周期"函数，是现代数论的明珠。
 
@@ -45380,7 +45477,7 @@ Riemann 还发现了一件神奇的事：ζ(s) = 0 的时候，有一些很特�
 
 
 {
-  id: 'EX16', cat: '前沿', title: '椭圆曲线上的同源（ECC 密码学）',
+  id: 'EX16', type: 'axiom_theorem',  cat: '前沿', title: '椭圆曲线上的同源（ECC 密码学）',
   intro: 'ECC 加密核心：y² = x³ + 7 上的点构成阿贝尔群——Bitcoin / TLS 1.3 都用它。',
   explain: `同学们好！今天我们要认识一个现代密码学的核心——叫椭圆曲线密码学。它是 Neal Koblitz 和 Victor Miller 在一九八五年分别独立提出的。
 
@@ -45437,7 +45534,7 @@ P + Q + R = O（三点共线）
   }
 },
 {
-  id: 'EX17', cat: '前沿', title: '量子谐振子波函数 ψ_n(x)',
+  id: 'EX17', type: 'axiom_theorem',  cat: '前沿', title: '量子谐振子波函数 ψ_n(x)',
   intro: 'ψ_n(x) ∝ H_n(x) e^(-x²/2)——量子态，分子振动、晶格声子、量子光场都用。',
   explain: `同学们好！今天我们要认识一个量子力学里最重要的方程——叫量子谐振子。它是薛定谔方程在一维势阱 V(x) = (1/2) mω²x² 下的解，描述了所有"小振动"的量子版本。
 
@@ -45494,7 +45591,7 @@ E_n = (n + 1/2) ℏω, n = 0, 1, 2, ...<br>
   }
 },
 {
-  id: 'EX18', cat: '前沿', title: '马尔可夫链与转移矩阵',
+  id: 'EX18', type: 'axiom_theorem',  cat: '前沿', title: '马尔可夫链与转移矩阵',
   intro: '状态转移矩阵 P^n → 稳态分布——天气、PageRank、MCMC 全用这个模型。',
   explain: `同学们好！今天我们要认识一个概率论里超级重要的工具——叫马尔可夫链。它是一个俄罗斯数学家 Andrey Markov 在一九零六年提出来的——当时他是为了反驳一个观点（说俄语字母里元音和辅音相互独立），于是他研究普希金的诗，发现元音后面跟辅音的概率特别高。
 
@@ -45555,7 +45652,7 @@ P' = (1-d)·E + d·P，其中 E 是均匀矩阵
   }
 },
 {
-  id: 'EX19', cat: '前沿', title: '同伦群示意（基本群 π₁）',
+  id: 'EX19', type: 'conjecture_open',  cat: '前沿', title: '同伦群示意（基本群 π₁）',
   intro: 'π₁(Sⁿ) = 0 vs π₁(S¹) = ℤ——拓扑不变量，连续形变不改变。',
   explain: `同学们好！今天我们要认识一个抽象代数里很深的对象——叫基本群。它是十九世纪末数学家 Henri Poincaré 在研究拓扑时提出的，是代数拓扑的起点。
 
@@ -45616,7 +45713,7 @@ Poincaré 在十九世纪用基本群证明了"球面"和"环面"在拓扑上不
   }
 },
 {
-  id: 'EX20', cat: '前沿', title: '高斯积分 ∫e^(-x²)dx = √π',
+  id: 'EX20', type: 'axiom_theorem',  cat: '前沿', title: '高斯积分 ∫e^(-x²)dx = √π',
   intro: '用极坐标算 e^(-x²) 的积分——正态分布、概率论、量子场论的基础。',
   explain: `同学们好！今天我们要认识一个数学里最美的等式——叫高斯积分：∫_{-∞}^{∞} e^(-x²) dx = √π。
 
@@ -45680,146 +45777,183 @@ I = √π ✓
 
 
   {
-  id: 'EX_PROVEN_01', cat: '已证', title: '挂谷集的几何构造（Kakeya 1928 → Besicovitch）',
+  id: 'EX_PROVEN_01', type: 'conjecture_proven',  cat: '已证', title: '挂谷集的几何构造（Kakeya 1928 → Besicovitch）',
   intro: '1917 年日本数学家挂谷宗一提出"小厕所转棒"问题；1928 年 Besicovitch 构造出面积可任意小的挂谷集——用佩龙树"劈-叠"。',
   audioUrl: 'audio/EX_PROVEN_01_explain.mp3',
   stages: getStagesEX_PROVEN_01(),
   render: (h) => initStage_EX_PROVEN_01_initAll(h)
 },
   {
-  id: 'EX_PROVEN_02', cat: '已证', title: '2D 挂谷猜想证明（Davies 1971）',
+  id: 'EX_PROVEN_02', type: 'conjecture_proven',  cat: '已证', title: '2D 挂谷猜想证明（Davies 1971）',
   intro: '1971 年英国数学家 R.O. Davies 完整证明：二维平面中挂谷集的 Hausdorff 维数 = 2。用"夹"法：上界 ≤ 2，下界 ≥ 2。',
   audioUrl: 'audio/EX_PROVEN_02_explain.mp3',
   stages: getStagesEX_PROVEN_02(),
   render: (h) => initStage_EX_PROVEN_02_initAll(h)
 },
   {
-  id: 'EX_PROVEN_03', cat: '已证', title: '2D 黏性挂谷集（王虹 2022 简化）',
+  id: 'EX_PROVEN_03', type: 'conjecture_proven',  cat: '已证', title: '2D 黏性挂谷集（王虹 2022 简化）',
   intro: '黏性 Kakeya 集：所有方向的针"黏"成细管。Wolff 1999 首次形式化，王虹 2022 给出 6 页简化证明。关键结论：dim 仍 = 2。',
   audioUrl: 'audio/EX_PROVEN_03_explain.mp3',
   stages: getStagesEX_PROVEN_03(),
   render: (h) => initStage_EX_PROVEN_03_initAll(h)
 },
   {
-  id: 'EX_PROVEN_04', cat: '已证', title: '3D 挂谷猜想 Wolff 下界（1999）',
+  id: 'EX_PROVEN_04', type: 'conjecture_proven',  cat: '已证', title: '3D 挂谷猜想 Wolff 下界（1999）',
   intro: 'Thomas Wolff 1999 证明：3D 空间中挂谷集的 Hausdorff 维数 ≥ 2.5。核心工具是"烧饼估计"（platter estimate），开启了后续 26 年的 3D 攻坚。',
   audioUrl: 'audio/EX_PROVEN_04_explain.mp3',
   stages: getStagesEX_PROVEN_04(),
   render: (h) => initStage_EX_PROVEN_04_initAll(h)
 },
   {
-  id: 'EX_PROVEN_05', cat: '已证', title: '3D 黏性 Kakeya 证明 (王虹+Zahl 2022)',
+  id: 'EX_PROVEN_05', type: 'conjecture_proven',  cat: '已证', title: '3D 黏性 Kakeya 证明 (王虹+Zahl 2022)',
   intro: '2022 年王虹 (Hong Wang) 与 Joshua Zahl 证明：3D 中「黏性 Kakeya 集」（方向相似细管抱团）的 Hausdorff 维数 = 3。这是攻克百年挂谷猜想的关键第一步。',
   audioUrl: 'audio/EX_PROVEN_05_explain.mp3',
   stages: getStagesEX_PROVEN_05(),
   render: (h) => initStage_EX_PROVEN_05_initAll(h)
 },
   {
-  id: 'EX_PROVEN_06', cat: '已证', title: '3D 挂谷 Assouad 维数 (王虹+Zahl 2024)',
+  id: 'EX_PROVEN_06', type: 'conjecture_proven',  cat: '已证', title: '3D 挂谷 Assouad 维数 (王虹+Zahl 2024)',
   intro: '2024 年王虹 (Hong Wang) 与 Joshua Zahl 进一步证明：3D Kakeya 集的 Assouad 维数（比 Minkowski 维数更强的局部放大指标）也 = 3。这是黏性 Kakeya 之后的第二步里程碑。',
   audioUrl: 'audio/EX_PROVEN_06_explain.mp3',
   stages: getStagesEX_PROVEN_06(),
   render: (h) => initStage_EX_PROVEN_06_initAll(h)
 },
   {
-  id: 'EX_PROVEN_07', cat: '已证', title: '3D 挂谷猜想完整证明 (王虹+Zahl 2025) ★最重磅★',
+  id: 'EX_PROVEN_07', type: 'conjecture_proven',  cat: '已证', title: '3D 挂谷猜想完整证明 (王虹+Zahl 2025) ★最重磅★',
   intro: '公元 2025 年 2 月，王虹 (Hong Wang) 与 Joshua Zahl 发表 127 页论文 (arXiv:2502.17655)，完整证明 3D Kakeya 猜想的 Hausdorff 维数 + Minkowski 维数都 = 3，结束了这个 1917 年悬而未决的百年问题。',
   audioUrl: 'audio/EX_PROVEN_07_explain.mp3',
   stages: getStagesEX_PROVEN_07(),
   render: (h) => initStage_EX_PROVEN_07_initAll(h)
 },
   {
-  id: 'EX_PROVEN_08', cat: '已证', title: 'Falconer 距离集 2D 突破 (王虹+Guth+Du 2024)',
+  id: 'EX_PROVEN_08', type: 'conjecture_proven',  cat: '已证', title: 'Falconer 距离集 2D 突破 (王虹+Guth+Du 2024)',
   intro: '2024 年王虹 (Hong Wang) 与 Larry Guth (MIT)、Du (杜亚楠) 合作证明 2D 情形下 Falconer 距离猜想的关键临界指数下界，将这个 1985 年悬而未决的猜想推进了一大步。',
   audioUrl: 'audio/EX_PROVEN_08_explain.mp3',
   stages: getStagesEX_PROVEN_08(),
   render: (h) => initStage_EX_PROVEN_08_initAll(h)
 },
   {
-  id: 'EX_PROVEN_09', cat: '已证', title: 'Furstenberg 集合猜想完整证明（王虹 2024）',
+  id: 'EX_PROVEN_09', type: 'conjecture_proven',  cat: '已证', title: 'Furstenberg 集合猜想完整证明（王虹 2024）',
   intro: '1970 Furstenberg 提出：自然数中上密度正的子集 A，其加法表 A+A 必含任意长等差数列。54 年悬案，2024 王虹与合作者用动力系统 + 加法组合完整解决。',
   audioUrl: 'audio/EX_PROVEN_09_explain.mp3',
   stages: getStagesEX_PROVEN_09(),
   render: (h) => initStage_EX_PROVEN_09_initAll(h)
 },
   {
-  id: 'EX_PROVEN_10', cat: '已证', title: '调和分析猜想之塔（Fefferman-王虹）',
+  id: 'EX_PROVEN_10', type: 'conjecture_proven',  cat: '已证', title: '调和分析猜想之塔（Fefferman-王虹）',
   intro: '调和分析有四层互相联系的猜想：挂谷（底）→ 限制 → Bochner-Riesz → 局部光滑化（顶）。王虹 + Guth + Zahl 2025 完整证明挂谷猜想，相当于夯实了整座塔的地基。',
   audioUrl: 'audio/EX_PROVEN_10_explain.mp3',
   stages: getStagesEX_PROVEN_10(),
   render: (h) => initStage_EX_PROVEN_10_initAll(h)
 },
   {
-  id: 'EX_PROVEN_11', cat: '已证', title: '希尔伯特第六问题（狭义）—— 邓煜+马骁+Hani 2025',
+  id: 'EX_PROVEN_11', type: 'conjecture_proven',  cat: '已证', title: '希尔伯特第六问题（狭义）—— 邓煜+马骁+Hani 2025',
   intro: '1900 年希尔伯特在 23 个问题中第 6 个：流体力学公理化。125 年后，邓煜+马骁+Zaher Hani 2025 用硬球系统 + 玻尔兹曼方程 + Navier-Stokes 推导链，完整解决狭义版本。',
   audioUrl: 'audio/EX_PROVEN_11_explain.mp3',
   stages: getStagesEX_PROVEN_11(),
   render: (h) => initStage_EX_PROVEN_11_initAll(h)
 },
   {
-  id: 'EX_PROVEN_12', cat: '已证', title: '硬球系统 → 玻尔兹曼方程推导（邓煜+马骁+Hani 2025）',
+  id: 'EX_PROVEN_12', type: 'conjecture_proven',  cat: '已证', title: '硬球系统 → 玻尔兹曼方程推导（邓煜+马骁+Hani 2025）',
   intro: '1 升气体 = 3×10²² 个分子。邓煜+马骁+Hani 2025 严格证明：硬球系统在低密度极限下，宏观必然满足 Boltzmann 方程。从微观到宏观的桥梁，153 年悬案落地。',
   audioUrl: 'audio/EX_PROVEN_12_explain.mp3',
   stages: getStagesEX_PROVEN_12(),
   render: (h) => initStage_EX_PROVEN_12_initAll(h)
 },
   {
-  id: 'EX_PROVEN_13', cat: '已证', title: 'Boltzmann → Navier-Stokes 推导链（邓煜+马骁+Hani 2025）',
+  id: 'EX_PROVEN_13', type: 'conjecture_proven',  cat: '已证', title: 'Boltzmann → Navier-Stokes 推导链（邓煜+马骁+Hani 2025）',
   intro: '1872 年 Boltzmann 分子动力学方程 → 2025 年邓煜+马骁+Hani 严格推导出可压缩 Navier-Stokes 方程。两百年的跨尺度推导链，把 10²⁵ 个分子和连续流体连起来。',
   audioUrl: 'audio/EX_PROVEN_13_explain.mp3',
   stages: getStagesEX_PROVEN_13(),
   render: (h) => initStage_EX_PROVEN_13_initAll(h)
 },
   {
-  id: 'EX_PROVEN_14', cat: '已证', title: '庞加莱猜想证明（Perelman 2003）',
+  id: 'EX_PROVEN_14', type: 'conjecture_proven',  cat: '已证', title: '庞加莱猜想证明（Perelman 2003）',
   intro: '1904 年庞加莱提出 3 维球面是唯一封闭 3-流形，2003 年俄裔数学家 Grigori Perelman 用 Ricci flow + 手术给出证明，2006 年拒领菲尔兹奖 + 千禧百万奖金。',
   audioUrl: 'audio/EX_PROVEN_14_explain.mp3',
   stages: getStagesEX_PROVEN_14(),
   render: (h) => initStage_EX_PROVEN_14_initAll(h)
 },
   {
-  id: 'EX_PROVEN_15', cat: '已证', title: 'Ricci flow 几何演化方程（Hamilton 1982, Perelman 2003 改进）',
+  id: 'EX_PROVEN_15', type: 'conjecture_proven',  cat: '已证', title: 'Ricci flow 几何演化方程（Hamilton 1982, Perelman 2003 改进）',
   intro: '1982 年 Hamilton 引入，2003 年 Perelman 用 Ricci flow + 手术 (surgery) 证明庞加莱猜想；2006 年朱熹平/曹怀东给出 500+ 页完整补充。',
   audioUrl: 'audio/EX_PROVEN_15_explain.mp3',
   stages: getStagesEX_PROVEN_15(),
   render: (h) => initStage_EX_PROVEN_15_initAll(h)
 },
   {
-  id: 'EX_PROVEN_16', cat: '已证', title: '费马大定理证明（Wiles 1995 + Taylor-Wiles）',
+  id: 'EX_PROVEN_16', type: 'conjecture_proven',  cat: '已证', title: '费马大定理证明（Wiles 1995 + Taylor-Wiles）',
   intro: '1637 年费马在《算术》页边写下 xⁿ+yⁿ=zⁿ 无正整数解的猜想，1995 年 Andrew Wiles 用椭圆曲线 + 模形式给出 109 页完整证明。',
   audioUrl: 'audio/EX_PROVEN_16_explain.mp3',
   stages: getStagesEX_PROVEN_16(),
   render: (h) => initStage_EX_PROVEN_16_initAll(h)
 },
   {
-  id: 'EX_PROVEN_17', cat: '已证', title: '谷山-志村猜想的部分证明（Wiles）',
+  id: 'EX_PROVEN_17', type: 'conjecture_proven',  cat: '已证', title: '谷山-志村猜想的部分证明（Wiles）',
   intro: '1955 年日本数学家谷山丰提出"每条椭圆曲线都对应一个模形式"，Wiles 1995 年证明半稳定情形（间接证明费马大定理）。',
   audioUrl: 'audio/EX_PROVEN_17_explain.mp3',
   stages: getStagesEX_PROVEN_17(),
   render: (h) => initStage_EX_PROVEN_17_initAll(h)
 },
   {
-  id: 'EX_PROVEN_18', cat: '已证', title: '孪生素数有界间隙（张益唐 2013）',
+  id: 'EX_PROVEN_18', type: 'conjecture_proven',  cat: '已证', title: '孪生素数有界间隙（张益唐 2013）',
   intro: '孪生素数（差 2 的素数对）猜想：张益唐 2013 年证明存在无穷多对、间隙有界 < 7000 万，论文引发数学界轰动。',
   audioUrl: 'audio/EX_PROVEN_18_explain.mp3',
   stages: getStagesEX_PROVEN_18(),
   render: (h) => initStage_EX_PROVEN_18_initAll(h)
 },
   {
-  id: 'EX_PROVEN_19', cat: '已证', title: '弱哥德巴赫证明（Helfgott 2013）',
+  id: 'EX_PROVEN_19', type: 'conjecture_proven',  cat: '已证', title: '弱哥德巴赫证明（Helfgott 2013）',
   intro: '1742 年 Goldbach 提出"每个奇数 = 三个素数之和"。Helfgott 2013 用圆法完整证明——从 Vinogradov 1937 的"足够大"到 2013 的"每个都成立"，走了 76 年。',
   audioUrl: 'audio/EX_PROVEN_19_explain.mp3',
   stages: getStagesEX_PROVEN_19(),
   render: (h) => initStage_EX_PROVEN_19_initAll(h)
 },
   {
-  id: 'EX_PROVEN_20', cat: '已证', title: 'Calabi 猜想证明（丘成桐 1976）—— 首位华人菲尔兹奖',
+  id: 'EX_PROVEN_20', type: 'conjecture_proven',  cat: '已证', title: 'Calabi 猜想证明（丘成桐 1976）—— 首位华人菲尔兹奖',
   intro: 'Calabi 1954 猜测"封闭 Kähler 流形上的 Ricci 形式有唯一 Kähler 形式满足它"。丘成桐 1976 年用偏微分方程完整证明，1982 年获菲尔兹奖——首位华人菲尔兹奖得主。',
   audioUrl: 'audio/EX_PROVEN_20_explain.mp3',
   stages: getStagesEX_PROVEN_20(),
   render: (h) => initStage_EX_PROVEN_20_initAll(h)
 },
 ]; // EXPERIMENTS 结束
+
+
+// ===== Mavis 引导卡播放控制 (v17) =====
+(function() {
+  const audio = document.getElementById('mavisIntroAudio');
+  const playBtn = document.getElementById('playMavisIntro');
+  const skipBtn = document.getElementById('mavisSkip');
+  const pauseBtn = document.getElementById('mavisPause');
+  const progress = document.getElementById('mavisProgress');
+  const timeEl = document.getElementById('mavisTime');
+  const durEl = document.getElementById('mavisDuration');
+  if (!audio) return;
+
+  function fmt(s) { const m = Math.floor(s/60); const sec = Math.floor(s%60); return m + ':' + (sec<10?'0':'') + sec; }
+
+  playBtn.onclick = () => {
+    audio.play();
+    progress.style.display = 'block';
+    playBtn.style.display = 'none';
+  };
+  pauseBtn.onclick = () => {
+    if (audio.paused) { audio.play(); pauseBtn.textContent = '⏸ 暂停'; }
+    else { audio.pause(); pauseBtn.textContent = '▶ 继续'; }
+  };
+  skipBtn.onclick = () => {
+    audio.pause();
+    progress.style.display = 'none';
+    playBtn.style.display = 'inline-block';
+  };
+  audio.addEventListener('loadedmetadata', () => { durEl.textContent = fmt(audio.duration); });
+  audio.addEventListener('timeupdate', () => { timeEl.textContent = fmt(audio.currentTime); });
+  audio.addEventListener('ended', () => {
+    progress.style.display = 'none';
+    playBtn.style.display = 'inline-block';
+    playBtn.textContent = '🔁 再听一次';
+  });
+})();
 
 /* ===================== 广场渲染 ===================== */
 const plazaGrid = document.getElementById('plazaGrid');
@@ -45828,7 +45962,15 @@ const plazaCats = document.getElementById('plazaCats');
 const plazaClear = document.getElementById('plazaClear');
 const plazaDetail = document.getElementById('plazaDetail');
 let plazaCurrentCat = '全部';
+let plazaCurrentType = 'all';  // v17: type 过滤 all/axiom_theorem/conjecture_open/conjecture_proven
 let plazaCurrentExp = null;
+
+const TYPE_INTRO = {
+  'axiom_theorem': '📘 <strong>基础公理/定理可视化</strong>：从小学加法、勾股定理，到圆周率、素数、群论——这些是数学家已经证明好的"基本工具"，在这里被做成可以亲手玩的小游戏。',
+  'conjecture_open': '🔍 <strong>尚未证明的猜想</strong>：黎曼 ζ、哥德巴赫、BSD、孪生素数……这些是数学家们还没攻下的堡垒，每一个都悬赏百万美金。看看这些"还没解开的谜"，感受数学未解之谜的魅力。',
+  'conjecture_proven': '🏆 <strong>已被证明的猜想</strong>：从 1995 年怀尔斯证明费马大定理，到 2003 年佩雷尔曼证明庞加莱猜想，再到 <strong>2025 年中国数学家王虹完整证明 3D 挂谷猜想</strong>，<strong>邓煜完整证明狭义希尔伯特第六问题</strong>——这些是数学史上的伟大时刻，每一步都改写了人类认知。'
+};
+
 
 function plazaRenderCats() {
   const cats = ['全部', ...Object.keys(PLAZA_CATEGORIES)];
@@ -45848,20 +45990,51 @@ function plazaRenderGrid() {
   const q = plazaSearch.value.toLowerCase();
   const filtered = EXPERIMENTS.filter(e => {
     if (plazaCurrentCat !== '全部' && e.cat !== plazaCurrentCat) return false;
+    if (plazaCurrentType !== 'all' && e.type !== plazaCurrentType) return false;  // v17
     if (q && !(e.id.toLowerCase().includes(q) || e.title.toLowerCase().includes(q) || e.intro.toLowerCase().includes(q) || e.cat.toLowerCase().includes(q))) return false;
     return true;
   });
-  plazaGrid.innerHTML = filtered.map(e =>
-    `<a class="plaza-card" href="pages/${e.id}.html" data-id="${e.id}" style="text-decoration: none; color: inherit; display: block;">
+  plazaGrid.innerHTML = filtered.map(e => {
+    // v17: type 标签
+    const typeMeta = e.type === 'conjecture_proven' ? {color:'#10b981', icon:'🏆', label:'已证猜想'}
+      : e.type === 'conjecture_open' ? {color:'#f59e0b', icon:'🔍', label:'未解猜想'}
+      : {color:'#2563eb', icon:'📘', label:'定理'};
+    return `<a class="plaza-card" href="pages/${e.id}.html" data-id="${e.id}" style="text-decoration: none; color: inherit; display: block;">
       <span class="cat-tag ${PLAZA_CATEGORIES[e.cat]}">${e.cat}</span>
+      <span class="type-tag" style="position:absolute; top:8px; right:8px; background:${typeMeta.color}; color:white; padding:2px 8px; border-radius:10px; font-size:11px;">${typeMeta.icon} ${typeMeta.label}</span>
       <span class="id-tag">${e.id}</span>
       <div class="title">${e.title}</div>
       <p class="intro">${e.intro}</p>
-    </a>`
-  ).join('');
+    </a>`;
+  }).join('');
   const cnt = document.getElementById('plazaCount');
   if (cnt) cnt.textContent = `共 ${EXPERIMENTS.length} 个实验（显示 ${filtered.length}）`;
 }
+
+// v17: type tab 切换
+document.querySelectorAll('.type-tab').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.type-tab').forEach(b => {
+      b.classList.remove('active');
+      b.style.background = 'white';
+      b.style.color = b.style.borderColor;
+    });
+    btn.classList.add('active');
+    btn.style.background = btn.style.borderColor;
+    btn.style.color = 'white';
+    plazaCurrentType = btn.dataset.type;
+    // 显示/隐藏 type 介绍卡
+    const card = document.getElementById('typeIntroCard');
+    const txt = document.getElementById('typeIntroText');
+    if (plazaCurrentType === 'all') {
+      card.style.display = 'none';
+    } else {
+      card.style.display = 'block';
+      txt.innerHTML = TYPE_INTRO[plazaCurrentType] || '';
+    }
+    plazaRenderGrid();
+  };
+});
 
 
 
