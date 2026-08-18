@@ -1,0 +1,302 @@
+[
+  {
+    "name": "NT01_s1_short",
+    "text": "一个正整数 n 的 真因子 （除了自己以外的因子）加起来 正好等于 n 本身 ——这就是 完美数。 6 = 1 + 2 + 3 真因子：1, 2, 3 → 和 ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s1_short.mp3"
+  },
+  {
+    "name": "NT01_s1",
+    "text": "一个正整数 n 的 真因子 （除了自己以外的因子）加起来 正好等于 n 本身 ——这就是 完美数。 6 = 1 + 2 + 3 真因子：1, 2, 3 → 和 = 6  28 = 1 + 2 + 4 + 7 + 14 真因子之和 = 28  496 1+2+4+8+16+31+62+124+248 下一个完美数   问题 ：怎么知道一个数是不是完美数。让我们来\\\"算\\\"。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s1.mp3"
+  },
+  {
+    "name": "NT01_s2_short",
+    "text": "输入一个数 n，AI 自动列出所有真因子并求和——看它是不是\\\"完美\\\"。  输入 n： 6 12 28 100 496 ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s2_short.mp3"
+  },
+  {
+    "name": "NT01_s2",
+    "text": "输入一个数 n，AI 自动列出所有真因子并求和——看它是不是\\\"完美\\\"。  输入 n： 6 12 28 100 496  观察 ：6、28、496 完美，12、100 都不完美—— 完美数真稀有。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s2.mp3"
+  },
+  {
+    "name": "NT01_s3_short",
+    "text": "扫一遍 1 到 10000 的所有数， 高亮完美数。 扫到 N = ▶ 扫描 共找到 4 个完美数  规律...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s3_short.mp3"
+  },
+  {
+    "name": "NT01_s3",
+    "text": "扫一遍 1 到 10000 的所有数， 高亮完美数。 扫到 N = ▶ 扫描 共找到 4 个完美数  规律 ：完美数越来越稀——6, 28, 496, 8128, 33550336（下一个就到 3000 万了。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s3.mp3"
+  },
+  {
+    "name": "NT01_s4_short",
+    "text": "欧几里得发现： 所有偶完美数都长成 2 p−1 × (2 p − 1) ，其中 2 p − 1 必须是 梅森素数。 N = 2 p−1 × (2 p − 1) = 完美数 ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s4_short.mp3"
+  },
+  {
+    "name": "NT01_s4",
+    "text": "欧几里得发现： 所有偶完美数都长成 2 p−1 × (2 p − 1) ，其中 2 p − 1 必须是 梅森素数。 N = 2 p−1 × (2 p − 1) = 完美数 当且仅当 2 p − 1 是素数（梅森素数）  前 5 个梅森素数 → 完美数： p 2^p−1 素数。完美数 N 2 3  6 3 7  28 5 31  496 7 127  8128 13 8191  33550336  意义 ：找完美数 ⇔ ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s4.mp3"
+  },
+  {
+    "name": "NT01_s5_short",
+    "text": "从公元前 6 世纪毕达哥拉斯发现 6，到 2018 年 GIMPS 找到第 51 个——完美数问题走过了 2500 多年。  奇完美数 ：所有已知完美数都是偶数。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s5_short.mp3"
+  },
+  {
+    "name": "NT01_s5",
+    "text": "从公元前 6 世纪毕达哥拉斯发现 6，到 2018 年 GIMPS 找到第 51 个——完美数问题走过了 2500 多年。  奇完美数 ：所有已知完美数都是偶数。数学家验证到 10 1500 都没找到奇完美数——但 没人能证明它不存在。  结语 ：完美数虽稀，但从 6 到 5000 万位的路上，藏着一整部数学史。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT01_s5.mp3"
+  },
+  {
+    "name": "NT03_s1_short",
+    "text": "每个正整数都有真因子——比较 σ(n)（真因子之和）与 n 自身： σ(n) 亏数 例：8 (σ=7)、10 (σ=8) σ(n) = n ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s1_short.mp3"
+  },
+  {
+    "name": "NT03_s1",
+    "text": "每个正整数都有真因子——比较 σ(n)（真因子之和）与 n 自身： σ(n) 亏数 例：8 (σ=7)、10 (σ=8) σ(n) = n 完美数 例：6 (σ=6)、28 (σ=28) σ(n) > n 过剩数 例：12 (σ=16)、18 (σ=21)  比例 ：自然数里亏数约 76%，过剩数约 24%，完美数 几乎为 0。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s1.mp3"
+  },
+  {
+    "name": "NT03_s2_short",
+    "text": "输入 n，立刻看到 σ(n) 和分类： n = 8 12 18 28 100  观察 ：质数必是...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s2_short.mp3"
+  },
+  {
+    "name": "NT03_s2",
+    "text": "输入 n，立刻看到 σ(n) 和分类： n = 8 12 18 28 100  观察 ：质数必是 亏数 （σ=p+1>p）；完全平方数（如 9、25、49）也是亏数。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s2.mp3"
+  },
+  {
+    "name": "NT03_s3_short",
+    "text": "扫描 1 到 N，画出每个数 σ/n 的 柱状图 ——三色分三堆： 扫到 N = ▶ 扫描  趋势 ：随 N 增大， 亏...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s3_short.mp3"
+  },
+  {
+    "name": "NT03_s3",
+    "text": "扫描 1 到 N，画出每个数 σ/n 的 柱状图 ——三色分三堆： 扫到 N = ▶ 扫描  趋势 ：随 N 增大， 亏数比例缓慢下降 ，但永远 > 50%。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s3.mp3"
+  },
+  {
+    "name": "NT03_s4_short",
+    "text": "画 3 条比例曲线（蓝=亏、黄=完、红=过）看 N → ∞ 时趋近什么： ▶ 扫描 5 个 N  极限 ：亏数比 ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s4_short.mp3"
+  },
+  {
+    "name": "NT03_s4",
+    "text": "画 3 条比例曲线（蓝=亏、黄=完、红=过）看 N → ∞ 时趋近什么： ▶ 扫描 5 个 N  极限 ：亏数比 ≈ 76.5%，过剩数比 ≈ 23.5%，完美数几乎 0%（精确到 51 个）。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s4.mp3"
+  },
+  {
+    "name": "NT03_s5_short",
+    "text": "\\\"亏/完美/过剩\\\"分类最早由古希腊数学家给出， 2000 多年 的小问题：  奇亏数猜想 ：奇数中亏数只占少数——已验证 10 10 内有 1, 9, 25, 49...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s5_short.mp3"
+  },
+  {
+    "name": "NT03_s5",
+    "text": "\\\"亏/完美/过剩\\\"分类最早由古希腊数学家给出， 2000 多年 的小问题：  奇亏数猜想 ：奇数中亏数只占少数——已验证 10 10 内有 1, 9, 25, 49, 81, 121, 169... 全部是平方数。 是否所有奇亏数都是 完全平方数。  意义 ：简单分类藏着深问题——每个数都能被\\\"装进三堆\\\"，但堆里有什么规律。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/NT03_s5.mp3"
+  },
+  {
+    "name": "PB01_s1_short",
+    "text": "23 人中至少 2 人同生日概率 50.7% ——直觉说\\\"小\\\"，数学说\\\"过半\\\"。 23 人数 n 远小于 365 253 C(23, ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s1_short.mp3"
+  },
+  {
+    "name": "PB01_s1",
+    "text": "23 人中至少 2 人同生日概率 50.7% ——直觉说\\\"小\\\"，数学说\\\"过半\\\"。 23 人数 n 远小于 365 253 C(23, 2) 配对数 任两人都要比较 50.7% P(撞日) ≈ 1/2 过半概率  核心 ：不是 1 人 vs 365 天，是 C(n,2) 对人任一配对撞日，组合爆炸。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s1.mp3"
+  },
+  {
+    "name": "PB01_s2_short",
+    "text": "输入 n, 算理论概率 P(至少一对同生日)： n = n=10 n=23 n=50 n=70  公式...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s2_short.mp3"
+  },
+  {
+    "name": "PB01_s2",
+    "text": "输入 n, 算理论概率 P(至少一对同生日)： n = n=10 n=23 n=50 n=70  公式 ：P = 1 − ∏ i=0..n−1 (365−i)/365。n=50 撞日率 97%。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s2.mp3"
+  },
+  {
+    "name": "PB01_s3_short",
+    "text": "n 从 1 扫到 80，看概率曲线何时穿过 50%：  观察 ：n=23 穿过 50%；n=70 撞日率 99.9%。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s3_short.mp3"
+  },
+  {
+    "name": "PB01_s3",
+    "text": "n 从 1 扫到 80，看概率曲线何时穿过 50%：  观察 ：n=23 穿过 50%；n=70 撞日率 99.9%。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s3.mp3"
+  },
+  {
+    "name": "PB01_s4_short",
+    "text": "解方程 1 − ∏(1−i/365) = 0.5，看精确临界值： ▶ 找临界 n ▶ 关键 n 对照  应用 ：生日攻击 128 位...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s4_short.mp3"
+  },
+  {
+    "name": "PB01_s4",
+    "text": "解方程 1 − ∏(1−i/365) = 0.5，看精确临界值： ▶ 找临界 n ▶ 关键 n 对照  应用 ：生日攻击 128 位哈希只需 2⁶⁴ ≈ 1.8×10¹⁹ 次，远小于 2¹²⁸。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s4.mp3"
+  },
+  {
+    "name": "PB01_s5_short",
+    "text": "从 1939 提出到 2007 生日攻击破解——一组人/数/人/历史。  关联 ：鸽巢原理的\\\"概率版\\\"——抽屉原理在人/日期上的应用。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s5_short.mp3"
+  },
+  {
+    "name": "PB01_s5",
+    "text": "从 1939 提出到 2007 生日攻击破解——一组人/数/人/历史。  关联 ：鸽巢原理的\\\"概率版\\\"——抽屉原理在人/日期上的应用。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PB01_s5.mp3"
+  },
+  {
+    "name": "PE01_s1_short",
+    "text": "π/2 = ∏ (2k·2k) / ((2k-1)(2k+1)) ——奇偶交叉相乘，逼近 π。 4/3 k=1: 2·2/(1·3) 第一项 16/...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s1_short.mp3"
+  },
+  {
+    "name": "PE01_s1",
+    "text": "π/2 = ∏ (2k·2k) / ((2k-1)(2k+1)) ——奇偶交叉相乘，逼近 π。 4/3 k=1: 2·2/(1·3) 第一项 16/15 k=2: 4·4/(3·5) 接近 1 3.1415... 前 10000 项 逐步逼近 π  1655 John 沃利斯 发现。慢但优雅：每加 10 倍项，π 估值多 1 位。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s1.mp3"
+  },
+  {
+    "name": "PE01_s2_short",
+    "text": "输入 N，累乘前 N 项： N = N=1000 N=10000 N=50000  慢但稳 ：每加 10 倍...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s2_short.mp3"
+  },
+  {
+    "name": "PE01_s2",
+    "text": "输入 N，累乘前 N 项： N = N=1000 N=10000 N=50000  慢但稳 ：每加 10 倍项，多准约 1 位。N=100000 大约 3.14157... 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s2.mp3"
+  },
+  {
+    "name": "PE01_s3_short",
+    "text": "N 越大 π 估值越准——观察\\\"线性收敛\\\"：  规律 ：每加 10 倍项，误差减半（O(1/N) 收敛） 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s3_short.mp3"
+  },
+  {
+    "name": "PE01_s3",
+    "text": "N 越大 π 估值越准——观察\\\"线性收敛\\\"：  规律 ：每加 10 倍项，误差减半（O(1/N) 收敛） 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s3.mp3"
+  },
+  {
+    "name": "PE01_s4_short",
+    "text": "沃利斯 vs 莱布尼茨：两种\\\"线性收敛\\\"算法比较： N = ▶ 对比  结论 ：收敛速度几乎一样；沃利斯 分子分母都是整数，更适...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s4_short.mp3"
+  },
+  {
+    "name": "PE01_s4",
+    "text": "沃利斯 vs 莱布尼茨：两种\\\"线性收敛\\\"算法比较： N = ▶ 对比  结论 ：收敛速度几乎一样；沃利斯 分子分母都是整数，更适合小学生算 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s4.mp3"
+  },
+  {
+    "name": "PE01_s5_short",
+    "text": "1655 年提出 → 1730 沃利斯 公式推出 斯特林 公式 → 现在  关联 ：从 沃利斯 公式出发可推出 斯特林 公式 n。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s5_short.mp3"
+  },
+  {
+    "name": "PE01_s5",
+    "text": "1655 年提出 → 1730 沃利斯 公式推出 斯特林 公式 → 现在  关联 ：从 沃利斯 公式出发可推出 斯特林 公式 n。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PE01_s5.mp3"
+  },
+  {
+    "name": "PR06_s1_short",
+    "text": "输入一个偶数 N，看看能拆成多少种\\\"两个素数之和\\\"：  偶数 N = 4 6 10 20 50 100 1000 \\...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s1_short.mp3"
+  },
+  {
+    "name": "PR06_s1",
+    "text": "输入一个偶数 N，看看能拆成多少种\\\"两个素数之和\\\"：  偶数 N = 4 6 10 20 50 100 1000 N = 100 的所有 两素数之和 配对： 共 8 种配法  观察 ：N 越大，配对数越多还是越少。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s1.mp3"
+  },
+  {
+    "name": "PR06_s2_short",
+    "text": "扫一遍 N = 4 到 N = 1000 的所有偶数，画出\\\"配对数 R(N)\\\"的曲线。 扫到 N = ▶ 扫描 最大 R(N) = ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s2_short.mp3"
+  },
+  {
+    "name": "PR06_s2",
+    "text": "扫一遍 N = 4 到 N = 1000 的所有偶数，画出\\\"配对数 R(N)\\\"的曲线。 扫到 N = ▶ 扫描 最大 R(N) = — ↑ 配对数 R(N) 大致随 N/log(N) 增长—— 大偶数反而\\\"更容易\\\"配。  反直觉 ：偶数越大，配对数越多（不是越少）——所以大偶数 反而更好配 ，这给证明提供了希望。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s2.mp3"
+  },
+  {
+    "name": "PR06_s3_short",
+    "text": "100 以内有 25 个素数。选个偶数 N，看从素数表里能\\\"凑\\\"出几种配对。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s3_short.mp3"
+  },
+  {
+    "name": "PR06_s3",
+    "text": "100 以内有 25 个素数。选个偶数 N，看从素数表里能\\\"凑\\\"出几种配对。  100 以内素数（共 25 个）：  找 N = ▶ 查配对 N = 50 的配对：  小挑战 ：100 = 3+97, 11+89, 17+83... 8 种。偶数越大，配对数越多 ——这就是哥德巴赫猜想的\\\"乐观证据\\\"。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s3.mp3"
+  },
+  {
+    "name": "PR06_s4_short",
+    "text": "强版（两素数）至今未证，但弱版（三素数）2013 年 已被 Helfgott 完全证明。 强哥德巴赫猜想 每个 ≥ 4 偶数 = 两 素数之和 1742 ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s4_short.mp3"
+  },
+  {
+    "name": "PR06_s4",
+    "text": "强版（两素数）至今未证，但弱版（三素数）2013 年 已被 Helfgott 完全证明。 强哥德巴赫猜想 每个 ≥ 4 偶数 = 两 素数之和 1742 提出 → 至今未证  弱哥德巴赫猜想 每个 ≥ 7 奇数 = 三 素数之和 Vinogradov 1937（大奇数）→ Helfgott 2013（全证明）  意义 ：弱版\\\"3 素数\\\"已证，强版\\\"2 素数\\\"未证——这 1 之差 卡了人类 280 年。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s4.mp3"
+  },
+  {
+    "name": "PR06_s5_short",
+    "text": "来真的：扫 N = 4 到 N = 1000 ，每个偶数都查配对——看有没有\\\"反例\\\"。 已扫描偶数： 0 / 499 ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s5_short.mp3"
+  },
+  {
+    "name": "PR06_s5",
+    "text": "来真的：扫 N = 4 到 N = 1000 ，每个偶数都查配对——看有没有\\\"反例\\\"。 已扫描偶数： 0 / 499  有配对： 0  无配对（反例）： 0 ▶ 扫到 1000 ⏹ 实际数学家验证到 4×10¹⁸ （400 亿亿）都没反例。我们这里只扫 1000，但结果一样。 直方图：每个偶数的\\\"配对数\\\"分布  结论 ：1000 之内 100% 都有配对。280 年没人找到反例—...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/PR06_s5.mp3"
+  },
+  {
+    "name": "OT01_s1_short",
+    "text": "3×3 网格填 1-9 各一次，每行/列/对角线之和 都等于 15。 15 每行/列/对角线和 = 45 / 3 5 中心必须是 5 =...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s1_short.mp3"
+  },
+  {
+    "name": "OT01_s1",
+    "text": "3×3 网格填 1-9 各一次，每行/列/对角线之和 都等于 15。 15 每行/列/对角线和 = 45 / 3 5 中心必须是 5 = 1-9 平均数 8 本质解的变体数 4 旋转 × 2 镜像  BC 650 中国传说大禹治水时洛水浮出神龟，龟背有此图（洛书） 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s1.mp3"
+  },
+  {
+    "name": "OT01_s2_short",
+    "text": "填入 9 个数字（1-9 各一次），检查行/列/对角线之和： ▶ 验算 填 Lo Shu  必要条件 ：9 个数字...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s2_short.mp3"
+  },
+  {
+    "name": "OT01_s2",
+    "text": "填入 9 个数字（1-9 各一次），检查行/列/对角线之和： ▶ 验算 填 Lo Shu  必要条件 ：9 个数字必须 1-9 各一次、每行每列对角线和 = 15 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s2.mp3"
+  },
+  {
+    "name": "OT01_s3_short",
+    "text": "3×3 幻方本质解只有 1 个，但旋转/镜像产生 8 个变体： ▶ 显示 8 个  Lo Shu 4 9 2 / 3 5 7 / 8 1 ...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s3_short.mp3"
+  },
+  {
+    "name": "OT01_s3",
+    "text": "3×3 幻方本质解只有 1 个，但旋转/镜像产生 8 个变体： ▶ 显示 8 个  Lo Shu 4 9 2 / 3 5 7 / 8 1 6——其它 7 个都是它的旋转/镜像 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s3.mp3"
+  },
+  {
+    "name": "OT01_s4_short",
+    "text": "从 (0, n/2) 开始，按\\\"右上、左下\\\"斜对角填数，遇边界绕回、遇已填则正下方： n = ▶ 构造  暹罗法 ：n=5 任意...",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s4_short.mp3"
+  },
+  {
+    "name": "OT01_s4",
+    "text": "从 (0, n/2) 开始，按\\\"右上、左下\\\"斜对角填数，遇边界绕回、遇已填则正下方： n = ▶ 构造  暹罗法 ：n=5 任意奇数都能用此法生成 n×n 幻方（n=3 时和=15、n=5 时和=65） 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s4.mp3"
+  },
+  {
+    "name": "OT01_s5_short",
+    "text": "从洛书到丢勒 1514 幻方：  关联 ：数独的\\\"古代祖先\\\"；丢勒《忧郁 I》画中也有 4×4 幻方 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s5_short.mp3"
+  },
+  {
+    "name": "OT01_s5",
+    "text": "从洛书到丢勒 1514 幻方：  关联 ：数独的\\\"古代祖先\\\"；丢勒《忧郁 I》画中也有 4×4 幻方 。",
+    "out": "/Users/paulshi/Documents/MiniMax/π/mathexperiment/audio/OT01_s5.mp3"
+  }
+]
