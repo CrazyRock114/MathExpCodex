@@ -36915,11 +36915,11 @@ function plazaOpen(id, setHash = true) {
             <div class="stage-panel ${i === 0 ? 'active' : ''}" data-step="${i}" id="stagePanel-${exp.id}-${i}">
               <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px; padding: 8px 12px; background: #ede9fe; border-radius: 8px; flex-wrap: wrap;">
                 <span style="font-size: 12px; color: #6b21a8; font-weight: 700;">🎙️ Mavis 第 ${i+1} 步：</span>
-                <button class="ghost small" onclick="document.getElementById('stage肖尔tAudio-${exp.id}-${i}').play()" style="background: #f3e8ff; border-color: #a855f7; color: #6b21a8; font-size: 12px;">▶ 短提示（5-8 秒）</button>
+                <button class="ghost small" onclick="document.getElementById('stageShortAudio-${exp.id}-${i}').play()" style="background: #f3e8ff; border-color: #a855f7; color: #6b21a8; font-size: 12px;">▶ 短提示（5-8 秒）</button>
                 <button class="ghost small" onclick="document.getElementById('stageLongAudio-${exp.id}-${i}').play()" style="background: #a855f7; color: white; border-color: #a855f7; font-size: 12px;">📖 详细讲解（30 秒）</button>
                 <span style="font-size: 11px; color: #6b21a8; opacity: 0.7;">点上面按钮听 Mavis 讲</span>
               </div>
-              <audio id="stage肖尔tAudio-${exp.id}-${i}" preload="none" src="audio/${exp.id}_s${i+1}_short.mp3"></audio>
+              <audio id="stageShortAudio-${exp.id}-${i}" preload="none" src="audio/${exp.id}_s${i+1}_short.mp3"></audio>
               <audio id="stageLongAudio-${exp.id}-${i}" preload="none" src="audio/${exp.id}_s${i+1}.mp3"></audio>
               ${s.content}
             </div>
