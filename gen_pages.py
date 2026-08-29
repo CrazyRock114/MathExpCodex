@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-为 108 个实验每个生成一个真·独立 HTML 页面 (pages/{id}.html)。
+为全部实验生成独立 HTML 页面 (pages/{id}.html)。
 每个页面直接复用 index.html 的 plazaOpen 渲染 4 区 + 互动演示。
 """
 import json, os, re
+from pathlib import Path
 
-WORK = '/Users/paulshi/Documents/MiniMax/π/mathexperiment'
+WORK = Path(__file__).resolve().parent
 os.chdir(WORK)
 
 # 1. 读 index.html
@@ -57,6 +58,7 @@ def to_function(render_src):
 PLAZA_CATS = {
     '数论': 'cat-nt', '序列': 'cat-sq', 'π·e': 'cat-pi', '几何': 'cat-gm',
     '图论': 'cat-gr', '概率': 'cat-pb', '算法': 'cat-al', '分形': 'cat-fr', '其他': 'cat-ot',
+    '前沿': 'cat-frontier', '已证': 'cat-proven',
 }
 
 # 8. 写 pages 目录

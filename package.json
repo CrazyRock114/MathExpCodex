@@ -1,0 +1,17 @@
+{
+  "name": "math-exp-codex",
+  "version": "0.1.0",
+  "private": true,
+  "description": "K12 交互式可视化数学实验平台",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "test": "npm run test:smoke",
+    "test:smoke": "playwright test",
+    "test:smoke:update": "UPDATE_SMOKE_SNAPSHOTS=1 playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1"
+  }
+}
+

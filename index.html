@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="AI 数学课堂">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='72' font-size='72' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3Eπ%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='72' font-size='72' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3Eπ%3C/text%3E%3C/svg%3E">
-<link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22AI%20%E6%95%B0%E5%AD%A6%E8%AF%BE%E5%A0%82%22%2C%22short_name%22%3A%22MathClass%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23fafaf7%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22description%22%3A%22100%20%E4%B8%AA%E6%95%B0%E5%AD%A6%E5%B0%8F%E5%AE%9E%E9%AA%8C%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2527http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2527%2520viewBox%253D%25270%25200%2520100%2520100%2527%253E%253Crect%2520width%253D%2527100%2527%2520height%253D%2527100%2527%2520rx%253D%252720%2527%2520fill%253D%2527%25232563eb%2527%252F%253E%253Ctext%2520x%253D%252750%2527%2520y%253D%252772%2527%2520font-size%253D%252772%2527%2520text-anchor%253D%2527middle%2527%2520fill%253D%2527white%2527%2520font-family%253D%2527sans-serif%2527%2520font-weight%253D%2527bold%2527%253E%25CF%2580%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+<link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22AI%20%E6%95%B0%E5%AD%A6%E8%AF%BE%E5%A0%82%22%2C%22short_name%22%3A%22MathClass%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23fafaf7%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22description%22%3A%22148%20%E4%B8%AA%E6%95%B0%E5%AD%A6%E5%B0%8F%E5%AE%9E%E9%AA%8C%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2527http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2527%2520viewBox%253D%25270%25200%2520100%2520100%2527%253E%253Crect%2520width%253D%2527100%2527%2520height%253D%2527100%2527%2520rx%253D%252720%2527%2520fill%253D%2527%25232563eb%2527%252F%253E%253Ctext%2520x%253D%252750%2527%2520y%253D%252772%2527%2520font-size%253D%252772%2527%2520text-anchor%253D%2527middle%2527%2520fill%253D%2527white%2527%2520font-family%253D%2527sans-serif%2527%2520font-weight%253D%2527bold%2527%253E%25CF%2580%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
 <title>数学小实验广场（148 个） |  AI 数学课堂</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
@@ -401,6 +401,8 @@
   .cat-al { background: #cffafe; color: #155e75; }   /* 算法 */
   .cat-fr { background: #fbcfe8; color: #9d174d; }   /* 分形 */
   .cat-ot { background: #e5e7eb; color: #1f2937; }   /* 其他 */
+  .cat-frontier { background: #ede9fe; color: #6d28d9; } /* 前沿 */
+  .cat-proven { background: #dcfce7; color: #166534; }   /* 已证 */
   .plaza-detail {
     background: #fafaf7;
     border: 2px solid var(--accent);
@@ -468,6 +470,8 @@
   .stage-panel.active {
     display: block;
   }
+  .grid > * { min-width: 0; }
+  canvas, svg { max-width: 100%; }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
@@ -568,7 +572,7 @@ body.dark #typeIntroCard { background: #1e3a8a44 !important; }
 
 <header>
   <h1>🧪 数学小实验广场（148 个）</h1>
-  <p>投针算 π · 冰雹蹦跳 · 猜勾股数 · 四色定理 · 拉姆齐 · 哥德巴赫 · 孪生素数 · π 多算法…  9 大类数学实验，每个都带 ① 原理讲解 ② 历史背景 ③ 互动演示 ④ AI 讲解 四区。课堂演示 / 学生自玩两相宜。</p>
+  <p>投针算 π · 冰雹蹦跳 · 猜勾股数 · 四色定理 · 拉姆齐 · 哥德巴赫 · 孪生素数 · π 多算法… 共 11 个主题类别，并提供渐进讲解与互动演示。课堂演示 / 学生自玩两相宜。</p>
   <div style="position: absolute; top: 16px; right: 24px; display: flex; gap: 8px;">
     <button id="darkToggle" class="ghost small" style="font-size: 12px;">🌙 深色</button>
   </div>
@@ -584,8 +588,8 @@ body.dark #typeIntroCard { background: #1e3a8a44 !important; }
     </h2>
     <p style="margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.6;">
       这里有 <strong>148 个数学小实验</strong>，分成三类：<br>
-      <span style="color: #2563eb;">●</span> <strong>基础公理/定理</strong>（120 个）— 加法、勾股、圆周率，看经典结论；<br>
-      <span style="color: #f59e0b;">●</span> <strong>尚未证明的猜想</strong>（8 个）— 黎曼、哥德巴赫、BSD，数学家还在努力；<br>
+      <span style="color: #2563eb;">●</span> <strong>基础公理/定理</strong>（119 个）— 加法、勾股、圆周率，看经典结论；<br>
+      <span style="color: #f59e0b;">●</span> <strong>尚未证明的猜想</strong>（9 个）— 黎曼、哥德巴赫、BSD，数学家还在努力；<br>
       <span style="color: #10b981;">●</span> <strong>已被证明的猜想</strong>（20 个）— 庞加莱、费马大定理、王虹 + 邓煜 二零二六 菲尔兹奖。
     </p>
     <div class="mavis-actions">
@@ -606,8 +610,8 @@ body.dark #typeIntroCard { background: #1e3a8a44 !important; }
 <!-- ============== Experiment Plaza ============== -->
 <section class="tab-panel active" id="plaza">
   <div class="intro">
-    <strong>148 个数学小实验</strong>：覆盖数论 / 序列 / π·e / 几何 / 图论 / 概率 / 算法 / 分形 / 其他 9 大类。
-  按 type 分：📘 基础公理/定理 (120) + 🔍 尚未证明的猜想 (8) + 🏆 已被证明的猜想 (20)。
+    <strong>148 个数学小实验</strong>：覆盖数论 / 序列 / π·e / 几何 / 图论 / 概率 / 算法 / 分形 / 其他 / 前沿 / 已证 11 个主题类别。
+  按类型分：📘 基础公理/定理 (119) + 🔍 尚未证明的猜想 (9) + 🏆 已被证明的猜想 (20)。
     搜关键字（如 "斐波那契"、"生日"、"完美数"、"投针"）或按分类筛选。点任意卡片进入实验。
     <br><strong>前 8 个"精选实验"</strong>（投针 / 科拉茨 / 勾股 / 四色 / 拉姆齐 / 哥德巴赫 / 孪生 / π 多算法）含完整原理讲解、历史背景、互动演示、AI 讲解四区。
   </div>
@@ -9927,7 +9931,6 @@ function initStage_SQ05_s1() {}
 function initStage_SQ05_s2() {
   const nInput = document.getElementById('sq05s2-n');
   const resultEl = document.getElementById('sq05s2-result');
-  if (!runBtn);  // noop
   if (!nInput) return;
   const update = () => {
     const n = Math.max(1, Math.min(6, parseInt(nInput.value) || 3));
@@ -36602,6 +36605,8 @@ const PLAZA_CATEGORIES = {
   '算法': 'cat-al',
   '分形': 'cat-fr',
   '其他': 'cat-ot',
+  '前沿': 'cat-frontier',
+  '已证': 'cat-proven',
 };
 
 // 实验注册表：每个实验 { id, cat, title, intro, render(host, getValue) }
@@ -46135,7 +46140,7 @@ let plazaCurrentExp = null;
 
 const TYPE_INTRO = {
   'axiom_theorem': '📘 <strong>基础公理/定理可视化</strong>：从小学加法、勾股定理，到圆周率、素数、群论——这些是数学家已经证明好的"基本工具"，在这里被做成可以亲手玩的小游戏。',
-  'conjecture_open': '🔍 <strong>尚未证明的猜想</strong>：黎曼 ζ、哥德巴赫、BSD、孪生素数……这些是数学家们还没攻下的堡垒，每一个都悬赏百万美金。看看这些"还没解开的谜"，感受数学未解之谜的魅力。',
+  'conjecture_open': '🔍 <strong>尚未证明的猜想</strong>：黎曼 ζ、哥德巴赫、BSD、孪生素数……这些是数学家们仍在研究的问题，其中少数著名问题设有高额奖金。看看这些“还没解开的谜”，感受数学探索的魅力。',
   'conjecture_proven': '🏆 <strong>已被证明的猜想</strong>：从 1995 年怀尔斯证明费马大定理，到 2003 年佩雷尔曼证明庞加莱猜想，再到 <strong>2025 年中国数学家王虹完整证明 3D 挂谷猜想</strong>，<strong>邓煜完整证明狭义希尔伯特第六问题</strong>——这些是数学史上的伟大时刻，每一步都改写了人类认知。'
 };
 
@@ -46407,8 +46412,11 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>
   </div>`;
-  exp.render(document.getElementById('plazaBody'));
-  renderKPTags(exp.id);
+  const interactiveHost = document.getElementById('plazaBody');
+  exp.render(interactiveHost);
+  if (!interactiveHost.hasChildNodes() && exp.stages && exp.stages.length) {
+    interactiveHost.innerHTML = '<p class="stage-integrated-note" style="margin:0;color:var(--muted);">本实验的互动操作已整合在上方五个步骤中，请切换步骤动手探索。</p>';
+  }
   renderKPTags(exp.id);
 
   // 调用该实验的 stage 初始化函数（initStage_<id>）
@@ -46454,7 +46462,7 @@ function plazaOpen(id, setHash = true) {
     // 清掉 hash
     if (location.hash) {
       history.replaceState(null, '', location.pathname + location.search);
-      document.title = '数学小实验广场（128 个） | AI 数学课堂';
+      document.title = '数学小实验广场（148 个） | AI 数学课堂';
     }
   };
   plazaDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -46466,7 +46474,7 @@ window.addEventListener('hashchange', () => {
   if (!h) {
     plazaDetail.style.display = 'none';
     plazaCurrentExp = null;
-    document.title = '数学小实验广场（128 个） | AI 数学课堂';
+    document.title = '数学小实验广场（148 个） | AI 数学课堂';
   } else {
     const exp = EXPERIMENTS.find(e => e.id === h);
     if (exp) plazaOpen(h, false);

@@ -428,6 +428,8 @@
   .cat-al { background: #cffafe; color: #155e75; }   /* 算法 */
   .cat-fr { background: #fbcfe8; color: #9d174d; }   /* 分形 */
   .cat-ot { background: #e5e7eb; color: #1f2937; }   /* 其他 */
+  .cat-frontier { background: #ede9fe; color: #6d28d9; } /* 前沿 */
+  .cat-proven { background: #dcfce7; color: #166534; }   /* 已证 */
   .plaza-detail {
     background: #fafaf7;
     border: 2px solid var(--accent);
@@ -495,6 +497,8 @@
   .stage-panel.active {
     display: block;
   }
+  .grid > * { min-width: 0; }
+  canvas, svg { max-width: 100%; }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
@@ -36504,6 +36508,8 @@ const PLAZA_CATEGORIES = {
   '算法': 'cat-al',
   '分形': 'cat-fr',
   '其他': 'cat-ot',
+  '前沿': 'cat-frontier',
+  '已证': 'cat-proven',
 };
 
 // 实验注册表：每个实验 { id, cat, title, intro, render(host, getValue) }
@@ -36916,6 +36922,26 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
+  const expPackSection = exp.expPack && exp.expPack.length ? `
+    <details open style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #be185d;">🎯 拓展实验包（${exp.expPack.length} 个子实验，自己挑）</summary>
+      <div style="background: linear-gradient(to right, #fdf2f8, #fff7ed); border-left: 5px solid #ec4899; padding: 14px 18px; border-radius: 8px; margin-top: 8px;">
+        <p style="margin: 0 0 12px; font-size: 13px; color: var(--muted);">5 步玩懂后，挑 1-2 个子实验动手做做看。</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
+          ${exp.expPack.map((sub, i) => `
+            <button class="exp-pack-card" type="button" aria-expanded="false" aria-controls="expPackBody-${exp.id}-${i}" style="text-align:left;background:white;border:2px solid #fbcfe8;border-radius:10px;padding:12px;cursor:pointer;" onclick="const body=document.getElementById('expPackBody-${exp.id}-${i}');const open=body.hidden;body.hidden=!open;this.setAttribute('aria-expanded',String(open));">
+              <span style="display:block;font-size:22px;margin-bottom:4px;">${sub.emoji || '🧪'}</span>
+              <span style="display:block;font-weight:700;font-size:14px;color:#831843;margin-bottom:4px;">${sub.title}</span>
+              <span style="display:block;font-size:12px;color:#6b7280;line-height:1.5;">${sub.hint || ''}</span>
+            </button>
+            <div id="expPackBody-${exp.id}-${i}" hidden style="grid-column:1/-1;background:#fdf2f8;border-radius:8px;padding:14px;margin-top:6px;">
+              <div style="font-size:13px;line-height:1.7;color:#1f2937;">${sub.content || ''}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </details>` : '';
+
   const principleSection = exp.principle ? `
     <details style="margin-bottom: 14px;">
       <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #1e40af;">📐 原理讲解（深入浅出）</summary>
@@ -36998,8 +37024,11 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>
   </div>`;
-  exp.render(document.getElementById('plazaBody'));
-  renderKPTags(exp.id);
+  const interactiveHost = document.getElementById('plazaBody');
+  exp.render(interactiveHost);
+  if (!interactiveHost.hasChildNodes() && exp.stages && exp.stages.length) {
+    interactiveHost.innerHTML = '<p class="stage-integrated-note" style="margin:0;color:var(--muted);">本实验的互动操作已整合在上方五个步骤中，请切换步骤动手探索。</p>';
+  }
   renderKPTags(exp.id);
 
   // 调用该实验的 stage 初始化函数（initStage_<id>）

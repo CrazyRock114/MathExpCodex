@@ -428,6 +428,8 @@
   .cat-al { background: #cffafe; color: #155e75; }   /* 算法 */
   .cat-fr { background: #fbcfe8; color: #9d174d; }   /* 分形 */
   .cat-ot { background: #e5e7eb; color: #1f2937; }   /* 其他 */
+  .cat-frontier { background: #ede9fe; color: #6d28d9; } /* 前沿 */
+  .cat-proven { background: #dcfce7; color: #166534; }   /* 已证 */
   .plaza-detail {
     background: #fafaf7;
     border: 2px solid var(--accent);
@@ -495,6 +497,8 @@
   .stage-panel.active {
     display: block;
   }
+  .grid > * { min-width: 0; }
+  canvas, svg { max-width: 100%; }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
@@ -36504,6 +36508,8 @@ const PLAZA_CATEGORIES = {
   '算法': 'cat-al',
   '分形': 'cat-fr',
   '其他': 'cat-ot',
+  '前沿': 'cat-frontier',
+  '已证': 'cat-proven',
 };
 
 // 实验注册表：每个实验 { id, cat, title, intro, render(host, getValue) }
@@ -37013,8 +37019,11 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>
   </div>`;
-  exp.render(document.getElementById('plazaBody'));
-  renderKPTags(exp.id);
+  const interactiveHost = document.getElementById('plazaBody');
+  exp.render(interactiveHost);
+  if (!interactiveHost.hasChildNodes() && exp.stages && exp.stages.length) {
+    interactiveHost.innerHTML = '<p class="stage-integrated-note" style="margin:0;color:var(--muted);">本实验的互动操作已整合在上方五个步骤中，请切换步骤动手探索。</p>';
+  }
   renderKPTags(exp.id);
 
   // 调用该实验的 stage 初始化函数（initStage_<id>）
