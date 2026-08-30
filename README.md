@@ -23,7 +23,7 @@
 ```bash
 git clone https://github.com/CrazyRock114/MathExpCodex.git
 cd MathExpCodex
-npm install
+npm ci
 npx playwright install chromium
 npm run dev:app
 ```
@@ -38,13 +38,22 @@ npm run dev
 
 打开 <http://127.0.0.1:4173/index.html>。新旧入口并行存在，直到实验互动组件迁移完成。
 
+生产静态包使用唯一标准入口构建：
+
+```bash
+npm run build
+npm run preview
+```
+
+构建结果位于 `dist/`：`index.html` 是 React 主应用，`legacy.html` 是共享旧实验壳，`pages/{ID}.html` 保留全部历史入口。构建器会拒绝少于 148 个入口或夹带音频二进制的发布包。`vercel.json` 明确使用该命令与输出目录，但自动 Git 部署保持关闭；未经项目负责人确认不会发布生产环境。
+
 ## 质量检查
 
 ```bash
 npm test
 ```
 
-当前质量入口会依次运行目录与历史入口生成、资产边界审计、TypeScript、Vitest、Vite 生产构建和 195 项 Playwright 检查：
+当前质量入口会依次运行目录与历史入口生成、资产边界审计、TypeScript、40 项 Vitest、完整静态发布包构建和 197 项 Playwright 检查：
 
 - 独立实验页面数量必须为 148
 - 每页能够加载且没有破坏交互的 JavaScript 错误
@@ -56,6 +65,8 @@ npm test
 - 30 个旗舰实验已具有 React 原生五阶段互动与算法单元测试
 - 三十个原生实验的全部 150 个阶段在 360px、390px、768px 无横向溢出
 - 新目录与三十个原生实验的全部阶段没有 axe `critical` 或 `serious` 无障碍问题
+- 发布包根入口、旧 `#实验ID` 深链接、148 个历史入口和旧壳回退路径均经过浏览器测试
+- 发布包包含 0 个音频二进制，并生成可审计的 `release-manifest.json`
 
 GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生成页重新膨胀或元数据再次声明不存在的运行时音频。
 
@@ -71,38 +82,41 @@ GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生�
 - 30 项已完成来源与数学内容核验，118 项仍明确标记为 `unreviewed`
 - 实验组件按路由动态加载；入口 JavaScript 约 90.3KB gzip，单个实验块约 2.1–3.3KB gzip
 - Vitest、Playwright、移动端和 axe 门禁
+- `npm run build` 生成约 4.3MB 的完整静态发布包；React 为根入口，旧应用只作为未迁移实验的共享回退层
 
 旧实验运行层仍为：
 
 - 一个共享的静态 HTML、CSS 和原生 JavaScript 旧版应用
 - 本地固定版本的 Chart.js 4.4.1 UMD（保留上游许可证，旧页不再依赖 CDN 时序）
 - Canvas、SVG 和少量 SMIL 动画
-- 148 个轻量历史入口，统一跳转到 `index.html#实验ID`；总计约 80KB，不再复制 300MB 共享代码
+- 源码中的 148 个轻量历史入口统一跳转到 `index.html#实验ID`；发布包中的同名入口跳转到 `legacy.html#实验ID`，总计约 80KB，不再复制 300MB 共享代码
 - 讲解文字稿保留在源码；生产音频 URL 当前为 0，6 个不完整 MP3 仅作为带 SHA-256 清单的历史样本
 - 无后端、无账户和用户数据存储
 
-现有 `index.html` 和独立页面仍包含大量重复代码。首批 30 个旗舰实验已迁入共享实验壳；其余详情页仍链接旧互动页面，迁移期间保留旧页作为对照。
+旧版 `index.html` 仍是约 2.5MB 的单文件共享壳，但不再被复制到 148 个页面。首批 30 个旗舰实验已迁入 React 共享实验壳；其余详情页仍链接旧互动页面，迁移期间保留旧页作为对照。
 
 ## 重要目录
 
-- `index.html`：当前主应用
-- `app/`：新的 React 应用、组件、样式和类型化目录
+- `index.html`：旧版共享实验壳源码；构建后输出为 `dist/legacy.html`
+- `app/`：React 主应用、组件、样式和类型化目录；构建后输出为 `dist/index.html`
 - `scripts/generate-catalog.mjs`：从旧元数据生成受 TypeScript 约束的目录
 - `pages/`：148 个可重建的轻量历史 URL 入口
 - `experiments_meta.json`：旧版实验元数据快照，后续将迁移为有类型约束的数据源
 - `audio/`：历史讲解文字稿与 6 个隔离的 v13 音频样本；边界说明见目录内 README
 - `docs/ASSET_INVENTORY.md`：生成页、文字稿、归档音频、校验值与恢复方案
+- `docs/DEPLOYMENT.md`：静态发布包契约、兼容路径、权限边界与回滚步骤
+- `scripts/assemble-site.mjs`：组装并验证不含音频二进制的完整静态发布包
 - `tests/`：Playwright 浏览器冒烟测试
 - `docs/PROGRESS.md`：当前 Goal、里程碑、测试证据和后续工作
 - `gen_pages.py`：旧版独立页面生成器
 
 ## 当前迭代优先级
 
-1. 将大型音频和重复备份与源代码仓库解耦，并保留可追溯的迁移清单。
-2. 清理审查中记录的剩余 P1 架构、内容和交付问题。
-3. 把其余实验的自动生成学段与学习目标草案升级为逐项审阅内容。
-4. 为全部实验补充权威来源，并把 `unreviewed` 逐步变为 `verified`。
-5. 继续修复数学事实、术语翻译和自动 TTS 文案污染，同时保持现有质量门禁。
+1. 清理审查中记录的剩余 P1 架构、内容和交付问题。
+2. 把其余 118 个实验的自动生成学段与学习目标草案升级为逐项审阅内容。
+3. 为全部实验补充权威来源，并把 `unreviewed` 逐步变为 `verified`。
+4. 继续修复数学事实、术语翻译和自动 TTS 文案污染，同时保持现有质量门禁。
+5. 确定外部对象存储和内容授权后，再迁移 6 个隔离音频样本；当前不删除原始样本。
 
 详细进度见 [docs/PROGRESS.md](./docs/PROGRESS.md)。
 

@@ -538,8 +538,6 @@ body.dark .mavis-hero { background: linear-gradient(135deg, #1e3a8a33 0%, #78350
 }
 .mavis-content { flex: 1; min-width: 0; }
 .mavis-actions { display: flex; gap: 8px; align-items: center; }
-#mavisProgress { display: flex; align-items: center; gap: 8px; }
-#playMavisIntro { font-size: 14px; }
 
 /* ===== v17 type 切换 tabs ===== */
 .type-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -46042,74 +46040,6 @@ I = √π ✓
 },
 ]; // EXPERIMENTS 结束
 
-
-// ===== Mavis 引导卡播放控制 (v18: 4 段顺序播放) =====
-(function() {
-  const audio = document.getElementById('mavisIntroAudio');
-  const playBtn = document.getElementById('playMavisIntro');
-  const skipBtn = document.getElementById('mavisSkip');
-  const pauseBtn = document.getElementById('mavisPause');
-  const progress = document.getElementById('mavisProgress');
-  const timeEl = document.getElementById('mavisTime');
-  const durEl = document.getElementById('mavisDuration');
-  if (!audio) return;
-
-  // 4 段顺序播放：p1 → p2 → p3 → p4
-  const parts = ['p1', 'p2', 'p3', 'p4'];
-  let partIdx = 0;
-  let totalDur = 0;
-  const partDur = {};
-
-  function fmt(s) { const m = Math.floor(s/60); const sec = Math.floor(s%60); return m + ':' + (sec<10?'0':'') + sec; }
-
-  // 预加载所有段拿到 duration
-  parts.forEach(p => {
-    const a = new Audio('audio/mavis_intro_' + p + '.mp3');
-    a.addEventListener('loadedmetadata', () => {
-      partDur[p] = a.duration;
-      totalDur = Object.values(partDur).reduce((a, b) => a + b, 0);
-      if (partIdx === 0) durEl.textContent = fmt(totalDur);
-    });
-  });
-
-  function loadPart(idx) {
-    partIdx = idx;
-    audio.src = 'audio/mavis_intro_' + parts[idx] + '.mp3';
-    audio.load();
-  }
-
-  playBtn.onclick = () => {
-    if (partIdx >= parts.length) loadPart(0);
-    audio.play();
-    progress.style.display = 'block';
-    playBtn.style.display = 'none';
-  };
-  pauseBtn.onclick = () => {
-    if (audio.paused) { audio.play(); pauseBtn.textContent = '⏸ 暂停'; }
-    else { audio.pause(); pauseBtn.textContent = '▶ 继续'; }
-  };
-  skipBtn.onclick = () => {
-    audio.pause();
-    progress.style.display = 'none';
-    playBtn.style.display = 'inline-block';
-    loadPart(0);
-  };
-  audio.addEventListener('timeupdate', () => {
-    const elapsed = Object.keys(partDur).slice(0, partIdx).reduce((sum, p) => sum + (partDur[p] || 0), 0) + audio.currentTime;
-    timeEl.textContent = fmt(elapsed);
-  });
-  audio.addEventListener('ended', () => {
-    if (partIdx < parts.length - 1) {
-      loadPart(partIdx + 1);
-      audio.play();
-    } else {
-      progress.style.display = 'none';
-      playBtn.style.display = 'inline-block';
-      playBtn.textContent = '🔁 再听一次';
-      loadPart(0);
-    }
-  });
-})();
 
 /* ===================== 广场渲染 ===================== */
 const plazaGrid = document.getElementById('plazaGrid');

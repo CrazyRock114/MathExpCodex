@@ -27,8 +27,8 @@ for (const filename of experimentPages) {
   const experimentId = basename(filename, '.html');
 
   test(`${experimentId} 可加载并展示完整五阶段`, async ({ page }) => {
-    // 原生阶段的全量 axe 扫描会与旧页并行；给单页留出资源竞争余量，
-    // 但页面内的可见性断言仍保持 5 秒 expect 超时。
+    // 原生阶段的全量 axe 扫描会与旧页并行；给单页留出资源竞争余量。
+    // 先单独验证重定向，再等待 2.5MB 共享旧壳完成解析，避免把 CPU 争用误判成缺页。
     test.setTimeout(60_000);
     const runtimeErrors = [];
     page.on('pageerror', (error) => runtimeErrors.push(error.message));
@@ -46,7 +46,8 @@ for (const filename of experimentPages) {
     );
     await page.goto(`/pages/${filename}`, { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('#plazaDetail')).toBeVisible();
+    await expect(page).toHaveURL(new RegExp(`/index\\.html#${experimentId}$`), { timeout: 10_000 });
+    await expect(page.locator('#plazaDetail')).toBeVisible({ timeout: 15_000 });
     await expect(page.locator('.stage-tab')).toHaveCount(5);
     await expect(page.locator('#plazaDetail')).not.toContainText('错误:');
 

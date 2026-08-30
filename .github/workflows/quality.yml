@@ -36,5 +36,5 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Run 148-page smoke suite
+      - name: Run full quality suite
         run: npm test

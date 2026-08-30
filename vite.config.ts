@@ -7,13 +7,12 @@ export default defineConfig({
   base: './',
   plugins: [react()],
   build: {
-    outDir: resolve(import.meta.dirname, 'dist/app'),
+    outDir: resolve(import.meta.dirname, 'dist'),
     emptyOutDir: true,
-    sourcemap: true
+    sourcemap: false
   },
   server: {
     host: '127.0.0.1',
     port: 5173
   }
 });
-

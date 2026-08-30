@@ -5,9 +5,10 @@ export type AppRoute =
   | { readonly name: 'experiment'; readonly experimentId: string };
 
 const EXPERIMENT_ROUTE = /^#\/experiment\/([A-Z0-9_]+)$/;
+const LEGACY_EXPERIMENT_ROUTE = /^#([A-Z0-9_]+)$/;
 
 export function parseHashRoute(hash: string): AppRoute {
-  const match = EXPERIMENT_ROUTE.exec(hash);
+  const match = EXPERIMENT_ROUTE.exec(hash) ?? LEGACY_EXPERIMENT_ROUTE.exec(hash);
   if (match?.[1]) {
     return { name: 'experiment', experimentId: match[1] };
   }
@@ -27,4 +28,3 @@ export function useHashRoute(): AppRoute {
   const hash = useSyncExternalStore(subscribeToHash, getHashSnapshot, () => '');
   return parseHashRoute(hash);
 }
-
