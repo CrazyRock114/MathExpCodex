@@ -101,7 +101,7 @@ for exp in exps:
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="AI 数学课堂">
 <title>{title}（{exp_id}） | 数学小实验广场</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="../vendor/chart.umd.js"></script>
 <style>
 {CSS}
 .back-link {{

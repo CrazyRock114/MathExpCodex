@@ -210,3 +210,101 @@ export function chudnovskyPi(terms: number) {
   }
   return 1 / (12 * sum);
 }
+
+export function fibonacciNumbers(count: number): readonly bigint[] {
+  if (!Number.isInteger(count) || count < 1) throw new RangeError('项数必须是正整数');
+  const values = [0n];
+  if (count === 1) return values;
+  values.push(1n);
+  while (values.length < count) values.push(values.at(-1)! + values.at(-2)!);
+  return values;
+}
+
+export function polygonInteriorAngleSum(sides: number) {
+  if (!Number.isInteger(sides) || sides < 3) throw new RangeError('简单多边形至少有 3 条边');
+  return (sides - 2) * 180;
+}
+
+export interface UndirectedEdge {
+  readonly left: number;
+  readonly right: number;
+}
+
+export type EulerTrailType = 'circuit' | 'path' | 'none';
+
+export function analyzeEulerTrail(vertexCount: number, edges: readonly UndirectedEdge[]) {
+  if (!Number.isInteger(vertexCount) || vertexCount < 1) throw new RangeError('顶点数必须是正整数');
+  const adjacency = Array.from({ length: vertexCount }, () => [] as { readonly vertex: number; readonly edge: number }[]);
+  edges.forEach(({ left, right }, edge) => {
+    if (!Number.isInteger(left) || !Number.isInteger(right) || left < 0 || right < 0 || left >= vertexCount || right >= vertexCount || left === right) {
+      throw new RangeError('边的端点必须是不同的有效顶点');
+    }
+    adjacency[left]!.push({ vertex: right, edge });
+    adjacency[right]!.push({ vertex: left, edge });
+  });
+  const activeVertices = adjacency.map((neighbors, vertex) => ({ neighbors, vertex })).filter(({ neighbors }) => neighbors.length > 0);
+  const visited = new Set<number>();
+  const pending = activeVertices.length ? [activeVertices[0]!.vertex] : [0];
+  while (pending.length) {
+    const vertex = pending.pop()!;
+    if (visited.has(vertex)) continue;
+    visited.add(vertex);
+    for (const neighbor of adjacency[vertex] ?? []) pending.push(neighbor.vertex);
+  }
+  const connected = activeVertices.every(({ vertex }) => visited.has(vertex));
+  const oddVertices = adjacency.flatMap((neighbors, vertex) => neighbors.length % 2 ? [vertex] : []);
+  const type: EulerTrailType = !connected || oddVertices.length > 2
+    ? 'none'
+    : oddVertices.length === 2 ? 'path' : 'circuit';
+  if (type === 'none') return { connected, degrees: adjacency.map((neighbors) => neighbors.length), oddVertices, trail: [] as readonly number[], type };
+
+  const used = new Set<number>();
+  const cursor = adjacency.map(() => 0);
+  const stack = [oddVertices[0] ?? activeVertices[0]?.vertex ?? 0];
+  const reversedTrail: number[] = [];
+  while (stack.length) {
+    const vertex = stack.at(-1)!;
+    while (cursor[vertex]! < adjacency[vertex]!.length && used.has(adjacency[vertex]![cursor[vertex]!]!.edge)) cursor[vertex]! += 1;
+    const next = adjacency[vertex]![cursor[vertex]!];
+    if (next) {
+      used.add(next.edge);
+      cursor[vertex]! += 1;
+      stack.push(next.vertex);
+    } else {
+      reversedTrail.push(stack.pop()!);
+    }
+  }
+  return { connected, degrees: adjacency.map((neighbors) => neighbors.length), oddVertices, trail: reversedTrail.reverse(), type };
+}
+
+export function birthdayMatchProbability(people: number, days = 365) {
+  if (!Number.isInteger(people) || people < 0 || !Number.isInteger(days) || days < 1) throw new RangeError('人数和日期数必须是有效整数');
+  if (people > days) return 1;
+  let distinct = 1;
+  for (let index = 0; index < people; index += 1) distinct *= (days - index) / days;
+  return 1 - distinct;
+}
+
+export interface HanoiMove {
+  readonly disk: number;
+  readonly from: string;
+  readonly to: string;
+}
+
+export function hanoiMinimumMoves(disks: number) {
+  if (!Number.isInteger(disks) || disks < 0) throw new RangeError('盘数必须是非负整数');
+  return 2n ** BigInt(disks) - 1n;
+}
+
+export function hanoiMoves(disks: number, from = 'A', to = 'C', spare = 'B'): readonly HanoiMove[] {
+  if (!Number.isInteger(disks) || disks < 0 || disks > 15) throw new RangeError('可展开的盘数必须在 0 到 15 之间');
+  const moves: HanoiMove[] = [];
+  function move(count: number, source: string, target: string, auxiliary: string) {
+    if (count === 0) return;
+    move(count - 1, source, auxiliary, target);
+    moves.push({ disk: count, from: source, to: target });
+    move(count - 1, auxiliary, target, source);
+  }
+  move(disks, from, to, spare);
+  return moves;
+}

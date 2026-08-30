@@ -1,7 +1,10 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const NATIVE_EXPERIMENT_IDS = ['PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08'];
+const NATIVE_EXPERIMENT_IDS = [
+  'PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08',
+  'SQ01', 'GM01', 'GR01', 'PB01', 'AL04'
+];
 
 test('新应用展示全部 148 个实验并支持搜索', async ({ page }) => {
   await page.goto('/dist/app/index.html', { waitUntil: 'domcontentloaded' });
@@ -74,6 +77,42 @@ test('PR08 展示 96 边形给出的 π 上下界', async ({ page }) => {
   await expect(page.getByText(/96 边时得到/)).toBeVisible();
 });
 
+test('SQ01 明确斐波那契下标与不完整整除命题', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/SQ01', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByText(/采用统一下标 F₀=0、F₁=1/)).toBeVisible();
+  await page.getByRole('tab', { name: /恒等式/ }).click();
+  await expect(page.getByText(/F₂=1 整除所有整数/)).toBeVisible();
+});
+
+test('GM01 区分凸多边形扇形切法与一般三角剖分', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/GM01', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /凹多边形/ }).click();
+  await expect(page.getByText(/简单扇形构造只对凸多边形自动成立/)).toBeVisible();
+});
+
+test('GR01 的完整判据包含连通性', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/GR01', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /判据/ }).click();
+  await expect(page.getByText(/判定要同时满足两件事/)).toBeVisible();
+  await expect(page.getByText(/K₅ 每个顶点度数是 4/)).toBeVisible();
+});
+
+test('PB01 披露 50.73% 的模型假设', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/PB01', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByText(/23 人时概率约 50.73%/)).toBeVisible();
+  await page.getByRole('tab', { name: /假设/ }).click();
+  await expect(page.getByText(/均匀、独立、365 天/)).toBeVisible();
+});
+
+test('AL04 修正 64 盘耗时数量级', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/AL04', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: /^A 盘/ }).click();
+  await page.getByRole('button', { name: 'C', exact: true }).click();
+  await expect(page.getByText('把盘 1 移到 C。', { exact: true })).toBeVisible();
+  await page.getByRole('tab', { name: /规模/ }).click();
+  await expect(page.getByText(/约为 138 亿年宇宙年龄的 42 倍/)).toBeVisible();
+});
+
 for (const width of [360, 390, 768]) {
   test(`新应用在 ${width}px 视口无横向溢出`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -85,8 +124,8 @@ for (const width of [360, 390, 768]) {
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
   });
 
-  test(`八个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
-    test.setTimeout(90_000);
+  test(`十三个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
+    test.setTimeout(120_000);
     await page.setViewportSize({ width, height: 900 });
     for (const experimentId of NATIVE_EXPERIMENT_IDS) {
       await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
@@ -117,8 +156,8 @@ test('新应用目录与详情页无严重无障碍问题', async ({ page }) => 
   }
 });
 
-test('八个原生实验的全部 40 个阶段无严重无障碍问题', async ({ page }) => {
-  test.setTimeout(120_000);
+test('十三个原生实验的全部 65 个阶段无严重无障碍问题', async ({ page }) => {
+  test.setTimeout(180_000);
   for (const experimentId of NATIVE_EXPERIMENT_IDS) {
     await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
     const tabs = page.getByRole('tab');
@@ -133,8 +172,8 @@ test('八个原生实验的全部 40 个阶段无严重无障碍问题', async (
   }
 });
 
-test('八个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
-  test.setTimeout(90_000);
+test('十三个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
+  test.setTimeout(120_000);
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
   page.on('console', (message) => {

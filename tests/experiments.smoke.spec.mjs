@@ -15,6 +15,9 @@ for (const filename of experimentPages) {
   const experimentId = basename(filename, '.html');
 
   test(`${experimentId} 可加载并展示完整五阶段`, async ({ page }) => {
+    // 原生阶段的全量 axe 扫描会与旧页并行；给单页留出资源竞争余量，
+    // 但页面内的可见性断言仍保持 5 秒 expect 超时。
+    test.setTimeout(60_000);
     const runtimeErrors = [];
     page.on('pageerror', (error) => runtimeErrors.push(error.message));
     page.on('console', (message) => {

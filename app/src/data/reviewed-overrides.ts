@@ -236,5 +236,150 @@ export const REVIEWED_EXPERIMENT_OVERRIDES: Readonly<Record<string, ReviewedOver
       reviewStatus: 'verified',
       lastReviewedAt: '2026-08-30'
     }
+  },
+  SQ01: {
+    title: '从递推规则长出斐波那契数列',
+    intro:
+      '从 F₀=0、F₁=1 开始，让每一项等于前两项之和。用兔子模型、铺砖计数和恒等式观察同一递推规则怎样出现在不同问题中。',
+    education: {
+      gradeBands: ['primary', 'middle', 'high'],
+      learningObjectives: [
+        '按递推定义准确生成斐波那契数并区分项值与下标',
+        '用 1×n 铺砖问题解释为什么会出现相邻两项相加',
+        '检验卡西尼恒等式与相邻项比值，同时说明自然界例子不是普遍定律'
+      ],
+      prerequisites: ['整数加法', '数列与下标', '平方与比（进阶阶段）'],
+      sources: [
+        {
+          label: 'NIST DLMF：Fibonacci and Lucas Numbers',
+          url: 'https://dlmf.nist.gov/24.15#iv',
+          kind: 'reference'
+        },
+        {
+          label: 'OEIS A000045：Fibonacci numbers',
+          url: 'https://oeis.org/A000045',
+          kind: 'reference'
+        },
+        {
+          label: 'Mathematical Association of America：Liber Abaci 手稿中的兔子问题',
+          url: 'https://old.maa.org/press/periodicals/convergence/mathematical-treasure-liber-abaci-of-leonardo-of-pisa',
+          kind: 'primary'
+        }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  GM01: {
+    title: '把多边形切成三角形（内角和）',
+    intro:
+      '简单 n 边形的内角和是 (n−2)×180°。先从凸多边形的一个顶点画对角线，再比较凹多边形与自交图形的适用边界。',
+    education: {
+      gradeBands: ['primary', 'middle'],
+      learningObjectives: [
+        '用三角形分割推导凸 n 边形的内角和公式',
+        '区分内角和与正多边形单个内角',
+        '说明公式适用于简单多边形，但不能直接套给自交多边形'
+      ],
+      prerequisites: ['角与度数', '三角形内角和', '多边形与对角线'],
+      sources: [
+        {
+          label: 'Euclid’s Elements, Book I, Proposition 32',
+          url: 'https://mathcs.clarku.edu/~djoyce/elements/bookI/propI32.html',
+          kind: 'primary'
+        },
+        {
+          label: 'OpenStax Contemporary Mathematics：Polygons',
+          url: 'https://openstax.org/books/contemporary-mathematics/pages/10-4-polygons-perimeter-and-circumference',
+          kind: 'reference'
+        }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  GR01: {
+    title: '一笔走完所有边（欧拉路径）',
+    intro:
+      '在所有有边的顶点连成一片的无向图中，奇度顶点为 0 个时有欧拉回路，为 2 个时有欧拉路径；其他情况都不能一笔走完每条边。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: [
+        '把桥梁问题抽象成顶点、边和顶点度数',
+        '同时检查连通性与奇度顶点数，判定欧拉路径或回路',
+        '构造一条欧拉路线，并区分“每条边一次”和“每个顶点一次”'
+      ],
+      prerequisites: ['无向图、顶点与边', '奇数与偶数', '路径与连通'],
+      sources: [
+        {
+          label: 'Euler：Solutio problematis ad geometriam situs pertinentis',
+          url: 'https://scholarlycommons.pacific.edu/euler-works/53/',
+          kind: 'primary'
+        },
+        {
+          label: 'MIT Mathematics for Computer Science：Graph Theory',
+          url: 'https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/f471f7b7034fabe8bbba5507df7d307f_MIT6_042JF10_chap05.pdf',
+          kind: 'reference'
+        }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  PB01: {
+    title: '为什么 23 人就容易同生日（生日问题）',
+    intro:
+      '在“365 天等可能、每个人生日相互独立且忽略闰日”的模型中，23 人里至少两人同生日的概率约为 50.73%。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: [
+        '用补事件计算至少一对同生日的概率',
+        '解释人数增加时比较对数 n(n−1)/2 为什么增长很快',
+        '区分理想化模型、随机模拟与真实世界生日分布'
+      ],
+      prerequisites: ['分数与百分数', '乘法原理', '补事件与独立性'],
+      sources: [
+        {
+          label: 'OpenStax Contemporary Mathematics：Birthday Problem',
+          url: 'https://openstax.org/books/contemporary-mathematics/pages/7-9-conditional-probability-and-the-multiplication-rule',
+          kind: 'reference'
+        },
+        {
+          label: 'MIT OpenCourseWare 6.041：The birthday problem',
+          url: 'https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/9c3a88be11cf2a35a34f127e6d51274a_MIT6_041SCF13_rec04.pdf',
+          kind: 'reference'
+        }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  AL04: {
+    title: '递归搬盘子（汉诺塔）',
+    intro:
+      '把 n 个大小不同的圆盘从起点柱移到目标柱，每次只动一个且大盘不能压小盘。三柱最少需要 2ⁿ−1 步。',
+    education: {
+      gradeBands: ['primary', 'middle', 'high'],
+      learningObjectives: [
+        '遵守两条移动规则完成小规模汉诺塔',
+        '把 n 盘任务分解为两个 n−1 盘任务和一次最大盘移动',
+        '由递推式 T(n)=2T(n−1)+1 推导并检验最少步数 2ⁿ−1'
+      ],
+      prerequisites: ['整数与幂', '有序比较', '递推或递归（进阶阶段）'],
+      sources: [
+        {
+          label: 'MIT Mathematics for Computer Science：Tower of Hanoi recurrence',
+          url: 'https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf',
+          kind: 'reference'
+        },
+        {
+          label: 'Carnegie Mellon：Recursion—Towers of Hanoi',
+          url: 'https://www.cs.cmu.edu/~cburch/survey/recurse/hanoitime.html',
+          kind: 'reference'
+        }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
   }
 };

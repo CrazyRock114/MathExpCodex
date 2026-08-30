@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
+  analyzeEulerTrail,
   archimedesPiBounds,
+  birthdayMatchProbability,
   buffonCrossingProbability,
   chudnovskyPi,
   collatzSequence,
@@ -9,9 +11,13 @@ import {
   createBuffonTrial,
   createPythagoreanTriple,
   estimatePi,
+  fibonacciNumbers,
   goldbachPartitions,
+  hanoiMinimumMoves,
+  hanoiMoves,
   leibnizPi,
   machinPi,
+  polygonInteriorAngleSum,
   ramseyAvoidingColoringCount,
   twinPrimePairs,
   primitiveTriplesThrough
@@ -86,5 +92,36 @@ describe('欧几里得勾股数公式', () => {
     expect(triples).toHaveLength(158);
     expect(triples[0]).toMatchObject({ a: 3, b: 4, c: 5 });
     expect(triples.at(-1)?.c).toBeLessThanOrEqual(1_000);
+  });
+});
+
+describe('第三批旗舰实验算法', () => {
+  it('按 F0=0、F1=1 生成斐波那契数', () => {
+    expect(fibonacciNumbers(11)).toEqual([0n, 1n, 1n, 2n, 3n, 5n, 8n, 13n, 21n, 34n, 55n]);
+  });
+
+  it('计算简单多边形内角和', () => {
+    expect(polygonInteriorAngleSum(3)).toBe(180);
+    expect(polygonInteriorAngleSum(8)).toBe(1080);
+  });
+
+  it('欧拉路径判定同时检查连通性和奇度顶点', () => {
+    const cycle = analyzeEulerTrail(4, [{ left: 0, right: 1 }, { left: 1, right: 2 }, { left: 2, right: 3 }, { left: 3, right: 0 }]);
+    expect(cycle.type).toBe('circuit');
+    expect(cycle.trail).toHaveLength(5);
+    const disconnected = analyzeEulerTrail(6, [{ left: 0, right: 1 }, { left: 1, right: 2 }, { left: 2, right: 0 }, { left: 3, right: 4 }, { left: 4, right: 5 }, { left: 5, right: 3 }]);
+    expect(disconnected.type).toBe('none');
+    expect(disconnected.connected).toBe(false);
+  });
+
+  it('生日问题在均匀独立 365 日模型下于 23 人越过一半', () => {
+    expect(birthdayMatchProbability(22)).toBeLessThan(.5);
+    expect(birthdayMatchProbability(23)).toBeCloseTo(.507297, 5);
+  });
+
+  it('汉诺塔递归生成最短合法步数', () => {
+    expect(hanoiMinimumMoves(64)).toBe(18_446_744_073_709_551_615n);
+    expect(hanoiMoves(3)).toHaveLength(7);
+    expect(hanoiMoves(3).map(({ disk }) => disk)).toEqual([1, 2, 1, 3, 1, 2, 1]);
   });
 });
