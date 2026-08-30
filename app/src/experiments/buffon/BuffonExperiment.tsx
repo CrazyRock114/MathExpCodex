@@ -6,6 +6,7 @@ import {
   type BuffonTrial
 } from '../math';
 import type { NativeExperiment } from '../types';
+import { StageShell } from '../../components/StageShell';
 
 function CircleStage() {
   const [diameter, setDiameter] = useState(100);
@@ -197,3 +198,7 @@ export const BUFFON_EXPERIMENT: NativeExperiment = {
     { emoji: '🎯', title: '用频率反推 π', shortLabel: '估算', Component: EstimateStage }
   ]
 };
+
+export default function BuffonExperiment() {
+  return <StageShell experimentId={BUFFON_EXPERIMENT.id} stages={BUFFON_EXPERIMENT.stages} />;
+}

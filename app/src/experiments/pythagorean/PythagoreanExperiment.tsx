@@ -5,6 +5,7 @@ import {
   primitiveTriplesThrough
 } from '../math';
 import type { NativeExperiment } from '../types';
+import { StageShell } from '../../components/StageShell';
 
 const PRIMITIVE_TRIPLES = primitiveTriplesThrough(1_000);
 
@@ -173,3 +174,7 @@ export const PYTHAGOREAN_EXPERIMENT: NativeExperiment = {
     { emoji: '🏭', title: '反推参数挑战', shortLabel: '挑战', Component: ChallengeStage }
   ]
 };
+
+export default function PythagoreanExperiment() {
+  return <StageShell experimentId={PYTHAGOREAN_EXPERIMENT.id} stages={PYTHAGOREAN_EXPERIMENT.stages} />;
+}

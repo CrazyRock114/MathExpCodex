@@ -1,10 +1,10 @@
+import { Suspense } from 'react';
 import {
   EXPERIMENT_KIND_LABELS,
   GRADE_BAND_LABELS,
   type ExperimentSummary
 } from '../data/experiment';
 import { nativeExperimentById } from '../experiments/registry';
-import { StageShell } from './StageShell';
 
 interface ExperimentPageProps {
   readonly experiment: ExperimentSummary | undefined;
@@ -22,7 +22,7 @@ export function ExperimentPage({ experiment, requestedId }: ExperimentPageProps)
     );
   }
 
-  const nativeExperiment = nativeExperimentById.get(experiment.id);
+  const NativeExperiment = nativeExperimentById.get(experiment.id);
 
   return (
     <article className="page-shell narrow-page">
@@ -33,8 +33,10 @@ export function ExperimentPage({ experiment, requestedId }: ExperimentPageProps)
         <p>{experiment.intro}</p>
       </header>
 
-      {nativeExperiment ? (
-        <StageShell experimentId={experiment.id} stages={nativeExperiment.stages} />
+      {NativeExperiment ? (
+        <Suspense fallback={<section className="stage-loading" aria-live="polite">正在加载互动实验…</section>}>
+          <NativeExperiment />
+        </Suspense>
       ) : null}
 
       <section className="detail-section" aria-labelledby="learning-heading">
@@ -63,9 +65,9 @@ export function ExperimentPage({ experiment, requestedId }: ExperimentPageProps)
       </section>
 
       <section className="legacy-launch" aria-labelledby="interactive-heading">
-        <h2 id="interactive-heading">{nativeExperiment ? '旧版实验对照' : '开始互动实验'}</h2>
+        <h2 id="interactive-heading">{NativeExperiment ? '旧版实验对照' : '开始互动实验'}</h2>
         <p>
-          {nativeExperiment
+          {NativeExperiment
             ? '上方是经过内容核验的 React 原生实验；旧页面暂时保留，便于迁移期间对照。'
             : '共享互动组件仍在迁移中；现阶段打开经过 148 页回归测试的旧版实验。'}
         </p>

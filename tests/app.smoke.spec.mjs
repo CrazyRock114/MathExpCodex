@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+const NATIVE_EXPERIMENT_IDS = ['PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08'];
+
 test('新应用展示全部 148 个实验并支持搜索', async ({ page }) => {
   await page.goto('/dist/app/index.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.experiment-card')).toHaveCount(148);
@@ -40,6 +42,38 @@ test('PR03 原生实验复现 c≤1000 的 158 组计数', async ({ page }) => {
   await expect(page.getByText('158 组', { exact: true })).toBeVisible();
 });
 
+test('PR04 纠正点接触相邻规则的错误上界', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/PR04', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByText(/没有相邻同色；当前只用了两种颜色/)).toBeVisible();
+  await page.getByRole('tab', { name: /相邻定义/ }).click();
+  await expect(page.getByText(/不存在固定上限/)).toBeVisible();
+  await expect(page.locator('.stage-panel:not([hidden]) .metric-grid').getByText('6', { exact: true })).toBeVisible();
+});
+
+test('PR05 精确枚举证明 K6 没有可避开染色', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/PR05', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /枚举/ }).click();
+  await expect(page.getByRole('row', { name: /K6 32,768 0 0\.0000%/ })).toBeVisible();
+});
+
+test('PR06 准确列出 100 的六个不重复素数分拆', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/PR06', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByText(/100 恰有 6 个不重复素数分拆/)).toBeVisible();
+  await expect(page.locator('.stage-panel:not([hidden]) .number-pair-list li')).toHaveCount(6);
+});
+
+test('PR07 准确给出一万以内 205 对孪生素数', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/PR07', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /计数/ }).click();
+  await expect(page.getByText(/不超过 10,000/).locator('..').getByText('205 对', { exact: true })).toBeVisible();
+});
+
+test('PR08 展示 96 边形给出的 π 上下界', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/PR08', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: '96 边', exact: true }).click();
+  await expect(page.getByText(/96 边时得到/)).toBeVisible();
+});
+
 for (const width of [360, 390, 768]) {
   test(`新应用在 ${width}px 视口无横向溢出`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -51,9 +85,10 @@ for (const width of [360, 390, 768]) {
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
   });
 
-  test(`三个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
+  test(`八个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
+    test.setTimeout(90_000);
     await page.setViewportSize({ width, height: 900 });
-    for (const experimentId of ['PR01', 'PR02', 'PR03']) {
+    for (const experimentId of NATIVE_EXPERIMENT_IDS) {
       await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
       for (let index = 0; index < 5; index += 1) {
         await page.getByRole('tab').nth(index).click();
@@ -82,8 +117,9 @@ test('新应用目录与详情页无严重无障碍问题', async ({ page }) => 
   }
 });
 
-test('三个原生实验的全部 15 个阶段无严重无障碍问题', async ({ page }) => {
-  for (const experimentId of ['PR01', 'PR02', 'PR03']) {
+test('八个原生实验的全部 40 个阶段无严重无障碍问题', async ({ page }) => {
+  test.setTimeout(120_000);
+  for (const experimentId of NATIVE_EXPERIMENT_IDS) {
     await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
     const tabs = page.getByRole('tab');
     for (let index = 0; index < 5; index += 1) {
@@ -97,13 +133,14 @@ test('三个原生实验的全部 15 个阶段无严重无障碍问题', async (
   }
 });
 
-test('三个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
+test('八个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
+  test.setTimeout(90_000);
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
   page.on('console', (message) => {
     if (message.type() === 'error') runtimeErrors.push(message.text());
   });
-  for (const experimentId of ['PR01', 'PR02', 'PR03']) {
+  for (const experimentId of NATIVE_EXPERIMENT_IDS) {
     await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
     for (let index = 0; index < 5; index += 1) await page.getByRole('tab').nth(index).click();
   }

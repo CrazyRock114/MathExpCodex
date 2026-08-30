@@ -1,6 +1,7 @@
 import { useId, useMemo, useState } from 'react';
 import { collatzSequence } from '../math';
 import type { NativeExperiment } from '../types';
+import { StageShell } from '../../components/StageShell';
 
 const COLORS = ['#3157d5', '#d1495b', '#0d8a6a', '#8b5cf6', '#c46a0a'];
 
@@ -186,3 +187,7 @@ export const COLLATZ_EXPERIMENT: NativeExperiment = {
     { emoji: '🌳', title: '从 1 反向生长', shortLabel: '反推', Component: ReverseStage }
   ]
 };
+
+export default function CollatzExperiment() {
+  return <StageShell experimentId={COLLATZ_EXPERIMENT.id} stages={COLLATZ_EXPERIMENT.stages} />;
+}
