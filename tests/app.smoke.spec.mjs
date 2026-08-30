@@ -3,8 +3,9 @@ import AxeBuilder from '@axe-core/playwright';
 
 const NATIVE_EXPERIMENT_IDS = [
   'PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08',
+  'NT01',
   'SQ01', 'SQ04', 'SQ07', 'SQ09', 'GM01', 'GM03', 'GM04', 'GM07', 'GR01', 'GR02', 'GR07', 'GR09',
-  'PB01', 'PB02', 'PB03', 'PB08', 'AL01', 'AL04', 'AL07', 'AL10'
+  'PB01', 'PB02', 'PB03', 'PB08', 'AL01', 'AL04', 'AL07', 'AL10', 'FR03'
 ];
 
 test('新应用展示全部 148 个实验并支持搜索', async ({ page }) => {
@@ -229,6 +230,26 @@ test('AL10 从 p² 开始筛并修正十亿以内素数个数', async ({ page })
   await expect(page.getByText(/50,847,534 个素数/)).toBeVisible();
 });
 
+test('NT01 修正完全数范围、定理归属与当前记录', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/NT01', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /搜索/ }).click();
+  await expect(page.getByText(/1 到 1,000 共有 3 个/)).toBeVisible();
+  await page.getByRole('tab', { name: /定理/ }).click();
+  await expect(page.getByText(/构造方向属于欧几里得，穷尽性方向由欧拉证明/)).toBeVisible();
+  await page.getByRole('tab', { name: /前沿/ }).click();
+  await expect(page.getByText(/52 个已知梅森素数/)).toBeVisible();
+  await expect(page.getByText(/数学下界定理，不是把此前每个奇数逐个暴力测试/)).toBeVisible();
+});
+
+test('FR03 区分无限边界、有限区域与不准确现实类比', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/FR03', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /面积/ }).click();
+  await expect(page.getByText(/极限为 8\/5 A₀ = 1.6 A₀/)).toBeVisible();
+  await page.getByRole('tab', { name: /边界/ }).click();
+  await expect(page.getByText(/边界也不会“填满整个圆”/)).toBeVisible();
+  await expect(page.getByText(/删除“现代手机天线标配”/)).toBeVisible();
+});
+
 for (const width of [360, 390, 768]) {
   test(`新应用在 ${width}px 视口无横向溢出`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -240,7 +261,7 @@ for (const width of [360, 390, 768]) {
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
   });
 
-  test(`二十八个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
+  test(`三十个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
     test.setTimeout(150_000);
     await page.setViewportSize({ width, height: 900 });
     for (const experimentId of NATIVE_EXPERIMENT_IDS) {
@@ -272,8 +293,8 @@ test('新应用目录与详情页无严重无障碍问题', async ({ page }) => 
   }
 });
 
-test('二十八个原生实验的全部 140 个阶段无严重无障碍问题', async ({ page }) => {
-  // 全套回归会与 148 个旧页面并行运行；给 140 次 axe 扫描留出资源竞争余量。
+test('三十个原生实验的全部 150 个阶段无严重无障碍问题', async ({ page }) => {
+  // 全套回归会与 148 个旧页面并行运行；给 150 次 axe 扫描留出资源竞争余量。
   test.setTimeout(420_000);
   for (const experimentId of NATIVE_EXPERIMENT_IDS) {
     await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
@@ -289,7 +310,7 @@ test('二十八个原生实验的全部 140 个阶段无严重无障碍问题', 
   }
 });
 
-test('二十八个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
+test('三十个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
   test.setTimeout(150_000);
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));

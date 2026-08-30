@@ -11,6 +11,7 @@ export const nativeExperimentById: ReadonlyMap<string, NativeExperimentView> = n
   ['PR06', lazy(() => import('./goldbach/GoldbachExperiment'))],
   ['PR07', lazy(() => import('./twin-prime/TwinPrimeExperiment'))],
   ['PR08', lazy(() => import('./pi-algorithms/PiAlgorithmsExperiment'))],
+  ['NT01', lazy(() => import('./perfect-number/PerfectNumberExperiment'))],
   ['SQ01', lazy(() => import('./fibonacci/FibonacciExperiment'))],
   ['SQ04', lazy(() => import('./catalan/CatalanExperiment'))],
   ['SQ07', lazy(() => import('./pascal/PascalExperiment'))],
@@ -30,5 +31,6 @@ export const nativeExperimentById: ReadonlyMap<string, NativeExperimentView> = n
   ['AL01', lazy(() => import('./twenty-four/TwentyFourExperiment'))],
   ['AL04', lazy(() => import('./hanoi/HanoiExperiment'))],
   ['AL07', lazy(() => import('./binary-search/BinarySearchExperiment'))],
-  ['AL10', lazy(() => import('./sieve/SieveExperiment'))]
+  ['AL10', lazy(() => import('./sieve/SieveExperiment'))],
+  ['FR03', lazy(() => import('./koch/KochExperiment'))]
 ]);

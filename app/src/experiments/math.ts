@@ -127,6 +127,103 @@ export function primeCount(limit: number) {
   return primeSieve(limit).filter(Boolean).length;
 }
 
+export interface KochSnowflakeMeasures {
+  readonly area: number;
+  readonly areaRatio: number;
+  readonly dimension: number;
+  readonly perimeter: number;
+  readonly segmentCount: number;
+  readonly segmentLength: number;
+}
+
+export function kochSnowflakeMeasures(sideLength: number, depth: number): KochSnowflakeMeasures {
+  if (!Number.isFinite(sideLength) || sideLength <= 0) throw new RangeError('初始边长必须是正数');
+  if (!Number.isInteger(depth) || depth < 0 || depth > 12) throw new RangeError('迭代次数必须是 0–12 的整数');
+  const areaRatio = 8 / 5 - 3 / 5 * (4 / 9) ** depth;
+  return {
+    area: Math.sqrt(3) / 4 * sideLength ** 2 * areaRatio,
+    areaRatio,
+    dimension: Math.log(4) / Math.log(3),
+    perimeter: 3 * sideLength * (4 / 3) ** depth,
+    segmentCount: 3 * 4 ** depth,
+    segmentLength: sideLength / 3 ** depth
+  };
+}
+
+export function kochCurvePoints(
+  start: Point2D,
+  end: Point2D,
+  depth: number,
+  turn: 1 | -1 = -1
+): readonly Point2D[] {
+  if (![start.x, start.y, end.x, end.y].every(Number.isFinite)) throw new RangeError('端点坐标必须是有限数字');
+  if (!Number.isInteger(depth) || depth < 0 || depth > 7) throw new RangeError('绘图迭代次数必须是 0–7 的整数');
+  let points: Point2D[] = [start, end];
+  const sine = turn * Math.sqrt(3) / 2;
+  for (let iteration = 0; iteration < depth; iteration += 1) {
+    const next: Point2D[] = [];
+    for (let index = 1; index < points.length; index += 1) {
+      const left = points[index - 1]!;
+      const right = points[index]!;
+      const dx = (right.x - left.x) / 3;
+      const dy = (right.y - left.y) / 3;
+      const first = { x: left.x + dx, y: left.y + dy };
+      const second = { x: left.x + 2 * dx, y: left.y + 2 * dy };
+      const peak = {
+        x: first.x + dx / 2 - sine * dy,
+        y: first.y + sine * dx + dy / 2
+      };
+      next.push(left, first, peak, second);
+    }
+    next.push(points.at(-1)!);
+    points = next;
+  }
+  return points;
+}
+
+export function properDivisors(value: number): readonly number[] {
+  if (!Number.isSafeInteger(value) || value < 1) throw new RangeError('待检验数必须是正安全整数');
+  if (value === 1) return [];
+  const divisors = new Set([1]);
+  for (let candidate = 2; candidate * candidate <= value; candidate += 1) {
+    if (value % candidate !== 0) continue;
+    divisors.add(candidate);
+    divisors.add(value / candidate);
+  }
+  return [...divisors].toSorted((left, right) => left - right);
+}
+
+export type DivisorSumClassification = 'deficient' | 'perfect' | 'abundant';
+
+export function classifyByProperDivisorSum(value: number): DivisorSumClassification {
+  const sum = properDivisors(value).reduce((total, divisor) => total + divisor, 0);
+  if (sum === value) return 'perfect';
+  return sum < value ? 'deficient' : 'abundant';
+}
+
+export function perfectNumbersThrough(limit: number): readonly number[] {
+  if (!Number.isInteger(limit) || limit < 1 || limit > 1_000_000) throw new RangeError('搜索上限必须是 1–1,000,000 的整数');
+  const divisorSums = Array.from({ length: limit + 1 }, () => 0);
+  for (let divisor = 1; divisor <= limit / 2; divisor += 1) {
+    for (let multiple = divisor * 2; multiple <= limit; multiple += divisor) divisorSums[multiple]! += divisor;
+  }
+  return divisorSums.flatMap((sum, value) => sum === value && value > 1 ? [value] : []);
+}
+
+export function euclidEulerCandidate(exponent: number) {
+  if (!Number.isInteger(exponent) || exponent < 2 || exponent > 31) throw new RangeError('演示指数必须是 2–31 的整数');
+  const mersenne = (1n << BigInt(exponent)) - 1n;
+  const perfectCandidate = (1n << BigInt(exponent - 1)) * mersenne;
+  let mersenneIsPrime = true;
+  for (let divisor = 2n; divisor * divisor <= mersenne; divisor += 1n) {
+    if (mersenne % divisor === 0n) {
+      mersenneIsPrime = false;
+      break;
+    }
+  }
+  return { mersenne, mersenneIsPrime, perfectCandidate };
+}
+
 export function catalanNumber(index: number) {
   if (!Number.isInteger(index) || index < 0) throw new RangeError('卡特兰数下标必须是非负整数');
   let value = 1n;

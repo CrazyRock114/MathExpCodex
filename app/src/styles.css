@@ -493,6 +493,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .catalan-path { display: block; width: 100%; min-width: 0; height: auto; border: 1px solid #dfe4f0; border-radius: .9rem; background: #fbfcff; }
 .catalan-path line { stroke: #b8c0ce; stroke-dasharray: 5 4; stroke-width: 2; }
 .catalan-path polyline { fill: none; stroke: #3157d5; stroke-linejoin: round; stroke-width: 4; }
+.koch-svg { display: block; width: 100%; min-width: 0; height: auto; border: 1px solid #dfe4f0; border-radius: .9rem; background: linear-gradient(#f8fbff, #eef6ff); }
+.koch-svg polyline { fill: #dff6f1; fill-opacity: .72; stroke: #3157d5; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; vector-effect: non-scaling-stroke; }
 
 .site-footer { padding: 1.5rem 1rem 2.5rem; border-top: 1px solid var(--line); color: var(--muted); text-align: center; font-size: .85rem; }
 

@@ -237,6 +237,23 @@ export const REVIEWED_EXPERIMENT_OVERRIDES: Readonly<Record<string, ReviewedOver
       lastReviewedAt: '2026-08-30'
     }
   },
+  NT01: {
+    title: '完全数：从真因数和到梅森素数',
+    intro: '完全数等于全部真因数之和。欧几里得给出由梅森素数构造偶完全数的方法，欧拉证明每个偶完全数都来自这种形式；奇完全数是否存在仍未解决。',
+    education: {
+      gradeBands: ['primary', 'middle', 'high'],
+      learningObjectives: ['列出真因数并把正整数分为亏数、完全数或盈数', '用 2ᵖ−1 与 2ᵖ⁻¹(2ᵖ−1) 构造偶完全数，并识别素数指数并不充分', '区分有限搜索、欧几里得—欧拉定理、当前计算记录与奇完全数开放问题'],
+      prerequisites: ['因数与倍数', '素数', '整数幂与科学记数法（进阶阶段）'],
+      sources: [
+        { label: 'Euclid’s Elements, Book IX, Proposition 36', url: 'https://aleph0.clarku.edu/~djoyce/elements/bookIX/propIX36.html', kind: 'primary' },
+        { label: 'Dartmouth：Euclid–Euler theorem 概述', url: 'https://math.dartmouth.edu/~carlp/erdossurvey-4.pdf', kind: 'reference' },
+        { label: 'GIMPS：已知梅森素数列表', url: 'https://www.mersenne.org/primes/', kind: 'reference' },
+        { label: 'Ochem 与 Rao：Odd perfect numbers are greater than 10^1500', url: 'https://doi.org/10.1090/S0025-5718-2012-02563-4', kind: 'primary' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
   SQ01: {
     title: '从递推规则长出斐波那契数列',
     intro:
@@ -608,6 +625,22 @@ export const REVIEWED_EXPERIMENT_OVERRIDES: Readonly<Record<string, ReviewedOver
         { label: 'NIST Dictionary of Algorithms and Data Structures：sieve of Eratosthenes', url: 'https://xlinux.nist.gov/dads/HTML/sieve.html', kind: 'reference' },
         { label: 'OEIS A006880：π(10ⁿ)', url: 'https://oeis.org/A006880', kind: 'reference' },
         { label: 'NIST DLMF：Number-theoretic tables', url: 'https://dlmf.nist.gov/27.21', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  FR03: {
+    title: '科赫雪花：无限周长与有限面积',
+    intro: '每轮把一条线段替换为四条长度为原来 1/3 的线段。雪花边界的周长趋向无穷，围成的面积却收敛到初始三角形面积的 8/5。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['按三等分与向外凸起的规则生成科赫雪花', '分别推导边数、每段长度、周长与面积的有限阶段公式和极限', '用四个 1/3 缩放副本理解相似维数，并区分边界、内部区域与现实近似模型'],
+      prerequisites: ['等边三角形', '整数幂与几何级数', '对数与极限（进阶阶段）'],
+      sources: [
+        { label: 'MacTutor：Helge von Koch 与 1904 年曲线', url: 'https://mathshistory.st-andrews.ac.uk/Biographies/Koch/', kind: 'reference' },
+        { label: 'American Mathematical Society：Koch Snowflake', url: 'https://blogs.ams.org/mathgradblog/2013/12/21/koch-snowflake/', kind: 'reference' },
+        { label: 'AMS：Introduction to Concepts in Fractal Geometry', url: 'https://www.ams.org/bookstore/pspdf/gsm-247-prev.pdf', kind: 'reference' }
       ],
       reviewStatus: 'verified',
       lastReviewedAt: '2026-08-30'

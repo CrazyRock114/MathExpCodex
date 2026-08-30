@@ -15,11 +15,13 @@ import {
   collatzSequence,
   completeGraphEdges,
   collisionProbability,
+  classifyByProperDivisorSum,
   countMonochromaticTriangles,
   createBuffonTrial,
   createPythagoreanTriple,
   estimatePi,
   eulerCharacteristic,
+  euclidEulerCandidate,
   exactTravelingSalesmanTour,
   fibonacciNumbers,
   generateBalancedParentheses,
@@ -37,7 +39,9 @@ import {
   pascalRows,
   pigeonholeLowerBound,
   polygonInteriorAngleSum,
+  perfectNumbersThrough,
   primeCount,
+  properDivisors,
   ramseyAvoidingColoringCount,
   twinPrimePairs,
   primitiveTriplesThrough,
@@ -49,7 +53,9 @@ import {
   sieveTrace,
   triangularNumber,
   undirectedDegrees,
-  orientableSurfaceCharacteristic
+  orientableSurfaceCharacteristic,
+  kochCurvePoints,
+  kochSnowflakeMeasures
 } from './math';
 
 describe('布丰投针模型', () => {
@@ -272,5 +278,37 @@ describe('第六批旗舰实验算法', () => {
     ]);
     expect(primeCount(100)).toBe(25);
     expect(primeCount(1_000_000)).toBe(78_498);
+  });
+});
+
+describe('第七批旗舰实验算法', () => {
+  it('科赫雪花的边数、周长和面积遵循各自的几何级数', () => {
+    expect(kochSnowflakeMeasures(1, 0)).toMatchObject({ segmentCount: 3, segmentLength: 1, perimeter: 3, areaRatio: 1 });
+    expect(kochSnowflakeMeasures(1, 1).areaRatio).toBeCloseTo(4 / 3, 12);
+    expect(kochSnowflakeMeasures(1, 8).areaRatio).toBeCloseTo(8 / 5 - 3 / 5 * (4 / 9) ** 8, 12);
+    expect(kochSnowflakeMeasures(1, 8).areaRatio).toBeLessThan(8 / 5);
+    expect(kochSnowflakeMeasures(1, 0).dimension).toBeCloseTo(Math.log(4) / Math.log(3), 12);
+  });
+
+  it('每轮把一条科赫曲线线段替换成四段并保留端点', () => {
+    const points = kochCurvePoints({ x: 0, y: 0 }, { x: 9, y: 0 }, 2);
+    expect(points).toHaveLength(17);
+    expect(points[0]).toEqual({ x: 0, y: 0 });
+    expect(points.at(-1)).toEqual({ x: 9, y: 0 });
+  });
+
+  it('完全数分类与有限搜索给出正确结果', () => {
+    expect(properDivisors(28)).toEqual([1, 2, 4, 7, 14]);
+    expect(classifyByProperDivisorSum(8)).toBe('deficient');
+    expect(classifyByProperDivisorSum(12)).toBe('abundant');
+    expect(classifyByProperDivisorSum(28)).toBe('perfect');
+    expect(perfectNumbersThrough(1_000)).toEqual([6, 28, 496]);
+    expect(perfectNumbersThrough(10_000)).toEqual([6, 28, 496, 8_128]);
+  });
+
+  it('欧几里得—欧拉候选区分梅森素数与合数', () => {
+    expect(euclidEulerCandidate(7)).toEqual({ mersenne: 127n, mersenneIsPrime: true, perfectCandidate: 8_128n });
+    expect(euclidEulerCandidate(11)).toEqual({ mersenne: 2_047n, mersenneIsPrime: false, perfectCandidate: 2_096_128n });
+    expect(euclidEulerCandidate(13).perfectCandidate).toBe(33_550_336n);
   });
 });
