@@ -85,7 +85,7 @@ const catalog = metadata.map((experiment) => {
     kind,
     searchAliases: searchAliases(experiment),
     stageCount: experiment.stages.length,
-    legacyPath: `../pages/${experiment.id}.html`,
+    legacyPath: `../../pages/${experiment.id}.html`,
     education: {
       gradeBands: recommendedGradeBands(experiment),
       learningObjectives: learningObjectives(experiment),

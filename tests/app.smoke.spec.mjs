@@ -23,7 +23,7 @@ test('新应用详情路由提供原生五步实验并保留旧实验对照', as
   await expect(page.getByRole('tab')).toHaveCount(5);
   await expect(page.getByRole('link', { name: /打开 PR01 旧版实验/ })).toHaveAttribute(
     'href',
-    '../pages/PR01.html'
+    '../../pages/PR01.html'
   );
 });
 

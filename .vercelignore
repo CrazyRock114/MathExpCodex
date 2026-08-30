@@ -1,5 +1,6 @@
 audio/v12_backup/
 audio/v13_backup/
+audio/v13_partial/
 __pycache__/
 *.pyc
 .DS_Store

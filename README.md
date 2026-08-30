@@ -44,7 +44,7 @@ npm run dev
 npm test
 ```
 
-当前质量入口会依次运行目录生成、TypeScript、Vitest、Vite 生产构建和 194 项 Playwright 检查：
+当前质量入口会依次运行目录与历史入口生成、资产边界审计、TypeScript、Vitest、Vite 生产构建和 195 项 Playwright 检查：
 
 - 独立实验页面数量必须为 148
 - 每页能够加载且没有破坏交互的 JavaScript 错误
@@ -57,7 +57,7 @@ npm test
 - 三十个原生实验的全部 150 个阶段在 360px、390px、768px 无横向溢出
 - 新目录与三十个原生实验的全部阶段没有 axe `critical` 或 `serious` 无障碍问题
 
-GitHub Actions 使用稀疏检出跳过大型 MP3，避免无关媒体拖慢页面逻辑测试。
+GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生成页重新膨胀或元数据再次声明不存在的运行时音频。
 
 ## 渐进迁移架构
 
@@ -74,10 +74,11 @@ GitHub Actions 使用稀疏检出跳过大型 MP3，避免无关媒体拖慢页�
 
 旧实验运行层仍为：
 
-- 静态 HTML、CSS 和原生 JavaScript
+- 一个共享的静态 HTML、CSS 和原生 JavaScript 旧版应用
 - 本地固定版本的 Chart.js 4.4.1 UMD（保留上游许可证，旧页不再依赖 CDN 时序）
 - Canvas、SVG 和少量 SMIL 动画
-- 148 个生成的独立 HTML 页面
+- 148 个轻量历史入口，统一跳转到 `index.html#实验ID`；总计约 80KB，不再复制 300MB 共享代码
+- 讲解文字稿保留在源码；生产音频 URL 当前为 0，6 个不完整 MP3 仅作为带 SHA-256 清单的历史样本
 - 无后端、无账户和用户数据存储
 
 现有 `index.html` 和独立页面仍包含大量重复代码。首批 30 个旗舰实验已迁入共享实验壳；其余详情页仍链接旧互动页面，迁移期间保留旧页作为对照。
@@ -87,9 +88,10 @@ GitHub Actions 使用稀疏检出跳过大型 MP3，避免无关媒体拖慢页�
 - `index.html`：当前主应用
 - `app/`：新的 React 应用、组件、样式和类型化目录
 - `scripts/generate-catalog.mjs`：从旧元数据生成受 TypeScript 约束的目录
-- `pages/`：148 个独立实验页面
+- `pages/`：148 个可重建的轻量历史 URL 入口
 - `experiments_meta.json`：旧版实验元数据快照，后续将迁移为有类型约束的数据源
-- `audio/`：讲解音频及文字稿；音频将迁移到对象存储/CDN
+- `audio/`：历史讲解文字稿与 6 个隔离的 v13 音频样本；边界说明见目录内 README
+- `docs/ASSET_INVENTORY.md`：生成页、文字稿、归档音频、校验值与恢复方案
 - `tests/`：Playwright 浏览器冒烟测试
 - `docs/PROGRESS.md`：当前 Goal、里程碑、测试证据和后续工作
 - `gen_pages.py`：旧版独立页面生成器

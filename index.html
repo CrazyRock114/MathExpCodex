@@ -593,13 +593,8 @@ body.dark #typeIntroCard { background: #1e3a8a44 !important; }
       <span style="color: #10b981;">●</span> <strong>已被证明的猜想</strong>（20 个）— 庞加莱、费马大定理、王虹 + 邓煜 二零二六 菲尔兹奖。
     </p>
     <div class="mavis-actions">
-      <button id="playMavisIntro" class="primary">▶ 听 Mavis 介绍（约 2 分钟）</button>
-      <button id="mavisSkip" class="ghost small">跳过</button>
-    </div>
-    <audio id="mavisIntroAudio" src="audio/mavis_intro_p1.mp3" preload="metadata"></audio>
-    <div id="mavisProgress" style="margin-top: 8px; font-size: 12px; color: var(--muted); display: none;">
-      <span id="mavisTime">0:00</span> / <span id="mavisDuration">0:00</span>
-      <button id="mavisPause" class="ghost small" style="margin-left: 12px;">⏸ 暂停</button>
+      <a class="ghost small" href="audio/mavis_intro.txt">📄 阅读介绍文字稿</a>
+      <span style="font-size: 12px; color: var(--muted);">音频二进制未随源码分发</span>
     </div>
   </div>
 </div>
@@ -7261,14 +7256,7 @@ function getStagesNT06() {
         </div>
 
         <div style="margin-top: 18px; padding: 16px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%); border-left: 5px solid #10b981; border-radius: 8px;">
-          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap;">
-            <button class="ghost small" onclick="document.getElementById('nt06s5a1').play()" style="background: #d1fae5; border-color: #10b981; color: #065f46; font-size: 12px;">▶ 5a-1 卡普雷卡（15 秒）</button>
-            <button class="ghost small" onclick="document.getElementById('nt06s5a2').play()" style="background: #d1fae5; border-color: #10b981; color: #065f46; font-size: 12px;">▶ 5a-2 库珀肯尼迪（20 秒）</button>
-            <button class="ghost small" onclick="document.getElementById('nt06s5a3').play()" style="background: #d1fae5; border-color: #10b981; color: #065f46; font-size: 12px;">▶ 5a-3 覆盖所有数（10 秒）</button>
-          </div>
-          <audio id="nt06s5a1" preload="none" src="audio/NT06_s5a.mp3"></audio>
-          <audio id="nt06s5a2" preload="none" src="audio/NT06_s5a_p2.mp3"></audio>
-          <audio id="nt06s5a3" preload="none" src="audio/NT06_s5a_p3.mp3"></audio>
+          <p style="font-size: 12px;"><a href="audio/NT06_s5a.txt">阅读 5a 文字稿</a> · <a href="audio/NT06_s5a_p2.txt">补充 1</a> · <a href="audio/NT06_s5a_p3.txt">补充 2</a></p>
           <div style="font-size: 14px; line-height: 1.7;">
             <strong style="color:#065f46;">🔁 闭合定理</strong>（库珀和肯尼迪，1984 年）：<strong>每个自然数 n 的倍数里必有 Harshad 数</strong>。<br>
             <span style="color: var(--muted); font-size: 12px;">📖 解释：</span>
@@ -7281,12 +7269,7 @@ function getStagesNT06() {
         </div>
 
         <div style="margin-top: 16px; padding: 16px; background: linear-gradient(135deg, #fef3c7 0%, #fce7f3 100%); border-left: 5px solid #f59e0b; border-radius: 8px;">
-          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap;">
-            <button class="ghost small" onclick="document.getElementById('nt06s5b1').play()" style="background: #fef3c7; border-color: #f59e0b; color: #92400e; font-size: 12px;">▶ 5b-1 渐近密度（15 秒）</button>
-            <button class="ghost small" onclick="document.getElementById('nt06s5b2').play()" style="background: #fef3c7; border-color: #f59e0b; color: #92400e; font-size: 12px;">▶ 5b-2 巧合问题（15 秒）</button>
-          </div>
-          <audio id="nt06s5b1" preload="none" src="audio/NT06_s5b.mp3"></audio>
-          <audio id="nt06s5b2" preload="none" src="audio/NT06_s5b_p2.mp3"></audio>
+          <p style="font-size: 12px;"><a href="audio/NT06_s5b.txt">阅读 5b 文字稿</a> · <a href="audio/NT06_s5b_p2.txt">补充说明</a></p>
           <div style="font-size: 14px; line-height: 1.7;">
             <strong style="color:#92400e;">🌌 未解之谜</strong>：Harshad 数的<strong>"渐近密度"约 0.314</strong>，<strong>接近圆周率 π</strong>！<br>
             <span style="color: var(--muted); font-size: 12px;">📖 解释：</span>
@@ -36841,7 +36824,7 @@ const EXPERIMENTS = [
 回家作业：找一张草稿纸，画 5 条平行线，然后拿一根牙签扔 50 次，记下来跨了几次。算一算你的 π 估值是多少。明天带到课堂上，看谁的 π 最准。
 
 记住：数学不只藏在书本里——藏在每一次随机、每一次巧合、每一次你认真观察的瞬间。`,
-  audioUrl: 'audio/PR01_explain.mp3',
+  audioUrl: '',
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>想象你往画着等距平行线的纸上扔一根针。每根针的位置 <em>(x, y)</em> 和角度 <em>θ</em> 都是<strong>完全随机</strong>的——但每根针跨不跨线，居然有 <strong>精确的数学概率</strong>，而且这个概率里藏着 π。</p>
 <h4>📐 概率怎么算的？</h4>
@@ -36924,7 +36907,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 回家作业：在纸上写下 1 到 20 这 20 个数，挨个算每步蹦几，总共蹦几步。看看哪个数蹦得最久，明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一次看似简单、其实深不见底的问题里。`,
-  audioUrl: 'audio/PR02_explain.mp3',
+  audioUrl: '',
   stages: getStagesPR02(),
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>科拉茨 猜想是人类数学里<strong>最简单又最难</strong>的未解之谜之一。它的规则简单到小学生都能做：</p>
@@ -36985,7 +36968,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 然后挑战自己：点"换一题"，让 AI 随机选一个本原勾股数，你用 8 步内猜出来。试试问"包含数字 7 吗？"、"最大边小于 30 吗？"，看能不能像二分法一样锁定。
 
 记住：数学不只藏在书本里——藏在每一个能被一条优雅公式描述的规律里。`,
-  audioUrl: 'audio/PR03_explain.mp3',
+  audioUrl: '',
   stages: getStagesPR03(),
   principle: `<h4>🔍 勾股数是什么？</h4>
 <p>三个正整数 a, b, c 满足 <span class="formula">a² + b² = c²</span>，就是一组<strong>勾股数</strong>。最有名的是 (3, 4, 5)：3² + 4² = 9 + 16 = 25 = 5²。</p>
@@ -37044,7 +37027,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 现在请同学们动动手：点 6 乘 6 网格的任意格子涂色，相邻的格子会自动变不同颜色。然后切到"挑战 3 色"——看看只用 3 种颜色能不能涂完整个网格？2 种就够了！但切到 Voronoi 模式，画不规则地图——3 种就不够了，4 种刚好。
 
 记住：数学不只藏在书本里——藏在每一次"看似显然但难以证明"的直觉里。`,
-  audioUrl: 'audio/PR04_explain.mp3',
+  audioUrl: '',
   stages: getStagesPR04(),
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>假设你有一张地图（中国地图、欧洲地图、自己画的 Voronoi 图……），上面有几个国家（区域），两国<strong>共享一段边界</strong>叫"相邻"。问题：<strong>最少需要几种颜色</strong>，才能给每个国家涂一种颜色、且相邻两国颜色不同？</p>
@@ -37106,7 +37089,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 现在请同学们自己来：和同桌一起，6 个小朋友一组。每个人写下自己认识或不认识的人，看看你们组能不能找到"3 人互识"或"3 人互不识"。然后看：换成 5 个人呢？结论还成立吗？
 
 记住：数学不只藏在书本里——藏在每一次聚会、每一个朋友圈、每一次"咦怎么这么巧"的瞬间里。`,
-  audioUrl: 'audio/PR05_explain.mp3',
+  audioUrl: '',
   stages: getStagesPR05(),
   principle: `<h4>🔍 这个问题为什么有趣？</h4>
 <p>想象 <strong>6 个人</strong>围坐一桌。两人之间要么"认识"（红边）要么"不认识"（蓝边）。问：<strong>是否一定有 3 人互相全认识，或 3 人互相全不认识？</strong></p>
@@ -37168,7 +37151,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 现在请同学们自己挑几个偶数试试：14 等于 3 加 11；18 等于 5 加 13 也等于 7 加 11；20 等于 3 加 17 也等于 7 加 13——能找出多少种配法？明天带过来我们比一比谁找得多。
 
 记住：数学不只藏在书本里——藏在每一个看似显然、实则深邃的问题里。`,
-  audioUrl: 'audio/PR06_explain.mp3',
+  audioUrl: '',
   stages: getStagesPR06(),
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>取任何<strong>大于 2 的偶数 N</strong>，问：能不能写成<strong>两个素数之和</strong>？</p>
@@ -37232,7 +37215,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 现在请同学们自己找：扫一段区间，看孪生素数有多密。Top 10 表格会列出蹦得最久的 10 个数。看看 1000 以内哪一对孪生素数最密？明天带过来我们比比谁找得多。
 
 记住：数学不只藏在书本里——藏在每一次"看似无规律、实则有规律"的素数海洋里。`,
-  audioUrl: 'audio/PR07_explain.mp3',
+  audioUrl: '',
   stages: getStagesPR07(),
   principle: `<h4>🔍 孪生素数是什么？</h4>
 <p>两个素数 p 和 p+2（相差 2）就是一对<strong>孪生素数</strong>。例子：<br>
@@ -37289,7 +37272,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 现在请同学们点"开始计算"，看 4 条线一起画出来——红线 莱布尼茨 几乎不动，黄线 Chud诺夫斯基 一步到位。一万次迭代后，谁最准？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"看似简单的公式、实则威力无穷"的智慧里。`,
-  audioUrl: 'audio/PR08_explain.mp3',
+  audioUrl: '',
   stages: getStagesPR08(),
   principle: `<h4>🔍 为什么有这么多算法？</h4>
 <p>π 是个<strong>超越数</strong>（林德曼 1882 证明），所以不可能用有理数代数式精确表达。但我们可以用<strong>无穷级数</strong>或<strong>几何逼近</strong>算到任意精度。</p>
@@ -37366,7 +37349,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 现在请同学们自己动手：点"找完美数"，搜索 1 到 1000。你会找到 4 个完美数：6、28、496、8128。看看 10000 以内有几个？100000 以内呢？再试试 1000 以内的"相亲数对"——两个数互为对方的真因子之和，比如 220 和 284。明天带过来我们比一比谁找得多。
 
 记住：数学不只藏在书本里——藏在每一个"刚刚好"刚刚等于自己的数字里。`,
-  audioUrl: 'audio/NT01_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT01(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>搜索到 N <input type="number" id="nt01_n" value="10000" min="100"></label><button class="primary" id="nt01_run">找完美数</button></div><div id="nt01_out" class="sequence" style="margin-top:12px;">点"找完美数"</div>`;
@@ -37404,7 +37387,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 现在请同学们自己动手：点"找亲和数对"，扫 1 到 10000。你会找到 5 对：220-284、1184-1210、2620-2924、5020-5564、6232-6368。看看 100000 以内有几对？100 万呢？明天带过来我们比一比谁找得多。
 
 记住：数学不只藏在书本里——藏在每一个"你中有我、我中有你"的数字对里。`,
-  audioUrl: 'audio/NT02_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT02(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>搜索到 N <input type="number" id="nt02_n" value="5000" min="100"></label><button class="primary" id="nt02_run">找亲和对</button></div><div id="nt02_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -37441,7 +37424,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 现在请同学们自己动手：点"分类"，扫 1 到 1000。你会发现：亏数大约 760 个，完美数 4 个（6、28、496、8128），过剩数大约 240 个。试试 10000 以内的分布？100000 呢？看看哪种最多。
 
 记住：数学不只藏在书本里——藏在每一个"比大小"背后的小秘密里。`,
-  audioUrl: 'audio/NT03_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT03(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt03_n" value="50" min="10"></label><button class="primary" id="nt03_run">分类</button></div><div id="nt03_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -37479,7 +37462,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 现在请同学们自己动手：点"找自恋数"，扫 1 到 10000，看看能找到几个。1 是的，153 是的，370 是的，371 是的，407 是的，1634 是的，8208 是的，9474 是的——总共 8 个。看看 100000 以内有吗？百万以内有吗？
 
 记住：数学不只藏在书本里——藏在每一个"自我欣赏"的数字里。`,
-  audioUrl: 'audio/NT04_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT04(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt04_n" value="100000" min="100"></label><button class="primary" id="nt04_run">找自恋数</button></div><div id="nt04_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -37521,7 +37504,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 现在请同学们自己动手：输入一个数，比如 23 或 86，看它会到 1 还是进入循环。挑战自己：100 以内哪个数蹦得最久才到 1？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"快乐"和"忧郁"的数字旅程里。`,
-  audioUrl: 'audio/NT05_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT05(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>输入 n <input type="number" id="nt05_n" value="19" min="1"></label><button class="primary" id="nt05_run">判断</button></div><div id="nt05_seq" class="sequence" style="margin-top:12px;"></div><div id="nt05_out" class="stat" style="margin-top:12px;"><div class="k">判定</div><div class="v">—</div></div>`;
@@ -37583,7 +37566,7 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
 现在请同学们自己动手：点"找 Harshad 数"，扫 1 到 1000。找到 156 个。看看 10000 以内有几个？100000 呢？密度有什么规律？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"被自己包容"的数字里。`,
-  audioUrl: 'audio/NT06_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT06(),
   render: (h) => {
     h.innerHTML = `
@@ -37720,7 +37703,7 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
 现在请同学们自己动手：输入一个 4 位数，比如 1000、1234、9999，看要几步到 6174。试试：10000 以内的数都能到 6174 吗？明天带过来我们比一比谁跳得最远。
 
 记住：数学不只藏在书本里——藏在每一个"自动吸进去"的有趣黑洞里。`,
-  audioUrl: 'audio/NT07_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT07(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>输入 4 位数 <input type="number" id="nt07_n" value="3524" min="1000" max="9999"></label><button class="primary" id="nt07_run">变换</button></div><div id="nt07_seq" class="sequence" style="margin-top:12px;"></div>`;
@@ -37765,7 +37748,7 @@ Harshad 数有什么特殊？人们发现：每个自然数 n 的倍数里，必
 现在请同学们自己动手：输入一个 2 位数比如 47、58、69，看要几步到回文。挑战一下：89 要 24 步！196 算到 100 步能到回文吗？明天带过来我们比一比谁跳得最久。
 
 记住：数学不只藏在书本里——藏在每一个"正反都一样"的有趣旅程里。`,
-  audioUrl: 'audio/NT08_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT08(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>输入 n <input type="number" id="nt08_n" value="87" min="1"></label><button class="primary" id="nt08_run">迭代</button></div><div id="nt08_seq" class="sequence" style="margin-top:12px;"></div><div id="nt08_out" class="stat" style="margin-top:12px;"><div class="k">步数</div><div class="v">—</div></div>`;
@@ -37807,7 +37790,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：找几个 100 以下的合数，做费马测试看看——有没有"伪装"成素数的？561 是的。想想：为什么 Carmichael 数这么少？明天带过来我们比一比谁找得多。
 
 记住：数学不只藏在书本里——藏在每一个"伪装得像素数"的合数里。`,
-  audioUrl: 'audio/NT09_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT09(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt09_n" value="10000" min="1000"></label><button class="primary" id="nt09_run">找</button><span id="nt09_status" style="color: var(--muted); font-size: 13px;"></span></div><div id="nt09_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -37859,7 +37842,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：点"找 Smith 数"，扫 1 到 1000。你会找到这些：4、22、27、58、85、94、121、166、202、265、274、319、346、355、378、382、391、438、454、483——大约 30 个。看看 10000 以内有几个？100000 呢？密度有什么变化？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"内外数字和相等"的合数里。`,
-  audioUrl: 'audio/NT10_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT10(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt10_n" value="2000" min="100"></label><button class="primary" id="nt10_run">找</button></div><div id="nt10_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -37899,7 +37882,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：点"找吸血鬼数"，扫 1 到 10000。找到几个？100000 呢？1000000 呢？密度有什么规律？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"咬合起来正好对"的乘积对里。`,
-  audioUrl: 'audio/NT11_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT11(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt11_n" value="100000" min="1000"></label><button class="primary" id="nt11_run">找</button></div><div id="nt11_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -37953,7 +37936,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：点"找三角形数"，扫 1 到 1000。你会找到 44 个三角形数。看 1 是不是？3、6、10... 测试连续两个三角形数加起来是不是平方数？比如 3 加 6 等于 9，6 加 10 等于 16。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"能摆成三角形"的有趣石子数里。`,
-  audioUrl: 'audio/NT12_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT12(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="nt12_n" value="10" min="1"></label><button class="primary" id="nt12_run">生成</button></div><div id="nt12_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -37991,7 +37974,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：点"找四面体数"，扫 1 到 1000。你会找到 17 个四面体数。验证 T_1 加 T_2 加 T_3 等于 10？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"能堆成三角锥"的有趣石子数里。`,
-  audioUrl: 'audio/NT13_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT13(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="nt13_n" value="10" min="1"></label><button class="primary" id="nt13_run">生成</button></div><div id="nt13_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38025,7 +38008,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：输入一个数比如 123456789，看数字根是多少？或者输入一个超大数比如 999999999999999，看数字根是多少？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"加到最后只剩一位"的有趣过程里。`,
-  audioUrl: 'audio/NT14_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT14(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>输入 n <input type="number" id="nt14_n" value="12345"></label><button class="primary" id="nt14_run">求根</button></div><div id="nt14_seq" class="sequence" style="margin-top:12px;"></div><div id="nt14_out" class="stat" style="margin-top:12px;"><div class="k">数字根</div><div class="v">—</div></div>`;
@@ -38068,7 +38051,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：点"找回文素数"，扫 1 到 1000。找到 20 个：2、3、5、7、11、101、131、151、181、191、313、353、373、383、727、757、787、797、919、929。看看 10000 以内有几个？百万以内呢？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"正反都一样"的素数里。`,
-  audioUrl: 'audio/NT15_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT15(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt15_n" value="10000" min="100"></label><button class="primary" id="nt15_run">找</button></div><div id="nt15_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38110,7 +38093,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：点"扫素数间隙"，扫 1 到 1000。看哪些间隙最大？1 跟 2 之间是 1。2 跟 3 之间是 1。等等——1000 内的最大间隙是多少？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"素数之间"的空白里。`,
-  audioUrl: 'audio/NT16_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT16(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>扫描到 N <input type="number" id="nt16_n" value="500" min="100"></label><button class="primary" id="nt16_run">算间隙</button></div><div id="nt16_out" class="sequence" style="margin-top:12px;"></div><div id="nt16_max" class="stat" style="margin-top:12px;"><div class="k">最大间隙</div><div class="v">—</div></div>`;
@@ -38154,7 +38137,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：选一个 m（比如 7、11、13），观察 1 到 100 的 n mod m 序列。看看有什么规律？固定 m 的话，n 增加 1 时余数也增加 1（除以 m 时归零）。这个规律能用来算任何大数的余数。
 
 记住：数学不只藏在书本里——藏在每一个"除完取余"的小动作里。`,
-  audioUrl: 'audio/NT17_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT17(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>模数 m <input type="number" id="nt17_m" value="7" min="2" max="100"></label><label>范围 N <input type="number" id="nt17_n" value="50" min="10"></label><button class="primary" id="nt17_run">画</button></div><div id="nt17_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38193,7 +38176,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：点"算 φ"，输入一个数比如 30、60、100。看看 φ(30) 是多少？跟 30 互素的小于等于 30 的数有几个？公式验证：φ(30) = 30 × (1-1/2) × (1-1/3) × (1-1/5) = 30 × 1/2 × 2/3 × 4/5 = 8。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"互素对"的优雅计数里。`,
-  audioUrl: 'audio/NT18_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT18(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>输入 n <input type="number" id="nt18_n" value="36" min="2"></label><button class="primary" id="nt18_run">算 φ</button></div><div id="nt18_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38230,7 +38213,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：点"找梅森素数"，扫 1 到 1000。你会找到 3、7、31、127 这 4 个（其他都超过 1000 了）。看看 2 的 5 次方减 1 等于 31 是不是？2 的 7 次方减 1 等于 127 是不是？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"2 的 p 次方减 1"的素数里。`,
-  audioUrl: 'audio/NT19_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT19(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>指数 p 上限 <input type="number" id="nt19_p" value="60" min="2"></label><button class="primary" id="nt19_run">找</button></div><div id="nt19_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38290,7 +38273,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 现在请同学们自己动手：点"哥德巴赫拆分"，扫 1 到 100。每个偶数都能拆成两素数之和吗？能拆几种？100 这个数有 6 种：3+97、11+89、17+83、29+71、47+53。试试 1000 以内最多拆几对？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"两个素数相加成偶数"的有趣拆解里。`,
-  audioUrl: 'audio/NT20_explain.mp3',
+  audioUrl: '',
   stages: getStagesNT20(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>偶数 N <input type="number" id="nt20_n" value="100" min="4" max="10000"></label><button class="primary" id="nt20_run">拆</button></div><div id="nt20_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38333,7 +38316,7 @@ F_100 等于 354224848179261915075。F_200 是个 41 位数。F_1000 是个 209 
 现在请同学们自己动手：点"生成斐波那契"，看 100 项。F_30 等于多少？F_50 呢？F_100 呢？验证 1、1、2、3、5 开头对不对。看看哪些是偶数（每 3 个有一个偶数）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一次兔子繁殖、每一片向日葵种子、每一只鹦鹉螺里。`,
-  audioUrl: 'audio/SQ01_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ01(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq01_n" value="20" min="1"></label><button class="primary" id="sq01_run">生成</button></div><div id="sq01_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38380,7 +38363,7 @@ F_30/F_29 ≈ 1.6180339887
 现在请同学们自己动手：点"验证黄金比例"，看 50 项斐波那契的比值。F_20/F_19 是不是已经很接近 1.618 了？F_30/F_29 是不是更接近？看看怎么用连分数表示 φ。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"看起来最美"的比例里。`,
-  audioUrl: 'audio/SQ02_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ02(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq02_n" value="20" min="2"></label><button class="primary" id="sq02_run">比值</button></div><div id="sq02_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38425,7 +38408,7 @@ F_30/F_29 ≈ 1.6180339887
 现在请同学们自己动手：点"生成 卢卡斯 数"，看前 30 项。验证 L_5 = 11 是不是 F_4 + F_6？L_10 = 123 是不是 F_9 + F_11？看看 卢卡斯 数的"斐波那契商" L_n/F_n 是不是都接近 φ？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在斐波那契的每一个"亲戚"数列里。`,
-  audioUrl: 'audio/SQ03_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ03(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq03_n" value="15" min="1"></label><button class="primary" id="sq03_run">生成</button></div><div id="sq03_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38472,7 +38455,7 @@ F_30/F_29 ≈ 1.6180339887
 现在请同学们自己动手：点"生成 卡塔兰 数"，看前 15 项。验证 C_3=5：3 对括号有几种合法配对？C_4=14：4 对括号有几种？看看 C_5=42 是怎么数出来的。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"看似不同、实则相同"的组合问题里。`,
-  audioUrl: 'audio/SQ04_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ04(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq04_n" value="10" min="1"></label><button class="primary" id="sq04_run">生成</button></div><div id="sq04_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38524,7 +38507,7 @@ Bell 数还跟"各种"组合数有关：第二类 斯特林 数、Touchard 多�
 现在请同学们自己动手：点"生成 Bell 数"，看前 15 项。验证 B_3=5（3 个元素 5 种划分）、B_4=15。看看 B_10=115975 是不是？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"集合划分"的有趣组合里。`,
-  audioUrl: 'audio/SQ05_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ05(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq05_n" value="8" min="1" max="10"></label><button class="primary" id="sq05_run">生成</button></div><div id="sq05_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38579,7 +38562,7 @@ D_n = n! × Σ_{k=0}^{n} (-1)^k / k!
 现在请同学们自己动手：点"算错排"，看前 15 项。验证 D_3=2、D_4=9、D_5=44、D_6=265。看看 5 封信全放错有多少种？44 种。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"全都错位"的有趣排列里。`,
-  audioUrl: 'audio/SQ06_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ06(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 n <input type="number" id="sq06_n" value="8" min="1" max="10"></label><button class="primary" id="sq06_run">生成</button></div><div id="sq06_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38631,7 +38614,7 @@ D_n = n! × Σ_{k=0}^{n} (-1)^k / k!
 现在请同学们自己动手：点"生成帕斯卡三角"，看前 10 行。验证第 5 行 1 5 10 10 5 1——它的和是 32=2⁵。验证 C(5,2)=10、C(5,3)=10。看看斜线加起来是不是斐波那契数？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"上两数之和"的有趣结构里。`,
-  audioUrl: 'audio/SQ07_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ07(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq07_n" value="6" min="1" max="10"></label><button class="primary" id="sq07_run">画</button></div><div id="sq07_out" style="margin-top:12px; font-family: monospace; line-height: 1.6;"></div>`;
@@ -38692,7 +38675,7 @@ p(n) = Σ (-1)^{k+1} × p(n - k(3k-1)/2) + Σ (-1)^{k+1} × p(n - k(3k+1)/2)
 现在请同学们自己动手：点"算分拆数"，看前 15 项。验证 p(5)=7（5 种分法）、p(6)=11。看看 p(10)=42 怎么分？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"加法怎么凑"的有趣问题里。`,
-  audioUrl: 'audio/SQ08_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ08(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq08_n" value="20" min="2" max="40"></label><button class="primary" id="sq08_run">算</button></div><div id="sq08_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38750,7 +38733,7 @@ T_1 + T_2 + T_3 = 1 + 3 + 6 = 10 = T_4
 现在请同学们自己动手：点"验证恒等式"，看前 20 个三角形数。验证 T_5 + T_6 = 36 = 6²。看看连续 4 个三角形数加起来是不是 4 面体数？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"两个三角形能拼成正方形"的有趣几何里。`,
-  audioUrl: 'audio/SQ09_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ09(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>验证到 n <input type="number" id="sq09_n" value="10" min="1"></label><button class="primary" id="sq09_run">验证</button></div><div id="sq09_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38808,7 +38791,7 @@ S(6) = S(5) + S(4) = "0100101001001" + "01001010" = "010010100100101001010"
 现在请同学们自己动手：点"生成斐波那契词"，看 S(6)、S(7)、S(8)。验证 S(4)="01001010"。数数 0 和 1 的个数，是不是接近 1.618:1？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"自我相似的语言"的有趣结构里。`,
-  audioUrl: 'audio/SQ10_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ10(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq10_n" value="6" min="1" max="10"></label><button class="primary" id="sq10_run">生成</button></div><div id="sq10_out" class="sequence" style="margin-top:12px; word-break: break-all;"></div>`;
@@ -38860,7 +38843,7 @@ N = 21。8 乘 21 + 1 = 169 = 13²。n = (13 - 1) / 2 = 6。T_6 = 21。✓
 现在请同学们自己动手：点"判断三角形数"，输入一个数比如 45、55、66。验证 45 = T_9、55 = T_10。66 是不是？8×66+1=529=23²，所以是！n = (23-1)/2 = 11。验证 T_11 = 11×12/2 = 66。✓ 明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"用公式判断"的有趣技巧里。`,
-  audioUrl: 'audio/SQ11_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ11(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>输入 N <input type="number" id="sq11_n" value="55" min="1"></label><button class="primary" id="sq11_run">检验</button></div><div id="sq11_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38919,7 +38902,7 @@ n=5: ⟨5,0⟩=1, ⟨5,1⟩=26, ⟨5,2⟩=66, ⟨5,3⟩=26, ⟨5,4⟩=1
 现在请同学们自己动手：点"生成 欧拉ian 数"，看前 7 行。验证 ⟨4,1⟩=11。看看 ⟨5,2⟩=66。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"上升位置"的有趣统计里。`,
-  audioUrl: 'audio/SQ12_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ12(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq12_n" value="6" min="2" max="8"></label><button class="primary" id="sq12_run">生成</button></div><div id="sq12_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -38989,7 +38972,7 @@ S(n, k) = k × S(n-1, k) + S(n-1, k-1)
 现在请同学们自己动手：点"生成 斯特林 数"，看前 7 行。验证 S(3,2)=3、S(4,2)=7、S(5,2)=15。看看 S(5,3)=25 怎么数出来？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"集合划分"的有趣方法里。`,
-  audioUrl: 'audio/SQ13_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ13(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="sq13_n" value="6" min="2" max="8"></label><button class="primary" id="sq13_run">生成</button></div><div id="sq13_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39045,7 +39028,7 @@ S(n, k) = k × S(n-1, k) + S(n-1, k-1)
 现在请同学们自己动手：点"生成幸运数"，看前 30 个。看看哪些既是素数又是幸运数？双重幸运数有 11 个。验证筛法：3 之后的 6（不在列表），9 之后的 18（不在列表），等等。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"动态筛法"的有趣数字里。`,
-  audioUrl: 'audio/SQ14_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ14(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>生成前 N 个 <input type="number" id="sq14_n" value="30" min="5" max="200"></label><button class="primary" id="sq14_run">生成</button></div><div id="sq14_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39104,7 +39087,7 @@ Lychrel 猜想：196 永远迭代不到回文。但这个猜想还没被证明�
 现在请同学们自己动手：输入一个数比如 47、58、69，看几步到回文。挑战一下：89 要 24 步！196 算到 100 步能到回文吗？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"正反都一样"的有趣猜想里。`,
-  audioUrl: 'audio/SQ15_explain.mp3',
+  audioUrl: '',
   stages: getStagesSQ15(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>输入 n <input type="number" id="sq15_n" value="196" min="1"></label><label>最多迭代步数 <input type="number" id="sq15_max" value="100" min="10" max="500"></label><button class="primary" id="sq15_run">迭代</button></div><div id="sq15_out" class="sequence" style="margin-top:12px;"></div><div id="sq15_v" class="stat" style="margin-top:12px;"><div class="k">结果</div><div class="v">—</div></div>`;
@@ -39158,7 +39141,7 @@ Lychrel 猜想：196 永远迭代不到回文。但这个猜想还没被证明�
 明天请同学们比一比：1000 项的 沃利斯 和 1000 项的 莱布尼茨，谁更准？
 
 记住：数学不只藏在书本里——藏在每一个"看似无规律、实则收敛到 π"的乘积里。`,
-  audioUrl: 'audio/PE01_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE01(),
   svgDemo: `<h4 style="margin-top: 0;">🎨 算法图解：奇偶分子对分子相消</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">把 π/2 写成 N 个<strong>分数</strong>的乘积。每个分数都是 <code>(2k·2k) / ((2k-1)(2k+1))</code>：分子分母"差 1"交错。</p>
@@ -39285,7 +39268,7 @@ Lychrel 猜想：196 永远迭代不到回文。但这个猜想还没被证明�
 现在请同学们自己动手：点"尼拉康塔"，看 N=10、50、100 时的 π 估值。N=10 大约 3.1424。N=100 应该到 3.14159。跟 莱布尼茨 对比，看谁收敛快。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"印度数学家 500 年前发现"的有趣公式里。`,
-  audioUrl: 'audio/PE02_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE02(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 N <input type="number" id="pe02_n" value="1000" min="10"></label><button class="primary" id="pe02_run">算</button></div><div id="pe02_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39356,7 +39339,7 @@ Lychrel 猜想：196 永远迭代不到回文。但这个猜想还没被证明�
 现在请同学们自己动手：点"拉马努金 公式"，看 N=1、2、3、5、10 时的 π 估值。N=1 大约 3.1416。N=2 应该到小数点后 8 位。看看 N=3、5、10 越来越准。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"印度天才"凭直觉写下的神奇公式里。`,
-  audioUrl: 'audio/PE03_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE03(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 N <input type="number" id="pe03_n" value="3" min="1" max="5"></label><button class="primary" id="pe03_run">算</button></div><div id="pe03_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39445,7 +39428,7 @@ BBP 公式的收敛速度：每加 1 项，精度增加约 0.5 位（16 进制�
 现在请同学们自己动手：点"BBP 公式"，看 N=5、20、50、100 时的 π 估值。N=5 大约 3.14159。N=100 是不是已经很准？看看精度增长规律。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"能跳着算第 N 位"的有趣公式里。`,
-  audioUrl: 'audio/PE04_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE04(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>位数 n <input type="number" id="pe04_n" value="10" min="1" max="50"></label><button class="primary" id="pe04_run">算</button></div><div id="pe04_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39540,7 +39523,7 @@ BBP 公式的收敛速度：每加 1 项，精度增加约 0.5 位（16 进制�
 现在请同学们自己动手：点"蒙特卡洛 π"，撒 100、1000、10000 个点。N=100 大约 3.0~3.4 之间波动。N=10000 应该接近 3.14。看看方差缩小。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一次"随机中藏着常数"的有趣实验中。`,
-  audioUrl: 'audio/PE05_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE05(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>撒点数 N <input type="number" id="pe05_n" value="10000" min="100"></label><button class="primary" id="pe05_run">撒</button></div><div id="pe05_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39632,7 +39615,7 @@ e 还是无理数（连分数非循环）和超越数（不是任何有理系数
 现在请同学们自己动手：点"e 泰勒展开"，看 N=5、10、20、50 时的 e 估值。N=5 大约 2.7167。N=20 应该到 2.71828。看精度增长。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"复利连续下去"的有趣极限里。`,
-  audioUrl: 'audio/PE06_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE06(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>项数 N <input type="number" id="pe06_n" value="30" min="1" max="100"></label><button class="primary" id="pe06_run">算</button></div><div id="pe06_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39720,7 +39703,7 @@ e 是无理数（连分数形式 2; 1, 2, 1, 1, 4, 1, 1, 6, ... 很有规律）�
 现在请同学们自己动手：点"复利极限"，看 n=10、100、1000、10000 的值。n=10 大约 2.59。n=1000 大约 2.717。n 越大越接近 e。看看 n=100000 是不是到 2.71827？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一次"复利滚下去"的有趣极限里。`,
-  audioUrl: 'audio/PE07_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE07(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>最大 n <input type="number" id="pe07_n" value="10000" min="10"></label><button class="primary" id="pe07_run">算</button></div><div id="pe07_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39815,7 +39798,7 @@ e 是无理数（连分数形式 2; 1, 2, 1, 1, 4, 1, 1, 6, ... 很有规律）�
 现在请同学们自己动手：点"φ 连分数"，看前 10、20、50 层。验证第 5 层约 1.6，第 10 层约 1.61803。看看 φ² 等于 φ+1 是不是成立？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"无限连分数"的最美结构里。`,
-  audioUrl: 'audio/PE08_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE08(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>深度 N <input type="number" id="pe08_n" value="20" min="1" max="40"></label><button class="primary" id="pe08_run">截断</button></div><div id="pe08_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39904,7 +39887,7 @@ n 越大越接近 0.57721...，但收敛很慢！
 现在请同学们自己动手：点"γ 收敛"，看 n=10、100、1000、10000 的 γ 估值。n=10 大约 0.668。n=10000 是不是接近 0.5772？看看收敛速度。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"调和级数减对数"的有趣极限里。`,
-  audioUrl: 'audio/PE09_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE09(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>最大 n <input type="number" id="pe09_n" value="100000" min="100"></label><button class="primary" id="pe09_run">算</button></div><div id="pe09_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -39990,7 +39973,7 @@ n 越大越接近 0.57721...，但收敛很慢！
 现在请同学们自己动手：点"圆周率日"，看 π 的前 100 位。背到小数点后 10 位（3.1415926535）！你也能成为"π 神童"！明天带过来我们比一比谁能背得多。
 
 记住：数学不只藏在书本里——藏在每一口"派"里、每一个圆里、每一个"3.14"里。`,
-  audioUrl: 'audio/PE10_explain.mp3',
+  audioUrl: '',
   stages: getStagesPE10(),
   render: (h) => {
     h.innerHTML = `<div style="text-align: center; padding: 20px;">
@@ -40054,7 +40037,7 @@ n 越大越接近 0.57721...，但收敛很慢！
 现在请同学们自己动手：点"内角和"，看 n=3..12 的内角和。验证三角形 180°、正方形 360°、五边形 540°。看看 n=20 边形内角和多少？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"几边形内角之和"的有趣几何里。`,
-  audioUrl: 'audio/GM01_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM01(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="gm01_n" value="6" min="3" max="20"></label><button class="primary" id="gm01_run">算</button></div><div id="gm01_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -40106,7 +40089,7 @@ n 个外角 = n × 360°/n = 360°。✓
 现在请同学们自己动手：点"外角和"，看 n=3..12 的外角。验证三角形 120°、正方形 90°、五边形 72°。看 n × 外角是不是 360°？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一次"绕一圈回到原点"的有趣几何里。`,
-  audioUrl: 'audio/GM02_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM02(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>验证 n = <input type="number" id="gm02_n" value="5" min="3" max="20"></label><button class="primary" id="gm02_run">验证</button></div><div id="gm02_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -40153,7 +40136,7 @@ n 个外角 = n × 360°/n = 360°。✓
 现在请同学们自己动手：点"海伦公式"，输入 3 条边比如 3-4-5、5-12-13、6-7-8。看面积分别是多少。试试非整数边比如 3.5-4.2-5.1。验证三角不等式：两条短边之和必须大于最长边。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"只知三边就算面积"的有趣公式里。`,
-  audioUrl: 'audio/GM03_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM03(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>a <input type="number" id="gm03_a" value="3" min="1"></label><label>b <input type="number" id="gm03_b" value="4" min="1"></label><label>c <input type="number" id="gm03_c" value="5" min="1"></label><button class="primary" id="gm03_run">算</button></div><div id="gm03_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -40216,7 +40199,7 @@ n 个外角 = n × 360°/n = 360°。✓
 现在请同学们自己动手：点"球体积/表面积"，输入半径比如 1、2、3、5。验证 r=1 时 V=4.19, A=12.57。看看 r=5 时是多少？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"完美对称"的有趣球体里。`,
-  audioUrl: 'audio/GM04_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM04(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>半径 r <input type="number" id="gm04_r" value="5" min="0.1"></label><button class="primary" id="gm04_run">算</button></div><div id="gm04_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -40272,7 +40255,7 @@ A = 2πr² + 2πrh = 2πr(r + h)
 现在请同学们自己动手：点"圆柱体积/表面积"，输入 r 和 h 比如 (3, 10)、(5, 8)、(1, 20)。验证 r=1, h=10 时 V = 31.4, A = 69.1。看看不同 r/h 比例下哪个更省材料？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"上下两个圆"的有趣立体里。`,
-  audioUrl: 'audio/GM05_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM05(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>半径 r <input type="number" id="gm05_r" value="3" min="0.1"></label><label>高 h <input type="number" id="gm05_h" value="10" min="0.1"></label><button class="primary" id="gm05_run">算</button></div><div id="gm05_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -40339,7 +40322,7 @@ V=12, E=30, F=20
 现在请同学们自己动手：点"柏拉图立体"，看 5 种立体的 V、E、F 数据。验证 V - E + F = 2。看看哪些是相互对偶的（V 和 F 互换）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"完美对称"的有趣立体里。`,
-  audioUrl: 'audio/GM06_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM06(),
   render: (h) => {
     h.innerHTML = `<table class="topn" style="margin-top:12px;"><thead><tr><th>名称</th><th>面</th><th>棱</th><th>顶</th><th>V-E+F</th></tr></thead><tbody>
@@ -40402,7 +40385,7 @@ V=12, E=30, F=20
 现在请同学们自己动手：点"欧拉公式验证"，选几个多面体：立方体、四面体、三棱柱、五棱锥。验证 V - E + F = 2。试试圆环（V=0, E=1, F=1），看公式不成立。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"顶点减边加面等于 2"的有趣恒等式里。`,
-  audioUrl: 'audio/GM07_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM07(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>顶点数 V <input type="number" id="gm07_v" value="8" min="4"></label><label>棱数 E <input type="number" id="gm07_e" value="12" min="6"></label><label>面数 F <input type="number" id="gm07_f" value="6" min="4"></label><button class="primary" id="gm07_run">验证</button></div><div id="gm07_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -40456,7 +40439,7 @@ x = sin(72°)/sin(36°) = 2cos(36°) = 1 + 2cos(72°) - 1 = 1 + 2 × 0.309 - 1 �
 现在请同学们自己动手：点"黄金三角形"，看一个底 1、腰 φ 的等腰三角形。验证底角 72°、顶角 36°。看看它的内嵌小黄金三角形。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"等腰但不等边"的有趣黄金比例里。`,
-  audioUrl: 'audio/GM08_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM08(),
   render: (h) => {
     h.innerHTML = `<div style="text-align: center; padding: 16px;">
@@ -40522,7 +40505,7 @@ x = sin(72°)/sin(36°) = 2cos(36°) = 1 + 2cos(72°) - 1 = 1 + 2 × 0.309 - 1 �
 现在请同学们自己动手：点"五角星 + 黄金比例"，看一个正五边形连对角线。验证对角线/边 = φ。看看每个尖是不是 36° 顶角。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"5 角星 + 黄金比例"的有趣对称里。`,
-  audioUrl: 'audio/GM09_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM09(),
   render: (h) => {
     h.innerHTML = `<div style="text-align: center; padding: 16px;">
@@ -40582,7 +40565,7 @@ n 边形总共有 n(n-1)/2 条线段（所有顶点两两相连），其中 n �
 现在请同学们自己动手：点"对角线数"，看 n=3..15 的对角线数。验证三角形 0、四边形 2、五边形 5。看看 n=20 多少？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"不相邻的顶点连线"的有趣几何里。`,
-  audioUrl: 'audio/GM10_explain.mp3',
+  audioUrl: '',
   stages: getStagesGM10(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="gm10_n" value="6" min="3" max="20"></label><button class="primary" id="gm10_run">算</button></div><div id="gm10_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -40632,7 +40615,7 @@ Königsberg 七桥的图：4 个顶点，7 条边。度数：4 4 3 3（两个 3 
 现在请同学们自己动手：点"欧拉路径"，拖动顶点看度数变化。试试画一个所有顶点都是偶数度的图（比如 4 个顶点 4 条边围成矩形）——存在欧拉回路。画一个 4 个奇数度顶点的图——不存在欧拉路径。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一次"走过每座桥恰好一次"的有趣问题里。`,
-  audioUrl: 'audio/GR01_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR01(),
   render: (h) => {
     h.innerHTML = `<div style="font-size: 14px; line-height: 1.6;">
@@ -40684,7 +40667,7 @@ TSP 的几何变体（欧几里得 TSP）：城市在平面上，距离是直线
 现在请同学们自己动手：点"TSP"，看几个城市位置。点"暴力"看所有排列。点"贪心"看近似解。看看暴力最优解是不是比贪心短？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"走遍所有城市最短路径"的有趣问题里。`,
-  audioUrl: 'audio/GR02_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR02(),
   render: (h) => {
     h.innerHTML = `<div class="row" style="margin-bottom: 8px;">
@@ -40834,7 +40817,7 @@ DFS 时间复杂度 O(V + E)，BFS 也一样。
 现在请同学们自己动手：点"图连通性"，画一个图（拖动加边）。点"判断连通"看结果。如果分成几块就不连通。试试加边直到连通。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"两个地方是否相连"的有趣问题里。`,
-  audioUrl: 'audio/GR03_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR03(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>顶点数 n <input type="number" id="gr03_n" value="4" min="2" max="6"></label><label>边数 m <input type="number" id="gr03_m" value="4" min="1"></label><button class="primary" id="gr03_run">生成</button></div><div id="gr03_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -40923,7 +40906,7 @@ Morris 遍历：不用递归也不用栈，O(1) 空间——很巧妙但难理�
 现在请同学们自己动手：点"二叉树遍历"，看一棵树。点"先序"看访问顺序。点"中序"看。点"后序"看。验证一下是不是符合定义。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"访问每个节点一次"的有趣结构里。`,
-  audioUrl: 'audio/GR04_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR04(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>节点数 n <input type="number" id="gr04_n" value="7" min="3" max="15"></label><button class="primary" id="gr04_run">建树</button></div><div id="gr04_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -40992,7 +40975,7 @@ C(n, k) = n! / (k! × (n-k)!) 是"二项式系数"——从 n 个里选 k 个的
 现在请同学们自己动手：点"二项式展开"，输入 (x+y) 的 n 比如 n=5。验证系数是 1 5 10 10 5 1。试试 (x+y)^6、(x+y)^7。看看 (x+1)^10 展开是什么？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"两项之和的 n 次方"的有趣展开式里。`,
-  audioUrl: 'audio/GR05_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR05(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="gr05_n" value="5" min="1" max="10"></label><button class="primary" id="gr05_run">展开</button></div><div id="gr05_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41064,7 +41047,7 @@ n 个集合：
 现在请同学们自己动手：点"容斥原理"，输入 1 到 N 范围，选择若干素因子。计算能被这些素因子整除的数有几个。验证手算和系统算的答案一致。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"集合求并"的有趣加减里。`,
-  audioUrl: 'audio/GR06_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR06(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>|A| <input type="number" id="gr06_a" value="20"></label><label>|B| <input type="number" id="gr06_b" value="15"></label><label>|C| <input type="number" id="gr06_c" value="10"></label><label>|A∩B| <input type="number" id="gr06_ab" value="5"></label><label>|A∩C| <input type="number" id="gr06_ac" value="3"></label><label>|B∩C| <input type="number" id="gr06_bc" value="2"></label><label>|A∩B∩C| <input type="number" id="gr06_abc" value="1"></label><button class="primary" id="gr06_run">算</button></div><div id="gr06_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41125,7 +41108,7 @@ n 个集合：
 现在请同学们自己动手：点"抽屉原理"，看 n 个抽屉、n+1 个物品的动画。验证某个抽屉里至少 2 个物品。试试 m=20, n=5——4 个抽屉里至少 1 个有 5 个物品？不对，是 ≥ ⌈20/5⌉ = 4 个。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"东西多、抽屉少"的有趣必然性里。`,
-  audioUrl: 'audio/GR07_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR07(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>物品数 <input type="number" id="gr07_n" value="11" min="2"></label><label>抽屉数 <input type="number" id="gr07_k" value="10" min="1"></label><button class="primary" id="gr07_run">随机分配</button></div><div id="gr07_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41182,7 +41165,7 @@ A × B：
 现在请同学们自己动手：点"多项式乘法"，输入两个多项式系数（比如 1,2,3 和 4,5）。看乘积 (4, 13, 22, 15)。再试 1,1,1,1 × 1,1,1 = 1,2,3,3,1（帕斯卡三角第 4 行）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"两两相乘再合并"的有趣操作里。`,
-  audioUrl: 'audio/GR08_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR08(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>A 系数（逗号分隔）<input type="text" id="gr08_a" value="1,2,3"></label><label>B 系数（逗号分隔）<input type="text" id="gr08_b" value="4,5"></label><button class="primary" id="gr08_run">卷积</button></div><div id="gr08_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41252,7 +41235,7 @@ A × B：
 现在请同学们自己动手：点"握手引理"，看一个图。验证度数和 = 2 × 边数。试试有 4 个奇数度顶点的图，验证奇数度顶点是偶数个。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"边连接两个顶点"的有趣必然性里。`,
-  audioUrl: 'audio/GR09_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR09(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>顶点数 n <input type="number" id="gr09_n" value="4" min="2"></label><button class="primary" id="gr09_run">随机图</button></div><div id="gr09_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41321,7 +41304,7 @@ A × B：
 现在请同学们自己动手：点"树边数"，看一个树。验证边数 = 顶点数 - 1。试试加一条边（变成有环的图），看是不是不再是树。减一条边（变森林），看是不是不连通了。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"长得像树"的有趣结构里。`,
-  audioUrl: 'audio/GR10_explain.mp3',
+  audioUrl: '',
   stages: getStagesGR10(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>顶点数 n <input type="number" id="gr10_n" value="6" min="2" max="12"></label><button class="primary" id="gr10_run">生成</button></div><div id="gr10_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41392,7 +41375,7 @@ A × B：
 现在请同学们自己动手：点"生日悖论"，输入班级人数比如 23、30、50。看概率值。试试自己班级多少人能 50% 概率撞日。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"反直觉但正确"的有趣概率里。`,
-  audioUrl: 'audio/PB01_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB01(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>人数 n <input type="number" id="pb01_n" value="23" min="2" max="80"></label><button class="primary" id="pb01_run">算概率</button><button class="ghost" id="pb01_run2">模拟 10000 次</button></div><div id="pb01_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41467,7 +41450,7 @@ A × B：
 现在请同学们自己动手：点"三门问题"，玩 100 次，记录换门和不换的胜率。看换门胜率是不是接近 2/3？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"主持人有信息"的有趣概率里。`,
-  audioUrl: 'audio/PB02_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB02(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>模拟次数 <input type="number" id="pb02_n" value="10000" min="100"></label><button class="primary" id="pb02_run">跑</button></div><div id="pb02_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41537,7 +41520,7 @@ P(X = k) = C(n, k) × pᵏ × (1-p)ⁿ⁻ᵏ
 现在请同学们自己动手：点"二项分布"，输入 n 和 p，比如 n=10, p=0.5。看 P(X=0)..P(X=10) 概率。试试 n=100, p=0.3，看分布形状。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"n 次独立试验"的有趣统计里。`,
-  audioUrl: 'audio/PB03_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB03(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="pb03_n" value="10" min="1"></label><label>p <input type="number" id="pb03_p" value="0.5" min="0" max="1" step="0.1"></label><button class="primary" id="pb03_run">算分布</button></div><div id="pb03_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41604,7 +41587,7 @@ P(X > m + n | X > m) = P(X > n)
 现在请同学们自己动手：点"几何分布"，输入 p，比如 0.5（硬币）、0.1（罕见事件）、0.9（常发生）。看 P(X=1)、P(X=2)、...P(X=10)。看均值是不是 1/p。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"首次成功需要多久"的有趣等待里。`,
-  audioUrl: 'audio/PB04_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB04(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>p <input type="number" id="pb04_p" value="0.3" min="0.01" max="1" step="0.05"></label><label>显示前 k 项 <input type="number" id="pb04_k" value="10" min="2" max="30"></label><button class="primary" id="pb04_run">算</button></div><div id="pb04_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41662,7 +41645,7 @@ CLT 跟"大数定律"（LLN）的关系：
 现在请同学们自己动手：点"中心极限定理"，看 36 次骰子之和的分布。是不是接近正态？均值是不是 126，标准差是不是 10.25？试试 100 次骰子（更接近正态）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"大量独立之和趋近正态"的有趣必然性里。`,
-  audioUrl: 'audio/PB05_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB05(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>单次均值 μ <input type="number" id="pb05_mu" value="3.5" step="0.1"></label><label>单次方差 σ² <input type="number" id="pb05_s2" value="2.92" step="0.1"></label><label>n <input type="number" id="pb05_n" value="36" min="1"></label><button class="primary" id="pb05_run">理论 + 模拟</button></div><div id="pb05_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41750,7 +41733,7 @@ LLN 的反例：如果 i.i.d. 但方差无穷（如柯西分布），LLN 不成�
 现在请同学们自己动手：点"大数定律"，看 1000 次硬币正面比例的演变。看 X̄ 是不是越来越接近 0.5？看标准差是不是 √(0.25/n)？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"试验越多平均越准"的有趣必然性里。`,
-  audioUrl: 'audio/PB06_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB06(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>试验次数 n <input type="number" id="pb06_n" value="10000" min="100"></label><button class="primary" id="pb06_run">跑</button></div><div id="pb06_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41827,7 +41810,7 @@ P(赢到 20) ≈ 0.87
 现在请同学们自己动手：点"赌徒破产"，输入 A、B、p，看输光和赢到 B 的概率。试试公平赌局 p=0.5 和不公平赌局 p=0.45。看看差距多大。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"赌徒为什么总是输"的有趣破产规律里。`,
-  audioUrl: 'audio/PB07_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB07(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>A <input type="number" id="pb07_a" value="10" min="1"></label><label>B <input type="number" id="pb07_b" value="20" min="1"></label><label>p <input type="number" id="pb07_p" value="0.45" min="0" max="1" step="0.05"></label><button class="primary" id="pb07_run">模拟 1000 次</button></div><div id="pb07_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41901,7 +41884,7 @@ P(A | B) = P(B | A) × P(A) / [P(B | A) × P(A) + P(B | ~A) × P(~A)]
 现在请同学们自己动手：点"贝叶斯公式"，输入先验、似然、误报率，看后验概率。比如发病率 1%、准确率 99%、误报率 5%，看阳性真实患病率。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"反过来推理"的有趣思维里。`,
-  audioUrl: 'audio/PB08_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB08(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>疾病率 P(D) <input type="number" id="pb08_pd" value="0.01" min="0" max="1" step="0.001"></label><label>灵敏度 P(+|D) <input type="number" id="pb08_ppd" value="0.95" min="0" max="1" step="0.01"></label><label>误报 P(+|¬D) <input type="number" id="pb08_ppn" value="0.05" min="0" max="1" step="0.01"></label><button class="primary" id="pb08_run">算 P(D|+)</button></div><div id="pb08_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -41954,7 +41937,7 @@ P(A | B) = P(B | A) × P(A) / [P(B | A) × P(A) + P(B | ~A) × P(~A)]
 现在请同学们自己动手：点"伯特兰 悖论"，看三种方法（端点、径向、中点）。看三种方法给出的不同答案（1/3、1/2、1/4）。想想为什么"随机画弦"会有不同答案。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"随机"都需要精确定义的有趣哲学里。`,
-  audioUrl: 'audio/PB09_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB09(),
   render: (h) => {
     h.innerHTML = `<div style="font-size: 14px; line-height: 1.6;">
@@ -42028,7 +42011,7 @@ P(X = k) = λᵏ × e⁻λ / k!
 现在请同学们自己动手：点"泊松分布"，输入 λ，比如 1、5、10、20。看 P(X=0)、P(X=1)...看峰值。试试 λ=1 偏斜、λ=20 接近正态。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"稀有事件计数"的有趣分布里。`,
-  audioUrl: 'audio/PB10_explain.mp3',
+  audioUrl: '',
   stages: getStagesPB10(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>λ <input type="number" id="pb10_l" value="3" min="0.1" step="0.5"></label><label>显示 k = <input type="number" id="pb10_k" value="10" min="2" max="20"></label><button class="primary" id="pb10_run">算</button></div><div id="pb10_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -42100,7 +42083,7 @@ P(X = k) = λᵏ × e⁻λ / k!
 现在请同学们自己动手：点"24 点"，输入 4 个数字比如 1 5 5 5。点"解"看解。试试 1 1 1 1（无解）、1 1 1 2（无解）、1 2 3 4（有多个解）。看看 4 个数字的所有解。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"4 个数字算 24"的有趣游戏里。`,
-  audioUrl: 'audio/AL01_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL01(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>4 个数字（逗号分隔）<input type="text" id="al01_n" value="1,5,5,5"></label><button class="primary" id="al01_run">解</button></div><div id="al01_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -42193,7 +42176,7 @@ Nim 变种：
 现在请同学们自己动手：点"Nim 游戏"，跟 AI 玩。AI 难度"必胜"会用异或策略。看 AI 是不是每次都能赢？试试 1 堆 5 颗——AI 让你先手还是后手？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"异或"决定胜负的有趣博弈里。`,
-  audioUrl: 'audio/AL02_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL02(),
   render: (h) => {
     h.innerHTML = `<div class="row" style="margin-bottom: 12px;">
@@ -42386,7 +42369,7 @@ n=5, k=3。从 1 开始数：1 2 3（3 淘汰）、4 5 1（1 淘汰）、2 3 4�
 现在请同学们自己动手：点"约瑟夫问题"，输入 n 和 k。验证 n=5, k=3 剩 5。试试 n=10, k=3 剩几？n=41, k=3（Josephus 真实情况）剩几？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"围圈数数"的有趣淘汰里。`,
-  audioUrl: 'audio/AL03_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL03(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>人数 n <input type="number" id="al03_n" value="10" min="2"></label><label>步长 k <input type="number" id="al03_k" value="3" min="1"></label><button class="primary" id="al03_run">算</button></div><div id="al03_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -42476,7 +42459,7 @@ k=7（111）移动盘 1
 现在请同学们自己动手：点"汉诺塔"，看 1-10 个盘的最少步数。验证 1 盘 1 步、2 盘 3 步、3 盘 7 步。试试手动走 3 盘汉诺塔，看怎么走最少。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"大盘不能压小盘"的有趣递归里。`,
-  audioUrl: 'audio/AL04_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL04(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="al04_n" value="3" min="1" max="8"></label><button class="primary" id="al04_run">演示</button></div><div id="al04_out" class="sequence" style="margin-top:12px; max-height: 200px;"></div>`;
@@ -42573,7 +42556,7 @@ n=14: 365596
 现在请同学们自己动手：点"八皇后"，看一个解。验证 8 个皇后互不攻击。点"换一题"看其他 91 个解。看看 n=4（2 个解）、n=10（724 个解）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"皇后不攻击"的有趣排列里。`,
-  audioUrl: 'audio/AL05_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL05(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="al05_n" value="8" min="4" max="10"></label><button class="primary" id="al05_run">枚举解</button><span id="al05_status" style="color: var(--muted); font-size: 13px;"></span></div><div id="al05_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -42672,7 +42655,7 @@ n=14: 365596
 现在请同学们自己动手：点"4×4 数独"，看一个数独。手动解或者点"求解"看 AI 解法。看看 9×9 数独的难度。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"行/列/宫各填 1-4"的有趣逻辑里。`,
-  audioUrl: 'audio/AL06_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL06(),
   render: (h) => {
     h.innerHTML = `<div class="row"><button class="primary" id="al06_run">生成 4×4 数独并解</button></div><div id="al06_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -42786,7 +42769,7 @@ n=14: 365596
 现在请同学们自己动手：点"二分搜索"，看 [1, 3, 5, 7, 9, 11, 13, 15] 找 11（2 步）。再找 6（3 步，确定不存在）。试试 1000000 个有序数字里找某个数，最多要多少步？20 步！明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一次"折半搜索"的有趣高效里。`,
-  audioUrl: 'audio/AL07_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL07(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>数组（逗号分隔）<input type="text" id="al07_a" value="1,3,5,7,9,11,13,15,17,19"></label><label>目标 <input type="number" id="al07_t" value="13"></label><button class="primary" id="al07_run">搜</button></div><div id="al07_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -42875,7 +42858,7 @@ n=14: 365596
 现在请同学们自己动手：点"冒泡排序"，看 [5, 2, 8, 1, 9, 3] 排序。点"开始"看动画，每步比较交换。试试 [9, 8, 7, 6, 5, 4, 3, 2, 1]（完全逆序，最坏情况）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一次"最大元素冒上来"的有趣过程里。`,
-  audioUrl: 'audio/AL08_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL08(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>数组（逗号分隔）<input type="text" id="al08_a" value="5,2,8,1,9,3"></label><button class="primary" id="al08_run">演示</button></div><div id="al08_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -42972,7 +42955,7 @@ Tim 排序（Python/Java 用）：归并 + 插入，处理真实数据的"局部
 现在请同学们自己动手：点"快速排序"，看 [5, 2, 8, 1, 9, 3] 排序。点"开始"看分治动画。试试 [9, 8, 7, 6, 5, 4, 3, 2, 1]（最坏情况）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"分而治之"的有趣快速里。`,
-  audioUrl: 'audio/AL09_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL09(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>数组（逗号分隔）<input type="text" id="al09_a" value="5,2,8,1,9,3,7,4,6"></label><button class="primary" id="al09_run">排序</button></div><div id="al09_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -43069,7 +43052,7 @@ Tim 排序（Python/Java 用）：归并 + 插入，处理真实数据的"局部
 现在请同学们自己动手：点"素数筛"，看 n=100 的素数表。验证有 25 个素数。再看 n=1000 有 168 个。试试 n=10000、100000。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"被筛掉的是合数"的有趣过程里。`,
-  audioUrl: 'audio/AL10_explain.mp3',
+  audioUrl: '',
   stages: getStagesAL10(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>N <input type="number" id="al10_n" value="100" min="10" max="1000"></label><button class="primary" id="al10_run">筛</button></div><div id="al10_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -43149,7 +43132,7 @@ Tim 排序（Python/Java 用）：归并 + 插入，处理真实数据的"局部
 现在请同学们自己动手：点"曼德博集合"，看主心形。放大看边界细节，看到新的分形结构。试试拖动改变 c。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"迭代到发散"的有趣无限细节里。`,
-  audioUrl: 'audio/FR01_explain.mp3',
+  audioUrl: '',
   stages: getStagesFR01(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>最大迭代 <input type="number" id="fr01_i" value="50" min="10" max="200"></label><label>分辨率 <input type="number" id="fr01_r" value="80" min="40" max="200"></label><button class="primary" id="fr01_run">画</button></div><canvas id="fr01_cv" width="400" height="300" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -43253,7 +43236,7 @@ Tim 排序（Python/Java 用）：归并 + 插入，处理真实数据的"局部
 现在请同学们自己动手：点"谢尔宾斯基三角"，看 5 层分形。验证 3ⁿ 三角形。试试混沌游戏，画出分形。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"挖掉中间"的无限递归里。`,
-  audioUrl: 'audio/FR02_explain.mp3',
+  audioUrl: '',
   stages: getStagesFR02(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>深度 <input type="number" id="fr02_d" value="5" min="1" max="7"></label><button class="primary" id="fr02_run">画</button></div><canvas id="fr02_cv" width="400" height="360" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -43334,7 +43317,7 @@ Koch 雪花的变种：
 现在请同学们自己动手：点"Koch 雪花"，看 0-5 层。验证 4ⁿ 线段、长度 × 4/3、面积趋近 8/5。看看"无限长但包络有限"是怎么发生的。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"三等分画山"的有趣无限里。`,
-  audioUrl: 'audio/FR03_explain.mp3',
+  audioUrl: '',
   stages: getStagesFR03(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>深度 <input type="number" id="fr03_d" value="4" min="1" max="6"></label><button class="primary" id="fr03_run">画</button></div><canvas id="fr03_cv" width="400" height="360" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -43437,7 +43420,7 @@ L 系统能生成：
 现在请同学们自己动手：点"分形树"，看 8 层分形树。调整缩放因子（0.5-0.9）、角度（10-60°）。看看不同的树形。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一根"分形"的有趣树枝里。`,
-  audioUrl: 'audio/FR04_explain.mp3',
+  audioUrl: '',
   stages: getStagesFR04(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>深度 <input type="number" id="fr04_d" value="8" min="1" max="10"></label><label>角度 <input type="number" id="fr04_a" value="25" min="10" max="45"></label><button class="primary" id="fr04_run">画</button></div><canvas id="fr04_cv" width="400" height="360" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -43534,7 +43517,7 @@ Julia 集 vs 曼德博集合：
 现在请同学们自己动手：点"Julia 集"，看 c = -0.8 + 0.156i 的"海马"分形。试 c = -0.4 + 0.6i 的"双螺旋"。试 c = -1 的"圣诞树"。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"复数迭代"的有趣分形里。`,
-  audioUrl: 'audio/FR05_explain.mp3',
+  audioUrl: '',
   stages: getStagesFR05(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>c 实部 <input type="number" id="fr05_cr" value="-0.8" step="0.1"></label><label>c 虚部 <input type="number" id="fr05_ci" value="0.156" step="0.05"></label><label>迭代 <input type="number" id="fr05_i" value="50" min="10"></label><button class="primary" id="fr05_run">画</button></div><canvas id="fr05_cv" width="400" height="300" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -43644,7 +43627,7 @@ n=5（用暹罗法构造）：
 现在请同学们自己动手：点"幻方"，看 3×3 洛书。验证每行/列/对角线之和 = 15。看 4×4 丢勒幻方之和 = 34。试试 5×5 暹罗法构造。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"行/列/对角线之和相等"的中国古代神龟背上。`,
-  audioUrl: 'audio/OT01_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT01(),
   render: (h) => {
     h.innerHTML = `<div style="text-align: center; padding: 16px;">
@@ -43724,7 +43707,7 @@ B 树、二项堆等高级数据结构都基于类似的"分治 + 递归"。
 现在请同学们自己动手：点"河内塔"，看 1-10 个盘的最少步数。验证 1 盘 1 步、2 盘 3 步、3 盘 7 步。试试手动走 3 盘汉诺塔，看怎么走最少。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"大盘不能压小盘"的有趣递归里。`,
-  audioUrl: 'audio/OT02_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT02(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>盘数 n <input type="number" id="ot02_n" value="3" min="1" max="6"></label><button class="primary" id="ot02_run">演示</button></div><div id="ot02_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -43805,7 +43788,7 @@ L = (1/2) × 0.5 × (10π × √(1 + 100π²) + ln(10π + √(1 + 100π²)))
 现在请同学们自己动手：点"阿基米德螺旋"，看 a=1, b=0.5 的螺旋。调整 a 和 b 看不同形状。试 b=0.2（更松）、b=0.8（更紧）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"等距外扩"的有趣螺旋里。`,
-  audioUrl: 'audio/OT03_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT03(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>圈数 <input type="number" id="ot03_n" value="5" min="1" max="20"></label><button class="primary" id="ot03_run">画</button></div><canvas id="ot03_cv" width="400" height="400" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -43902,7 +43885,7 @@ a + b 的数字根 = (a 的数字根 + b 的数字根) 的数字根
 现在请同学们自己动手：点"数字根九宫格"，看 1-100 的数字根分布。验证 38 数字根 2、12345 数字根 6。试试 9 的倍数的数字根。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"加到最后只剩一位"的有趣九宫格里。`,
-  audioUrl: 'audio/OT04_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT04(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="ot04_n" value="123456789"></label><button class="primary" id="ot04_run">算</button></div><div id="ot04_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -43986,7 +43969,7 @@ f(m, n) = Π [cos²(kπ/(m+1)) + cos²(lπ/(n+1))]^(1/4) ... 这个公式超级�
 现在请同学们自己动手：点"棋盘多米诺"，画 4×4 棋盘，铺满。试试 8×8。验证 5×5 铺不满（格子数奇数）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"2 个格子一组的覆盖"的有趣铺装里。`,
-  audioUrl: 'audio/OT05_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT05(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>m <input type="number" id="ot05_m" value="4" min="2" max="8"></label><label>n <input type="number" id="ot05_n" value="6" min="2" max="8"></label><button class="primary" id="ot05_run">铺</button></div><canvas id="ot05_cv" width="400" height="280" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -44105,7 +44088,7 @@ n=9：中心 41
 现在请同学们自己动手：点"螺旋矩阵"，看 n=3、4、5 的顺时针填充。试试 n=6。验证 n=4 的中心是 13（4²+1=17？等等，13 是中心吗？n=4 中心 2×2 是 7、10、13、16。13 是 4²/2+1=9？让我重算 n=4 中心 7、10、13、16。13 是最右下中心的下一个... 实际填法导致 13 是中心 4 个之一）。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"顺时针填一圈又一圈"的有趣矩阵里。`,
-  audioUrl: 'audio/OT06_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT06(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="ot06_n" value="5" min="2" max="10"></label><button class="primary" id="ot06_run">生成</button></div><div id="ot06_out" style="margin-top:12px; font-family: monospace;"></div>`;
@@ -44201,7 +44184,7 @@ n=9：中心 41
 现在请同学们自己动手：点"4×4 幻方"，看丢勒幻方。验证每行/列/对角线之和 = 34。试试杨辉的 4×4 幻方。看看 4 角之和 = 34。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在 一五一四年那幅画里、那个 4×4 网格里、那个"34"里。`,
-  audioUrl: 'audio/OT07_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT07(),
   render: (h) => {
     h.innerHTML = `<div style="text-align: center; padding: 16px;">
@@ -44300,7 +44283,7 @@ function minimax(board, depth, isMax):
 现在请同学们自己动手：点"井字棋 AI"，跟电脑玩。选"困难"难度，跟电脑对局。看电脑是不是每次都平？试试"简单"难度你能赢几次。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"3×3 网格"的有趣必平博弈里。`,
-  audioUrl: 'audio/OT08_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT08(),
   render: (h) => {
     h.innerHTML = `<div class="row" style="margin-bottom: 8px;">
@@ -44532,7 +44515,7 @@ function minimax(board, depth, isMax):
 现在请同学们自己动手：点"3 杯猜球"，玩 100 次，记录你换杯的胜率。看是不是 2/3 胜？试试"随机主持人"模式，看胜率是不是 1/2？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"主持人有信息"的有趣概率里。`,
-  audioUrl: 'audio/OT09_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT09(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>选杯 <input type="number" id="ot09_pick" value="0" min="0" max="2"></label><label>主持人提示 <input type="number" id="ot09_hint" value="1" min="0" max="2"></label><button class="primary" id="ot09_run">更新概率</button></div><div id="ot09_out" class="sequence" style="margin-top:12px;"></div>`;
@@ -44626,7 +44609,7 @@ XXX
 现在请同学们自己动手：点"生命游戏"，看 20×20 网格。点"随机"看初始状态。点"开始"看演化。试试"高斯帕枪"：点"预设"选滑翔机枪。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"4 条简单规则"的有趣涌现生命里。`,
-  audioUrl: 'audio/OT10_explain.mp3',
+  audioUrl: '',
   stages: getStagesOT10(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>大小 n <input type="number" id="ot10_n" value="20" min="5" max="40"></label><label>速度 <input type="number" id="ot10_sp" value="100" min="20" max="500"></label><button class="primary" id="ot10_start">开始</button><button class="ghost" id="ot10_stop">停</button><button class="ghost" id="ot10_reset">重置</button></div><canvas id="ot10_cv" width="400" height="400" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -44679,7 +44662,7 @@ XXX
 最神奇的是什么呢？你用卡尺去量这个形状——不管你从哪个方向去夹它，量出来的"宽度"永远都等于边长 s！正圆是这样，莱洛三角形也是这样。所以它叫"等宽曲线"。意思是，不管从哪个方向量，宽都一样。
 
 老师再讲一个好玩的事：火星探测车"旅居者"和"勇气号"，它们的轮子就是莱洛形的——因为这种轮子永远不会卡住，走石头路特别稳。你看，数学家一八七五年玩出来的图形，一百多年后真的被用到了火星上！厉害吧？`,
-  audioUrl: 'audio/EX01_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX01(),
   svgDemo: `<h4 style="margin-top: 0;">🎨 莱洛三角形画法示意</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">等边三角形 ABC 边长 s，3 段圆弧（半径 s，圆心角 60°）分别以 A、B、C 为圆心画出。</p>
@@ -44717,7 +44700,7 @@ XXX
 为什么这么神奇？因为你把"正面"和"反面"接在一起了。蚂蚁从任何一个点出发，不用穿过边缘，就可以爬遍整个表面。它绕一圈回来的时候，会发现自己到了"原来那个面的反面"——但因为只有一个面，所以"正面"和"反面"其实是一回事！
 
 莫比乌斯带在生活里有什么用呢？打印机色带、传送带，都做成莫比乌斯带的形状，这样磨损就均匀——用一面磨坏了，转换到另一面还能用，寿命直接翻倍！数学家一八五八年的小玩具，现在每天都在帮你打印作业呢！`,
-  audioUrl: 'audio/EX02_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX02(),
   svgDemo: `<h4 style="margin-top: 0;">🎨 莫比乌斯带：单面环</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">普通环有 2 个面（红/蓝）；拧 180° 粘起来后变 1 个面（紫）。</p>
@@ -44752,7 +44735,7 @@ XXX
 我们能做的，只是它穿过自己的一种"投影"——就像莫比乌斯带在二维空间里也是"扭曲"的，但你可以做出来。克莱因瓶的底部连着瓶口，再"穿过"瓶身回到瓶底，这样就只有一个面了！
 
 克莱因瓶在现实生活里有什么用呢？其实直接没什么用——因为它要四维空间。但是数学家用它来研究"拓扑"——也就是研究形状的本质。莫比乌斯带是 2 维的（只有一条边、一个面），克莱因瓶是 3 维的（只有一个面、闭合、没有内外）。它们一起，构成了"不可定向曲面"的基础。意义在于：让我们知道，宇宙可能比我们看到的要复杂得多！`,
-  audioUrl: 'audio/EX03_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX03(),
   svgDemo: `<h4 style="margin-top: 0;">🎨 克莱因瓶：瓶颈穿瓶身</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">3D 投影必须自交（瓶颈穿过瓶壁）；真实形态只能在 4 维空间存在。</p>
@@ -44789,7 +44772,7 @@ XXX
 这种"非周期铺瓦"在材料科学里特别有用！一九八四年，物理学家用类似思路造出了一种"准晶体"——它的原子排列就像彭罗斯铺瓦一样，没有周期性但是有秩序。这一发现让他们拿了诺贝尔奖！
 
 还有更有意思的：彭罗斯铺瓦虽然只用两种菱形，但每种菱形的拼法都有"胖瘦"两种选择——你下一个放哪里，会决定后面整张图的样子。就像人生一样，每一个选择都影响未来！`,
-  audioUrl: 'audio/EX04_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX04(),
   svgDemo: `<h4 style="margin-top: 0;">🎨 彭罗斯铺瓦：两种菱形铺平面</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">瘦菱形（蓝）36°-144° 和胖菱形（黄）72°-108°，按匹配规则拼成非周期图案。</p>
@@ -44856,7 +44839,7 @@ XXX
 欧拉线还有一个好朋友叫"九点圆"——它经过三角形三边的中点、三个高的垂足、还有三个顶点到垂心连线的中点，一共九个点，全部在同一个圆上！这个圆心也在欧拉线上，正好是外心和垂心的中点。
 
 欧拉一七六五年写给朋友的信里提到这个发现——他在信里画了一个三角形，把这三个点连起来，然后说："你看，它们在一条直线上！"数学家用一封信就能改变几何学。`,
-  audioUrl: 'audio/EX05_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX05(),
   svgDemo: `<h4 style="margin-top: 0;">🎨 欧拉线：G、H、O 三心共线</h4>
 <p style="font-size: 13px; color: var(--muted); margin: 0 0 8px;">任何非等边三角形的重心 G、垂心 H、外心 O 都在一条直线上（红色虚线 = 欧拉线）。</p>
@@ -44912,7 +44895,7 @@ XXX
 这样一来，复数就有了几何意义！比如复数 3 + 4i 对应平面上的点 (3, 4)。两个复数相加，就相当于把两个向量相加。两个复数相乘，就相当于把两个向量旋转 + 缩放。这太神奇了！
 
 复数有什么用呢？电学里的交流电、信号处理里的傅里叶变换、量子力学里的波函数，全都离不开复数。数学家一五四五年玩出来的"假想"的数，现在是物理学的语言！`,
-  audioUrl: 'audio/EX06_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX06(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>实部 a <input type="number" id="ex06_a" value="3" step="0.5" style="width: 80px;"></label><label>虚部 b <input type="number" id="ex06_b" value="4" step="0.5" style="width: 80px;"></label><button class="primary" id="ex06_plot">画点</button><button class="ghost" id="ex06_unit">单位圆</button></div><canvas id="ex06_cv" width="400" height="400" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -44974,7 +44957,7 @@ XXX
 用四元数做旋转，最大的好处是"不会卡死"——就是所谓的"万向锁"问题。比如飞机在垂直向上飞的时候，用欧拉角会突然不知道该转哪里，但是用四元数就完全没问题。
 
 四元数在游戏、电影、航天、机器人里特别常用。电影《阿凡达》、《复仇者联盟》里那些 3D 特效，背后就是四元数在算动画！还有 NASA 的火星探测器、手机里的陀螺仪、虚拟现实头盔——全都离不开四元数。数学家一八四三年在桥上刻下的公式，现在每天都在你手机里跑！`,
-  audioUrl: 'audio/EX07_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX07(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>w <input type="number" id="ex07_w" value="1" step="0.1" style="width: 60px;"></label><label>x <input type="number" id="ex07_x" value="0" step="0.1" style="width: 60px;"></label><label>y <input type="number" id="ex07_y" value="0" step="0.1" style="width: 60px;"></label><label>z <input type="number" id="ex07_z" value="0" step="0.1" style="width: 60px;"></label><button class="primary" id="ex07_norm">归一化</button><button class="ghost" id="ex07_rotate">旋转 90° (Z)</button></div><canvas id="ex07_cv" width="400" height="400" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -45063,7 +45046,7 @@ XXX
 这个加法有什么用呢？计算机很难从 P 和 Q 反推 k（也就是 P 加 k 次等于 Q）——这就是"椭圆曲线离散对数问题"。这个困难性，正是现代密码学的基础！比特币、以太坊、SSL 证书、苹果 iMessage——全部用椭圆曲线密码学来保护你的数据安全。
 
 椭圆曲线密码学的密钥比 RSA 短得多：256 位的椭圆曲线密钥 = 3072 位的 RSA 密钥的安全性！数学家一八五零年代研究纯数学时画的曲线，现在是互联网安全的基石！`,
-  audioUrl: 'audio/EX08_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX08(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>a <input type="number" id="ex08_a" value="-1" step="0.5" style="width: 80px;"></label><label>b <input type="number" id="ex08_b" value="1" step="0.5" style="width: 80px;"></label><button class="primary" id="ex08_plot">画曲线</button><button class="ghost" id="ex08_btc">比特币曲线</button></div><canvas id="ex08_cv" width="400" height="300" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas><div id="ex08_info" style="margin-top: 8px; padding: 10px; background: #faf5ff; border-radius: 6px; font-size: 13px;"></div>`;
@@ -45122,7 +45105,7 @@ XXX
 双曲几何里，三角形的内角和小于 180 度。圆盘越大，三角形越靠近中心，内角和越接近 180；越小越靠近边缘，内角和越小——可以是 0！
 
 这有什么用呢？画家 M.C. Escher 用庞加莱圆盘画了一系列超美的画——蝙蝠和天使挤在越来越小的空间里。还有广义相对论里，引力扭曲了空间——这个扭曲的几何就是双曲几何（或者更一般的黎曼几何）。物理学家用的就是这套数学！`,
-  audioUrl: 'audio/EX09_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX09(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>Px <input type="number" id="ex09_px" value="0" step="0.1" style="width: 70px;"></label><label>Py <input type="number" id="ex09_py" value="0" step="0.1" style="width: 70px;"></label><label>Qx <input type="number" id="ex09_qx" value="0.5" step="0.1" style="width: 70px;"></label><label>Qy <input type="number" id="ex09_qy" value="0" step="0.1" style="width: 70px;"></label><button class="primary" id="ex09_run">▶ 算双曲距离</button></div><canvas id="ex09_cv" width="400" height="400" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas><div id="ex09_info" style="margin-top: 8px; padding: 10px; background: #faf5ff; border-radius: 6px; font-size: 13px;"></div>`;
@@ -45196,7 +45179,7 @@ XXX
 它还"保持交比"——4 个点的交比经过莫比乌斯变换不变。这意味着莫比乌斯变换是共形映射——角度、形状（局部）都保持。
 
 莫比乌斯变换有什么用呢？它在物理、工程、信号处理里到处都是！流体力学里用莫比乌斯变换把复杂的边界变成简单的圆；地图投影里用它把球面投影到平面；电路分析里用它变换阻抗；甚至广义相对论里的彭罗斯图也用莫比乌斯变换把无穷远拉到有限距离！数学家一八五五年研究的"复分析"，现在是工程师的工具箱！`,
-  audioUrl: 'audio/EX10_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX10(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>a <input type="number" id="ex10_a" value="1" step="0.5" style="width: 60px;"></label><label>b <input type="number" id="ex10_b" value="0" step="0.5" style="width: 60px;"></label><label>c <input type="number" id="ex10_c" value="0" step="0.5" style="width: 60px;"></label><label>d <input type="number" id="ex10_d" value="1" step="0.5" style="width: 60px;"></label><label>z 实部 <input type="number" id="ex10_zr" value="2" step="0.5" style="width: 60px;"></label><label>z 虚部 <input type="number" id="ex10_zi" value="0" step="0.5" style="width: 60px;"></label><button class="primary" id="ex10_run">▶ f(z)</button><button class="ghost" id="ex10_inv">f=1/z</button></div><canvas id="ex10_cv" width="400" height="400" style="margin-top:12px; max-width:100%; border:1px solid var(--line); border-radius: 6px;"></canvas><div id="ex10_info" style="margin-top: 8px; padding: 10px; background: #faf5ff; border-radius: 6px; font-size: 13px; font-family: 'Courier New', monospace;"></div>`;
@@ -45312,7 +45295,7 @@ XXX
 黎曼 做了一个天才的步骤：把 s 拓展到复数！也就是 s = a + bi（既有实部、又有虚部）。他定义 ζ(s) 在整个复平面上（除了 s=1 这个点）都有意义。这就是"黎曼 ζ 函数"。
 
 黎曼 还发现了一件神奇的事：ζ(s) = 0 的时候，有一些很特殊的零点，叫"非平凡零点"——它们的实部都恰好是 1/2。这叫"黎曼猜想"！这个猜想如果被证明，对素数分布的理解会有巨大突破——因为 ζ 函数的零点和素数分布有深刻联系。数学家一八五九年的问题，现在一百六十多年了还没解决——悬赏 100 万美元！`,
-  audioUrl: 'audio/EX11_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX11(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>实部 s <input type="number" id="ex11_s" value="2" min="0.1" max="10" step="0.1"></label><button class="primary" id="ex11_run">计算 ζ(s)</button><button class="ghost" id="ex11_sweep">扫描 ζ 曲线</button></div><div id="ex11_out" style="margin-top: 12px; padding: 12px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace;"></div><canvas id="ex11_cv" width="600" height="240" style="margin-top: 12px; max-width: 100%; border: 1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -45369,7 +45352,7 @@ XXX
 但是 p = 4k+3 形式的素数（比如 3, 7, 11, 19, 23），在高斯整数里还是素数——它们不能被分解成更小的高斯整数。还有 1+i 也是高斯素数（1² + 1² = 2）。
 
 这有什么用呢？数论里很多问题都要用高斯整数。比如"两个平方数之和"的定理：n = a² + b² 当且仅当 n 的 4k+3 形式的素因子都是偶数幂——这个定理用高斯整数证明特别优雅。高斯 用它证明了正十七边形可以用尺规作图——这是两千年来悬而未决的难题！`,
-  audioUrl: 'audio/EX12_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX12(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>a <input type="number" id="ex12_a" value="2" min="-30" max="30"></label><label>b <input type="number" id="ex12_b" value="1" min="-30" max="30"></label><button class="primary" id="ex12_run">验证</button><button class="ghost" id="ex12_scan">扫 1-30</button></div><div id="ex12_out" style="margin-top: 12px; padding: 12px; background: #f0f9ff; border-radius: 8px; font-family: 'Courier New', monospace;"></div><canvas id="ex12_cv" width="360" height="360" style="margin-top: 12px; max-width: 100%; border: 1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -45434,7 +45417,7 @@ XXX
 切比雪夫多项式有什么用呢？它在数值逼近里超级重要——给定一个函数，你找一条最高 5 次的多项式去"最接近"它，切比雪夫多项式就是答案。比起普通的泰勒展开，切比雪夫逼近收敛得更快、误差更均匀！
 
 它还在连杆机构、信号处理、谱方法、机器学习里广泛应用。一个俄罗斯数学家研究蒸汽机连杆时发现的工具，现在是科学计算的基石！`,
-  audioUrl: 'audio/EX13_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX13(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>n <input type="number" id="ex13_n" value="5" min="0" max="10"></label><label>x <input type="number" id="ex13_x" value="0.5" min="-1" max="1" step="0.1"></label><button class="primary" id="ex13_run">计算 T_n(x)</button><button class="ghost" id="ex13_plot">画曲线</button></div><div id="ex13_out" style="margin-top: 12px; padding: 12px; background: #fef3c7; border-radius: 8px; font-family: 'Courier New', monospace;"></div><svg id="ex13_svg" viewBox="0 0 600 320" style="margin-top: 12px; max-width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 6px;"></svg>`;
@@ -45490,7 +45473,7 @@ XXX
 数学家用它研究黎曼 ζ 函数的零点——ζ 的非平凡零点的统计，居然和随机埃尔米特矩阵的特征值分布惊人地一致！这就是"Montgomery 偶对猜想"的实证。
 
 还有金融里用相关矩阵来管理投资组合，机器学习里用随机矩阵做降维。一九五五年 Wigner 提出来的纯数学问题，现在是核物理、密码学、金融、AI 的工具！`,
-  audioUrl: 'audio/EX14_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX14(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>矩阵 N <input type="number" id="ex14_n" value="50" min="5" max="200"></label><label>样本数 <input type="number" id="ex14_m" value="100" min="10" max="500"></label><button class="primary" id="ex14_run">生成 + 画</button></div><div id="ex14_out" style="margin-top: 12px; padding: 12px; background: #f0fdf4; border-radius: 8px; font-family: 'Courier New', monospace;"></div><canvas id="ex14_cv" width="400" height="400" style="margin-top: 12px; max-width: 100%; border: 1px solid var(--line); border-radius: 6px;"></canvas>`;
@@ -45578,7 +45561,7 @@ XXX
 还有"魔幻月光猜想"（Mogonmery 偶对猜想）——关于模形式的傅里叶系数——它和黎曼 ζ 函数的零点分布有神秘联系。模形式还出现在弦理论、黑洞熵的 Bekenstein-Hawking 公式里！
 
 一个数学家一八五零年代研究的纯函数，现在是费马大定理证明、密码学、弦论的共同语言！`,
-  audioUrl: 'audio/EX15_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX15(),
   render: (h) => {
     h.innerHTML = `<div class="row"><label>τ = x+yi <input type="number" id="ex15_x" value="0.3" min="-2" max="2" step="0.1"></label><label>y <input type="number" id="ex15_y" value="0.5" min="0.01" max="2" step="0.05"></label><button class="primary" id="ex15_run">q-展开</button><button class="ghost" id="ex15_lattice">画格点</button></div><div id="ex15_out" style="margin-top: 12px; padding: 12px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace;"></div><svg id="ex15_svg" viewBox="0 0 400 400" style="margin-top: 12px; max-width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 6px;"></svg>`;
@@ -45633,7 +45616,7 @@ XXX
 SIDH（Supersingular Isogeny Diffie-Hellman）和 CSIDH 就是利用这个困难性。即使是大规模量子计算机，目前也没有高效的算法来破译同源密码！
 
 所以同学们，二十年后你登录银行、签发护照，可能用的就是这种基于"同源"的新密码——这是用十九世纪的椭圆曲线，造出的二十一世纪的安全！`,
-  audioUrl: 'audio/EX16_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX16(),
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>椭圆曲线 y² = x³ + ax + b 上的点加上"无穷远点 O"，构成<strong>阿贝尔群 (E, +)</strong>。群的运算是<em>几何加法</em>：</p>
@@ -45688,7 +45671,7 @@ P + Q + R = O（三点共线）
 波函数的意义是什么？|ψ|² 表示粒子在位置 x 出现的概率密度。所以 ψ_n(x) 不为零的地方，粒子才可能出现。
 
 量子谐振子有什么用？几乎所有振动都能用它来描述！分子振动（CO₂ 分子的振动模式）、晶格声子（固体的热振动）、量子光场（光子的统计）、激光原理——全都基于量子谐振子。物理学家二十世纪初研究的"小振动"，现在支撑着整个量子科技！`,
-  audioUrl: 'audio/EX17_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX17(),
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p>一维量子谐振子的薛定谔方程：<span class="formula">-ℏ²/(2m) · ψ''(x) + (1/2) m ω² x² ψ(x) = E ψ(x)</span></p>
@@ -45745,7 +45728,7 @@ E_n = (n + 1/2) ℏω, n = 0, 1, 2, ...<br>
 马尔可夫链有什么用？简直无处不在！Google 的 PageRank 算法本质上是一个巨大的马尔可夫链——网页是状态，超链接是转移。文本自动生成（ChatGPT）、语音识别、生物序列分析（DNA）、金融建模（股价预测）、排队论、推荐系统——全都基于马尔可夫链。
 
 更高级的有隐马尔可夫链（HMM）——你看不到状态本身，只能看到一些"观察"。比如语音识别：你听到的是声波，背后的"状态"是字词。一九零六年俄国人研究的纯数学，现在支撑着整个 AI 时代！`,
-  audioUrl: 'audio/EX18_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX18(),
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p><strong>定义</strong>：随机过程 X₀, X₁, X₂, ... 如果 P(X_{n+1} | X_n, X_{n-1}, ..., X_0) = P(X_{n+1} | X_n)，就是<em>马尔可夫链</em>——"未来只取决于现在"。</p>
@@ -45808,7 +45791,7 @@ P' = (1-d)·E + d·P，其中 E 是均匀矩阵
 基本群有什么用？它让我们能用代数方法区分不同的形状！两个形状基本群不同，它们就拓扑不等价——不能通过拉伸、压缩、弯曲（但不能撕开）变成对方。
 
 Poincaré 在十九世纪用基本群证明了"球面"和"环面"在拓扑上不同。这是代数拓扑的起点，今天在机器人路径规划、地图匹配、计算机图形学里都有应用！`,
-  audioUrl: 'audio/EX19_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX19(),
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p><strong>基本群</strong> π₁(X, x₀) = X 中以 x₀ 为起止点的所有路径，<em>同伦等价</em>（能连续形变到彼此）的等价类。路径的复合诱导群的乘法。</p>
@@ -45871,7 +45854,7 @@ Poincaré 在十九世纪用基本群证明了"球面"和"环面"在拓扑上不
 为什么这个积分重要？因为它直接给出了正态分布（高斯分布）的归一化常数！正态分布的概率密度函数 f(x) = (1/√(2π)) e^(-x²/2)——正好用到 √π。
 
 所以正态分布是概率论、统计学、机器学习的基石。高斯积分是它的根基。一八一零年 Laplace 的那个极坐标 trick，支撑了今天所有数据分析！`,
-  audioUrl: 'audio/EX20_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX20(),
   principle: `<h4>🔍 这到底是怎么回事？</h4>
 <p><strong>高斯积分</strong> I = ∫_{-∞}^∞ e^(-x²) dx = √π ≈ 1.7725。</p>
@@ -45920,140 +45903,140 @@ I = √π ✓
   {
   id: 'EX_PROVEN_01', type: 'conjecture_proven',  cat: '已证', title: '挂谷集的几何构造（挂谷 1928 → 贝西科维奇）',
   intro: '一九一七年日本数学家挂谷宗一提出"小厕所转棒"问题；一九二八年 贝西科维奇 构造出面积可任意小的挂谷集——用佩龙树"劈-叠"。',
-  audioUrl: 'audio/EX_PROVEN_01_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_01(),
   render: (h) => initStage_EX_PROVEN_01_initAll(h)
 },
   {
   id: 'EX_PROVEN_02', type: 'conjecture_proven',  cat: '已证', title: '2D 挂谷猜想证明（Davies 1971）',
   intro: '1971 年英国数学家 R.O. Davies 完整证明：二维平面中挂谷集的 Hausdorff 维数 = 2。用"夹"法：上界 ≤ 2，下界 ≥ 2。',
-  audioUrl: 'audio/EX_PROVEN_02_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_02(),
   render: (h) => initStage_EX_PROVEN_02_initAll(h)
 },
   {
   id: 'EX_PROVEN_03', type: 'conjecture_proven',  cat: '已证', title: '2D 黏性挂谷集（王虹 2022 简化）',
   intro: '黏性 挂谷 集：所有方向的针"黏"成细管。Wolff 1999 首次形式化，王虹 2022 给出 6 页简化证明。关键结论：dim 仍 = 2。',
-  audioUrl: 'audio/EX_PROVEN_03_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_03(),
   render: (h) => initStage_EX_PROVEN_03_initAll(h)
 },
   {
   id: 'EX_PROVEN_04', type: 'conjecture_proven',  cat: '已证', title: '3D 挂谷猜想 Wolff 下界（1999）',
   intro: 'Thomas Wolff 1999 证明：3D 空间中挂谷集的 Hausdorff 维数 ≥ 2.5。核心工具是"烧饼估计"（platter estimate），开启了后续 26 年的 3D 攻坚。',
-  audioUrl: 'audio/EX_PROVEN_04_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_04(),
   render: (h) => initStage_EX_PROVEN_04_initAll(h)
 },
   {
   id: 'EX_PROVEN_05', type: 'conjecture_proven',  cat: '已证', title: '3D 黏性 挂谷 证明 (王虹+Zahl 2022)',
   intro: '二〇二二年王虹 (Hong Wang) 与 Joshua Zahl 证明：3D 中「黏性 挂谷 集」（方向相似细管抱团）的 Hausdorff 维数 = 3。这是攻克百年挂谷猜想的关键第一步。',
-  audioUrl: 'audio/EX_PROVEN_05_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_05(),
   render: (h) => initStage_EX_PROVEN_05_initAll(h)
 },
   {
   id: 'EX_PROVEN_06', type: 'conjecture_proven',  cat: '已证', title: '3D 挂谷 Assouad 维数 (王虹+Zahl 2024)',
   intro: '二〇二四年王虹 (Hong Wang) 与 Joshua Zahl 进一步证明：3D 挂谷 集的 Assouad 维数（比 Minkowski 维数更强的局部放大指标）也 = 3。这是黏性 挂谷 之后的第二步里程碑。',
-  audioUrl: 'audio/EX_PROVEN_06_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_06(),
   render: (h) => initStage_EX_PROVEN_06_initAll(h)
 },
   {
   id: 'EX_PROVEN_07', type: 'conjecture_proven',  cat: '已证', title: '3D 挂谷猜想完整证明 (王虹+Zahl 2025) ★最重磅★',
   intro: '公元 2025 年 2 月，王虹 (Hong Wang) 与 Joshua Zahl 发表 127 页论文 (arXiv:2502.17655)，完整证明 3D 挂谷 猜想的 Hausdorff 维数 + Minkowski 维数都 = 3，结束了这个 1917 年悬而未决的百年问题。',
-  audioUrl: 'audio/EX_PROVEN_07_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_07(),
   render: (h) => initStage_EX_PROVEN_07_initAll(h)
 },
   {
   id: 'EX_PROVEN_08', type: 'conjecture_proven',  cat: '已证', title: '法尔科纳 距离集 2D 突破 (王虹+Guth+Du 2024)',
   intro: '2024 年王虹 (Hong 王) 与 Larry Guth (MIT)、Du (杜亚楠) 合作证明 2D 情形下 法尔科纳 距离猜想的关键临界指数下界，将这个 1985 年悬而未决的猜想推进了一大步。',
-  audioUrl: 'audio/EX_PROVEN_08_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_08(),
   render: (h) => initStage_EX_PROVEN_08_initAll(h)
 },
   {
   id: 'EX_PROVEN_09', type: 'conjecture_proven',  cat: '已证', title: '弗斯滕伯格 集合猜想完整证明（王虹 2024）',
   intro: '1970 弗斯滕伯格 提出：自然数中上密度正的子集 A，其加法表 A+A 必含任意长等差数列。54 年悬案，2024 王虹与合作者用动力系统 + 加法组合完整解决。',
-  audioUrl: 'audio/EX_PROVEN_09_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_09(),
   render: (h) => initStage_EX_PROVEN_09_initAll(h)
 },
   {
   id: 'EX_PROVEN_10', type: 'conjecture_proven',  cat: '已证', title: '调和分析猜想之塔（费弗曼-王虹）',
   intro: '调和分析有四层互相联系的猜想：挂谷（底）→ 限制 → Bochner-Riesz → 局部光滑化（顶）。王虹 + Guth + Zahl 2025 完整证明挂谷猜想，相当于夯实了整座塔的地基。',
-  audioUrl: 'audio/EX_PROVEN_10_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_10(),
   render: (h) => initStage_EX_PROVEN_10_initAll(h)
 },
   {
   id: 'EX_PROVEN_11', type: 'conjecture_proven',  cat: '已证', title: '希尔伯特第六问题（狭义）—— 邓煜+马骁+Hani 2025',
   intro: '1900 年希尔伯特在 23 个问题中第 6 个：流体力学公理化。125 年后，邓煜+马骁+Zaher Hani 2025 用硬球系统 + 玻尔兹曼方程 + Navier-Stokes 推导链，完整解决狭义版本。',
-  audioUrl: 'audio/EX_PROVEN_11_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_11(),
   render: (h) => initStage_EX_PROVEN_11_initAll(h)
 },
   {
   id: 'EX_PROVEN_12', type: 'conjecture_proven',  cat: '已证', title: '硬球系统 → 玻尔兹曼方程推导（邓煜+马骁+Hani 2025）',
   intro: '1 升气体 = 3×10²² 个分子。邓煜+马骁+Hani 2025 严格证明：硬球系统在低密度极限下，宏观必然满足 Boltzmann 方程。从微观到宏观的桥梁，153 年悬案落地。',
-  audioUrl: 'audio/EX_PROVEN_12_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_12(),
   render: (h) => initStage_EX_PROVEN_12_initAll(h)
 },
   {
   id: 'EX_PROVEN_13', type: 'conjecture_proven',  cat: '已证', title: 'Boltzmann → Navier-Stokes 推导链（邓煜+马骁+Hani 2025）',
   intro: '1872 年 Boltzmann 分子动力学方程 → 2025 年邓煜+马骁+Hani 严格推导出可压缩 Navier-Stokes 方程。两百年的跨尺度推导链，把 10²⁵ 个分子和连续流体连起来。',
-  audioUrl: 'audio/EX_PROVEN_13_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_13(),
   render: (h) => initStage_EX_PROVEN_13_initAll(h)
 },
   {
   id: 'EX_PROVEN_14', type: 'conjecture_proven',  cat: '已证', title: '庞加莱猜想证明（佩雷尔曼 2003）',
   intro: '1904 年庞加莱提出 3 维球面是唯一封闭 3-流形，2003 年俄裔数学家 Grigori 佩雷尔曼 用 Ricci flow + 手术给出证明，2006 年拒领菲尔兹奖 + 千禧百万奖金。',
-  audioUrl: 'audio/EX_PROVEN_14_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_14(),
   render: (h) => initStage_EX_PROVEN_14_initAll(h)
 },
   {
   id: 'EX_PROVEN_15', type: 'conjecture_proven',  cat: '已证', title: 'Ricci flow 几何演化方程（汉密尔顿 1982, 佩雷尔曼 2003 改进）',
   intro: '一九八二年 汉密尔顿 引入，二〇〇三年 佩雷尔曼 用 Ricci flow + 手术 (surgery) 证明庞加莱猜想；二〇〇六年朱熹平/曹怀东给出 500+ 页完整补充。',
-  audioUrl: 'audio/EX_PROVEN_15_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_15(),
   render: (h) => initStage_EX_PROVEN_15_initAll(h)
 },
   {
   id: 'EX_PROVEN_16', type: 'conjecture_proven',  cat: '已证', title: '费马大定理证明（怀尔斯 1995 + Taylor-怀尔斯）',
   intro: '一六三七年费马在《算术》页边写下 xⁿ+yⁿ=zⁿ 无正整数解的猜想，一九九五年 Andrew 怀尔斯 用椭圆曲线 + 模形式给出 109 页完整证明。',
-  audioUrl: 'audio/EX_PROVEN_16_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_16(),
   render: (h) => initStage_EX_PROVEN_16_initAll(h)
 },
   {
   id: 'EX_PROVEN_17', type: 'conjecture_proven',  cat: '已证', title: '谷山-志村猜想的部分证明（怀尔斯）',
   intro: '1955 年日本数学家谷山丰提出"每条椭圆曲线都对应一个模形式"，怀尔斯 1995 年证明半稳定情形（间接证明费马大定理）。',
-  audioUrl: 'audio/EX_PROVEN_17_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_17(),
   render: (h) => initStage_EX_PROVEN_17_initAll(h)
 },
   {
   id: 'EX_PROVEN_18', type: 'conjecture_proven',  cat: '已证', title: '孪生素数有界间隙（张益唐 2013）',
   intro: '孪生素数（差 2 的素数对）猜想：张益唐 2013 年证明存在无穷多对、间隙有界 < 7000 万，论文引发数学界轰动。',
-  audioUrl: 'audio/EX_PROVEN_18_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_18(),
   render: (h) => initStage_EX_PROVEN_18_initAll(h)
 },
   {
   id: 'EX_PROVEN_19', type: 'conjecture_proven',  cat: '已证', title: '弱哥德巴赫证明（赫尔福特 2013）',
   intro: '1742 年 哥德巴赫 提出"每个奇数 = 三个素数之和"。赫尔福特 2013 用圆法完整证明——从 Vinogradov 1937 的"足够大"到 2013 的"每个都成立"，走了 76 年。',
-  audioUrl: 'audio/EX_PROVEN_19_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_19(),
   render: (h) => initStage_EX_PROVEN_19_initAll(h)
 },
   {
   id: 'EX_PROVEN_20', type: 'conjecture_proven',  cat: '已证', title: 'Calabi 猜想证明（丘成桐 1976）—— 首位华人菲尔兹奖',
   intro: 'Calabi 1954 猜测"封闭 Kähler 流形上的 Ricci 形式有唯一 Kähler 形式满足它"。丘成桐 1976 年用偏微分方程完整证明，1982 年获菲尔兹奖——首位华人菲尔兹奖得主。',
-  audioUrl: 'audio/EX_PROVEN_20_explain.mp3',
+  audioUrl: '',
   stages: getStagesEX_PROVEN_20(),
   render: (h) => initStage_EX_PROVEN_20_initAll(h)
 },
@@ -46369,12 +46352,8 @@ function plazaOpen(id, setHash = true) {
       </div>
     </details>` : '';
 
-  // 🎙️ Mavis 讲解（含语音）— 仅当 exp.audioUrl 存在时显示
-  const mavisSection = exp.audioUrl ? `
-    <details style="margin-bottom: 14px;">
-      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">🎙️ Mavis 讲解（含语音，可下载）</summary>
-      <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
-        <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain || '(暂无讲解文字)'}</p>
+  // 文字稿保留在源码；音频只有在配置了真实 URL 时才显示。
+  const mavisAudioControls = exp.audioUrl ? `
         <audio id="mavisAudio-${exp.id}" controls preload="metadata" style="width: 100%; max-width: 600px; margin: 8px 0;" src="${exp.audioUrl}"></audio>
         <div class="row" style="gap: 6px; margin-top: 8px; align-items: center;">
           <span style="font-size: 12px; color: var(--muted);">倍速：</span>
@@ -46385,8 +46364,14 @@ function plazaOpen(id, setHash = true) {
           <button class="ghost small rate-btn" data-rate="2" data-audio="mavisAudio-${exp.id}">2×</button>
           <span style="flex: 1;"></span>
           <a class="ghost small" href="${exp.audioUrl}" download style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">⬇️ 下载语音 (mp3)</a>
-          ${exp.explain ? `<a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 查看文字稿</a>` : ''}
-        </div>
+        </div>` : '<p style="margin:8px 0;color:var(--muted);font-size:12px;">音频二进制未随源码分发，请使用下方文字稿。</p>';
+  const mavisSection = exp.explain ? `
+    <details style="margin-bottom: 14px;">
+      <summary style="cursor: pointer; font-weight: 700; padding: 10px 0; font-size: 16px; color: #0f766e;">📝 Mavis 讲解文字稿</summary>
+      <div style="background: linear-gradient(to right, #f0fdfa, #ecfeff); border-left: 5px solid #14b8a6; padding: 18px 22px; border-radius: 8px; margin-top: 8px;">
+        <p style="margin: 0 0 12px; font-size: 14px; line-height: 1.7;">${exp.explain}</p>
+        ${mavisAudioControls}
+        <a class="ghost small" href="audio/${exp.id}_explain.txt" target="_blank" style="text-decoration: none; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px;">📄 单独打开文字稿</a>
       </div>
     </details>` : '';
 

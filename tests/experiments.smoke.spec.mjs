@@ -11,6 +11,18 @@ test('仓库包含 148 个独立实验页面', () => {
   expect(experimentPages).toHaveLength(148);
 });
 
+test('历史入口复用共享壳且不请求缺失音频', async ({ page }) => {
+  const mediaRequests = [];
+  page.on('request', (request) => {
+    if (/\.(?:mp3|wav|m4a|ogg)(?:\?.*)?$/i.test(request.url())) mediaRequests.push(request.url());
+  });
+  await page.goto('/pages/NT06.html', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveURL(/\/index\.html#NT06$/);
+  await expect(page.getByText('音频二进制未随源码分发').first()).toBeVisible();
+  await expect(page.locator('audio[src]')).toHaveCount(0);
+  expect(mediaRequests).toEqual([]);
+});
+
 for (const filename of experimentPages) {
   const experimentId = basename(filename, '.html');
 

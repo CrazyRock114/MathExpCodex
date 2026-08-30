@@ -22,6 +22,7 @@ jobs:
             !/audio/*.mp3
             !/audio/v12_backup/
             !/audio/v13_backup/
+            !/audio/v13_partial/
 
       - name: Set up Node.js
         uses: actions/setup-node@v5

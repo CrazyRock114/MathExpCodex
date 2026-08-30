@@ -16,7 +16,7 @@ describe('类型化实验目录', () => {
   it('为每个实验提供迁移所需的结构化教育元数据', () => {
     for (const experiment of experimentCatalog) {
       expect(experiment.stageCount, experiment.id).toBe(5);
-      expect(experiment.legacyPath, experiment.id).toBe(`../pages/${experiment.id}.html`);
+      expect(experiment.legacyPath, experiment.id).toBe(`../../pages/${experiment.id}.html`);
       expect(experiment.education.gradeBands.length, experiment.id).toBeGreaterThan(0);
       expect(experiment.education.learningObjectives.length, experiment.id).toBeGreaterThan(0);
       expect(experiment.education.prerequisites.length, experiment.id).toBeGreaterThan(0);
