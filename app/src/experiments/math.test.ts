@@ -2,12 +2,15 @@ import { describe, expect, it } from 'vitest';
 import {
   analyzeEulerTrail,
   archimedesPiBounds,
+  bayesNaturalFrequencies,
+  bayesPositivePredictiveValue,
   birthdayMatchProbability,
   binarySearchTrace,
   binarySearchWorstCaseComparisons,
   binomialDistribution,
   binomialCoefficient,
   buffonCrossingProbability,
+  catalanNumber,
   chudnovskyPi,
   collatzSequence,
   completeGraphEdges,
@@ -16,8 +19,10 @@ import {
   createBuffonTrial,
   createPythagoreanTriple,
   estimatePi,
+  eulerCharacteristic,
   exactTravelingSalesmanTour,
   fibonacciNumbers,
+  generateBalancedParentheses,
   goldbachPartitions,
   hanoiMinimumMoves,
   hanoiMoves,
@@ -27,10 +32,12 @@ import {
   maximumTriangleAreaForPerimeter,
   montyHallTheoreticalRates,
   nearestNeighborTour,
+  oddDegreeVertices,
   oddPascalEntryCount,
   pascalRows,
   pigeonholeLowerBound,
   polygonInteriorAngleSum,
+  primeCount,
   ramseyAvoidingColoringCount,
   twinPrimePairs,
   primitiveTriplesThrough,
@@ -39,7 +46,10 @@ import {
   sphereMeasures,
   sphereSliceApproximation,
   symmetricTourCount,
-  triangularNumber
+  sieveTrace,
+  triangularNumber,
+  undirectedDegrees,
+  orientableSurfaceCharacteristic
 } from './math';
 
 describe('布丰投针模型', () => {
@@ -220,5 +230,47 @@ describe('第五批旗舰实验算法', () => {
     expect(solveTwentyFour([1, 5, 5, 5]).expression).not.toBeNull();
     expect(solveTwentyFour([3, 3, 8, 8]).expression).not.toBeNull();
     expect(solveTwentyFour([1, 1, 1, 1]).expression).toBeNull();
+  });
+});
+
+describe('第六批旗舰实验算法', () => {
+  it('按递推公式生成卡特兰数与全部合法括号串', () => {
+    expect([0, 1, 2, 3, 4, 5].map(catalanNumber)).toEqual([1n, 1n, 2n, 5n, 14n, 42n]);
+    expect(catalanNumber(20)).toBe(6_564_120_420n);
+    expect(generateBalancedParentheses(3)).toEqual(['((()))', '(()())', '(())()', '()(())', '()()()']);
+  });
+
+  it('欧拉示性数区分球面与有把手的闭可定向曲面', () => {
+    expect(eulerCharacteristic(8, 12, 6)).toBe(2);
+    expect(eulerCharacteristic(1, 2, 1)).toBe(0);
+    expect(orientableSurfaceCharacteristic(0)).toBe(2);
+    expect(orientableSurfaceCharacteristic(2)).toBe(-2);
+  });
+
+  it('握手定理把自环计作两次并保证奇度顶点成偶数个', () => {
+    const edges = [{ left: 0, right: 1 }, { left: 1, right: 2 }, { left: 2, right: 0 }, { left: 3, right: 3 }];
+    expect(undirectedDegrees(4, edges)).toEqual([2, 2, 2, 2]);
+    expect(undirectedDegrees(4, [{ left: 0, right: 1 }, { left: 1, right: 2 }])).toEqual([1, 2, 1, 0]);
+    expect(oddDegreeVertices(4, [{ left: 0, right: 1 }, { left: 1, right: 2 }])).toEqual([0, 2]);
+  });
+
+  it('贝叶斯公式正确连接基准率、灵敏度、假阳性率与阳性预测值', () => {
+    expect(bayesPositivePredictiveValue(.01, .99, .05)).toBeCloseTo(1 / 6, 12);
+    expect(bayesNaturalFrequencies(10_000, .01, .99, .05)).toMatchObject({
+      conditionPositive: 99,
+      conditionNegative: 495,
+      positive: 594
+    });
+    expect(bayesPositivePredictiveValue(0, 0, 0)).toBeNull();
+  });
+
+  it('埃氏筛从 p² 开始标记并给出正确素数计数', () => {
+    expect(sieveTrace(30)).toEqual([
+      { prime: 2, newlyMarked: [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30] },
+      { prime: 3, newlyMarked: [9, 15, 21, 27] },
+      { prime: 5, newlyMarked: [25] }
+    ]);
+    expect(primeCount(100)).toBe(25);
+    expect(primeCount(1_000_000)).toBe(78_498);
   });
 });

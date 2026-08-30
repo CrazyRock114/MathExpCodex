@@ -533,5 +533,84 @@ export const REVIEWED_EXPERIMENT_OVERRIDES: Readonly<Record<string, ReviewedOver
       reviewStatus: 'verified',
       lastReviewedAt: '2026-08-30'
     }
+  },
+  SQ04: {
+    title: '卡特兰数：从合法括号到不越界路径',
+    intro: '卡特兰数 Cₙ=(2n)!/[n!(n+1)!] 计数合法括号串、Dyck 路径、凸多边形三角剖分和有序满二叉树等结构。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['按前缀约束生成 n 对合法括号串', '把括号串一一对应到不越界的 Dyck 路径', '用闭式、递推和组合对象核对卡特兰数，同时明确各对象的定义条件'],
+      prerequisites: ['阶乘与组合数', '递推数列', '一一对应与路径计数'],
+      sources: [
+        { label: 'OEIS A000108：Catalan numbers', url: 'https://oeis.org/A000108', kind: 'reference' },
+        { label: 'Richard Stanley：Catalan Numbers', url: 'https://math.mit.edu/~rstan/catalan/', kind: 'reference' },
+        { label: 'Stanley：Enumerative Combinatorics, Catalan addendum', url: 'https://math.mit.edu/~rstan/ec/catadd.pdf', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  GM07: {
+    title: '欧拉示性数：V−E+F 为什么不变',
+    intro: '凸多面体和连通平面图满足 V−E+F=2；连通闭可定向曲面的胞腔分解更一般地满足 χ=V−E+F=2−2g。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['正确统计凸多面体的顶点、棱和面', '把多面体投影为含外面的连通平面图，并解释加边时 E 与 F 同增', '用亏格区分球面、环面及更高亏格闭可定向曲面的欧拉示性数'],
+      prerequisites: ['多面体的顶点、棱与面', '平面图与连通性', '整数加减'],
+      sources: [
+        { label: 'MIT Mathematics for Computer Science：Euler’s Formula', url: 'https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf', kind: 'reference' },
+        { label: 'MIT Nonlinear Dynamics II：χ=2−2g', url: 'https://ocw.mit.edu/courses/18-354j-nonlinear-dynamics-ii-continuum-systems-spring-2015/b6d8ec68354b404bae6b65efa83d58ce_MIT18_354JS15_Ch10.pdf', kind: 'reference' },
+        { label: 'Wolfram MathWorld：Euler Characteristic', url: 'https://mathworld.wolfram.com/EulerCharacteristic.html', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  GR09: {
+    title: '握手定理：所有度数之和为什么是边数的两倍',
+    intro: '有限无向图中，每条边为两个端点各贡献 1，因此所有顶点度数之和等于 2|E|，奇度顶点必有偶数个。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['从互动图准确计算每个顶点的度数', '用双重计数证明度数和等于边数的两倍', '推出奇度顶点个数为偶数，并说明一笔画还需要连通性条件'],
+      prerequisites: ['有限无向图', '奇数与偶数', '求和与双重计数'],
+      sources: [
+        { label: 'MIT Mathematics for Computer Science 2024：Graphs and Coloring', url: 'https://ocw.mit.edu/courses/6-1200j-mathematics-for-computer-science-spring-2024/mit6_1200j_s24_lec11.pdf', kind: 'reference' },
+        { label: 'MIT Mathematics for Computer Science：Handshaking Lemma', url: 'https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_textbook.pdf', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  PB08: {
+    title: 'Bayes 定理：阳性之后概率是多少',
+    intro: '用基准率、灵敏度与假阳性率计算阳性预测值，区分 P(+|条件成立) 和 P(条件成立|+)；自然频数能直观看出两者为何不同。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['区分灵敏度、特异度、假阳性率和阳性预测值', '用 Bayes 定理及自然频数计算后验概率', '观察基准率如何改变后验概率，并说明理想化模型的边界'],
+      prerequisites: ['分数与百分数', '条件概率', '补事件'],
+      sources: [
+        { label: 'OpenStax Principles of Data Science：Bayes’ Theorem', url: 'https://openstax.org/books/principles-data-science/pages/3-4-probability-theory', kind: 'reference' },
+        { label: 'CDC MMWR：Specificity and Positive Predictive Value', url: 'https://www.cdc.gov/mmwr/PDF/rr/rr5115.pdf', kind: 'reference' },
+        { label: 'CDC Principles of Epidemiology：Sensitivity, specificity and PPV', url: 'https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson5/quizanswers.html', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  AL10: {
+    title: '埃拉托斯特尼筛法：从 p² 开始找素数',
+    intro: '逐轮保留最小未划掉的数 p，并从 p² 开始划掉倍数；当 p²>N 时停止，就能找出不超过 N 的全部素数。',
+    education: {
+      gradeBands: ['primary', 'middle', 'high'],
+      learningObjectives: ['逐步执行埃拉托斯特尼筛法并识别素数', '解释为什么可从 p² 开始标记并在 p²>N 时停止', '区分精确素数计数、N/ln N 的渐近趋势与具体实现复杂度'],
+      prerequisites: ['倍数与因数', '素数与合数', '平方根与对数（进阶阶段）'],
+      sources: [
+        { label: 'NIST Dictionary of Algorithms and Data Structures：sieve of Eratosthenes', url: 'https://xlinux.nist.gov/dads/HTML/sieve.html', kind: 'reference' },
+        { label: 'OEIS A006880：π(10ⁿ)', url: 'https://oeis.org/A006880', kind: 'reference' },
+        { label: 'NIST DLMF：Number-theoretic tables', url: 'https://dlmf.nist.gov/27.21', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
   }
 };

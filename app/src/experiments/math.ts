@@ -100,6 +100,108 @@ export function primeSieve(limit: number): readonly boolean[] {
   return prime;
 }
 
+export interface SieveStep {
+  readonly prime: number;
+  readonly newlyMarked: readonly number[];
+}
+
+export function sieveTrace(limit: number): readonly SieveStep[] {
+  if (!Number.isInteger(limit) || limit < 2) throw new RangeError('筛法上限必须是不小于 2 的整数');
+  const prime = Array.from({ length: limit + 1 }, () => true);
+  prime[0] = false;
+  prime[1] = false;
+  const steps: SieveStep[] = [];
+  for (let candidate = 2; candidate * candidate <= limit; candidate += 1) {
+    if (!prime[candidate]) continue;
+    const newlyMarked: number[] = [];
+    for (let composite = candidate * candidate; composite <= limit; composite += candidate) {
+      if (prime[composite]) newlyMarked.push(composite);
+      prime[composite] = false;
+    }
+    steps.push({ prime: candidate, newlyMarked });
+  }
+  return steps;
+}
+
+export function primeCount(limit: number) {
+  return primeSieve(limit).filter(Boolean).length;
+}
+
+export function catalanNumber(index: number) {
+  if (!Number.isInteger(index) || index < 0) throw new RangeError('卡特兰数下标必须是非负整数');
+  let value = 1n;
+  for (let current = 0; current < index; current += 1) {
+    value = value * 2n * BigInt(2 * current + 1) / BigInt(current + 2);
+  }
+  return value;
+}
+
+export function generateBalancedParentheses(pairs: number): readonly string[] {
+  if (!Number.isInteger(pairs) || pairs < 0 || pairs > 9) {
+    throw new RangeError('括号对数必须是 0–9 的整数');
+  }
+  const results: string[] = [];
+  const visit = (prefix: string, opened: number, closed: number) => {
+    if (closed === pairs) {
+      results.push(prefix);
+      return;
+    }
+    if (opened < pairs) visit(`${prefix}(`, opened + 1, closed);
+    if (closed < opened) visit(`${prefix})`, opened, closed + 1);
+  };
+  visit('', 0, 0);
+  return results;
+}
+
+function assertProbability(value: number, label: string) {
+  if (!Number.isFinite(value) || value < 0 || value > 1) throw new RangeError(`${label} 必须在 0–1 之间`);
+}
+
+export function bayesPositivePredictiveValue(
+  prevalence: number,
+  sensitivity: number,
+  falsePositiveRate: number
+) {
+  assertProbability(prevalence, '基准率');
+  assertProbability(sensitivity, '灵敏度');
+  assertProbability(falsePositiveRate, '假阳性率');
+  const truePositiveRate = prevalence * sensitivity;
+  const falsePositiveShare = (1 - prevalence) * falsePositiveRate;
+  const positiveRate = truePositiveRate + falsePositiveShare;
+  if (positiveRate === 0) return null;
+  return truePositiveRate / positiveRate;
+}
+
+export function bayesNaturalFrequencies(
+  population: number,
+  prevalence: number,
+  sensitivity: number,
+  falsePositiveRate: number
+) {
+  if (!Number.isInteger(population) || population < 1) throw new RangeError('人数必须是正整数');
+  const posterior = bayesPositivePredictiveValue(prevalence, sensitivity, falsePositiveRate);
+  const conditionPositive = population * prevalence * sensitivity;
+  const conditionNegative = population * (1 - prevalence) * falsePositiveRate;
+  return {
+    conditionPositive,
+    conditionNegative,
+    positive: conditionPositive + conditionNegative,
+    posterior
+  };
+}
+
+export function eulerCharacteristic(vertices: number, edges: number, faces: number) {
+  if (![vertices, edges, faces].every((value) => Number.isInteger(value) && value >= 0)) {
+    throw new RangeError('顶点、边、面数量必须是非负整数');
+  }
+  return vertices - edges + faces;
+}
+
+export function orientableSurfaceCharacteristic(genus: number) {
+  if (!Number.isInteger(genus) || genus < 0) throw new RangeError('亏格必须是非负整数');
+  return 2 - 2 * genus;
+}
+
 export function goldbachPartitions(even: number): readonly (readonly [number, number])[] {
   if (!Number.isInteger(even) || even < 4 || even % 2 !== 0) {
     throw new RangeError('请输入不小于 4 的偶数');
@@ -228,6 +330,23 @@ export function polygonInteriorAngleSum(sides: number) {
 export interface UndirectedEdge {
   readonly left: number;
   readonly right: number;
+}
+
+export function undirectedDegrees(vertexCount: number, edges: readonly UndirectedEdge[]) {
+  if (!Number.isInteger(vertexCount) || vertexCount < 1) throw new RangeError('顶点数必须是正整数');
+  const degrees = Array.from({ length: vertexCount }, () => 0);
+  for (const { left, right } of edges) {
+    if (!Number.isInteger(left) || !Number.isInteger(right) || left < 0 || right < 0 || left >= vertexCount || right >= vertexCount) {
+      throw new RangeError('边的端点必须是有效顶点');
+    }
+    degrees[left] = (degrees[left] ?? 0) + 1;
+    degrees[right] = (degrees[right] ?? 0) + 1;
+  }
+  return degrees;
+}
+
+export function oddDegreeVertices(vertexCount: number, edges: readonly UndirectedEdge[]) {
+  return undirectedDegrees(vertexCount, edges).flatMap((degree, vertex) => degree % 2 ? [vertex] : []);
 }
 
 export type EulerTrailType = 'circuit' | 'path' | 'none';

@@ -3,8 +3,8 @@ import AxeBuilder from '@axe-core/playwright';
 
 const NATIVE_EXPERIMENT_IDS = [
   'PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08',
-  'SQ01', 'SQ07', 'SQ09', 'GM01', 'GM03', 'GM04', 'GR01', 'GR02', 'GR07',
-  'PB01', 'PB02', 'PB03', 'AL01', 'AL04', 'AL07'
+  'SQ01', 'SQ04', 'SQ07', 'SQ09', 'GM01', 'GM03', 'GM04', 'GM07', 'GR01', 'GR02', 'GR07', 'GR09',
+  'PB01', 'PB02', 'PB03', 'PB08', 'AL01', 'AL04', 'AL07', 'AL10'
 ];
 
 test('新应用展示全部 148 个实验并支持搜索', async ({ page }) => {
@@ -35,7 +35,8 @@ test('PR01 原生实验能累计投针并显示实验频率', async ({ page }) =
 
 test('PR02 明确区分有限计算与未解决猜想', async ({ page }) => {
   await page.goto('/dist/app/index.html#/experiment/PR02', { waitUntil: 'domcontentloaded' });
-  await expect(page.getByText(/仍未被证明/)).toBeVisible();
+  await expect(page.getByRole('tab')).toHaveCount(5, { timeout: 10_000 });
+  await expect(page.getByText(/仍未被证明/)).toBeVisible({ timeout: 10_000 });
   await page.getByRole('tab', { name: /奇偶/ }).click();
   await expect(page.getByText(/不能推出长期必下降/)).toBeVisible();
 });
@@ -190,6 +191,44 @@ test('AL01 用精确有理数找到分数解并修正枚举数量', async ({ pag
   await expect(page.getByText(/不能再乘一次 4³/)).toBeVisible();
 });
 
+test('SQ04 修正三对括号枚举并明确计数对象', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/SQ04', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /括号/ }).click();
+  await expect(page.locator('.stage-panel:not([hidden]) .number-pair-list li')).toHaveCount(5);
+  await expect(page.getByText('()()()', { exact: true })).toBeVisible();
+  await page.getByRole('tab', { name: /边界/ }).click();
+  await expect(page.getByText(/n 个内部节点的有序满二叉树形状/)).toBeVisible();
+});
+
+test('GM07 用合法环面胞腔分解得到 χ=0', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/GM07', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /曲面/ }).click();
+  await expect(page.getByText('χ = 0', { exact: true })).toBeVisible();
+  await expect(page.getByText(/V=1、E=2、F=1/)).toBeVisible();
+});
+
+test('GR09 展示度数和与边数的双重计数', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/GR09', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('.stage-panel:not([hidden]) output')).toContainText(/度数总和\s*6\s*=\s*2×3/);
+  await page.getByRole('tab', { name: /推论/ }).click();
+  await expect(page.getByText(/还必须检查所有有边顶点是否连通/)).toBeVisible();
+});
+
+test('PB08 区分灵敏度与阳性预测值', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/PB08', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /频数/ }).click();
+  await expect(page.getByText(/99 \/ \(99 \+ 495\) = 1\/6/)).toBeVisible();
+  await expect(page.getByText(/99% 是灵敏度/)).toBeVisible();
+});
+
+test('AL10 从 p² 开始筛并修正十亿以内素数个数', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/AL10', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /步骤/ }).click();
+  await expect(page.getByText('从 2²=4 开始', { exact: true })).toBeVisible();
+  await page.getByRole('tab', { name: /复杂度/ }).click();
+  await expect(page.getByText(/50,847,534 个素数/)).toBeVisible();
+});
+
 for (const width of [360, 390, 768]) {
   test(`新应用在 ${width}px 视口无横向溢出`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -201,7 +240,7 @@ for (const width of [360, 390, 768]) {
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
   });
 
-  test(`二十三个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
+  test(`二十八个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
     test.setTimeout(150_000);
     await page.setViewportSize({ width, height: 900 });
     for (const experimentId of NATIVE_EXPERIMENT_IDS) {
@@ -233,8 +272,9 @@ test('新应用目录与详情页无严重无障碍问题', async ({ page }) => 
   }
 });
 
-test('二十三个原生实验的全部 115 个阶段无严重无障碍问题', async ({ page }) => {
-  test.setTimeout(240_000);
+test('二十八个原生实验的全部 140 个阶段无严重无障碍问题', async ({ page }) => {
+  // 全套回归会与 148 个旧页面并行运行；给 140 次 axe 扫描留出资源竞争余量。
+  test.setTimeout(420_000);
   for (const experimentId of NATIVE_EXPERIMENT_IDS) {
     await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
     const tabs = page.getByRole('tab');
@@ -249,7 +289,7 @@ test('二十三个原生实验的全部 115 个阶段无严重无障碍问题', 
   }
 });
 
-test('二十三个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
+test('二十八个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
   test.setTimeout(150_000);
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));

@@ -490,6 +490,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .search-trace li { display: grid; min-width: 0; grid-template-columns: 4.5rem minmax(0, 1fr); gap: .5rem; padding: .5rem; border: 1px solid #dfe4f0; border-radius: .5rem; }
 .search-trace span { min-width: 0; overflow-wrap: anywhere; font-family: ui-monospace, monospace; font-size: .8rem; }
 
+.catalan-path { display: block; width: 100%; min-width: 0; height: auto; border: 1px solid #dfe4f0; border-radius: .9rem; background: #fbfcff; }
+.catalan-path line { stroke: #b8c0ce; stroke-dasharray: 5 4; stroke-width: 2; }
+.catalan-path polyline { fill: none; stroke: #3157d5; stroke-linejoin: round; stroke-width: 4; }
+
 .site-footer { padding: 1.5rem 1rem 2.5rem; border-top: 1px solid var(--line); color: var(--muted); text-align: center; font-size: .85rem; }
 
 @media (max-width: 720px) {
