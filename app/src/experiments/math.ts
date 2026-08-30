@@ -308,3 +308,96 @@ export function hanoiMoves(disks: number, from = 'A', to = 'C', spare = 'B'): re
   move(disks, from, to, spare);
   return moves;
 }
+
+export function pascalRows(lastRow: number): readonly (readonly bigint[])[] {
+  if (!Number.isInteger(lastRow) || lastRow < 0 || lastRow > 60) throw new RangeError('行号必须是 0 到 60 的整数');
+  const rows: bigint[][] = [[1n]];
+  for (let row = 1; row <= lastRow; row += 1) {
+    const previous = rows[row - 1]!;
+    rows.push(Array.from({ length: row + 1 }, (_, column) =>
+      (previous[column - 1] ?? 0n) + (previous[column] ?? 0n)));
+  }
+  return rows;
+}
+
+export function binomialCoefficient(n: number, k: number) {
+  if (!Number.isInteger(n) || !Number.isInteger(k) || n < 0 || k < 0 || k > n) throw new RangeError('需要满足 0 ≤ k ≤ n');
+  return pascalRows(n)[n]![k]!;
+}
+
+export function oddPascalEntryCount(row: number) {
+  if (!Number.isInteger(row) || row < 0) throw new RangeError('行号必须是非负整数');
+  let value = row;
+  let setBits = 0;
+  while (value > 0) {
+    setBits += value % 2;
+    value = Math.floor(value / 2);
+  }
+  return 2 ** setBits;
+}
+
+export function heronArea(a: number, b: number, c: number) {
+  if (![a, b, c].every((side) => Number.isFinite(side) && side > 0)) throw new RangeError('三条边都必须是正数');
+  if (a + b <= c || a + c <= b || b + c <= a) throw new RangeError('三条边必须满足严格三角不等式');
+  const semiperimeter = (a + b + c) / 2;
+  return Math.sqrt(semiperimeter * (semiperimeter - a) * (semiperimeter - b) * (semiperimeter - c));
+}
+
+export function maximumTriangleAreaForPerimeter(perimeter: number) {
+  if (!Number.isFinite(perimeter) || perimeter <= 0) throw new RangeError('周长必须是正数');
+  return perimeter ** 2 / (12 * Math.sqrt(3));
+}
+
+export function pigeonholeLowerBound(objects: number, boxes: number) {
+  if (!Number.isInteger(objects) || objects < 0 || !Number.isInteger(boxes) || boxes < 1) throw new RangeError('物品数必须非负且抽屉数必须为正整数');
+  return Math.ceil(objects / boxes);
+}
+
+export function collisionProbability(draws: number, buckets: number) {
+  return birthdayMatchProbability(draws, buckets);
+}
+
+export function montyHallTheoreticalRates(doors = 3) {
+  if (!Number.isInteger(doors) || doors < 3) throw new RangeError('至少需要三扇门');
+  return { stay: 1 / doors, switch: (doors - 1) / doors };
+}
+
+export function simulateMontyHall(trials: number, random: () => number = Math.random) {
+  if (!Number.isInteger(trials) || trials < 1) throw new RangeError('模拟次数必须是正整数');
+  let stayWins = 0;
+  for (let trial = 0; trial < trials; trial += 1) {
+    const prize = Math.floor(random() * 3);
+    const pick = Math.floor(random() * 3);
+    if (pick === prize) stayWins += 1;
+  }
+  return { stayWins, switchWins: trials - stayWins, trials };
+}
+
+export interface BinarySearchStep {
+  readonly high: number;
+  readonly low: number;
+  readonly middle: number;
+  readonly value: number;
+}
+
+export function binarySearchTrace(values: readonly number[], target: number) {
+  if (!Number.isFinite(target) || values.some((value) => !Number.isFinite(value))) throw new RangeError('数组和目标必须是有限数字');
+  if (values.some((value, index) => index > 0 && value < values[index - 1]!)) throw new RangeError('二分搜索要求数组按非降序排列');
+  const steps: BinarySearchStep[] = [];
+  let low = 0;
+  let high = values.length - 1;
+  while (low <= high) {
+    const middle = low + Math.floor((high - low) / 2);
+    const value = values[middle]!;
+    steps.push({ high, low, middle, value });
+    if (value === target) return { index: middle, steps };
+    if (value < target) low = middle + 1;
+    else high = middle - 1;
+  }
+  return { index: -1, steps };
+}
+
+export function binarySearchWorstCaseComparisons(length: number) {
+  if (!Number.isInteger(length) || length < 0) throw new RangeError('数组长度必须是非负整数');
+  return length === 0 ? 0 : Math.ceil(Math.log2(length + 1));
+}

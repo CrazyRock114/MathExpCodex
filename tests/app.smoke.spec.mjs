@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 const NATIVE_EXPERIMENT_IDS = [
   'PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08',
-  'SQ01', 'GM01', 'GR01', 'PB01', 'AL04'
+  'SQ01', 'SQ07', 'GM01', 'GM03', 'GR01', 'GR07', 'PB01', 'PB02', 'AL04', 'AL07'
 ];
 
 test('新应用展示全部 148 个实验并支持搜索', async ({ page }) => {
@@ -79,7 +79,7 @@ test('PR08 展示 96 边形给出的 π 上下界', async ({ page }) => {
 
 test('SQ01 明确斐波那契下标与不完整整除命题', async ({ page }) => {
   await page.goto('/dist/app/index.html#/experiment/SQ01', { waitUntil: 'domcontentloaded' });
-  await expect(page.getByText(/采用统一下标 F₀=0、F₁=1/)).toBeVisible();
+  await expect(page.locator('.stage-panel:not([hidden])').getByText(/采用统一下标 F₀=0、F₁=1/)).toBeVisible({ timeout: 10_000 });
   await page.getByRole('tab', { name: /恒等式/ }).click();
   await expect(page.getByText(/F₂=1 整除所有整数/)).toBeVisible();
 });
@@ -113,6 +113,44 @@ test('AL04 修正 64 盘耗时数量级', async ({ page }) => {
   await expect(page.getByText(/约为 138 亿年宇宙年龄的 42 倍/)).toBeVisible();
 });
 
+test('SQ07 修正杨辉三角奇数项个数公式', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/SQ07', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /奇偶/ }).click();
+  await expect(page.getByText(/正确公式是 2 的 popcount\(n\) 次方/)).toBeVisible();
+  await expect(page.locator('.stage-panel:not([hidden]) .correction-note')).toContainText('2 的 popcount(n) 次方');
+});
+
+test('GM03 只在固定周长下比较等边最大面积', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/GM03', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /最大值/ }).click();
+  await expect(page.getByText(/只有在周长固定时才成立/)).toBeVisible();
+  await expect(page.getByText(/必须明确“固定周长”/)).toBeVisible();
+});
+
+test('GR07 用精确公式替代错误的随机桶碰撞模拟', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/GR07', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /碰撞/ }).click();
+  await expect(page.locator('.stage-panel:not([hidden]) .probability-meter').getByText('49.68%', { exact: true })).toBeVisible();
+  await expect(page.getByText(/检查一个随机桶、写入另一个随机桶/)).toBeVisible();
+});
+
+test('PB02 明确主持人协议并删除伪贝叶斯推导', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/PB02', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByText(/标准规则必须完整/)).toBeVisible();
+  await page.getByRole('button', { name: '选择 1 号门' }).click();
+  await expect(page.getByRole('button', { name: /换到/ })).toBeVisible();
+  await page.getByRole('tab', { name: /协议/ }).click();
+  await expect(page.getByText(/不是完整的贝叶斯计算/)).toBeVisible();
+});
+
+test('AL07 修正 4 亿规模和 JavaScript 位运算中点', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/AL07', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /复杂度/ }).click();
+  await expect(page.getByText(/4 亿个元素最坏约 29 次/)).toBeVisible();
+  await page.getByRole('tab', { name: /中点/ }).click();
+  await expect(page.getByText(/不能作为通用“防溢出”写法/)).toBeVisible();
+});
+
 for (const width of [360, 390, 768]) {
   test(`新应用在 ${width}px 视口无横向溢出`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -124,8 +162,8 @@ for (const width of [360, 390, 768]) {
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
   });
 
-  test(`十三个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
-    test.setTimeout(120_000);
+  test(`十八个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
+    test.setTimeout(150_000);
     await page.setViewportSize({ width, height: 900 });
     for (const experimentId of NATIVE_EXPERIMENT_IDS) {
       await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
@@ -156,8 +194,8 @@ test('新应用目录与详情页无严重无障碍问题', async ({ page }) => 
   }
 });
 
-test('十三个原生实验的全部 65 个阶段无严重无障碍问题', async ({ page }) => {
-  test.setTimeout(180_000);
+test('十八个原生实验的全部 90 个阶段无严重无障碍问题', async ({ page }) => {
+  test.setTimeout(240_000);
   for (const experimentId of NATIVE_EXPERIMENT_IDS) {
     await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
     const tabs = page.getByRole('tab');
@@ -172,8 +210,8 @@ test('十三个原生实验的全部 65 个阶段无严重无障碍问题', asyn
   }
 });
 
-test('十三个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
-  test.setTimeout(120_000);
+test('十八个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
+  test.setTimeout(150_000);
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
   page.on('console', (message) => {

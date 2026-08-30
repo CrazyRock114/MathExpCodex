@@ -12,8 +12,13 @@ export const nativeExperimentById: ReadonlyMap<string, NativeExperimentView> = n
   ['PR07', lazy(() => import('./twin-prime/TwinPrimeExperiment'))],
   ['PR08', lazy(() => import('./pi-algorithms/PiAlgorithmsExperiment'))],
   ['SQ01', lazy(() => import('./fibonacci/FibonacciExperiment'))],
+  ['SQ07', lazy(() => import('./pascal/PascalExperiment'))],
   ['GM01', lazy(() => import('./polygon-angles/PolygonAnglesExperiment'))],
+  ['GM03', lazy(() => import('./heron/HeronExperiment'))],
   ['GR01', lazy(() => import('./euler-trail/EulerTrailExperiment'))],
+  ['GR07', lazy(() => import('./pigeonhole/PigeonholeExperiment'))],
   ['PB01', lazy(() => import('./birthday/BirthdayExperiment'))],
-  ['AL04', lazy(() => import('./hanoi/HanoiExperiment'))]
+  ['PB02', lazy(() => import('./monty-hall/MontyHallExperiment'))],
+  ['AL04', lazy(() => import('./hanoi/HanoiExperiment'))],
+  ['AL07', lazy(() => import('./binary-search/BinarySearchExperiment'))]
 ]);

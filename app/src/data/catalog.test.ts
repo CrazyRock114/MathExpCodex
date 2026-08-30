@@ -25,11 +25,11 @@ describe('类型化实验目录', () => {
     }
   });
 
-  it('仅把已经逐项核验的十三个旗舰实验标记为已核验', () => {
+  it('仅把已经逐项核验的十八个旗舰实验标记为已核验', () => {
     const verified = experimentCatalog
       .filter((experiment) => experiment.education.reviewStatus === 'verified')
       .map((experiment) => experiment.id);
-    expect(verified).toEqual(['PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08', 'SQ01', 'GM01', 'GR01', 'PB01', 'AL04']);
-    expect(experimentCatalog.filter((experiment) => experiment.education.reviewStatus === 'unreviewed')).toHaveLength(135);
+    expect(verified).toEqual(['PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08', 'SQ01', 'SQ07', 'GM01', 'GM03', 'GR01', 'GR07', 'PB01', 'PB02', 'AL04', 'AL07']);
+    expect(experimentCatalog.filter((experiment) => experiment.education.reviewStatus === 'unreviewed')).toHaveLength(130);
   });
 });

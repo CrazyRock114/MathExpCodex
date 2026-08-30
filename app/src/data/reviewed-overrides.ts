@@ -381,5 +381,82 @@ export const REVIEWED_EXPERIMENT_OVERRIDES: Readonly<Record<string, ReviewedOver
       reviewStatus: 'verified',
       lastReviewedAt: '2026-08-30'
     }
+  },
+  SQ07: {
+    title: '杨辉三角里的组合与奇偶图案',
+    intro: '从第 0 行开始，每项由左上、右上两项相加得到。它同时记录二项式系数、组合数、2 的幂与模 2 的自相似图案。',
+    education: {
+      gradeBands: ['primary', 'middle', 'high'],
+      learningObjectives: ['按递推规则生成杨辉三角并统一从 0 开始的行号', '把 C(n,k) 连接到选取方法数和二项式展开系数', '正确使用第 n 行奇数项个数 2^popcount(n)，并从数值图案区分观察与证明'],
+      prerequisites: ['整数加法', '乘方', '组合数与二进制（进阶阶段）'],
+      sources: [
+        { label: 'NIST DLMF：Lattice Paths—Binomial Coefficients', url: 'https://dlmf.nist.gov/26.3', kind: 'reference' },
+        { label: 'MacTutor：Yang Hui', url: 'https://mathshistory.st-andrews.ac.uk/Biographies/Yang_Hui/', kind: 'reference' },
+        { label: 'Lucas’ theorem: generalizations, extensions and applications', url: 'https://arxiv.org/abs/1409.3820', kind: 'primary' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  GM03: {
+    title: '只知道三边怎样求面积（海伦公式）',
+    intro: '三边满足严格三角不等式时，用半周长 s=(a+b+c)/2 和 A=√[s(s−a)(s−b)(s−c)] 求面积，并核对固定周长与退化边界。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['先检验严格三角不等式，再用海伦公式计算面积', '用余弦定理核对海伦公式与 ½ab·sin(C) 的一致性', '说明等边三角形面积最大必须以周长固定为前提'],
+      prerequisites: ['三角形与面积', '平方根', '三角不等式与正弦（进阶阶段）'],
+      sources: [
+        { label: 'OpenStax Contemporary Mathematics：Heron’s formula', url: 'https://openstax.org/books/contemporary-mathematics/pages/10-6-area', kind: 'reference' },
+        { label: 'Hero of Alexandria：Metrica I（选段）', url: 'https://web.calstatela.edu/faculty/hmendel/Ancient%20Mathematics/HeroAlexandrinus/Metrica.i.1-9/Metrica.I.1-9.html', kind: 'primary' },
+        { label: 'University of Georgia：Problem Solving with Heron’s Formula', url: 'https://jwilson.coe.uga.edu/EMT725/Heron/Heron.html', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  GR07: {
+    title: '为什么“抽屉不够”必然产生重复（鸽巢原理）',
+    intro: 'm 个物品分入 n 个抽屉时，至少一个抽屉含有 ⌈m/n⌉ 个物品。把确定性保证与均匀独立模型下的碰撞概率分开。',
+    education: {
+      gradeBands: ['primary', 'middle', 'high'],
+      learningObjectives: ['识别应用问题中的物品和抽屉', '用总容量反证推广形式 ⌈m/n⌉', '区分鸽巢原理的必然保证与哈希、生日模型中的碰撞概率'],
+      prerequisites: ['整数除法与向上取整', '分类', '概率与补事件（进阶阶段）'],
+      sources: [
+        { label: 'MIT 18.200：Pigeonhole Principle', url: 'https://ocw.mit.edu/courses/18-200-principles-of-discrete-applied-mathematics-spring-2024/resources/mit18_200_s24_lec01_pdf/', kind: 'reference' },
+        { label: 'MIT Mathematics for Computer Science：Counting Principles', url: 'https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2005/11747cdb1edcb40420e61d0b03becb0d_cp9f.pdf', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  PB02: {
+    title: '换门为什么把胜率从 1/3 变成 2/3（Monty Hall）',
+    intro: '在主持人知情、必开未选羊门、必提供换门机会的标准协议下，不换胜率为 1/3，换门胜率为 2/3；改变主持人协议会改变答案。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['完整声明标准主持人协议并枚举三个奖品位置', '用模拟比较不换与换门策略，同时区分频率和理论概率', '解释为什么不同主持人协议会产生不同条件概率'],
+      prerequisites: ['等可能结果', '分数与百分数', '条件概率（进阶阶段）'],
+      sources: [
+        { label: 'Selvin：A Problem in Probability（1975）', url: 'https://www.tandfonline.com/doi/abs/10.1080/00031305.1975.10479121', kind: 'primary' },
+        { label: 'Gill：The Monty Hall problem is not a probability puzzle', url: 'https://onlinelibrary.wiley.com/doi/10.1111/j.1467-9574.2010.00474.x', kind: 'primary' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  AL07: {
+    title: '每次排除一半（二分搜索）',
+    intro: '在按非降序排列的数组中比较区间中点，每次排除一半，直到命中目标或区间为空；最坏比较次数随 log₂n 增长。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['逐步维护 low、high 和 middle，解释每次排除哪一半', '区分 O(log n) 增长量级与具体最坏比较次数', '识别有序前提、重复值语义和安全中点写法'],
+      prerequisites: ['有序数列与下标', '不等式', '以 2 为底的对数（进阶阶段）'],
+      sources: [
+        { label: 'NIST Dictionary of Algorithms and Data Structures：binary search', url: 'https://xlinux.nist.gov/dads/HTML/binarySearch.html', kind: 'reference' },
+        { label: 'MIT Press：Introduction to Algorithms, Fourth Edition', url: 'https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
   }
 };

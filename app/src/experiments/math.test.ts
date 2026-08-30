@@ -3,10 +3,14 @@ import {
   analyzeEulerTrail,
   archimedesPiBounds,
   birthdayMatchProbability,
+  binarySearchTrace,
+  binarySearchWorstCaseComparisons,
+  binomialCoefficient,
   buffonCrossingProbability,
   chudnovskyPi,
   collatzSequence,
   completeGraphEdges,
+  collisionProbability,
   countMonochromaticTriangles,
   createBuffonTrial,
   createPythagoreanTriple,
@@ -15,8 +19,14 @@ import {
   goldbachPartitions,
   hanoiMinimumMoves,
   hanoiMoves,
+  heronArea,
   leibnizPi,
   machinPi,
+  maximumTriangleAreaForPerimeter,
+  montyHallTheoreticalRates,
+  oddPascalEntryCount,
+  pascalRows,
+  pigeonholeLowerBound,
   polygonInteriorAngleSum,
   ramseyAvoidingColoringCount,
   twinPrimePairs,
@@ -123,5 +133,43 @@ describe('第三批旗舰实验算法', () => {
     expect(hanoiMinimumMoves(64)).toBe(18_446_744_073_709_551_615n);
     expect(hanoiMoves(3)).toHaveLength(7);
     expect(hanoiMoves(3).map(({ disk }) => disk)).toEqual([1, 2, 1, 3, 1, 2, 1]);
+  });
+});
+
+describe('第四批旗舰实验算法', () => {
+  it('生成杨辉三角并正确计算每行奇数个数', () => {
+    expect(pascalRows(5)[5]).toEqual([1n, 5n, 10n, 10n, 5n, 1n]);
+    expect(binomialCoefficient(10, 3)).toBe(120n);
+    expect(oddPascalEntryCount(0)).toBe(1);
+    expect(oddPascalEntryCount(7)).toBe(8);
+    expect(oddPascalEntryCount(10)).toBe(4);
+  });
+
+  it('海伦公式拒绝退化边长且固定周长最大值属于等边三角形', () => {
+    expect(heronArea(3, 4, 5)).toBe(6);
+    expect(() => heronArea(1, 2, 3)).toThrow(/严格三角不等式/);
+    expect(maximumTriangleAreaForPerimeter(12)).toBeCloseTo(4 * Math.sqrt(3), 12);
+  });
+
+  it('推广鸽巢下界并准确计算碰撞概率', () => {
+    expect(pigeonholeLowerBound(15, 6)).toBe(3);
+    expect(collisionProbability(12, 100)).toBeCloseTo(0.496846, 5);
+    expect(collisionProbability(20, 100)).toBeCloseTo(0.8696, 3);
+  });
+
+  it('标准 Monty Hall 规则给出不换 1/3 与换门 2/3', () => {
+    expect(montyHallTheoreticalRates()).toEqual({ stay: 1 / 3, switch: 2 / 3 });
+    expect(montyHallTheoreticalRates(100)).toEqual({ stay: .01, switch: .99 });
+  });
+
+  it('二分搜索记录安全中点、未命中路径和精确最坏比较上界', () => {
+    const values = [1, 3, 5, 7, 9, 11, 13, 15];
+    const found = binarySearchTrace(values, 11);
+    expect(found.index).toBe(5);
+    expect(found.steps[0]).toMatchObject({ low: 0, high: 7, middle: 3 });
+    expect(binarySearchTrace(values, 6).index).toBe(-1);
+    expect(() => binarySearchTrace([3, 1, 2], 1)).toThrow(/非降序/);
+    expect(binarySearchWorstCaseComparisons(1_000_000)).toBe(20);
+    expect(binarySearchWorstCaseComparisons(400_000_000)).toBe(29);
   });
 });
