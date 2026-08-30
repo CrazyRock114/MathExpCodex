@@ -28,9 +28,8 @@ export function App() {
         )}
       </main>
       <footer className="site-footer">
-        当前为渐进迁移版目录；实验互动仍由经过回归测试的旧页面承载。
+        当前为渐进迁移版；已核验实验优先使用 React 原生互动，其余实验继续由旧页面承载。
       </footer>
     </>
   );
 }
-

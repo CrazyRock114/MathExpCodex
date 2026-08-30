@@ -21,7 +21,15 @@ describe('类型化实验目录', () => {
       expect(experiment.education.learningObjectives.length, experiment.id).toBeGreaterThan(0);
       expect(experiment.education.prerequisites.length, experiment.id).toBeGreaterThan(0);
       expect(Array.isArray(experiment.searchAliases), experiment.id).toBe(true);
-      expect(experiment.education.reviewStatus, experiment.id).toBe('unreviewed');
+      expect(['unreviewed', 'verified']).toContain(experiment.education.reviewStatus);
     }
+  });
+
+  it('仅把已经逐项核验的首批实验标记为已核验', () => {
+    const verified = experimentCatalog
+      .filter((experiment) => experiment.education.reviewStatus === 'verified')
+      .map((experiment) => experiment.id);
+    expect(verified).toEqual(['PR01', 'PR02', 'PR03']);
+    expect(experimentCatalog.filter((experiment) => experiment.education.reviewStatus === 'unreviewed')).toHaveLength(145);
   });
 });

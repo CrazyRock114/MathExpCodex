@@ -3,6 +3,8 @@ import {
   GRADE_BAND_LABELS,
   type ExperimentSummary
 } from '../data/experiment';
+import { nativeExperimentById } from '../experiments/registry';
+import { StageShell } from './StageShell';
 
 interface ExperimentPageProps {
   readonly experiment: ExperimentSummary | undefined;
@@ -20,6 +22,8 @@ export function ExperimentPage({ experiment, requestedId }: ExperimentPageProps)
     );
   }
 
+  const nativeExperiment = nativeExperimentById.get(experiment.id);
+
   return (
     <article className="page-shell narrow-page">
       <a className="back-link" href="#/">← 返回实验目录</a>
@@ -28,6 +32,10 @@ export function ExperimentPage({ experiment, requestedId }: ExperimentPageProps)
         <h1>{experiment.title}</h1>
         <p>{experiment.intro}</p>
       </header>
+
+      {nativeExperiment ? (
+        <StageShell experimentId={experiment.id} stages={nativeExperiment.stages} />
+      ) : null}
 
       <section className="detail-section" aria-labelledby="learning-heading">
         <h2 id="learning-heading">学习设计</h2>
@@ -55,11 +63,14 @@ export function ExperimentPage({ experiment, requestedId }: ExperimentPageProps)
       </section>
 
       <section className="legacy-launch" aria-labelledby="interactive-heading">
-        <h2 id="interactive-heading">开始互动实验</h2>
-        <p>共享互动组件仍在迁移中；现阶段打开经过 148 页回归测试的旧版实验。</p>
-        <a className="primary-link" href={experiment.legacyPath}>打开 {experiment.id} 互动实验</a>
+        <h2 id="interactive-heading">{nativeExperiment ? '旧版实验对照' : '开始互动实验'}</h2>
+        <p>
+          {nativeExperiment
+            ? '上方是经过内容核验的 React 原生实验；旧页面暂时保留，便于迁移期间对照。'
+            : '共享互动组件仍在迁移中；现阶段打开经过 148 页回归测试的旧版实验。'}
+        </p>
+        <a className="primary-link" href={experiment.legacyPath}>打开 {experiment.id} 旧版实验</a>
       </section>
     </article>
   );
 }
-
