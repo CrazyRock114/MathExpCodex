@@ -6,12 +6,28 @@
   "type": "module",
   "scripts": {
     "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
-    "test": "npm run test:smoke",
+    "dev:app": "vite --config vite.config.ts",
+    "catalog:generate": "node scripts/generate-catalog.mjs",
+    "check": "npm run catalog:generate && tsc --noEmit",
+    "build:app": "npm run catalog:generate && vite build --config vite.config.ts",
+    "test": "npm run check && npm run test:unit && npm run build:app && npm run test:smoke",
+    "test:unit": "vitest run",
     "test:smoke": "playwright test",
     "test:smoke:update": "UPDATE_SMOKE_SNAPSHOTS=1 playwright test"
   },
   "devDependencies": {
-    "@playwright/test": "1.62.1"
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.62.1",
+    "@types/node": "26.4.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
+    "@vitejs/plugin-react": "6.1.1",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vitest": "4.1.11"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   }
 }
-

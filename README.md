@@ -25,10 +25,18 @@ git clone https://github.com/CrazyRock114/MathExpCodex.git
 cd MathExpCodex
 npm install
 npx playwright install chromium
+npm run dev:app
+```
+
+打开 <http://127.0.0.1:5173/> 查看新的 React 目录与详情路由。
+
+旧版基线仍可运行：
+
+```bash
 npm run dev
 ```
 
-打开 <http://127.0.0.1:4173/index.html>。
+打开 <http://127.0.0.1:4173/index.html>。新旧入口并行存在，直到实验互动组件迁移完成。
 
 ## 质量检查
 
@@ -36,7 +44,7 @@ npm run dev
 npm test
 ```
 
-当前冒烟套件包含 153 项检查：
+当前质量入口会依次运行目录生成、TypeScript、Vitest、Vite 生产构建和 159 项 Playwright 检查：
 
 - 独立实验页面数量必须为 148
 - 每页能够加载且没有破坏交互的 JavaScript 错误
@@ -44,10 +52,23 @@ npm test
 - 互动区域不能无提示地留白
 - 首页数据数量与类型统计一致
 - 首页在 360px、390px、768px 视口没有横向溢出
+- 新 React 目录包含 148 个类型化实验，并支持搜索、筛选和详情路由
+- 新目录与详情页没有 axe `critical` 或 `serious` 无障碍问题
 
 GitHub Actions 使用稀疏检出跳过大型 MP3，避免无关媒体拖慢页面逻辑测试。
 
-## 当前技术架构
+## 渐进迁移架构
+
+新的共享应用层已经建立：
+
+- Vite 8、TypeScript 7、React 19
+- 148 条类型化实验摘要与模块级 ID 索引
+- Hash 详情路由、搜索别名、状态与主题筛选
+- 小学 / 初中 / 高中学段草案、学习目标、前置知识和审阅状态字段
+- 生产包约 77KB gzip；长目录卡片使用 `content-visibility`
+- Vitest、Playwright、移动端和 axe 门禁
+
+旧实验运行层仍为：
 
 - 静态 HTML、CSS 和原生 JavaScript
 - Chart.js 4.4.1（当前通过 jsDelivr CDN 加载）
@@ -55,11 +76,13 @@ GitHub Actions 使用稀疏检出跳过大型 MP3，避免无关媒体拖慢页�
 - 148 个生成的独立 HTML 页面
 - 无后端、无账户和用户数据存储
 
-现有 `index.html` 和独立页面仍包含大量重复代码。目标架构为 Vite + TypeScript + React 的数据驱动静态应用，并采用渐进迁移，避免一次性重写全部实验算法。
+现有 `index.html` 和独立页面仍包含大量重复代码。新详情页当前通过类型化目录链接旧互动页面；下一阶段会把实验壳、阶段导航和首批旗舰互动逐步迁入 React。
 
 ## 重要目录
 
 - `index.html`：当前主应用
+- `app/`：新的 React 应用、组件、样式和类型化目录
+- `scripts/generate-catalog.mjs`：从旧元数据生成受 TypeScript 约束的目录
 - `pages/`：148 个独立实验页面
 - `experiments_meta.json`：旧版实验元数据快照，后续将迁移为有类型约束的数据源
 - `audio/`：讲解音频及文字稿；音频将迁移到对象存储/CDN
@@ -69,9 +92,9 @@ GitHub Actions 使用稀疏检出跳过大型 MP3，避免无关媒体拖慢页�
 
 ## 当前迭代优先级
 
-1. 保持 148 个现有实验零运行错误，并补齐回归测试。
-2. 建立共享应用壳、路由和规范化实验数据模型。
-3. 为实验补充小学/初中/高中学段、学习目标、前置知识、权威来源和审阅状态。
+1. 把共享阶段导航和首批旗舰实验迁入 React，同时保持 148 页回归基线。
+2. 把当前自动生成的学段与学习目标草案升级为逐项人工审阅内容。
+3. 为全部实验补充权威来源，并把 `unreviewed` 逐步变为 `verified`。
 4. 修复数学事实、术语翻译和自动 TTS 文案污染。
 5. 建立单元测试、无障碍、性能和移动端质量门禁。
 6. 将大型音频和重复备份与源代码仓库解耦。
