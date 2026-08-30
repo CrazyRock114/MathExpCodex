@@ -449,6 +449,24 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .heron-svg polygon { fill: #e7edff; stroke: #3157d5; stroke-linejoin: round; stroke-width: 3; }
 .heron-svg text { fill: var(--ink); font-size: 12px; font-weight: 850; text-anchor: middle; }
 
+.triangle-dots { display: grid; min-height: 13rem; place-content: center; gap: .25rem; padding: .8rem; border: 1px solid #dfe4f0; border-radius: .9rem; background: #fff8e7; overflow: auto; }
+.triangle-dots > div { display: flex; min-width: max-content; justify-content: center; gap: .25rem; }
+.triangle-dots i { width: .7rem; height: .7rem; flex: 0 0 .7rem; border-radius: 50%; background: #d97706; }
+.triangular-square-grid { display: grid; width: min(100%, 25rem); aspect-ratio: 1; gap: 2px; padding: 2px; border: 1px solid #596579; border-radius: .5rem; background: #596579; }
+.triangular-square-grid i { min-width: 0; background: #3157d5; }
+.triangular-square-grid i.second { background: #f2bd4d; }
+.sphere-svg, .tsp-svg { display: block; width: 100%; min-width: 0; height: auto; border: 1px solid #dfe4f0; border-radius: .9rem; background: #fbfcff; }
+.sphere-svg circle { fill: #dbeafe; stroke: #3157d5; stroke-width: 3; }
+.sphere-svg ellipse { fill: none; stroke: #7b4ab1; stroke-width: 2; stroke-dasharray: 5 4; }
+.sphere-svg line { stroke: #d1495b; stroke-width: 2; }
+.sphere-svg text { fill: #9d2437; font-weight: 850; }
+.tsp-svg polyline { fill: none; stroke: #7b4ab1; stroke-linejoin: round; stroke-width: 4; }
+.tsp-svg circle { fill: white; stroke: #3157d5; stroke-width: 3; }
+.tsp-svg text { fill: var(--ink); font-size: 11px; font-weight: 900; text-anchor: middle; }
+.twenty-four-inputs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; }
+.twenty-four-inputs label { display: grid; gap: .3rem; color: var(--muted); font-size: .75rem; font-weight: 800; }
+.twenty-four-inputs input { width: 100%; min-width: 0; min-height: 2.8rem; padding: .5rem; border: 1px solid #b9c2d6; border-radius: .55rem; color: var(--ink); font: inherit; }
+
 .pigeon-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(3.5rem, 1fr)); gap: .45rem; min-height: 10rem; align-items: end; }
 .pigeon-boxes div { display: grid; height: 9rem; grid-template-rows: 1fr auto; gap: .3rem; align-items: end; text-align: center; }
 .pigeon-boxes span { display: grid; min-height: 1.6rem; place-items: center; border: 2px solid #3157d5; border-top: 0; border-radius: 0 0 .5rem .5rem; background: #e7edff; font-weight: 900; }

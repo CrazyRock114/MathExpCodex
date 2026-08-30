@@ -3,7 +3,8 @@ import AxeBuilder from '@axe-core/playwright';
 
 const NATIVE_EXPERIMENT_IDS = [
   'PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08',
-  'SQ01', 'SQ07', 'GM01', 'GM03', 'GR01', 'GR07', 'PB01', 'PB02', 'AL04', 'AL07'
+  'SQ01', 'SQ07', 'SQ09', 'GM01', 'GM03', 'GM04', 'GR01', 'GR02', 'GR07',
+  'PB01', 'PB02', 'PB03', 'AL01', 'AL04', 'AL07'
 ];
 
 test('新应用展示全部 148 个实验并支持搜索', async ({ page }) => {
@@ -151,6 +152,44 @@ test('AL07 修正 4 亿规模和 JavaScript 位运算中点', async ({ page }) =
   await expect(page.getByText(/不能作为通用“防溢出”写法/)).toBeVisible();
 });
 
+test('SQ09 用拼图和代数证明连续三角数恒等式', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/SQ09', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /拼图/ }).click();
+  await expect(page.getByText(/= 36 = 6²/)).toBeVisible();
+  await page.getByRole('tab', { name: /证据/ }).click();
+  await expect(page.getByText(/移除“欧几里得已经证明此恒等式”/)).toBeVisible();
+});
+
+test('GM04 修正球内接正方体边长与最优条件', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/GM04', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /纠错/ }).click();
+  await expect(page.getByText(/2r\/√3/)).toBeVisible();
+  await expect(page.getByText(/固定体积时球的表面积最小/)).toBeVisible();
+});
+
+test('GR02 区分精确最短路线与最近邻启发式', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/GR02', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /规模/ }).click();
+  await expect(page.getByText(/候选是 \(n−1\)!\/2/)).toBeVisible();
+  await expect(page.getByText(/最近邻也不是“快速近似最优”的保证/)).toBeVisible();
+});
+
+test('PB03 先披露二项模型条件再讨论近似', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/PB03', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByText(/次数固定、每次只有成功\/失败、各次独立/)).toBeVisible();
+  await page.getByRole('tab', { name: /近似/ }).click();
+  await expect(page.getByText(/“n 大就像正态”太含糊/)).toBeVisible();
+});
+
+test('AL01 用精确有理数找到分数解并修正枚举数量', async ({ page }) => {
+  await page.goto('/dist/app/index.html#/experiment/AL01', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('tab', { name: /分数/ }).click();
+  await expect(page.getByText('精确有理数解', { exact: true })).toBeVisible();
+  await expect(page.locator('.stage-panel:not([hidden]) .factory-output')).toContainText('= 24');
+  await page.getByRole('tab', { name: /搜索/ }).click();
+  await expect(page.getByText(/不能再乘一次 4³/)).toBeVisible();
+});
+
 for (const width of [360, 390, 768]) {
   test(`新应用在 ${width}px 视口无横向溢出`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -162,7 +201,7 @@ for (const width of [360, 390, 768]) {
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
   });
 
-  test(`十八个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
+  test(`二十三个原生实验全部阶段在 ${width}px 无横向溢出`, async ({ page }) => {
     test.setTimeout(150_000);
     await page.setViewportSize({ width, height: 900 });
     for (const experimentId of NATIVE_EXPERIMENT_IDS) {
@@ -194,7 +233,7 @@ test('新应用目录与详情页无严重无障碍问题', async ({ page }) => 
   }
 });
 
-test('十八个原生实验的全部 90 个阶段无严重无障碍问题', async ({ page }) => {
+test('二十三个原生实验的全部 115 个阶段无严重无障碍问题', async ({ page }) => {
   test.setTimeout(240_000);
   for (const experimentId of NATIVE_EXPERIMENT_IDS) {
     await page.goto(`/dist/app/index.html#/experiment/${experimentId}`, { waitUntil: 'domcontentloaded' });
@@ -210,7 +249,7 @@ test('十八个原生实验的全部 90 个阶段无严重无障碍问题', asyn
   }
 });
 
-test('十八个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
+test('二十三个原生实验切换全部阶段时没有运行时错误', async ({ page }) => {
   test.setTimeout(150_000);
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));

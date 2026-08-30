@@ -5,6 +5,7 @@ import {
   birthdayMatchProbability,
   binarySearchTrace,
   binarySearchWorstCaseComparisons,
+  binomialDistribution,
   binomialCoefficient,
   buffonCrossingProbability,
   chudnovskyPi,
@@ -15,6 +16,7 @@ import {
   createBuffonTrial,
   createPythagoreanTriple,
   estimatePi,
+  exactTravelingSalesmanTour,
   fibonacciNumbers,
   goldbachPartitions,
   hanoiMinimumMoves,
@@ -24,13 +26,20 @@ import {
   machinPi,
   maximumTriangleAreaForPerimeter,
   montyHallTheoreticalRates,
+  nearestNeighborTour,
   oddPascalEntryCount,
   pascalRows,
   pigeonholeLowerBound,
   polygonInteriorAngleSum,
   ramseyAvoidingColoringCount,
   twinPrimePairs,
-  primitiveTriplesThrough
+  primitiveTriplesThrough,
+  simulateBinomial,
+  solveTwentyFour,
+  sphereMeasures,
+  sphereSliceApproximation,
+  symmetricTourCount,
+  triangularNumber
 } from './math';
 
 describe('布丰投针模型', () => {
@@ -171,5 +180,45 @@ describe('第四批旗舰实验算法', () => {
     expect(() => binarySearchTrace([3, 1, 2], 1)).toThrow(/非降序/);
     expect(binarySearchWorstCaseComparisons(1_000_000)).toBe(20);
     expect(binarySearchWorstCaseComparisons(400_000_000)).toBe(29);
+  });
+});
+
+describe('第五批旗舰实验算法', () => {
+  it('用代数和点阵恒等式连接连续三角数与平方数', () => {
+    expect(triangularNumber(10)).toBe(55);
+    expect(triangularNumber(10) + triangularNumber(11)).toBe(11 ** 2);
+    expect(() => triangularNumber(-1)).toThrow(/非负整数/);
+  });
+
+  it('球面积按 r²、体积按 r³ 缩放且切片逼近正确体积', () => {
+    const unit = sphereMeasures(1);
+    const doubled = sphereMeasures(2);
+    expect(doubled.surfaceArea / unit.surfaceArea).toBe(4);
+    expect(doubled.volume / unit.volume).toBe(8);
+    expect(sphereSliceApproximation(3, 2_000)).toBeCloseTo(sphereMeasures(3).volume, 4);
+  });
+
+  it('旅行商精确枚举优于或等于最近邻，并按对称路线计数', () => {
+    const points = [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 5, y: 3 }, { x: 1, y: 5 }, { x: 2, y: 2 }];
+    const exact = exactTravelingSalesmanTour(points);
+    const greedy = nearestNeighborTour(points);
+    expect(exact.order).toHaveLength(points.length + 1);
+    expect(exact.length).toBeLessThanOrEqual(greedy.length);
+    expect(symmetricTourCount(10)).toBe(181_440n);
+  });
+
+  it('二项分布概率和为 1，均值附近最大且模拟次数守恒', () => {
+    const distribution = binomialDistribution(10, .5);
+    expect(distribution.reduce((sum, value) => sum + value, 0)).toBeCloseTo(1, 12);
+    expect(distribution[5]).toBeCloseTo(252 / 1_024, 12);
+    const simulated = simulateBinomial(3, .5, 4, () => .25);
+    expect(simulated.reduce((sum, value) => sum + value, 0)).toBe(4);
+    expect(simulated[3]).toBe(4);
+  });
+
+  it('24 点用精确有理数覆盖分数解并证明固定规则下无解', () => {
+    expect(solveTwentyFour([1, 5, 5, 5]).expression).not.toBeNull();
+    expect(solveTwentyFour([3, 3, 8, 8]).expression).not.toBeNull();
+    expect(solveTwentyFour([1, 1, 1, 1]).expression).toBeNull();
   });
 });

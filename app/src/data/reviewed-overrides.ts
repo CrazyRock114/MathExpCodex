@@ -458,5 +458,80 @@ export const REVIEWED_EXPERIMENT_OVERRIDES: Readonly<Record<string, ReviewedOver
       reviewStatus: 'verified',
       lastReviewedAt: '2026-08-30'
     }
+  },
+  SQ09: {
+    title: '两个连续三角数为什么拼成平方数',
+    intro: '第 n 个三角数 Tₙ=n(n+1)/2。把 Tₙ 与 Tₙ₊₁ 的点阵沿对角线拼合，可得到边长 n+1 的正方形，并由代数证明 Tₙ+Tₙ₊₁=(n+1)²。',
+    education: {
+      gradeBands: ['primary', 'middle'],
+      learningObjectives: ['用点阵和求和公式生成三角数', '从正方形拼图解释两个连续三角数的和', '区分有限试算、几何解释与覆盖所有非负整数的代数证明'],
+      prerequisites: ['整数加法', '平方数', '字母表示数（证明阶段）'],
+      sources: [
+        { label: 'OEIS A000217：Triangular numbers', url: 'https://oeis.org/A000217', kind: 'reference' },
+        { label: 'Punpim 与 Jitman：Isosceles Triangular Numbers（连续三角数恒等式）', url: 'https://www.ejpam.com/index.php/ejpam/article/view/3952/1006', kind: 'primary' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  GM04: {
+    title: '球的表面积与体积怎样随半径变化',
+    intro: '半径为 r 的球面面积是 4πr²，球体积是 4πr³/3。用缩放、外接圆柱、薄圆盘近似和体积差商理解两个公式及其适用条件。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['比较球面积的平方缩放与体积的立方缩放', '解释球与外接圆柱体积和面积的 2/3 关系', '区分阿基米德的古代几何证明与现代微积分、数值积分解释'],
+      prerequisites: ['圆面积与圆周长', '乘方与圆周率', '导数或极限（进阶阶段）'],
+      sources: [
+        { label: 'Archimedes：On the Sphere and Cylinder（Heath 英译）', url: 'https://www.wilbourhall.org/pdfs/archimedes/worksofarchimede029517mbp.pdf', kind: 'primary' },
+        { label: 'Wolfram MathWorld：Sphere', url: 'https://mathworld.wolfram.com/Sphere.html', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  GR02: {
+    title: '旅行商：精确最短路与最近邻启发式',
+    intro: '从一座城市出发，每城恰访问一次并回到起点。小规模可枚举所有闭环求精确最优；最近邻很快，但结果依赖起点且不保证最短。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['把城市路线表示为带距离的闭合巡回', '比较小规模穷举的精确解与最近邻启发式解', '用 (n−1)!/2 解释对称旅行商候选数的阶乘增长'],
+      prerequisites: ['平面距离', '排列与阶乘', '图、路径与贪心选择'],
+      sources: [
+        { label: 'NIST Dictionary of Algorithms and Data Structures：traveling salesman', url: 'https://xlinux.nist.gov/dads/HTML/travelingSalesman.html', kind: 'reference' },
+        { label: 'MIT 15.053：Networks 3—Traveling salesman problem', url: 'https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/ad6650acdf97013e60e559903d8d25fa_MIT15_053S13_lec17.pdf', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  PB03: {
+    title: '抛 n 次硬币会出现几次正面（二项分布）',
+    intro: '固定进行 n 次相互独立、成功概率同为 p 的两结果试验，成功次数 X 满足 P(X=k)=C(n,k)pᵏ(1−p)ⁿ⁻ᵏ。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: ['先检查固定次数、两结果、独立与固定成功概率四个模型条件', '计算并可视化成功次数的完整概率分布', '解释均值 np、方差 np(1−p)及正态或泊松近似需要额外条件'],
+      prerequisites: ['分数与百分数', '组合数', '独立事件与期望（进阶阶段）'],
+      sources: [
+        { label: 'NIST/SEMATECH e-Handbook：Binomial Distribution', url: 'https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm', kind: 'reference' },
+        { label: 'OpenStax Introductory Statistics：Binomial Distribution', url: 'https://openstax.org/books/introductory-statistics/pages/4-3-binomial-distribution', kind: 'reference' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
+  },
+  AL01: {
+    title: '24 点：用精确有理数穷尽四则运算',
+    intro: '四个 1–13 的整数都恰用一次，只用加减乘除和括号精确得到 24。递归合并数对，既能找出分数中间值的解，也能对固定规则下的无解输入完成穷尽检查。',
+    education: {
+      gradeBands: ['primary', 'middle', 'high'],
+      learningObjectives: ['完整声明每个数恰用一次、允许中间分数等游戏规则', '用递归合并数对覆盖运算顺序与括号结构', '区分暂时没找到、浮点近似命中与精确穷尽后的无解结论'],
+      prerequisites: ['四则运算与括号', '分数', '递归搜索（进阶阶段）'],
+      sources: [
+        { label: 'UC Santa Cruz MBAMP：24 Game', url: 'https://mbamp.ucsc.edu/24-game/', kind: 'reference' },
+        { label: 'ACL 2025：Number Game—24 Points', url: 'https://aclanthology.org/2025.acl-long.1270/', kind: 'primary' }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-30'
+    }
   }
 };

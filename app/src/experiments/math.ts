@@ -401,3 +401,188 @@ export function binarySearchWorstCaseComparisons(length: number) {
   if (!Number.isInteger(length) || length < 0) throw new RangeError('数组长度必须是非负整数');
   return length === 0 ? 0 : Math.ceil(Math.log2(length + 1));
 }
+
+export function triangularNumber(index: number) {
+  if (!Number.isInteger(index) || index < 0) throw new RangeError('三角数下标必须是非负整数');
+  return index * (index + 1) / 2;
+}
+
+export function sphereMeasures(radius: number) {
+  if (!Number.isFinite(radius) || radius <= 0) throw new RangeError('半径必须是正数');
+  return {
+    surfaceArea: 4 * Math.PI * radius ** 2,
+    volume: 4 / 3 * Math.PI * radius ** 3
+  };
+}
+
+export function sphereSliceApproximation(radius: number, slices: number) {
+  sphereMeasures(radius);
+  if (!Number.isInteger(slices) || slices < 1) throw new RangeError('切片数必须是正整数');
+  const width = 2 * radius / slices;
+  let volume = 0;
+  for (let index = 0; index < slices; index += 1) {
+    const x = -radius + (index + .5) * width;
+    volume += Math.PI * (radius ** 2 - x ** 2) * width;
+  }
+  return volume;
+}
+
+export interface Point2D {
+  readonly x: number;
+  readonly y: number;
+}
+
+export interface TourResult {
+  readonly length: number;
+  readonly order: readonly number[];
+}
+
+function pointDistance(left: Point2D, right: Point2D) {
+  return Math.hypot(left.x - right.x, left.y - right.y);
+}
+
+function closedTourLength(points: readonly Point2D[], order: readonly number[]) {
+  let length = 0;
+  for (let index = 1; index < order.length; index += 1) {
+    length += pointDistance(points[order[index - 1]!]!, points[order[index]!]!);
+  }
+  return length;
+}
+
+function validateTourPoints(points: readonly Point2D[]) {
+  if (points.length < 3 || points.length > 9 || points.some(({ x, y }) => !Number.isFinite(x) || !Number.isFinite(y))) {
+    throw new RangeError('精确旅行商演示需要 3 到 9 个有限坐标点');
+  }
+}
+
+export function exactTravelingSalesmanTour(points: readonly Point2D[]): TourResult {
+  validateTourPoints(points);
+  const remaining = Array.from({ length: points.length - 1 }, (_, index) => index + 1);
+  let bestLength = Number.POSITIVE_INFINITY;
+  let bestOrder: number[] = [];
+  function visit(position: number) {
+    if (position === remaining.length) {
+      const order = [0, ...remaining, 0];
+      const length = closedTourLength(points, order);
+      if (length < bestLength) {
+        bestLength = length;
+        bestOrder = [...order];
+      }
+      return;
+    }
+    for (let index = position; index < remaining.length; index += 1) {
+      [remaining[position], remaining[index]] = [remaining[index]!, remaining[position]!];
+      visit(position + 1);
+      [remaining[position], remaining[index]] = [remaining[index]!, remaining[position]!];
+    }
+  }
+  visit(0);
+  return { length: bestLength, order: bestOrder };
+}
+
+export function nearestNeighborTour(points: readonly Point2D[], start = 0): TourResult {
+  validateTourPoints(points);
+  if (!Number.isInteger(start) || start < 0 || start >= points.length) throw new RangeError('起点必须是有效城市编号');
+  const unvisited = new Set(Array.from({ length: points.length }, (_, index) => index));
+  unvisited.delete(start);
+  const order = [start];
+  while (unvisited.size) {
+    const current = order.at(-1)!;
+    const next = [...unvisited].toSorted((left, right) =>
+      pointDistance(points[current]!, points[left]!) - pointDistance(points[current]!, points[right]!) || left - right)[0]!;
+    order.push(next);
+    unvisited.delete(next);
+  }
+  order.push(start);
+  return { length: closedTourLength(points, order), order };
+}
+
+export function symmetricTourCount(cities: number) {
+  if (!Number.isInteger(cities) || cities < 3) throw new RangeError('城市数必须是不小于 3 的整数');
+  let permutations = 1n;
+  for (let factor = 2n; factor < BigInt(cities); factor += 1n) permutations *= factor;
+  return permutations / 2n;
+}
+
+export function binomialDistribution(trials: number, probability: number) {
+  if (!Number.isInteger(trials) || trials < 0 || trials > 60 || !Number.isFinite(probability) || probability < 0 || probability > 1) {
+    throw new RangeError('需要 0 到 60 次试验且 0 ≤ p ≤ 1');
+  }
+  return Array.from({ length: trials + 1 }, (_, successes) =>
+    Number(binomialCoefficient(trials, successes)) * probability ** successes * (1 - probability) ** (trials - successes));
+}
+
+export function simulateBinomial(
+  trials: number,
+  probability: number,
+  repetitions: number,
+  random: () => number = Math.random
+) {
+  binomialDistribution(trials, probability);
+  if (!Number.isInteger(repetitions) || repetitions < 1) throw new RangeError('重复次数必须是正整数');
+  const counts = Array.from({ length: trials + 1 }, () => 0);
+  for (let repetition = 0; repetition < repetitions; repetition += 1) {
+    let successes = 0;
+    for (let trial = 0; trial < trials; trial += 1) if (random() < probability) successes += 1;
+    counts[successes]! += 1;
+  }
+  return counts;
+}
+
+interface RationalExpression {
+  readonly denominator: bigint;
+  readonly expression: string;
+  readonly numerator: bigint;
+}
+
+function bigintGcd(left: bigint, right: bigint) {
+  let a = left < 0n ? -left : left;
+  let b = right < 0n ? -right : right;
+  while (b) [a, b] = [b, a % b];
+  return a;
+}
+
+function rational(numerator: bigint, denominator: bigint, expression: string): RationalExpression {
+  if (denominator === 0n) throw new RangeError('不能除以零');
+  const sign = denominator < 0n ? -1n : 1n;
+  const divisor = bigintGcd(numerator, denominator);
+  return { numerator: sign * numerator / divisor, denominator: sign * denominator / divisor, expression };
+}
+
+export function solveTwentyFour(cards: readonly number[], target = 24) {
+  if (cards.length !== 4 || cards.some((card) => !Number.isInteger(card) || card < 1 || card > 13) || !Number.isInteger(target)) {
+    throw new RangeError('请输入四个 1 到 13 的整数和整数目标');
+  }
+  const seen = new Set<string>();
+  let statesExplored = 0;
+  function search(values: readonly RationalExpression[]): string | null {
+    const key = values.map(({ numerator, denominator }) => `${numerator}/${denominator}`).toSorted().join('|');
+    if (seen.has(key)) return null;
+    seen.add(key);
+    statesExplored += 1;
+    if (values.length === 1) return values[0]!.numerator === BigInt(target) * values[0]!.denominator ? values[0]!.expression : null;
+    for (let left = 0; left < values.length; left += 1) {
+      for (let right = left + 1; right < values.length; right += 1) {
+        const a = values[left]!;
+        const b = values[right]!;
+        const rest = values.filter((_, index) => index !== left && index !== right);
+        const candidates = [
+          rational(a.numerator * b.denominator + b.numerator * a.denominator, a.denominator * b.denominator, `(${a.expression} + ${b.expression})`),
+          rational(a.numerator * b.numerator, a.denominator * b.denominator, `(${a.expression} × ${b.expression})`),
+          rational(a.numerator * b.denominator - b.numerator * a.denominator, a.denominator * b.denominator, `(${a.expression} − ${b.expression})`),
+          rational(b.numerator * a.denominator - a.numerator * b.denominator, a.denominator * b.denominator, `(${b.expression} − ${a.expression})`),
+          ...(b.numerator === 0n ? [] : [rational(a.numerator * b.denominator, a.denominator * b.numerator, `(${a.expression} ÷ ${b.expression})`)]),
+          ...(a.numerator === 0n ? [] : [rational(b.numerator * a.denominator, b.denominator * a.numerator, `(${b.expression} ÷ ${a.expression})`)])
+        ];
+        const unique = new Map(candidates.map((candidate) => [`${candidate.numerator}/${candidate.denominator}`, candidate]));
+        for (const candidate of unique.values()) {
+          const solution = search([...rest, candidate]);
+          if (solution) return solution;
+        }
+      }
+    }
+    return null;
+  }
+  const expression = search(cards.map((card) => rational(BigInt(card), 1n, String(card))));
+  return { expression, statesExplored };
+}
