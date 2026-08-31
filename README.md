@@ -53,7 +53,7 @@ npm run preview
 npm test
 ```
 
-当前质量入口会依次运行目录与历史入口生成、资产边界审计、TypeScript、40 项 Vitest、完整静态发布包构建和 197 项 Playwright 检查：
+当前质量入口会依次运行目录与历史入口生成、资产边界审计、TypeScript、41 项 Vitest、完整静态发布包构建和 198 项 Playwright 检查：
 
 - 独立实验页面数量必须为 148
 - 每页能够加载且没有破坏交互的 JavaScript 错误
@@ -79,7 +79,7 @@ GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生�
 - Hash 详情路由、搜索别名、状态与主题筛选
 - 小学 / 初中 / 高中学段草案、学习目标、前置知识和审阅状态字段
 - PR01–PR08、NT01、SQ01、SQ04、SQ07、SQ09、GM01、GM03、GM04、GM07、GR01、GR02、GR07、GR09、PB01–PB03、PB08、AL01、AL04、AL07、AL10、FR03 的 React 原生五阶段实验
-- 30 项已完成来源与数学内容核验，118 项仍明确标记为 `unreviewed`
+- 31 项已完成来源与数学内容核验，117 项仍明确标记为 `unreviewed`
 - 实验组件按路由动态加载；入口 JavaScript 约 90.3KB gzip，单个实验块约 2.1–3.3KB gzip
 - Vitest、Playwright、移动端和 axe 门禁
 - `npm run build` 生成约 4.3MB 的完整静态发布包；React 为根入口，旧应用只作为未迁移实验的共享回退层
@@ -105,6 +105,7 @@ GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生�
 - `audio/`：历史讲解文字稿与 6 个隔离的 v13 音频样本；边界说明见目录内 README
 - `docs/ASSET_INVENTORY.md`：生成页、文字稿、归档音频、校验值与恢复方案
 - `docs/DEPLOYMENT.md`：静态发布包契约、兼容路径、权限边界与回滚步骤
+- `docs/CONTENT_REVIEW.md`：逐项内容验收条件、处理顺序与 117 项剩余基线
 - `scripts/assemble-site.mjs`：组装并验证不含音频二进制的完整静态发布包
 - `tests/`：Playwright 浏览器冒烟测试
 - `docs/PROGRESS.md`：当前 Goal、里程碑、测试证据和后续工作
@@ -113,7 +114,7 @@ GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生�
 ## 当前迭代优先级
 
 1. 清理审查中记录的剩余 P1 架构、内容和交付问题。
-2. 把其余 118 个实验的自动生成学段与学习目标草案升级为逐项审阅内容。
+2. 把其余 117 个实验的自动生成学段与学习目标草案升级为逐项审阅内容。
 3. 为全部实验补充权威来源，并把 `unreviewed` 逐步变为 `verified`。
 4. 继续修复数学事实、术语翻译和自动 TTS 文案污染，同时保持现有质量门禁。
 5. 确定外部对象存储和内容授权后，再迁移 6 个隔离音频样本；当前不删除原始样本。

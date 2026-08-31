@@ -1145,14 +1145,14 @@ function renderSingleSeq(n) {
 
 /* ===================== 毕达哥拉斯 ===================== */
 function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
-function is普里姆itive(m, n) {
+function isPrimitive(m, n) {
   return (m - n) % 2 === 1 && gcd(m, n) === 1;
 }
-function build普里姆itives(maxC = 1000) {
+function buildPrimitives(maxC = 1000) {
   const out = [];
   for (let m = 2; m <= 40; m++) {
     for (let n = 1; n < m; n++) {
-      if (!is普里姆itive(m, n)) continue;
+      if (!isPrimitive(m, n)) continue;
       const a = m*m - n*n;
       const b = 2*m*n;
       const c = m*m + n*n;
@@ -1163,7 +1163,7 @@ function build普里姆itives(maxC = 1000) {
   }
   return out;
 }
-const ALL_PY = build普里姆itives(1000);
+const ALL_PY = buildPrimitives(1000);
 ALL_PY.sort((x, y) => x.c - y.c);
 
 // === 挑战模式状态 ===
@@ -1442,7 +1442,7 @@ function updateFactory() {
   aOut.textContent = sorted[0];
   bOut.textContent = sorted[1];
   cOut.textContent = sorted[2];
-  const prim = is普里姆itive(m, n);
+  const prim = isPrimitive(m, n);
   if (prim) {
     pyCheckEl.innerHTML = `✓ 是本原（gcd=1, m−n 奇 = ${m-n}）`;
     pyCheckEl.style.color = '#059669';
@@ -2138,20 +2138,20 @@ function setupGoldbach(root) {
 }
 
 function sieve(n) {
-  const is普里姆e = new Uint8Array(n + 1).fill(1);
-  is普里姆e[0] = is普里姆e[1] = 0;
+  const isPrime = new Uint8Array(n + 1).fill(1);
+  isPrime[0] = isPrime[1] = 0;
   for (let i = 2; i * i <= n; i++) {
-    if (is普里姆e[i]) {
-      for (let j = i * i; j <= n; j += i) is普里姆e[j] = 0;
+    if (isPrime[i]) {
+      for (let j = i * i; j <= n; j += i) isPrime[j] = 0;
     }
   }
-  return is普里姆e;
+  return isPrime;
 }
 
-function gbDecompose(N, is普里姆e) {
+function gbDecompose(N, isPrime) {
   const pairs = [];
   for (let p = 2; p <= N/2; p++) {
-    if (is普里姆e[p] && is普里姆e[N - p]) {
+    if (isPrime[p] && isPrime[N - p]) {
       pairs.push([p, N - p]);
     }
   }
@@ -2168,8 +2168,8 @@ function gbFindPairs() {
     alert('为避免卡顿，请输入 ≤ 100000 的偶数');
     return;
   }
-  const is普里姆e = sieve(N);
-  const pairs = gbDecompose(N, is普里姆e);
+  const isPrime = sieve(N);
+  const pairs = gbDecompose(N, isPrime);
   if (pairs.length === 0) {
     gbList.innerHTML = `<em style="color: var(--warn);">N = ${N} 没找到配对（这本身就是反例！）</em>`;
     gbCountEl.textContent = '0';
@@ -2191,13 +2191,13 @@ function gbScan() {
     alert('扫描范围 10 ≤ N ≤ 50000');
     return;
   }
-  const is普里姆e = sieve(N);
+  const isPrime = sieve(N);
   let total = 0, ok = 0, failList = [];
   for (let n = 4; n <= N; n += 2) {
     total++;
     let found = false;
     for (let p = 2; p <= n/2; p++) {
-      if (is普里姆e[p] && is普里姆e[n - p]) { found = true; break; }
+      if (isPrime[p] && isPrime[n - p]) { found = true; break; }
     }
     if (found) ok++;
     else failList.push(n);
@@ -4791,21 +4791,21 @@ function initStage_PR05_initAll() { initStage_PR05(); }
 /* ===================== 5 步直观讲解：PR06 哥德巴赫猜想 ===================== */
 // 素数筛
 function _pr06Sieve(limit) {
-  const is普里姆e = new Uint8Array(limit + 1).fill(1);
-  is普里姆e[0] = is普里姆e[1] = 0;
+  const isPrime = new Uint8Array(limit + 1).fill(1);
+  isPrime[0] = isPrime[1] = 0;
   for (let i = 2; i * i <= limit; i++) {
-    if (is普里姆e[i]) {
-      for (let j = i * i; j <= limit; j += i) is普里姆e[j] = 0;
+    if (isPrime[i]) {
+      for (let j = i * i; j <= limit; j += i) isPrime[j] = 0;
     }
   }
   const primes = [];
-  for (let i = 2; i <= limit; i++) if (is普里姆e[i]) primes.push(i);
-  return { is普里姆e, primes };
+  for (let i = 2; i <= limit; i++) if (isPrime[i]) primes.push(i);
+  return { isPrime, primes };
 }
-function _pr06GoldbachPairs(N, is普里姆e) {
+function _pr06GoldbachPairs(N, isPrime) {
   const pairs = [];
   for (let p = 2; p <= N / 2; p++) {
-    if (is普里姆e[p] && is普里姆e[N - p]) pairs.push([p, N - p]);
+    if (isPrime[p] && isPrime[N - p]) pairs.push([p, N - p]);
   }
   return pairs;
 }
@@ -4964,8 +4964,8 @@ function initStage_PR06_s1() {
     const N = Math.max(4, Math.min(99999, parseInt(nInput.value) || 100));
     if (N % 2 === 1) { nInput.value = N - 1; return update(); }
     nShow.textContent = N;
-    const { is普里姆e } = _pr06Sieve(N);
-    const pairs = _pr06GoldbachPairs(N, is普里姆e);
+    const { isPrime } = _pr06Sieve(N);
+    const pairs = _pr06GoldbachPairs(N, isPrime);
     countEl.textContent = pairs.length;
     pairsEl.innerHTML = pairs.map(([a, b]) => `<span style="color:#7c3aed; font-weight:700;">${a}</span> + <span style="color:#7c3aed; font-weight:700;">${b}</span> = ${N}`).join('　');
     if (pairs.length === 0) {
@@ -4990,11 +4990,11 @@ function initStage_PR06_s2() {
   const W = 600, H = 280, PAD_L = 35, PAD_B = 25, PAD_T = 10, PAD_R = 15;
   const draw = () => {
     const maxN = Math.max(10, Math.min(2000, parseInt(maxInput.value) || 500));
-    const { is普里姆e } = _pr06Sieve(maxN);
+    const { isPrime } = _pr06Sieve(maxN);
     const data = [];
     let maxRval = 0;
     for (let n = 4; n <= maxN; n += 2) {
-      const r = _pr06GoldbachPairs(n, is普里姆e).length;
+      const r = _pr06GoldbachPairs(n, isPrime).length;
       data.push([n, r]);
       if (r > maxRval) maxRval = r;
     }
@@ -5063,8 +5063,8 @@ function initStage_PR06_s3() {
   const update = () => {
     const N = Math.max(4, Math.min(198, parseInt(nInput.value) || 50));
     if (N % 2 === 1) { nInput.value = N + 1; return update(); }
-    const { is普里姆e } = _pr06Sieve(N);
-    const pairs = _pr06GoldbachPairs(N, is普里姆e);
+    const { isPrime } = _pr06Sieve(N);
+    const pairs = _pr06GoldbachPairs(N, isPrime);
     if (pairs.length === 0) {
       pairsEl.innerHTML = `<span style="color: #b91c1c; font-weight: 700;">😱 100 内素数不够！试更大的 N</span>`;
     } else {
@@ -5138,7 +5138,7 @@ function initStage_PR06_s5() {
     if (running) return;
     running = true;
     yes = 0; no = 0; done = 0; hist = Array(20).fill(0);
-    const { is普里姆e } = _pr06Sieve(1000);
+    const { isPrime } = _pr06Sieve(1000);
     const Ns = [];
     for (let n = 4; n <= 1000; n += 2) Ns.push(n);
     total = Ns.length;
@@ -5146,7 +5146,7 @@ function initStage_PR06_s5() {
     const tick = () => {
       if (!running) return;
       const n = Ns[done];
-      const pairs = _pr06GoldbachPairs(n, is普里姆e);
+      const pairs = _pr06GoldbachPairs(n, isPrime);
       if (pairs.length > 0) yes++; else no++;
       if (pairs.length < 20) hist[pairs.length]++;
       done++;
@@ -5304,10 +5304,10 @@ function getStagesPR07() {
 function initStage_PR07_s1() {
   const pairsEl = document.getElementById('pr07s1-pairs');
   if (!pairsEl) return;
-  const { is普里姆e } = _pr06Sieve(100);
+  const { isPrime } = _pr06Sieve(100);
   const pairs = [];
   for (let p = 3; p <= 100; p++) {
-    if (is普里姆e[p] && is普里姆e[p + 2]) pairs.push([p, p + 2]);
+    if (isPrime[p] && isPrime[p + 2]) pairs.push([p, p + 2]);
   }
   pairsEl.innerHTML = pairs.map(([a, b]) =>
     `<div style="padding: 6px 12px; background: linear-gradient(135deg, #fce7f3, #fae8ff); border: 2px solid #ec4899; border-radius: 8px; font-family: 'Courier New', monospace; font-weight: 700; color: #be185d;">
@@ -5320,7 +5320,7 @@ function initStage_PR07_s2() {
   const svg = document.getElementById('pr07s2-svg');
   const countEl = document.getElementById('pr07s2-count');
   if (!svg) return;
-  const { is普里姆e } = _pr06Sieve(1000);
+  const { isPrime } = _pr06Sieve(1000);
   const twinG = document.getElementById('pr07s2-twin');
   const primeG = document.getElementById('pr07s2-prime');
   twinG.innerHTML = ''; primeG.innerHTML = '';
@@ -5328,7 +5328,7 @@ function initStage_PR07_s2() {
   // 数轴范围 0-1000 映射到 SVG x: 10-990
   const xOf = n => 10 + n * 980 / 1000;
   for (let p = 3; p <= 998; p++) {
-    if (is普里姆e[p] && is普里姆e[p + 2]) {
+    if (isPrime[p] && isPrime[p + 2]) {
       // 画连接线
       const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       ln.setAttribute('x1', xOf(p)); ln.setAttribute('y1', 90);
@@ -5348,7 +5348,7 @@ function initStage_PR07_s2() {
   }
   // 其他素数（蓝点）
   for (let p = 2; p <= 1000; p++) {
-    if (is普里姆e[p] && (!is普里姆e[p - 2] || p < 5) && (!is普里姆e[p + 2] || p > 998)) {
+    if (isPrime[p] && (!isPrime[p - 2] || p < 5) && (!isPrime[p + 2] || p > 998)) {
       const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       c.setAttribute('cx', xOf(p)); c.setAttribute('cy', 90); c.setAttribute('r', '2.5');
       c.setAttribute('fill', '#3b82f6');
@@ -5401,14 +5401,14 @@ function initStage_PR07_s4() {
     if (running) return;
     running = true;
     reset();
-    const { is普里姆e } = _pr06Sieve(10000);
+    const { isPrime } = _pr06Sieve(10000);
     let count = 0, done = 0;
     runBtn.textContent = '⏳ 扫中...'; runBtn.disabled = true;
     const tick = () => {
       if (!running) return;
       done++;
       for (let p = 3; p <= 9998; p++) {
-        if (is普里姆e[p] && is普里姆e[p + 2]) {
+        if (isPrime[p] && isPrime[p + 2]) {
           count++;
           const item = document.createElement('div');
           item.textContent = `(${p}, ${p + 2})`;
@@ -5484,7 +5484,7 @@ function _pr08马青(N) {
   };
   return 4 * (4 * arctan(1 / 5, N) - arctan(1 / 239, N));
 }
-function _pr08Chud诺夫斯基(N) {
+function _pr08Chudnovsky(N) {
   // 1/π = 12 Σ (-1)^k (6k)! (545140134k + 13591409) / [(3k)! (k!)^3 640320^(3k+1/2)]
   // C = 426880 · √10005, M_k, X_k
   // π = C / (sum)
@@ -5507,7 +5507,7 @@ function _pr08PiAll(N) {
     ar: _pr08阿基米德(N),
     lb: _pr08莱布尼茨(N),
     ma: _pr08马青(N),
-    ch: _pr08Chud诺夫斯基(Math.min(N, 5)),
+    ch: _pr08Chudnovsky(Math.min(N, 5)),
   };
 }
 
@@ -5613,12 +5613,12 @@ function getStagesPR08() {
       `
     },
 
-    // === Stage 4: Chud诺夫斯基 ===
+    // === Stage 4: 丘德诺夫斯基 ===
     {
       emoji: '⚡',
-      title: 'Chud诺夫斯基 一步到位',
+      title: '丘德诺夫斯基 一步到位',
       content: `
-        <p class="lead">1988 年 Chud诺夫斯基 兄弟发表"<strong style="color:#10b981;">每项 14 位</strong>"的级数——<strong>现代 π 计算工业标准</strong>。</p>
+        <p class="lead">1988 年 丘德诺夫斯基 兄弟发表"<strong style="color:#10b981;">每项 14 位</strong>"的级数——<strong>现代 π 计算工业标准</strong>。</p>
         <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
           <div style="flex: 0 0 auto;">
             <svg id="pr08s4-svg" width="280" height="220" viewBox="0 0 280 220" style="background: #faf5ff; border-radius: 8px;">
@@ -5644,7 +5644,7 @@ function getStagesPR08() {
             <p style="font-size: 12px; color: #6b7280; margin: 8px 0 0;">↑ <strong>1 项到 14 位，2 项到 28 位</strong>——2022 年算 100 万亿位靠它！</p>
           </div>
         </div>
-        <div class="next-hint">🏆 <strong>2022 年 6 月</strong> Timothy Mullican 用家用电脑 + Chud诺夫斯基 算到 100 万亿位，<strong>54 天</strong>。</div>
+        <div class="next-hint">🏆 <strong>2022 年 6 月</strong> Timothy Mullican 用家用电脑 + 丘德诺夫斯基 算到 100 万亿位，<strong>54 天</strong>。</div>
       `
     },
 
@@ -5660,7 +5660,7 @@ function getStagesPR08() {
             <button class="primary small pr08s5-algo" data-algo="all">全部 4 个</button>
             <button class="ghost small pr08s5-algo" data-algo="lb">仅 莱布尼茨</button>
             <button class="ghost small pr08s5-algo" data-algo="ma">仅 马青</button>
-            <button class="ghost small pr08s5-algo" data-algo="ch">仅 Chud诺夫斯基</button>
+            <button class="ghost small pr08s5-algo" data-algo="ch">仅 丘德诺夫斯基</button>
             <label style="margin-left: auto;">最大 N = <input type="number" id="pr08s5-max" min="10" max="200" value="50" step="5" style="width: 60px; padding: 2px; border: 1px solid #e9d5ff; border-radius: 4px;"></label>
             <button class="primary" id="pr08s5-run">▶ 跑</button>
           </div>
@@ -5670,13 +5670,13 @@ function getStagesPR08() {
           <div style="display: flex; gap: 10px; margin-top: 10px; font-size: 12px; flex-wrap: wrap;">
             <span style="color: #3b82f6;">━ 莱布尼茨 (慢)</span>
             <span style="color: #f59e0b;">━ 马青 (中)</span>
-            <span style="color: #10b981;">━ Chud诺夫斯基 (神速)</span>
+            <span style="color: #10b981;">━ 丘德诺夫斯基 (神速)</span>
             <span style="color: #7c3aed;">━ 阿基米德</span>
             <span style="color: #ef4444; border-left: 2px solid #ef4444; padding-left: 6px;">━ 真 π</span>
           </div>
           <div id="pr08s5-final" style="margin-top: 12px; padding: 12px; background: linear-gradient(135deg, #faf5ff, #fef3c7); border-radius: 8px; font-size: 13px; line-height: 1.7;"></div>
         </div>
-        <div class="next-hint">💡 <strong>启示</strong>：从阿基米德 2000 年到 Chud诺夫斯基 1988，<strong>6 个数量级</strong>的提升——这是数学的复利效应！</div>
+        <div class="next-hint">💡 <strong>启示</strong>：从阿基米德 2000 年到 丘德诺夫斯基 1988，<strong>6 个数量级</strong>的提升——这是数学的复利效应！</div>
       `
     },
   ];
@@ -5802,7 +5802,7 @@ function initStage_PR08_s4() {
     const pts = [];
     let curPi = 0;
     for (let n = 1; n <= N; n++) {
-      curPi = _pr08Chud诺夫斯基(n);
+      curPi = _pr08Chudnovsky(n);
       const x = PAD + (W - 2 * PAD) * (n / N);
       const y = yOf(curPi);
       pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
@@ -5838,7 +5838,7 @@ function initStage_PR08_s5() {
         { label: '阿基米德', data: [], borderColor: '#7c3aed', borderWidth: 2, pointRadius: 0, tension: 0 },
         { label: '莱布尼茨', data: [], borderColor: '#3b82f6', borderWidth: 2, pointRadius: 0, tension: 0 },
         { label: '马青', data: [], borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, tension: 0 },
-        { label: 'Chud诺夫斯基', data: [], borderColor: '#10b981', borderWidth: 2, pointRadius: 0, tension: 0 },
+        { label: '丘德诺夫斯基', data: [], borderColor: '#10b981', borderWidth: 2, pointRadius: 0, tension: 0 },
         { label: '真 π', data: [], borderColor: '#ef4444', borderWidth: 1.5, borderDash: [4, 4], pointRadius: 0 },
       ]
     },
@@ -5855,7 +5855,7 @@ function initStage_PR08_s5() {
     ar: (n) => _pr08阿基米德(n),
     lb: (n) => _pr08莱布尼茨(n),
     ma: (n) => _pr08马青(n),
-    ch: (n) => _pr08Chud诺夫斯基(n),
+    ch: (n) => _pr08Chudnovsky(n),
   };
   document.querySelectorAll('.pr08s5-algo').forEach(btn => {
     btn.onclick = () => {
@@ -5900,7 +5900,7 @@ function initStage_PR08_s5() {
       🟣 阿基米德（10 边）：<strong>${at10.ar}</strong>（误差 ${(at10.ar - Math.PI).toFixed(4)}）<br>
       🔵 莱布尼茨（10 项）：<strong>${at10.lb}</strong>（误差 ${(at10.lb - Math.PI).toFixed(4)}）<br>
       🟡 马青（10 项）：<strong>${at10.ma}</strong>（误差 ${(at10.ma - Math.PI).toExponential(2)}）<br>
-      🟢 Chud诺夫斯基（2 项）：<strong>${at10.ch}</strong>（误差 ${(at10.ch - Math.PI).toExponential(2)}）<br>
+      🟢 丘德诺夫斯基（2 项）：<strong>${at10.ch}</strong>（误差 ${(at10.ch - Math.PI).toExponential(2)}）<br>
       <span style="color: #7c3aed; font-weight: 700;">差距：6 个数量级！</span>`;
   };
   runBtn.onclick = run;
@@ -6009,7 +6009,7 @@ function getStagesNT01() {
       emoji: '🔬',
       title: '偶完美数公式',
       content: `
-        <p class="lead">欧几里得发现：<strong style="color:#7c3aed;">所有偶完美数都长成 2<sup>p−1</sup> × (2<sup>p</sup> − 1)</strong>，其中 2<sup>p</sup> − 1 必须是<strong>梅森素数</strong>。</p>
+        <p class="lead">欧几里得给出构造，欧拉证明逆向结论：<strong style="color:#7c3aed;">所有偶完美数都长成 2<sup>p−1</sup> × (2<sup>p</sup> − 1)</strong>，其中 2<sup>p</sup> − 1 必须是<strong>梅森素数</strong>。</p>
         <div class="viz">
           <div style="padding: 16px; background: linear-gradient(135deg, #f3e8ff, #fef3c7); border-radius: 10px; text-align: center; font-family: 'Courier New', monospace; font-size: 18px; color: #6b21a8; font-weight: 700;">
             N = 2<sup>p−1</sup> × (2<sup>p</sup> − 1) = 完美数<br>
@@ -6029,21 +6029,21 @@ function getStagesNT01() {
             </table>
           </div>
         </div>
-        <div class="next-hint">🏆 <strong>意义</strong>：找完美数 ⇔ 找梅森素数。目前已找到 51 个完美数，最大有<strong>近 5000 万位</strong>（GIMPS 2018）。</div>
+        <div class="next-hint">🏆 <strong>意义</strong>：寻找偶完美数等价于寻找梅森素数。截至 2026-08 已知 52 个偶完美数，最大有<strong>82,048,640 位</strong>。</div>
       `
     },
     {
       emoji: '📅',
       title: '完美数探索史',
       content: `
-        <p class="lead">从公元前 6 世纪毕达哥拉斯发现 6，到 2018 年 GIMPS 找到第 51 个——完美数问题走过了 <strong>2500 多年</strong>。</p>
+        <p class="lead">从古希腊数学家研究 6 和 28，到 2024 年 GIMPS 找到当前最大的已知偶完美数——这个问题跨越了两千多年。</p>
         <div class="viz">
           <div id="nt01s5-timeline"></div>
           <div style="margin-top: 14px; padding: 12px; background: linear-gradient(135deg, #fef3c7, #fed7aa); border-left: 5px solid #f59e0b; border-radius: 6px; font-size: 13px; line-height: 1.7;">
-            <strong>❓ 奇完美数</strong>：所有已知完美数都是偶数。数学家验证到 10<sup>1500</sup> 都没找到奇完美数——但<strong>没人能证明它不存在</strong>！这是<strong>开放问题</strong>。
+            <strong>❓ 奇完美数</strong>：所有已知完美数都是偶数。定理表明奇完美数若存在必大于 10<sup>1500</sup>；这不是把此前每个奇数逐个搜索一遍。奇完美数是否存在仍是<strong>开放问题</strong>。
           </div>
         </div>
-        <div class="next-hint">🌟 <strong>结语</strong>：完美数虽稀，但从 6 到 5000 万位的路上，藏着一整部数学史。</div>
+        <div class="next-hint">🌟 <strong>结语</strong>：已知偶完美数从 6 延伸到八千多万位，但有限纪录不能回答奇完美数是否存在。</div>
       `
     },
   ];
@@ -6144,7 +6144,8 @@ function initStage_NT01_s5() {
     { year: '18 世纪', text: '欧拉证明：所有偶完美数都长 欧几里得 公式', color: '#f59e0b' },
     { year: '1888', text: '发现第 7 个完美数', color: '#a855f7' },
     { year: '1952', text: 'Swingle 发现 5 个 → 19 个', color: '#a855f7' },
-    { year: '2018', text: '🚀 GIMPS 发现第 51 个，近 5000 万位', color: '#ec4899' },
+    { year: '2018', text: 'GIMPS 发现 2^82589933−1 对应的偶完美数', color: '#ec4899' },
+    { year: '2024', text: '🚀 2^136279841−1 对应偶完美数有 82,048,640 位', color: '#ec4899' },
     { year: '今天', text: '奇完美数仍是开放问题 ❓', color: '#ef4444' },
   ];
   tl.innerHTML = events.map((e, i) => {
@@ -6501,7 +6502,7 @@ function getStagesNT03() {
             <div id="nt03s4-info" style="margin-left: auto; font-size: 12px;"></div>
           </div>
         </div>
-        <div class="next-hint">🌟 <strong>极限</strong>：亏数比 ≈ 76.5%，过剩数比 ≈ 23.5%，完美数几乎 0%（精确到 51 个）。</div>
+        <div class="next-hint">🌟 <strong>范围限制</strong>：图像只描述所选上限内的有限扫描，不能据此断言极限比例或完美数总数。</div>
       `
     },
     {
@@ -8022,7 +8023,7 @@ function initStage_NT09_s2() {
     let pow = 1;
     for (let i = 0; i < n - 1; i++) pow = (pow * b) % n;
     const isCarmichael = _nt09IsCarmichael(n);
-    const is普里姆eToN = (b % n !== 0 || n === 1) && n > 1; // 简化
+    const isPrimeToN = (b % n !== 0 || n === 1) && n > 1; // 简化
     resultEl.innerHTML = `
       <div style="margin-bottom: 6px;">n = <strong>${n}</strong>，底数 b = <strong>${b}</strong></div>
       <div>${b}<sup>${n - 1}</sup> mod ${n} = <strong style="color: #7c3aed;">${pow}</strong></div>
@@ -9290,8 +9291,8 @@ function getStagesSQ12() {
       `
     },
     {
-      emoji: '🧮', title: '欧拉ian 数生成器', content: `
-        <p class="lead">输入 n，看前 n 行 欧拉ian 数：</p>
+      emoji: '🧮', title: '欧拉数生成器', content: `
+        <p class="lead">输入 n，看前 n 行 欧拉数：</p>
         <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
           <div style="flex: 1 1 200px;">
             <label>n = <input type="number" id="sq12s2-n" min="2" max="8" value="6" style="width: 100px; padding: 4px;"></label>
@@ -9306,7 +9307,7 @@ function getStagesSQ12() {
     },
     {
       emoji: '🎯', title: 'n! 验证', content: `
-        <p class="lead">每行 欧拉ian 数之和 = n! 吗？</p>
+        <p class="lead">每行 欧拉数之和 = n! 吗？</p>
         <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
           <div style="flex: 1 1 200px;">
             <label>n = <input type="number" id="sq12s3-n" min="2" max="8" value="6" style="width: 100px; padding: 4px;"></label>
@@ -9321,7 +9322,7 @@ function getStagesSQ12() {
     },
     {
       emoji: '🔬', title: '对称性：⟨n, k⟩ = ⟨n, n-1-k⟩', content: `
-        <p class="lead">欧拉ian 数矩阵每行左右对称！</p>
+        <p class="lead">欧拉数矩阵每行左右对称！</p>
         <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
           <div style="flex: 1 1 200px;">
             <label>n = <input type="number" id="sq12s4-n" min="2" max="8" value="6" style="width: 100px; padding: 4px;"></label>
@@ -9335,7 +9336,7 @@ function getStagesSQ12() {
       `
     },
     {
-      emoji: '📅', title: '欧拉ian 数小史', content: `
+      emoji: '📅', title: '欧拉数小史', content: `
         <p class="lead">欧拉 1755 研究排列上升数 → 1849 柯西 系统化。</p>
         <div class="viz">
           <div id="sq12s5-timeline"></div>
@@ -10648,7 +10649,7 @@ function initStage_SQ12_s5() {
   const events = [
     { year: '1755', text: '欧拉研究"上升"统计', color: '#f59e0b' },
     { year: '1815', text: 'Vandermonde 给出基本定义', color: '#7c3aed' },
-    { year: '1849', text: '柯西 系统化 欧拉ian 数', color: '#10b981' },
+    { year: '1849', text: '柯西 系统化 欧拉数', color: '#10b981' },
     { year: '20世纪', text: '应用于组合数学、Mahonian 统计、q-级数', color: '#3b82f6' },
     { year: '今天', text: '算法分析、降序数、组合恒等式研究', color: '#a855f7' },
   ];
@@ -10888,7 +10889,7 @@ function initStage_SQ14_s4() {
       k++;
     }
     const filtered = arr.filter(v => v <= N);
-    const doubles = filtered.filter(v => is普里姆eSmall(v));
+    const doubles = filtered.filter(v => isPrimeSmall(v));
     resultEl.innerHTML = `${N} 内 <strong style="color: #ef4444; font-size: 18px;">${doubles.length}</strong> 个双重幸运数：<br>${doubles.join(', ')}`;
   };
   nInput.oninput = update;
@@ -11242,16 +11243,16 @@ function getStagesPE03() {
       `
     },
     {
-      emoji: '🔭', title: '拉马努金 vs Chud诺夫斯基 速度', content: `
-        <p class="lead">拉马努金 (8 位/项) vs Chud诺夫斯基 (14 位/项) 对比：</p>
+      emoji: '🔭', title: '拉马努金 vs 丘德诺夫斯基 速度', content: `
+        <p class="lead">拉马努金 (8 位/项) vs 丘德诺夫斯基 (14 位/项) 对比：</p>
         <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px;">
           <div style="font-size: 13px; line-height: 1.8;">
             <strong>拉马努金 (1910):</strong> 每项多 8 位精度<br>
-            <strong>Chud诺夫斯基 (1988):</strong> 每项多 14 位精度<br>
-            <strong>工业标准:</strong> 1990s 起都用 Chud诺夫斯基 算 π
+            <strong>丘德诺夫斯基 (1988):</strong> 每项多 14 位精度<br>
+            <strong>工业标准:</strong> 1990s 起都用 丘德诺夫斯基 算 π
           </div>
         </div>
-        <div class="next-hint">🔭 <strong>历史</strong>：Chud诺夫斯基 是 拉马努金 公式的"加强版"——基于 640320³ = 8·1001000258·999700025²</div>
+        <div class="next-hint">🔭 <strong>历史</strong>：丘德诺夫斯基 是 拉马努金 公式的"加强版"——基于 640320³ = 8·1001000258·999700025²</div>
       `
     },
     {
@@ -11806,7 +11807,7 @@ function getStagesPE10() {
               <circle cx="130" cy="80" r="5" fill="#fbbf24"/><text x="130" y="60">480 AD</text><text x="130" y="105">祖冲之</text><text x="130" y="118">355/113</text>
               <circle cx="220" cy="80" r="5" fill="#10b981"/><text x="220" y="60">1706</text><text x="220" y="105">马青</text><text x="220" y="118">100 位</text>
               <circle cx="310" cy="80" r="5" fill="#3b82f6"/><text x="310" y="60">1882</text><text x="310" y="105">Lindemann</text><text x="310" y="118">π 超越</text>
-              <circle cx="400" cy="80" r="5" fill="#8b5cf6"/><text x="400" y="60">1988</text><text x="400" y="105">Chud诺夫斯基</text><text x="400" y="118">14 位/项</text>
+              <circle cx="400" cy="80" r="5" fill="#8b5cf6"/><text x="400" y="60">1988</text><text x="400" y="105">丘德诺夫斯基</text><text x="400" y="118">14 位/项</text>
               <circle cx="520" cy="80" r="7" fill="#ec4899"/><text x="520" y="60">2024</text><text x="520" y="105">202 万亿</text><text x="520" y="118">位纪录</text>
             </g>
           </svg>
@@ -12213,7 +12214,7 @@ function initStage_PE05_s4() {
     lines.push(`• 蒙特卡洛需 N ~ 10^${2*targetBits} ≈ 10^${2*targetBits.toFixed(0)}`);
     lines.push(`• 莱布尼茨 需 N ~ 10^${targetBits}`);
     lines.push(`• 马青 需 N ~ ${targetBits * 3}`);
-    lines.push(`• Chud诺夫斯基 需 N ~ ${targetBits}`);
+    lines.push(`• 丘德诺夫斯基 需 N ~ ${targetBits}`);
     resultEl.innerHTML = lines.map(l => `<div>${l}</div>`).join('');
   };
   nInput.oninput = update; runBtn.onclick = update; update();
@@ -15929,14 +15930,14 @@ function initStage_EX_PROVEN_09_s2() {
   const getSet = (name) => {
     const A = new Set();
     for (let i = 1; i <= N; i++) {
-      if (name === 'primes' && is普里姆e(i)) A.add(i);
+      if (name === 'primes' && isPrime(i)) A.add(i);
       else if (name === 'odds' && i % 2 === 1) A.add(i);
       else if (name === 'squares' && Number.isInteger(Math.sqrt(i))) A.add(i);
       else if (name === 'interval' && i >= 10 && i <= 30) A.add(i);
     }
     return A;
   };
-  const is普里姆e = (n) => {
+  const isPrime = (n) => {
     if (n < 2) return false;
     for (let p = 2; p * p <= n; p++) if (n % p === 0) return false;
     return true;
@@ -18921,7 +18922,7 @@ function initStage_EX_PROVEN_18_s2() {
   const cntEl = document.getElementById('exprov18s2-cnt');
   const listEl = document.getElementById('exprov18s2-list');
   if (!runBtn) return;
-  const is普里姆e = n => {
+  const isPrime = n => {
     if (n < 2) return false;
     if (n < 4) return true;
     if (n % 2 === 0) return false;
@@ -18934,7 +18935,7 @@ function initStage_EX_PROVEN_18_s2() {
     marksG.innerHTML = ''; pairsG.innerHTML = '';
     // 画所有素数
     const primes = [];
-    for (let n = 2; n <= N; n++) if (is普里姆e(n)) primes.push(n);
+    for (let n = 2; n <= N; n++) if (isPrime(n)) primes.push(n);
     primes.forEach(p => {
       const x = 10 + p * 980 / N;
       const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -18980,7 +18981,7 @@ function initStage_EX_PROVEN_18_s3() {
   const boundLbl = document.getElementById('exprov18s3-boundlbl');
   const statsEl = document.getElementById('exprov18s3-stats');
   if (!runBtn) return;
-  const is普里姆e = n => {
+  const isPrime = n => {
     if (n < 2) return false;
     if (n < 4) return true;
     if (n % 2 === 0) return false;
@@ -18991,7 +18992,7 @@ function initStage_EX_PROVEN_18_s3() {
     const N = Math.max(1000, Math.min(500000, parseInt(NInput.value) || 100000));
     NInput.value = N;
     const primes = [];
-    for (let n = 2; n <= N; n++) if (is普里姆e(n)) primes.push(n);
+    for (let n = 2; n <= N; n++) if (isPrime(n)) primes.push(n);
     // 统计间隙
     const gaps = {};
     for (let i = 0; i < primes.length - 1; i++) {
@@ -19226,7 +19227,7 @@ function initStage_EX_PROVEN_19_s2() {
   const resultEl = document.getElementById('exprov19s2-result');
   const countEl = document.getElementById('exprov19s2-count');
   if (!NInput) return;
-  const is普里姆e = n => {
+  const isPrime = n => {
     if (n < 2) return false;
     if (n < 4) return true;
     if (n % 2 === 0) return false;
@@ -19237,12 +19238,12 @@ function initStage_EX_PROVEN_19_s2() {
     const results = [];
     // 优先尝试 2 + 2 + (N-4)
     for (let p1 = 2; p1 <= N - 4; p1++) {
-      if (!is普里姆e(p1)) continue;
+      if (!isPrime(p1)) continue;
       for (let p2 = p1; p2 <= N - p1 - 2; p2++) {
-        if (!is普里姆e(p2)) continue;
+        if (!isPrime(p2)) continue;
         const p3 = N - p1 - p2;
         if (p3 < p2) continue;
-        if (is普里姆e(p3)) {
+        if (isPrime(p3)) {
           results.push([p1, p2, p3]);
           if (results.length >= 12) return results;
         }
@@ -19280,7 +19281,7 @@ function initStage_EX_PROVEN_19_s3() {
   const pctEl = document.getElementById('exprov19s3-pct');
   const statsEl = document.getElementById('exprov19s3-stats');
   if (!runBtn) return;
-  const is普里姆e = n => {
+  const isPrime = n => {
     if (n < 2) return false;
     if (n < 4) return true;
     if (n % 2 === 0) return false;
@@ -19289,15 +19290,15 @@ function initStage_EX_PROVEN_19_s3() {
   };
   const has3Decompose = N => {
     for (let p1 = 2; p1 <= N - 4; p1++) {
-      if (!is普里姆e(p1)) continue;
+      if (!isPrime(p1)) continue;
       for (let p2 = p1; p2 <= (N - p1) / 2; p2++) {
-        if (!is普里姆e(p2)) continue;
+        if (!isPrime(p2)) continue;
         const p3 = N - p1 - p2;
         if (p3 < p2) continue;
-        if (is普里姆e(p3)) return true;
+        if (isPrime(p3)) return true;
       }
       // 限流：超出 200 次循环
-      if (p1 > 200 && !is普里姆e(p1)) continue;
+      if (p1 > 200 && !isPrime(p1)) continue;
     }
     return false;
   };
@@ -22112,19 +22113,19 @@ function initStage_EX12_s2() {
   const resultEl = document.getElementById('ex12s2-result');
   if (!aInput) return;
   const factorize = n => { const f = []; for (let p = 2; p * p <= n; p++) while (n % p === 0) { f.push(p); n /= p; } if (n > 1) f.push(n); return f; };
-  const is普里姆e = n => n < 2 ? false : (n === 2 ? true : factorize(n).length === 1);
-  const is高斯ian普里姆e = (a, b) => {
+  const isPrime = n => n < 2 ? false : (n === 2 ? true : factorize(n).length === 1);
+  const isGaussianPrime = (a, b) => {
     if (a === 0 && b === 0) return false;
-    if (a === 0) return is普里姆e(Math.abs(b)) && Math.abs(b) % 4 === 3;
-    if (b === 0) return is普里姆e(Math.abs(a)) && Math.abs(a) % 4 === 3;
+    if (a === 0) return isPrime(Math.abs(b)) && Math.abs(b) % 4 === 3;
+    if (b === 0) return isPrime(Math.abs(a)) && Math.abs(a) % 4 === 3;
     const N = a * a + b * b;
-    return is普里姆e(N);
+    return isPrime(N);
   };
   const update = () => {
     const a = parseInt(aInput.value) || 0;
     const b = parseInt(bInput.value) || 0;
     const N = a * a + b * b;
-    const gp = is高斯ian普里姆e(a, b);
+    const gp = isGaussianPrime(a, b);
     const factors = factorize(N);
     let html = `${a}+${b}i<br>N(${a}+${b}i) = ${a}²+${b}² = <strong style="color:#7c3aed;">${N}</strong><br>`;
     if (N >= 2) html += `因子分解：${factors.length > 0 ? factors.join(' × ') : `${N} (素数)`}<br>`;
@@ -22145,12 +22146,12 @@ function initStage_EX12_s3() {
   const wrap = document.getElementById('ex12s3-svg');
   if (!wrap) return;
   const factorize = n => { const f = []; for (let p = 2; p * p <= n; p++) while (n % p === 0) { f.push(p); n /= p; } if (n > 1) f.push(n); return f; };
-  const is普里姆e = n => n < 2 ? false : (n === 2 ? true : factorize(n).length === 1);
-  const is高斯ian普里姆e = (a, b) => {
+  const isPrime = n => n < 2 ? false : (n === 2 ? true : factorize(n).length === 1);
+  const isGaussianPrime = (a, b) => {
     if (a === 0 && b === 0) return false;
-    if (a === 0) return is普里姆e(Math.abs(b)) && Math.abs(b) % 4 === 3;
-    if (b === 0) return is普里姆e(Math.abs(a)) && Math.abs(a) % 4 === 3;
-    return is普里姆e(a * a + b * b);
+    if (a === 0) return isPrime(Math.abs(b)) && Math.abs(b) % 4 === 3;
+    if (b === 0) return isPrime(Math.abs(a)) && Math.abs(a) % 4 === 3;
+    return isPrime(a * a + b * b);
   };
   const drawR = (R) => {
     const W = 400, H = 400;
@@ -22164,7 +22165,7 @@ function initStage_EX12_s3() {
     let count = 0;
     for (let a = -R; a <= R; a++) for (let b = -R; b <= R; b++) {
       if (a === 0 && b === 0) continue;
-      if (is高斯ian普里姆e(a, b)) {
+      if (isGaussianPrime(a, b)) {
         points += `<circle cx="${cx + a * scale}" cy="${cy - b * scale}" r="2.8" fill="#7c3aed"/>`;
         count++;
       }
@@ -24731,9 +24732,9 @@ function getStagesNT19() {
             <div style="font-size: 11px; color: #b45309; margin-top: 4px;">欧拉 1772 发现</div>
           </div>
           <div style="flex: 1 1 220px; padding: 14px; background: linear-gradient(135deg, #bbf7d0, #bbf7d0); border: 2px solid #10b981; border-radius: 12px; text-align: center;">
-            <div style="font-size: 22px; font-weight: 900; color: #14532d;">51 个</div>
-            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">已发现 51 个</div>
-            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">最大 24862048 位</div>
+            <div style="font-size: 22px; font-weight: 900; color: #14532d;">52 个</div>
+            <div style="font-size: 12px; color: #14532d; margin-top: 6px;">截至 2026-08 已知 52 个</div>
+            <div style="font-size: 11px; color: #15803d; margin-top: 4px;">最大 41,024,320 位</div>
           </div>
         </div>
         <div class="next-hint">⚡ <strong>规律</strong>：p 为合数时 2^p - 1 必为合数（无需测试）</div>
@@ -24755,12 +24756,12 @@ function getStagesNT19() {
             <div id="nt19s2-result" style="padding: 14px; background: #faf5ff; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.8;"></div>
           </div>
         </div>
-        <div class="next-hint">💡 <strong>结果</strong>：p≤25 找到 5 个（3, 7, 31, 127, 8191）</div>
+        <div class="next-hint">💡 <strong>结果</strong>：p≤25 找到 7 个；互动使用 Lucas–Lehmer 判据，不把有限试除当作素性证明</div>
       `
     },
     {
       emoji: '🔭', title: '梅森素数与完全数', content: `
-        <p class="lead">欧拉发现：每个偶完全数 = 2^(p-1) × (2^p - 1)：</p>
+        <p class="lead">欧几里得给出构造，欧拉证明逆向结论：每个偶完全数都可写成 2^(p-1) × (2^p - 1)：</p>
         <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.9;">
           2¹ × 3 = 6 ✓<br>
           2² × 7 = 28 ✓<br>
@@ -24774,12 +24775,12 @@ function getStagesNT19() {
       emoji: '🔬', title: '梅森素数与 GIMPS', content: `
         <p class="lead">GIMPS（互联网梅森素数大搜索）项目：</p>
         <div class="viz" style="padding: 14px; background: #f0f9ff; border-radius: 8px; font-size: 13px; line-height: 1.8;">
-          1996 启动，全球志愿者用家用电脑搜索<br>
-          到 2024 年已发现 21 个梅森素数<br>
-          最大：2^82589933 - 1（24862048 位）<br>
-          2018 年由 Patrick Laroche 发现
+          1996 启动，利用联网设备进行分布式搜索<br>
+          截至 2026-08，官方列表收录 52 个已知梅森素数<br>
+          最大：2^136279841 - 1（41,024,320 位）<br>
+          2024 年由 GIMPS 参与者 Luke Durant 发现
         </div>
-        <div class="next-hint">🔬 <strong>应用</strong>：大梅森素数用于测试计算机硬件、加密学</div>
+        <div class="next-hint">🔬 <strong>计算意义</strong>：搜索推动大整数算法、分布式计算与硬件可靠性检验；不能把梅森素数直接说成 RSA 模数</div>
       `
     },
     {
@@ -25191,7 +25192,7 @@ function initStage_NT15_s2() {
     const N = Math.max(100, Math.min(100000, parseInt(nInput.value) || 10000));
     const out = [];
     for (let n = 2; n <= N; n++) {
-      if (!is普里姆eSmall(n)) continue;
+      if (!isPrimeSmall(n)) continue;
       const s = String(n);
       if (s === s.split('').reverse().join('')) out.push(n);
     }
@@ -25210,7 +25211,7 @@ function initStage_NT15_s3() {
   // 统计 1-7 位回文素数
   const counts = { odd: {}, even: {} };
   for (let n = 2; n <= 1000000; n++) {
-    if (!is普里姆eSmall(n)) continue;
+    if (!isPrimeSmall(n)) continue;
     const s = String(n);
     if (s !== s.split('').reverse().join('')) continue;
     const digits = s.length;
@@ -25244,7 +25245,7 @@ function initStage_NT15_s4() {
       else p = s + s.slice(0, -1).split('').reverse().join('');
       palindromes.push(+p);
     }
-    const primes = palindromes.filter(n => is普里姆eSmall(n));
+    const primes = palindromes.filter(n => isPrimeSmall(n));
     resultEl.innerHTML = `${digits} 位回文数共 ${palindromes.length} 个，其中素数 ${primes.length} 个<br>素数：${primes.slice(0, 30).join(', ')}`;
   };
   nInput.oninput = update; runBtn.onclick = update; update();
@@ -25289,7 +25290,7 @@ function initStage_NT16_s2() {
     const gaps = [];
     let prev = 2;
     for (let n = 3; n <= N; n++) {
-      if (is普里姆eSmall(n)) { gaps.push([prev, n, n - prev]); prev = n; }
+      if (isPrimeSmall(n)) { gaps.push([prev, n, n - prev]); prev = n; }
     }
     let maxG = 0, maxA = 0, maxB = 0;
     for (const [a, b, g] of gaps) if (g > maxG) { maxG = g; maxA = a; maxB = b; }
@@ -25309,7 +25310,7 @@ function initStage_NT16_s3() {
   for (let N = 100; N <= 5000; N *= 2) {
     let prev = 2, maxG = 0;
     for (let n = 3; n <= N; n++) {
-      if (is普里姆eSmall(n)) { if (n - prev > maxG) maxG = n - prev; prev = n; }
+      if (isPrimeSmall(n)) { if (n - prev > maxG) maxG = n - prev; prev = n; }
     }
     labels.push(`N=${N}`);
     data.push(maxG);
@@ -25327,7 +25328,7 @@ function initStage_NT16_s4() {
   const dist = Array(15).fill(0);
   let prev = 2;
   for (let n = 3; n <= 500; n++) {
-    if (is普里姆eSmall(n)) { const g = n - prev; if (g < 15) dist[g]++; prev = n; }
+    if (isPrimeSmall(n)) { const g = n - prev; if (g < 15) dist[g]++; prev = n; }
   }
   ctx._chart = new Chart(ctx, {
     type: 'bar',
@@ -25502,6 +25503,16 @@ function initStage_NT18() {
 }
 
 function initStage_NT19_s1() {}
+function _nt19IsMersennePrime(p) {
+  if (!Number.isInteger(p) || p < 2 || !isPrimeSmall(p)) return false;
+  if (p === 2) return true;
+  const mersenne = (1n << BigInt(p)) - 1n;
+  let residue = 4n;
+  for (let index = 0; index < p - 2; index++) {
+    residue = (residue * residue - 2n) % mersenne;
+  }
+  return residue === 0n;
+}
 function initStage_NT19_s2() {
   const pInput = document.getElementById('nt19s2-p');
   const resultEl = document.getElementById('nt19s2-result');
@@ -25510,19 +25521,9 @@ function initStage_NT19_s2() {
     const P = Math.max(2, Math.min(40, parseInt(pInput.value) || 25));
     const out = [];
     for (let p = 2; p <= P; p++) {
-      if (!is普里姆eSmall(p)) continue;
-      let m = 1n;
-      for (let i = 0; i < p; i++) m *= 2n;
-      m -= 1n;
-      if (m < 1000000n) {
-        if (is普里姆eSmall(Number(m))) out.push({ p, m: m.toString() });
-      } else {
-        let is普里姆e = true;
-        for (let d = 2; d * d <= Number(m > 1000000n ? 10000 : Number(m)); d++) {
-          if (m % BigInt(d) === 0n) { is普里姆e = false; break; }
-        }
-        if (is普里姆e) out.push({ p, m: m.toString() });
-      }
+      if (!_nt19IsMersennePrime(p)) continue;
+      const mersenne = (1n << BigInt(p)) - 1n;
+      out.push({ p, m: mersenne.toString() });
     }
     resultEl.innerHTML = `p ≤ ${P} 时梅森素数：<br>` + out.map(x => `<strong>2<sup>${x.p}</sup> - 1 = ${x.m}</strong>`).join('  ·  ');
   };
@@ -25542,7 +25543,8 @@ function initStage_NT19_s5() {
     { year: '1772', text: '欧拉证明 2^31 - 1 = 2147483647 是素数', color: '#7c3aed' },
     { year: '1876', text: 'Lucas 测试梅森素数（Lucas-Lehmer）', color: '#10b981' },
     { year: '1996', text: 'GIMPS 项目启动，全球分布式搜索', color: '#3b82f6' },
-    { year: '2018', text: '2^82589933 - 1（24862048 位）', color: '#ec4899' },
+    { year: '2018', text: '发现 2^82589933 - 1（24,862,048 位）', color: '#ec4899' },
+    { year: '2024', text: '发现 2^136279841 - 1（41,024,320 位）', color: '#ec4899' },
   ];
   tl.innerHTML = events.map((e, i) => {
     const isLeft = i % 2 === 0;
@@ -25574,7 +25576,7 @@ function initStage_NT20_s2() {
     if (N % 2 !== 0) { resultEl.innerHTML = '请输入偶数'; return; }
     const pairs = [];
     for (let p = 2; p <= N/2; p++) {
-      if (is普里姆eSmall(p) && is普里姆eSmall(N - p)) pairs.push([p, N - p]);
+      if (isPrimeSmall(p) && isPrimeSmall(N - p)) pairs.push([p, N - p]);
     }
     resultEl.innerHTML = `${N} = ?<br>共 <strong style="color: #7c3aed; font-size: 18px;">${pairs.length}</strong> 种拆分：<br>${pairs.map(([a, b]) => `${a} + ${b}`).join('  ·  ')}`;
   };
@@ -25592,7 +25594,7 @@ function initStage_NT20_s3() {
   for (let N = 4; N <= 200; N += 2) {
     let count = 0;
     for (let p = 2; p <= N/2; p++) {
-      if (is普里姆eSmall(p) && is普里姆eSmall(N - p)) count++;
+      if (isPrimeSmall(p) && isPrimeSmall(N - p)) count++;
     }
     labels.push(N);
     data.push(count);
@@ -25613,7 +25615,7 @@ function initStage_NT20_s4() {
     const lines = [];
     for (let e = 4; e <= N; e += 2) {
       let count = 0;
-      for (let p = 2; p <= e/2; p++) if (is普里姆eSmall(p) && is普里姆eSmall(e - p)) count++;
+      for (let p = 2; p <= e/2; p++) if (isPrimeSmall(p) && isPrimeSmall(e - p)) count++;
       lines.push(`${e}: ${count} 种`);
     }
     resultEl.innerHTML = lines.map(l => `<div>${l}</div>`).join('');
@@ -33211,15 +33213,15 @@ function initStage_AL10_s2() {
     if (!nInput) return;
     const update = () => {
       const N = Math.max(10, Math.min(100000, parseInt(nInput.value) || 100));
-      const is普里姆e = new Uint8Array(N + 1).fill(1);
-      is普里姆e[0] = is普里姆e[1] = 0;
+      const isPrime = new Uint8Array(N + 1).fill(1);
+      isPrime[0] = isPrime[1] = 0;
       for (let i = 2; i * i <= N; i++) {
-        if (is普里姆e[i]) {
-          for (let j = i * i; j <= N; j += i) is普里姆e[j] = 0;
+        if (isPrime[i]) {
+          for (let j = i * i; j <= N; j += i) isPrime[j] = 0;
         }
       }
       const primes = [];
-      for (let i = 2; i <= N; i++) if (is普里姆e[i]) primes.push(i);
+      for (let i = 2; i <= N; i++) if (isPrime[i]) primes.push(i);
       const showList = primes.length <= 100;
       resultEl.innerHTML = `N = ${N}，共 <strong style="color:#7c3aed; font-size: 16px;">${primes.length}</strong> 个素数<br>` +
         (showList ? `前 30 个：[${primes.slice(0, 30).join(', ')}${primes.length > 30 ? ', ...' : ''}]` : `前 30 个：[${primes.slice(0, 30).join(', ')}, ...]<br>第 100 个：${primes[99]}<br>第 1000 个：${primes.length >= 1000 ? primes[999] : 'N/A'}<br>最后一个：${primes[primes.length - 1]}`);
@@ -33239,9 +33241,9 @@ function initStage_AL10_s3() {
     if (!runBtn) return;
     const update = () => {
       const N = Math.max(20, Math.min(200, parseInt(nInput.value) || 100));
-      const is普里姆e = new Uint8Array(N + 1).fill(1);
-      is普里姆e[0] = is普里姆e[1] = 0;
-      for (let i = 2; i * i <= N; i++) if (is普里姆e[i]) for (let j = i*i; j <= N; j += i) is普里姆e[j] = 0;
+      const isPrime = new Uint8Array(N + 1).fill(1);
+      isPrime[0] = isPrime[1] = 0;
+      for (let i = 2; i * i <= N; i++) if (isPrime[i]) for (let j = i*i; j <= N; j += i) isPrime[j] = 0;
       const cols = 10;
       const cell = 32;
       let html = `<svg viewBox="0 0 ${cols * cell + 20} ${Math.ceil(N/cols) * cell + 20}" style="width:100%; max-width:400px;">`;
@@ -33250,9 +33252,9 @@ function initStage_AL10_s3() {
         const x = 10 + c * cell, y = 10 + r * cell;
         let fill = '#f3f4f6';
         if (i === 1) fill = '#9ca3af';
-        else if (is普里姆e[i]) fill = '#a855f7';
+        else if (isPrime[i]) fill = '#a855f7';
         html += `<rect x="${x}" y="${y}" width="${cell-2}" height="${cell-2}" fill="${fill}" rx="3"/>`;
-        html += `<text x="${x + (cell-2)/2}" y="${y + (cell-2)/2 + 4}" text-anchor="middle" font-size="12" font-weight="700" fill="${is普里姆e[i] && i > 1 ? 'white' : '#1f2937'}">${i}</text>`;
+        html += `<text x="${x + (cell-2)/2}" y="${y + (cell-2)/2 + 4}" text-anchor="middle" font-size="12" font-weight="700" fill="${isPrime[i] && i > 1 ? 'white' : '#1f2937'}">${i}</text>`;
       }
       html += '</svg>';
       svgEl.innerHTML = html;
@@ -33267,10 +33269,10 @@ function initStage_AL10_s4() {
     const sizes = [10, 100, 1000, 10000, 100000];
     let html = 'N | π(N) 实际 | N/ln(N) 估计 | 误差%<br>---|---|---|---<br>';
     sizes.forEach(N => {
-      const is普里姆e = new Uint8Array(N + 1).fill(1);
-      is普里姆e[0] = is普里姆e[1] = 0;
-      for (let i = 2; i*i <= N; i++) if (is普里姆e[i]) for (let j = i*i; j <= N; j += i) is普里姆e[j] = 0;
-      let piN = 0; for (let i = 2; i <= N; i++) if (is普里姆e[i]) piN++;
+      const isPrime = new Uint8Array(N + 1).fill(1);
+      isPrime[0] = isPrime[1] = 0;
+      for (let i = 2; i*i <= N; i++) if (isPrime[i]) for (let j = i*i; j <= N; j += i) isPrime[j] = 0;
+      let piN = 0; for (let i = 2; i <= N; i++) if (isPrime[i]) piN++;
       const est = N / Math.log(N);
       const err = Math.abs(piN - est) / piN * 100;
       html += `${N.toString().padStart(7)} | ${piN.toString().padStart(6)} | ${est.toFixed(0).padStart(6)} | ${err.toFixed(1)}%<br>`;
@@ -34549,8 +34551,8 @@ function getStagesOT10() {
       `
     },
     {
-      emoji: '🔬', title: '进阶: 高斯帕滑翔机枪', content: `
-        <p class="lead">高斯帕枪（1970 发现）能无限产生滑翔机——生命游戏的"宇宙工厂"：</p>
+      emoji: '🔬', title: '进阶: 戈斯珀（Gosper）滑翔机枪', content: `
+        <p class="lead">戈斯珀（Gosper）枪（1970 发现）能无限产生滑翔机——生命游戏的"宇宙工厂"：</p>
         <div class="viz" style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
           <div style="flex: 1 1 200px;">
             <label>大小 <input type="number" id="ot10s4-n" value="40" min="20" max="60" style="width: 80px;"></label><br>
@@ -36386,7 +36388,7 @@ function initStage_OT10_s4() {
     const btn = document.getElementById('ot10s4-gun');
     const cv = document.getElementById('ot10s4-cv');
     if (!btn) return;
-    // 高斯帕滑翔机枪（简化版 36×9）
+    // 戈斯珀（Gosper）滑翔机枪（简化版 36×9）
     const gun = [
       '........................X...........',
       '......................X.X...........',
@@ -36443,7 +36445,7 @@ function initStage_OT10_s5() {
     if (!tl) return;
     const events = [
       { year: '1970', text: 'John 康威 在《科学美国人》公布', color: '#7c3aed' },
-      { year: '1970', text: '高斯帕滑翔机枪被发现', color: '#f59e0b' },
+      { year: '1970', text: '戈斯珀（Gosper）滑翔机枪被发现', color: '#f59e0b' },
       { year: '1980s', text: 'Wolfram 元胞自动机研究', color: '#10b981' },
       { year: '2000s', text: '人工生命 / 涌现理论', color: '#3b82f6' },
       { year: '今天', text: '复杂性科学 / 模拟 / 元胞艺术', color: '#ef4444' },
@@ -36554,7 +36556,7 @@ function factorize(n) {
   if (n > 1) out.push(n);
   return out;
 }
-function is普里姆eSmall(n) {
+function isPrimeSmall(n) {
   if (n < 2) return false;
   if (n < 4) return true;
   if (n % 2 === 0) return false;
@@ -37173,7 +37175,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 <p>如果谁找到一个不能写成两素数之和的偶数，<strong>数学界会给他立碑</strong>。1752 年 欧拉 跟哥德巴赫通信以来，没人找到。</p>`,
   history: `<p><strong>一七四二年 6 月 7 日</strong>，普鲁士数学家 <strong>Christian 哥德巴赫</strong>（哥德巴赫，1690-1764）在给 <strong>Leonhard 欧拉</strong> 的信中提出："每个大于 2 的整数 = 三个素数之和"。</p>
 <p><strong>同年 6 月 30 日</strong>，欧拉 回信：把这个猜想改成"每个大于 2 的偶数 = 两个素数之和"——因为加 1 改 2 等价。注意 <strong>当时 1 算素数</strong>（19 世纪才把 1 排除）。</p>
-<p><strong>一八五九年</strong>，<strong>Bernhard 黎曼</strong> 发表 <em>Über die Anzahl der 普里姆zahlen unter einer gegebenen Größe</em>（关于小于给定值的素数个数），给出<strong>黎曼 ζ 函数</strong>——<strong>素数分布的钥匙</strong>。但黎曼猜想至今未证（两千年克莱数学所悬赏 100 万美元）。</p>
+<p><strong>一八五九年</strong>，<strong>Bernhard 黎曼</strong> 发表 <em>Über die Anzahl der Primzahlen unter einer gegebenen Größe</em>（关于小于给定值的素数个数），给出<strong>黎曼 ζ 函数</strong>——<strong>素数分布的钥匙</strong>。但黎曼猜想至今未证（两千年克莱数学所悬赏 100 万美元）。</p>
 <p><strong>一九二三年</strong>，<strong>Godfrey 哈代</strong> 和 <strong>John Littlewood</strong> 证明：在<strong>广义黎曼猜想</strong>成立下，每个大偶数能写成 a+b（a, b 素数）。</p>
 <p><strong>一九三七年</strong>，<strong>Ivan Vinogradov</strong> 用<strong>圆法</strong>无假设地证明：每个足够大的奇数 = 三个素数之和——即<strong>弱哥德巴赫猜想</strong>。</p>
 <p><strong>二〇一三年</strong>，<strong>Harald 赫尔福特</strong>（秘鲁裔美国数学家）补完 Vinogradov 的边界，<strong>完全证明</strong>弱哥德巴赫猜想（每个 ≥ 7 的奇数 = 三素数之和）。</p>
@@ -37190,7 +37192,7 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
   render: (h) => setupGoldbach(h)
 },
 {
-  id: 'PR07', type: 'conjecture_open',  cat: '数论', title: '孪生素数 (Twin 普里姆es)',
+  id: 'PR07', type: 'conjecture_open',  cat: '数论', title: '孪生素数 (Twin primes)',
   intro: '相差 2 的素数对：(3,5)、(5,7)、(11,13)、(17,19)、(29,31)... 张益唐 2013 年里程碑证明。',
   explain: `同学们好！今天我们来看素数里最有意思的一对——孪生素数。
 
@@ -37252,8 +37254,8 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 },
 {
   id: 'PR08', type: 'axiom_theorem',  cat: 'π·e', title: 'π 的多算法对比（4 种并行）',
-  intro: '阿基米德割圆 / 莱布尼茨 / 马青 / Chud诺夫斯基——同一目标 π，4 种完全不同的算法，差距 6 个数量级。',
-  explain: `同学们好！今天我们来看 4 种完全不同的算 π 方法——阿基米德割圆、莱布尼茨 级数、马青 公式、Chud诺夫斯基 公式。
+  intro: '阿基米德割圆 / 莱布尼茨 / 马青 / 丘德诺夫斯基——同一目标 π，4 种完全不同的算法，差距 6 个数量级。',
+  explain: `同学们好！今天我们来看 4 种完全不同的算 π 方法——阿基米德割圆、莱布尼茨 级数、马青 公式、丘德诺夫斯基 公式。
 
 同样算 π，这 4 种方法的差距有多大？答案是 6 个数量级！也就是说，最慢的算 1 万次还没最快的方法算 1 次准。
 
@@ -37263,18 +37265,18 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 
 第三种是 马青 公式，一七〇六年发明。π 除以 4 等于 4 乘 arctan(1/5) 减 arctan(1/239)。arctan(1/5) 的项以 1/5、1/125、1/3125 速度下降，arctan(1/239) 更快——10 项就到 12 位精度！比 莱布尼茨 快了几万倍。
 
-第四种是 Chud诺夫斯基 公式，一九八八年发明。公式长得吓人：1/π 等于 12 乘以一个超级复杂的级数。但每加 1 项，精度就增加 14 位！是目前算 π 到万亿位的工业标准。二〇二二年瑞士团队用这个公式算到了 100 万亿位，用了 54 天。
+第四种是 丘德诺夫斯基 公式，一九八八年发明。公式长得吓人：1/π 等于 12 乘以一个超级复杂的级数。但每加 1 项，精度就增加 14 位！是目前算 π 到万亿位的工业标准。二〇二二年瑞士团队用这个公式算到了 100 万亿位，用了 54 天。
 
 为什么差距这么大？因为 π 是个"超越数"——一八八二年林德曼证明的——它不可能用有理数的代数式精确表达。但我们可以用越来越聪明的级数和公式，逼近到任意精度。
 
-现在请同学们点"开始计算"，看 4 条线一起画出来——红线 莱布尼茨 几乎不动，黄线 Chud诺夫斯基 一步到位。一万次迭代后，谁最准？明天带过来我们比一比。
+现在请同学们点"开始计算"，看 4 条线一起画出来——红线 莱布尼茨 几乎不动，黄线 丘德诺夫斯基 一步到位。一万次迭代后，谁最准？明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"看似简单的公式、实则威力无穷"的智慧里。`,
   audioUrl: '',
   stages: getStagesPR08(),
   principle: `<h4>🔍 为什么有这么多算法？</h4>
 <p>π 是个<strong>超越数</strong>（林德曼 1882 证明），所以不可能用有理数代数式精确表达。但我们可以用<strong>无穷级数</strong>或<strong>几何逼近</strong>算到任意精度。</p>
-<p>不同算法的"收敛速度"差距巨大——同样算 1 万次迭代，莱布尼茨 只到 3.14，Chud诺夫斯基 已到小数点后 14 位。</p>
+<p>不同算法的"收敛速度"差距巨大——同样算 1 万次迭代，莱布尼茨 只到 3.14，丘德诺夫斯基 已到小数点后 14 位。</p>
 <h4>📐 4 种算法对比</h4>
 <p><strong>① 阿基米德割圆（公元前 250）</strong><br>
 用正 6 边 → 12 边 → 24 边 → 48 边 → 96 边 逼近圆。<br>
@@ -37287,16 +37289,16 @@ P = ∫₀^π ∫₀^(L·sinθ/2) (2/πd) dy dθ<br>
 <span class="formula">π/4 = 4·arctan(1/5) - arctan(1/239)</span><br>
 <span class="formula">arctan(x) = x - x³/3 + x⁵/5 - x⁷/7 + ...</span><br>
 arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快——<strong>10 项就到 12 位精度</strong>。</p>
-<p><strong>④ Chud诺夫斯基 公式（1988 年）</strong><br>
+<p><strong>④ 丘德诺夫斯基 公式（1988 年）</strong><br>
 <span class="formula">1/π = 12 · Σ (-1)^k · (6k)!(545140134k + 13591409) / ((3k)!(k!)³ · 640320^(3k+3/2))</span><br>
 看似复杂，但每加 1 项<strong>多 14 位精度</strong>——是当前算 π 万亿位的工业标准。</p>
 <h4>🧮 收敛速度对比（迭代 N 次）</h4>
 <ul>
   <li>莱布尼茨：O(1/N)，N 项精度 ~ 1/N 位</li>
   <li>马青：O(1/N³)，N 项精度 ~ log N 位</li>
-  <li>Chud诺夫斯基：O(1/N⁶)，N 项精度 ~ 14·N 位</li>
+  <li>丘德诺夫斯基：O(1/N⁶)，N 项精度 ~ 14·N 位</li>
 </ul>
-<p>算 π 100 万亿位（2022 年纪录）用了 Chud诺夫斯基 变体 + 54 天，<strong>54 天 × 1 项/天 ≈ 1.6 亿次迭代</strong>。</p>`,
+<p>算 π 100 万亿位（2022 年纪录）用了 丘德诺夫斯基 变体 + 54 天，<strong>54 天 × 1 项/天 ≈ 1.6 亿次迭代</strong>。</p>`,
   history: `<p><strong>公元前 250 年</strong>，<strong>阿基米德</strong>（阿基米德，287-212 BC）用 96 边形得 <span class="formula">3.1408 &lt; π &lt; 3.1429</span>——人类首次给出 π 的误差范围。</p>
 <p><strong>公元 480 年</strong>，中国数学家 <strong>祖冲之</strong>（429-500）给出 <span class="formula">3.1415926 &lt; π &lt; 3.1415927</span>，还算了 355/113（密率）和 22/7（疏率）——<strong>领先欧洲 一千年</strong>。</p>
 <p><strong>一四二四年</strong>，<strong>Jamshīd al-Kāshī</strong>（波斯）算 π 到 16 位小数。</p>
@@ -37307,19 +37309,19 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 <p><strong>一九四八年</strong>，<strong>Lev Toropov</strong> 等算出 π 203 位（含错误）。<br>
 <strong>一九八五年</strong>，<strong>Bill Gosper</strong> 算到 1700 万位。<br>
 <strong>二〇〇二年</strong>，<strong>金田康正</strong>（日本）算到 12411 亿位。</p>
-<p><strong>一九八八年</strong>，<strong>David 和 Gregory Chud诺夫斯基</strong> 兄弟（俄裔美国数学家）发表 Chud诺夫斯基 公式——<strong>现代工业标准</strong>。</p>
-<p><strong>二〇二二年 6 月</strong>，<strong>Timothy Mullican</strong> 用家用电脑算到 100 万亿位，用 Chud诺夫斯基 + 54 天。<br>
+<p><strong>一九八八年</strong>，<strong>David 和 Gregory 丘德诺夫斯基</strong> 兄弟（俄裔美国数学家）发表 丘德诺夫斯基 公式——<strong>现代工业标准</strong>。</p>
+<p><strong>二〇二二年 6 月</strong>，<strong>Timothy Mullican</strong> 用家用电脑算到 100 万亿位，用 丘德诺夫斯基 + 54 天。<br>
 <strong>二〇二四年</strong>，存储优化版到 202 万亿位。</p>
 <p>π 的"为什么无穷多位还不循环"问题（圆周率是无理数），仍然是个开放数学问题——尽管答案已证（π 无理），但具体的"第 1 万亿位是什么"在变。</p>`,
   tryit: `<ol>
-  <li><strong>先看静止画面</strong>：4 条线，马青 和 Chud诺夫斯基 已经接近 3.14xxx，阿基米德在 3.0-3.1 跳动，莱布尼茨 几乎水平线。</li>
-  <li><strong>按"开始计算" N=10</strong>：莱布尼茨 还是 3.0 附近，马青 已到 3.141592，Chud诺夫斯基 一步到位 3.14159265358979。</li>
-  <li><strong>改成 N=100</strong>：4 条线<strong>几乎都收敛</strong>到真实 π。但误差数量级：莱布尼茨 仍 1%，马青 0.0000001%，Chud诺夫斯基 远超双精度。</li>
-  <li><strong>改成 N=10000</strong>：莱布尼茨 才刚到 3.141，Chud诺夫斯基 完全没变化（因为算不动 N=10000）。</li>
-  <li><strong>看每条线的"速度"</strong>：莱布尼茨 是最慢的蓝线，几乎 45° 直角走。Chud诺夫斯基 黄线是"阶跃函数"——1 项就到顶。</li>
+  <li><strong>先看静止画面</strong>：4 条线，马青 和 丘德诺夫斯基 已经接近 3.14xxx，阿基米德在 3.0-3.1 跳动，莱布尼茨 几乎水平线。</li>
+  <li><strong>按"开始计算" N=10</strong>：莱布尼茨 还是 3.0 附近，马青 已到 3.141592，丘德诺夫斯基 一步到位 3.14159265358979。</li>
+  <li><strong>改成 N=100</strong>：4 条线<strong>几乎都收敛</strong>到真实 π。但误差数量级：莱布尼茨 仍 1%，马青 0.0000001%，丘德诺夫斯基 远超双精度。</li>
+  <li><strong>改成 N=10000</strong>：莱布尼茨 才刚到 3.141，丘德诺夫斯基 完全没变化（因为算不动 N=10000）。</li>
+  <li><strong>看每条线的"速度"</strong>：莱布尼茨 是最慢的蓝线，几乎 45° 直角走。丘德诺夫斯基 黄线是"阶跃函数"——1 项就到顶。</li>
   <li><strong>教学金句</strong>：跟孩子说"人类花 2000 年才把 π 算到 1 亿位，今天 1 个手机 1 秒就能算。这就是数学的积累。"</li>
   <li><strong>祖冲之的 7 位</strong>：用阿基米德方法，祖冲之算的精度到小数点后 7 位——比欧洲早 1000 年。</li>
-  <li><strong>Chud诺夫斯基 公式</strong>：把公式抄下来给孩子看——"你不需要懂每个符号，但要感受'公式越复杂、算得越快'的震撼"。</li>
+  <li><strong>丘德诺夫斯基 公式</strong>：把公式抄下来给孩子看——"你不需要懂每个符号，但要感受'公式越复杂、算得越快'的震撼"。</li>
 </ol>`,
   render: (h) => setupPiAlg(h)
 },
@@ -37338,13 +37340,13 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 
 下一个完美数是 496，再下一个是 8128。你会发现这些数都很特别——它们既不多也不罕见，但也没那么常见。
 
-数学家已经证明：所有偶完美数都长成 2 的 p-1 次方乘以 2 的 p 次方减 1 这种形式，其中 2 的 p 次方减 1 必须是素数。这种素数叫"梅森素数"。所以找完美数，本质上就是找梅森素数。
+欧几里得证明：若 2 的 p 次方减 1 是素数，那么 2 的 p-1 次方乘以它是偶完美数；欧拉后来证明所有偶完美数都来自这种形式。这种素数叫“梅森素数”。
 
-现在已知的完美数有 51 个。最大的完美数有接近 5000 万位！是 二〇一八年用 GIMPS 分布式计算项目找到的。
+截至二〇二六年八月，52 个已知梅森素数分别给出 52 个已知偶完美数；当前最大的有 82048640 位。奇完美数是否存在仍不知道，所以不能说只可能有这 52 个完美数。
 
-但有一个问题：有没有奇完美数？数学家们用超级计算机算到了 10 的 1500 次方——这么大的范围——都没找到。绝大多数数学家相信奇完美数不存在，但没人能证明。
+但有一个问题：有没有奇完美数？数学家证明了一个下界：如果奇完美数存在，它必须大于 10 的 1500 次方。这是数学定理，不是用计算机逐个检查完此前所有奇数；目前也没人证明奇完美数不存在。
 
-现在请同学们自己动手：点"找完美数"，搜索 1 到 1000。你会找到 4 个完美数：6、28、496、8128。看看 10000 以内有几个？100000 以内呢？再试试 1000 以内的"相亲数对"——两个数互为对方的真因子之和，比如 220 和 284。明天带过来我们比一比谁找得多。
+现在请同学们自己动手：点“找完美数”，搜索 1 到 1000，会找到 6、28、496 三个；把上限增至 10000，才会包含 8128。有限搜索能核对范围内的结果，但不能证明更大范围或奇完美数的结论。
 
 记住：数学不只藏在书本里——藏在每一个"刚刚好"刚刚等于自己的数字里。`,
   audioUrl: '',
@@ -37415,7 +37417,7 @@ arctan(1/5) 的项以 1/5, 1/125, 1/3125... 速度下降，arctan(1/239) 更快�
 如果正好相等——比如 6 的真因子 1、2、3 加起来正好 6——就叫"完美数"（我们之前专门讲过）。
 如果比这个数大——比如 12 的真因子加起来 16，比 12 大——就叫"过剩数"。
 
-一个数学家发现：自然数里亏数最多（占 76%），完美数特别少（目前只发现 51 个），过剩数也不多（占 24%）。
+有限扫描中，亏数通常比过剩数多，而完美数所占比例很小。但有限样本比例不能直接当作所有自然数中的精确比例；截至二〇二六年八月，已知 52 个偶完美数，奇完美数是否存在仍未知。
 
 还有几个有意思的观察：奇亏数很少——奇数里只有 1 和平方数 9、25、49、81 等等可能是亏数。完全平方数是亏数，质数也是亏数。每个偶完美数都跟梅森素数一一对应。
 
@@ -37798,7 +37800,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
       setTimeout(() => {
         const out = [];
         for (let n = 561; n <= N; n += 2) {
-          if (is普里姆eSmall(n)) continue;
+          if (isPrimeSmall(n)) continue;
           let ok = true;
           for (let b = 2; b <= Math.min(n-1, 100) && ok; b++) {
             if (gcd(b, n) === 1) {
@@ -37848,7 +37850,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
       const N = +document.getElementById('nt10_n').value;
       const out = [];
       for (let n = 4; n <= N; n++) {
-        if (is普里姆eSmall(n)) continue;
+        if (isPrimeSmall(n)) continue;
         const fs = factorize(n);
         const sSelf = sumDigits(n);
         const sFac = fs.reduce((a, p) => a + sumDigits(p), 0);
@@ -38057,7 +38059,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
       const N = +document.getElementById('nt15_n').value;
       const out = [];
       for (let n = 2; n <= N; n++) {
-        if (!is普里姆eSmall(n)) continue;
+        if (!isPrimeSmall(n)) continue;
         const s = String(n);
         if (s === s.split('').reverse().join('')) out.push(n);
       }
@@ -38066,9 +38068,9 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
   }
 },
 {
-  id: 'NT16', type: 'conjecture_open',  cat: '数论', title: '素数间隙（普里姆e Gaps）',
+  id: 'NT16', type: 'conjecture_open',  cat: '数论', title: '素数间隙（Prime Gaps）',
   intro: '相邻素数的差。例：7-5=2、11-7=4、13-11=2。最大间隙随 N 增长。',
-  explain: `同学们好！今天我们来看一个非常有趣的现象——素数间隙（普里姆e Gaps）。
+  explain: `同学们好！今天我们来看一个非常有趣的现象——素数间隙（Prime Gaps）。
 
 什么是素数间隙？两个相邻素数之间的差。比如 7 减 5 等于 2，11 减 7 等于 4，13 减 11 等于 2。
 
@@ -38100,7 +38102,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
       const gaps = [];
       let prev = 2;
       for (let n = 3; n <= N; n++) {
-        if (is普里姆eSmall(n)) {
+        if (isPrimeSmall(n)) {
           gaps.push([prev, n, n - prev]);
           prev = n;
         }
@@ -38187,8 +38189,8 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
   }
 },
 {
-  id: 'NT19', type: 'conjecture_open',  cat: '数论', title: '梅森素数（部分）',
-  intro: '形如 2^p - 1 的素数（p 也必须是素数）。已知 51 个。例：3, 7, 31, 127, 8191, 131071...',
+  id: 'NT19', type: 'conjecture_open',  cat: '数论', title: '梅森素数与 Lucas–Lehmer 检验',
+  intro: '梅森素数形如 2^p−1；p 为素数只是必要条件。用 Lucas–Lehmer 判据检验小指数，并区分有限搜索与“是否有无穷多个”的开放问题。',
   explain: `同学们好！今天我们来看一种特殊的素数——梅森素数。
 
 什么是梅森素数？形如 2 的 p 次方减 1 的素数，其中 p 也必须是素数。
@@ -38199,44 +38201,28 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
 
 注意：如果 p 是合数（比如 p=4 或 p=6），那 2 的 p 次方减 1 一定是合数。所以只需要测试素数 p。
 
-到 二〇二四年，数学家已经发现 51 个梅森素数。最大的是 2 的 82589933 次方减 1——有 24862048 位数字！二〇一八年由 GIMPS 分布式计算项目发现。
+截至二〇二六年八月，GIMPS 官方列表收录 52 个已知梅森素数。当前最大的已知项是 2 的 136279841 次方减 1，共 41024320 位；它在二〇二四年由 GIMPS 参与者 Luke Durant 发现。官方同时注明，第 51、52 项的序号仍是暂定的，因为中间候选尚未全部排除。
 
 梅森素数有什么用？
-- 完全数都跟梅森素数一一对应。欧几里得发现：如果 2 的 p 次方减 1 是素数，那 2 的 p-1 次方乘 (2 的 p 次方减 1) 就是完全数。
-- RSA 加密里有时用大梅森素数当模数。
-- 它推动了分布式计算的发展——GIMPS 项目用全球志愿者电脑找梅森素数。
+- 欧几里得证明：若 2 的 p 次方减 1 是素数，则 2 的 p-1 次方乘以它是偶完全数；欧拉后来证明所有偶完全数都来自这种形式。
+- Lucas–Lehmer 判据能对梅森数给出确定的素性结论，有限试除只找到小因子，不能把“没试出因子”当作素数证明。
+- GIMPS 推动了大整数算法、分布式计算和硬件错误检测；RSA 的标准模数是两个大素数的乘积，不能把梅森素数直接说成 RSA 模数。
 
-梅森素数有无穷多个吗？这是个未解之谜！数学家普遍认为有，但没人证明。
+梅森素数有无穷多个吗？这仍是未解决的问题；有限范围找到很多项既不能证明无穷，也不能证明只有有限多个。
 
-现在请同学们自己动手：点"找梅森素数"，扫 1 到 1000。你会找到 3、7、31、127 这 4 个（其他都超过 1000 了）。看看 2 的 5 次方减 1 等于 31 是不是？2 的 7 次方减 1 等于 127 是不是？明天带过来我们比一比。
+现在请同学们自己动手：把指数上限设为 11，观察 p=11 虽然是素数，但 2^11−1=2047=23×89 不是梅森素数。再把上限设为 25，核对 7 个结果及其指数。
 
 记住：数学不只藏在书本里——藏在每一个"2 的 p 次方减 1"的素数里。`,
   audioUrl: '',
   stages: getStagesNT19(),
   render: (h) => {
-    h.innerHTML = `<div class="row"><label>指数 p 上限 <input type="number" id="nt19_p" value="60" min="2"></label><button class="primary" id="nt19_run">找</button></div><div id="nt19_out" class="sequence" style="margin-top:12px;"></div>`;
+    h.innerHTML = `<div class="row"><label>指数 p 上限 <input type="number" id="nt19_p" value="31" min="2" max="127"></label><button class="primary" id="nt19_run">用 Lucas–Lehmer 检验</button></div><div id="nt19_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('nt19_run').onclick = () => {
-      const P = +document.getElementById('nt19_p').value;
+      const P = Math.max(2, Math.min(127, Number.parseInt(document.getElementById('nt19_p').value, 10) || 31));
       const out = [];
       for (let p = 2; p <= P; p++) {
-        if (!is普里姆eSmall(p)) continue;
-        const m = Math.pow(2, p) - 1;
-        // 用 BigInt 防止溢出
-        let mBig = 1n;
-        for (let i = 0; i < p; i++) mBig *= 2n;
-        mBig -= 1n;
-        let is普里姆eBig = true;
-        // 简单素性测试（对 2^p - 1 用 米勒-Rabin 太复杂，只测到 sqrt 较慢）
-        // 改用：is普里姆eSmall 对 number，若 > 2^31 用 BigInt 简单测
-        if (mBig < 1000000n) {
-          if (!is普里姆eSmall(Number(mBig))) is普里姆eBig = false;
-        } else {
-          // 大数：试除到 1000
-          for (let d = 2; d * d <= Number(mBig > 1000000000n ? 100000 : Number(mBig)); d++) {
-            if (mBig % BigInt(d) === 0n) { is普里姆eBig = false; break; }
-          }
-        }
-        if (is普里姆eBig) out.push({ p, m: mBig.toString() });
+        if (!_nt19IsMersennePrime(p)) continue;
+        out.push({ p, m: ((1n << BigInt(p)) - 1n).toString() });
       }
       document.getElementById('nt19_out').innerHTML = out.length > 0
         ? out.map(x => `<strong>2<sup>${x.p}</sup> - 1 = ${x.m}</strong>`).join('  ·  ')
@@ -38280,7 +38266,7 @@ Carmichael 数在 一九〇九年被美国数学家 罗伯特·卡迈克尔 发�
       if (N % 2 !== 0) { document.getElementById('nt20_out').textContent = '请输入偶数'; return; }
       const pairs = [];
       for (let p = 2; p <= N/2; p++) {
-        if (is普里姆eSmall(p) && is普里姆eSmall(N - p)) pairs.push([p, N - p]);
+        if (isPrimeSmall(p) && isPrimeSmall(N - p)) pairs.push([p, N - p]);
       }
       document.getElementById('nt20_out').innerHTML = pairs.length > 0
         ? pairs.map(([a, b]) => `<strong>${a} + ${b}</strong>`).join('  ·  ')
@@ -38858,11 +38844,11 @@ N = 21。8 乘 21 + 1 = 169 = 13²。n = (13 - 1) / 2 = 6。T_6 = 21。✓
   }
 },
 {
-  id: 'SQ12', type: 'axiom_theorem',  cat: '序列', title: '欧拉ian 数（排列的上升数）',
+  id: 'SQ12', type: 'axiom_theorem',  cat: '序列', title: '欧拉数（排列的上升数）',
   intro: '⟨n, k⟩ = n 个元素的排列中恰有 k 个"上升"位置的数目。',
-  explain: `同学们好！今天我们来看一个超美但超深的数列——欧拉ian 数。
+  explain: `同学们好！今天我们来看一个超美但超深的数列——欧拉数。
 
-什么是 欧拉ian 数？⟨n, k⟩ = 1 到 n 的全排列中，恰好有 k 个"上升"位置的排列数。
+什么是 欧拉数？⟨n, k⟩ = 1 到 n 的全排列中，恰好有 k 个"上升"位置的排列数。
 
 什么是"上升位置"？在排列 p₁ p₂ ... p_n 中，如果 p_i < p_{i+1}，那位置 i 就是"上升"。
 
@@ -38874,30 +38860,30 @@ N = 21。8 乘 21 + 1 = 169 = 13²。n = (13 - 1) / 2 = 6。T_6 = 21。✓
 - 312：3>1 但 1<2，上升位置 = 1（位置 2）。⟨3, 1⟩ += 1
 - 321：3>2>1，上升位置 = 0。⟨3, 0⟩ += 1
 
-所以 n=3 的 欧拉ian 数是 ⟨3,0⟩=1, ⟨3,1⟩=4, ⟨3,2⟩=1。
+所以 n=3 的 欧拉数是 ⟨3,0⟩=1, ⟨3,1⟩=4, ⟨3,2⟩=1。
 
-欧拉ian 数矩阵 n=1..5：
+欧拉数矩阵 n=1..5：
 n=1: ⟨1,0⟩=1
 n=2: ⟨2,0⟩=1, ⟨2,1⟩=1
 n=3: ⟨3,0⟩=1, ⟨3,1⟩=4, ⟨3,2⟩=1
 n=4: ⟨4,0⟩=1, ⟨4,1⟩=11, ⟨4,2⟩=11, ⟨4,3⟩=1
 n=5: ⟨5,0⟩=1, ⟨5,1⟩=26, ⟨5,2⟩=66, ⟨5,3⟩=26, ⟨5,4⟩=1
 
-欧拉ian 数有一个重要递推公式：
+欧拉数有一个重要递推公式：
 ⟨n, k⟩ = (k+1) × ⟨n-1, k⟩ + (n-k) × ⟨n-1, k-1⟩
 
-欧拉ian 数还满足：
+欧拉数还满足：
 Σ_{k=0}^{n-1} ⟨n, k⟩ = n!（n 的全排列数）
 Σ_{k=1}^{n} k × ⟨n, k⟩ = n!(n-1)/2（平均上升数 = n/2 - 1/2）
 
-欧拉ian 数跟二项式系数、斯特林 数、调和数有深度联系。
+欧拉数跟二项式系数、斯特林 数、调和数有深度联系。
 
 应用：
 - 排列的统计性质
 - 升序的逆序数分析
 - 算法的复杂度分析
 
-现在请同学们自己动手：点"生成 欧拉ian 数"，看前 7 行。验证 ⟨4,1⟩=11。看看 ⟨5,2⟩=66。明天带过来我们比一比。
+现在请同学们自己动手：点"生成 欧拉数"，看前 7 行。验证 ⟨4,1⟩=11。看看 ⟨5,2⟩=66。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"上升位置"的有趣统计里。`,
   audioUrl: '',
@@ -39052,7 +39038,7 @@ S(n, k) = k × S(n-1, k) + S(n-1, k-1)
 },
 {
   id: 'SQ15', type: 'axiom_theorem',  cat: '序列', title: '回文数与 Lychrel 数',
-  intro: 'LyChrel 猜想：有些数（如 196）可能永远迭代不到回文数。',
+  intro: 'Lychrel 猜想：有些数（如 196）可能永远迭代不到回文数。',
   explain: `同学们好！今天我们来看一个有趣的现象——回文数与 Lychrel 数。
 
 什么是 Lychrel 数？把一个数加上它的倒序数，反复迭代，可能永远得不到回文数。Lychrel 猜想说：有些数（叫 Lychrel 数）永远迭代不到回文。
@@ -39303,7 +39289,7 @@ Lychrel 猜想：196 永远迭代不到回文。但这个猜想还没被证明�
   <g transform="translate(40, 180)">
     <rect x="0" y="0" width="540" height="50" fill="#fef3c7" rx="6" stroke="#f59e0b"/>
     <text x="20" y="20" font-size="12" font-weight="700" fill="#92400e">N=1 项：π ≈ 3.14159265358979...</text>
-    <text x="20" y="38" font-size="11" fill="#78350f">✓ 14 位精度！Chud诺夫斯基 公式同源——工业标准</text>
+    <text x="20" y="38" font-size="11" fill="#78350f">✓ 14 位精度！丘德诺夫斯基 公式同源——工业标准</text>
   </g>
 </svg>`,
   explain: `同学们好！今天我们来看一个超美的 π 公式——拉马努金 公式。
@@ -39325,7 +39311,7 @@ Lychrel 猜想：196 永远迭代不到回文。但这个猜想还没被证明�
 
 每加 1 项，精度翻倍增加。这比 莱布尼茨（O(1/n)）和 马青（O(1/n³)）都强得多。
 
-现代计算机算 π 万亿位，一九八五年之前用的就是 拉马努金 公式的变体。之后被 Chud诺夫斯基 公式（每项 14 位）取代。
+现代计算机算 π 万亿位，一九八五年之前用的就是 拉马努金 公式的变体。之后被 丘德诺夫斯基 公式（每项 14 位）取代。
 
 拉马努金还发现了其他超美的公式：
 - 分拆数递推（五边形数定理）
@@ -39412,7 +39398,7 @@ BBP 公式的发现过程：
 
 BBP 公式的收敛速度：每加 1 项，精度增加约 0.5 位（16 进制），等价于约 0.21 位（十进制）。
 
-虽然 BBP 算 π 整体比 Chud诺夫斯基 慢，但它能"跳着算"任意位，这在某些场景下很有用。
+虽然 BBP 算 π 整体比 丘德诺夫斯基 慢，但它能"跳着算"任意位，这在某些场景下很有用。
 
 实际应用：
 - 验证 π 的统计性质（数字分布）
@@ -39922,7 +39908,7 @@ n 越大越接近 0.57721...，但收敛很慢！
       <!-- 1882 -->
       <circle cx="280" cy="40" r="6" fill="#3b82f6"/><text x="280" y="20">1882</text><text x="280" y="65">Lindemann</text><text x="280" y="78">π 超越</text>
       <!-- 1989 -->
-      <circle cx="370" cy="40" r="6" fill="#8b5cf6"/><text x="370" y="20">1988</text><text x="370" y="65">Chud诺夫斯基</text><text x="370" y="78">14位/项</text>
+      <circle cx="370" cy="40" r="6" fill="#8b5cf6"/><text x="370" y="20">1988</text><text x="370" y="65">丘德诺夫斯基</text><text x="370" y="78">14位/项</text>
       <!-- 2024 -->
       <circle cx="480" cy="40" r="8" fill="#ec4899"><animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/></circle><text x="480" y="20">2024</text><text x="480" y="65" font-weight="700">202 万亿</text><text x="480" y="78">位纪录</text>
     </g>
@@ -39952,7 +39938,7 @@ n 越大越接近 0.57721...，但收敛很慢！
 - 鲁道夫·范·科伊兰（16 世纪）：35 位精度
 
 现代记录：
-- 二〇二二年：100 万亿位（瑞士团队，用 Chud诺夫斯基 公式 + 54 天）
+- 二〇二二年：100 万亿位（瑞士团队，用 丘德诺夫斯基 公式 + 54 天）
 - 用了 82 PB 硬盘存储
 - 用 1 PB 内存
 - 平均每 36 小时算 1 万亿位
@@ -43056,15 +43042,15 @@ Tim 排序（Python/Java 用）：归并 + 插入，处理真实数据的"局部
     h.innerHTML = `<div class="row"><label>N <input type="number" id="al10_n" value="100" min="10" max="1000"></label><button class="primary" id="al10_run">筛</button></div><div id="al10_out" class="sequence" style="margin-top:12px;"></div>`;
     document.getElementById('al10_run').onclick = () => {
       const N = +document.getElementById('al10_n').value;
-      const is普里姆e = new Uint8Array(N + 1).fill(1);
-      is普里姆e[0] = is普里姆e[1] = 0;
+      const isPrime = new Uint8Array(N + 1).fill(1);
+      isPrime[0] = isPrime[1] = 0;
       for (let i = 2; i * i <= N; i++) {
-        if (is普里姆e[i]) {
-          for (let j = i * i; j <= N; j += i) is普里姆e[j] = 0;
+        if (isPrime[i]) {
+          for (let j = i * i; j <= N; j += i) isPrime[j] = 0;
         }
       }
       const primes = [];
-      for (let i = 2; i <= N; i++) if (is普里姆e[i]) primes.push(i);
+      for (let i = 2; i <= N; i++) if (isPrime[i]) primes.push(i);
       document.getElementById('al10_out').innerHTML = `${N} 以内有 <strong>${primes.length}</strong> 个素数：<br>${primes.join(', ')}`;
     };
   }
@@ -44564,7 +44550,7 @@ function minimax(board, depth, isMax):
 第五条：枪（Gun）：无限产生滑翔机
 第六条：滋生者（Puff）：能吞噬其他结构
 
-经典"高斯帕滑翔机枪"（Gosper glider gun）：一九七〇年发现的第一个"枪"，周期 30，能无限产生滑翔机。
+经典"戈斯珀（Gosper）滑翔机枪"（Gosper glider gun）：一九七〇年发现的第一个"枪"，周期 30，能无限产生滑翔机。
 
 滑翔机是生命游戏最重要的"信息载体"——它能传递信息，就像生物 DNA 编码。
 
@@ -44604,7 +44590,7 @@ XXX
 .X.
 它周期 2 闪烁。
 
-现在请同学们自己动手：点"生命游戏"，看 20×20 网格。点"随机"看初始状态。点"开始"看演化。试试"高斯帕枪"：点"预设"选滑翔机枪。明天带过来我们比一比。
+现在请同学们自己动手：点"生命游戏"，看 20×20 网格。点"随机"看初始状态。点"开始"看演化。试试"戈斯珀（Gosper）枪"：点"预设"选滑翔机枪。明天带过来我们比一比。
 
 记住：数学不只藏在书本里——藏在每一个"4 条简单规则"的有趣涌现生命里。`,
   audioUrl: '',
@@ -45355,18 +45341,18 @@ XXX
   render: (h) => {
     h.innerHTML = `<div class="row"><label>a <input type="number" id="ex12_a" value="2" min="-30" max="30"></label><label>b <input type="number" id="ex12_b" value="1" min="-30" max="30"></label><button class="primary" id="ex12_run">验证</button><button class="ghost" id="ex12_scan">扫 1-30</button></div><div id="ex12_out" style="margin-top: 12px; padding: 12px; background: #f0f9ff; border-radius: 8px; font-family: 'Courier New', monospace;"></div><canvas id="ex12_cv" width="360" height="360" style="margin-top: 12px; max-width: 100%; border: 1px solid var(--line); border-radius: 6px;"></canvas>`;
     const factorize = n => { const f = []; for (let p = 2; p * p <= n; p++) while (n % p === 0) { f.push(p); n /= p; } if (n > 1) f.push(n); return f; };
-    const is普里姆e = n => n < 2 ? false : (n === 2 ? true : factorize(n).length === 1);
-    const is高斯ian普里姆e = (a, b) => {
+    const isPrime = n => n < 2 ? false : (n === 2 ? true : factorize(n).length === 1);
+    const isGaussianPrime = (a, b) => {
       if (a === 0 && b === 0) return false;
       const N = a * a + b * b;
-      if (a === 0 || b === 0) return is普里姆e(Math.abs(a === 0 ? b : a));
-      return is普里姆e(N) && (N % 4 === 3 || (N % 4 === 1 && Math.abs(a) === 1) || (N === 5 && (a === 2 || a === -2)));
+      if (a === 0 || b === 0) return isPrime(Math.abs(a === 0 ? b : a));
+      return isPrime(N) && (N % 4 === 3 || (N % 4 === 1 && Math.abs(a) === 1) || (N === 5 && (a === 2 || a === -2)));
     };
     document.getElementById('ex12_run').onclick = () => {
       const a = +document.getElementById('ex12_a').value;
       const b = +document.getElementById('ex12_b').value;
       const N = a * a + b * b;
-      const gp = is高斯ian普里姆e(a, b);
+      const gp = isGaussianPrime(a, b);
       document.getElementById('ex12_out').innerHTML = `${a}+${b}i<br>范数 N = ${a}²+${b}² = <strong style="color:#7c3aed;">${N}</strong><br>${gp ? '<strong style="color:#10b981;">✓ 是高斯素数</strong>' : '<strong style="color:#ef4444;">✗ 不是高斯素数（可分解）</strong>'}`;
     };
     document.getElementById('ex12_scan').onclick = () => {
@@ -45387,7 +45373,7 @@ XXX
       ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, H); ctx.stroke();
       for (let a = -N; a <= N; a++) for (let b = -N; b <= N; b++) {
         if (a === 0 && b === 0) continue;
-        if (is高斯ian普里姆e(a, b)) {
+        if (isGaussianPrime(a, b)) {
           ctx.fillStyle = '#7c3aed';
           ctx.beginPath();
           ctx.arc(cx + a * scale, cy - b * scale, 2.5, 0, Math.PI * 2);
@@ -45879,7 +45865,7 @@ I = √π ✓
 <p><strong>1900s</strong>，<strong>Karl Pearson</strong>、<strong>Ronald Fisher</strong> 等人用正态分布建立现代统计推断——t 检验、χ² 检验、ANOVA 全部以正态为基底。</p>
 <p><strong>一九〇五年</strong>，Einstein 在布朗运动论文中给正态分布一个<em>物理</em>解释（独立碰撞的极限），超越纯数学。</p>
 <p><strong>1950s</strong>，通信理论兴起，Q 函数 = (1 - erf)/2 成为误码率标准。</p>
-<p><strong>21 世纪</strong>：高斯过程（高斯ian Process）成为机器学习重要工具；变分自编码器（VAE）潜在空间假设正态；扩散模型（Stable Diffusion）核心就是高斯分布迭代。</p>`,
+<p><strong>21 世纪</strong>：高斯过程（Gaussian Process）成为机器学习重要工具；变分自编码器（VAE）潜在空间假设正态；扩散模型（Stable Diffusion）核心就是高斯分布迭代。</p>`,
   tryit: `<ol>
   <li><strong>看孩子预测</strong>：问"∫e^(-x²) 能不能算出来？"——不能给封闭形式，但定积分 = √π。</li>
   <li><strong>用第 2 步画 e^(-x²)</strong>：输入 a=-2, b=2，看红条覆盖的面积 ≈ 1.76。</li>
@@ -45942,7 +45928,7 @@ I = √π ✓
 },
   {
   id: 'EX_PROVEN_07', type: 'conjecture_proven',  cat: '已证', title: '3D 挂谷猜想完整证明 (王虹+Zahl 2025) ★最重磅★',
-  intro: '公元 2025 年 2 月，王虹 (Hong Wang) 与 Joshua Zahl 发表 127 页论文 (arXiv:2502.17655)，完整证明 3D 挂谷 猜想的 Hausdorff 维数 + Minkowski 维数都 = 3，结束了这个 1917 年悬而未决的百年问题。',
+  intro: '2025 年 2 月，王虹 (Hong Wang) 与 Joshua Zahl 发表 127 页论文 (arXiv:2502.17655)，完整证明 3D 挂谷 猜想的 Hausdorff 维数 + Minkowski 维数都 = 3，结束了这个 1917 年悬而未决的百年问题。',
   audioUrl: '',
   stages: getStagesEX_PROVEN_07(),
   render: (h) => initStage_EX_PROVEN_07_initAll(h)
@@ -46467,8 +46453,8 @@ plazaRenderGrid();
 
 
 
-/* ===================== Twin 普里姆es ===================== */
-let tpN, tpRun, tpStatus, tpChartCv, tp普里姆eTotal, tpTwinCount, tpRatio, tpLargest, tpCheck, tpCheckBtn, tpIsP1, tpIsP2, tpIsTwin;
+/* ===================== Twin primes ===================== */
+let tpN, tpRun, tpStatus, tpChartCv, tpPrimeTotal, tpTwinCount, tpRatio, tpLargest, tpCheck, tpCheckBtn, tpIsP1, tpIsP2, tpIsTwin;
 let tpChart = null;
 
 const TWIN_HTML = `
@@ -46489,7 +46475,7 @@ const TWIN_HTML = `
       <h3>孪生素数对（散点：横轴 = 小素数，纵轴 = 大素数）</h3>
       <div class="chart-wrap tall"><canvas id="tpChart"></canvas></div>
       <div class="stat-grid" style="margin-top: 12px;">
-        <div class="stat"><div class="k">区间 [1, N] 素数总数</div><div class="v" id="tp普里姆eTotal">—</div></div>
+        <div class="stat"><div class="k">区间 [1, N] 素数总数</div><div class="v" id="tpPrimeTotal">—</div></div>
         <div class="stat big"><div class="k">孪生素数对数</div><div class="v good" id="tpTwinCount">—</div></div>
         <div class="stat"><div class="k">孪生 / 素数比</div><div class="v" id="tpRatio">—</div></div>
         <div class="stat"><div class="k">最大孪生对</div><div class="v" id="tpLargest">—</div></div>
@@ -46525,7 +46511,7 @@ function setupTwin(root) {
   tpRun = document.getElementById('tpRun');
   tpStatus = document.getElementById('tpStatus');
   tpChartCv = document.getElementById('tpChart');
-  tp普里姆eTotal = document.getElementById('tp普里姆eTotal');
+  tpPrimeTotal = document.getElementById('tpPrimeTotal');
   tpTwinCount = document.getElementById('tpTwinCount');
   tpRatio = document.getElementById('tpRatio');
   tpLargest = document.getElementById('tpLargest');
@@ -46565,20 +46551,20 @@ function tpScan() {
   tpStatus.textContent = '扫描中…';
   tpRun.disabled = true;
   setTimeout(() => {
-    const is普里姆e = sieve(N + 2);
+    const isPrime = sieve(N + 2);
     const pairs = [];
     let primeTotal = 0;
     for (let i = 2; i <= N; i++) {
-      if (is普里姆e[i]) {
+      if (isPrime[i]) {
         primeTotal++;
-        if (is普里姆e[i + 2]) pairs.push([i, i + 2]);
+        if (isPrime[i + 2]) pairs.push([i, i + 2]);
       }
     }
     tpChart.data.datasets[0].data = pairs.map(p => ({ x: p[0], y: p[1] }));
     tpChart.data.datasets[0].pointBackgroundColor = pairs.length > 2000 ? 'rgba(37,99,235,0.4)' : '#2563eb';
     tpChart.data.datasets[0].pointRadius = pairs.length > 2000 ? 1.5 : 3;
     tpChart.update();
-    tp普里姆eTotal.textContent = primeTotal;
+    tpPrimeTotal.textContent = primeTotal;
     tpTwinCount.textContent = pairs.length;
     tpRatio.textContent = primeTotal > 0 ? (pairs.length / primeTotal * 100).toFixed(1) + '%' : '0';
     if (pairs.length > 0) {
@@ -46595,9 +46581,9 @@ function tpScan() {
 function tpCheckOne() {
   const n = +tpCheck.value;
   if (n < 2) { alert('请输入 ≥ 2 的正整数'); return; }
-  const is普里姆e = sieve(n + 2);
-  const p1 = is普里姆e[n] === 1;
-  const p2 = is普里姆e[n + 2] === 1;
+  const isPrime = sieve(n + 2);
+  const p1 = isPrime[n] === 1;
+  const p2 = isPrime[n + 2] === 1;
   tpIsP1.textContent = p1 ? '✓ 素数' : '✗ 不是';
   tpIsP1.style.color = p1 ? '#059669' : '#dc2626';
   tpIsP2.textContent = p2 ? '✓ 素数' : '✗ 不是';
@@ -46614,7 +46600,7 @@ const PI_TRUE = 3.14159265358979323846;
 
 const PIALG_HTML = `
 <div class="intro">
-  <strong>算 π 的多算法</strong>：从公元前 250 年阿基米德割圆到 1989 年 Chud诺夫斯基 公式，人类用越来越快的方式逼近 π。本页让 AI 并排跑 4 种算法，<strong>实时看谁收敛快</strong>。
+  <strong>算 π 的多算法</strong>：从公元前 250 年阿基米德割圆到 1989 年 丘德诺夫斯基 公式，人类用越来越快的方式逼近 π。本页让 AI 并排跑 4 种算法，<strong>实时看谁收敛快</strong>。
 </div>
 <div class="grid">
   <div>
@@ -46631,7 +46617,7 @@ const PIALG_HTML = `
         <span style="color: #ef4444;">阿基米德割圆（96 → 6 边形逐次倍增）</span><br>
         <span style="color: #2563eb;">莱布尼茨 级数（π/4 = 1 - 1/3 + 1/5 - 1/7 + ...）</span><br>
         <span style="color: #10b981;">马青 公式（π/4 = 4·arctan(1/5) - arctan(1/239)）</span><br>
-        <span style="color: #eab308;">Chud诺夫斯基（1/π = 12·Σ(...)）</span>
+        <span style="color: #eab308;">丘德诺夫斯基（1/π = 12·Σ(...)）</span>
       </div>
     </div>
   </div>
@@ -46641,7 +46627,7 @@ const PIALG_HTML = `
       <div class="stat"><div class="k">阿基米德</div><div class="v" id="piA" style="font-size: 18px;">—</div></div>
       <div class="stat" style="margin-top: 8px;"><div class="k">莱布尼茨</div><div class="v" id="piL" style="font-size: 18px;">—</div></div>
       <div class="stat" style="margin-top: 8px;"><div class="k">马青</div><div class="v" id="piM" style="font-size: 18px;">—</div></div>
-      <div class="stat" style="margin-top: 8px;"><div class="k">Chud诺夫斯基</div><div class="v" id="piC" style="font-size: 18px;">—</div></div>
+      <div class="stat" style="margin-top: 8px;"><div class="k">丘德诺夫斯基</div><div class="v" id="piC" style="font-size: 18px;">—</div></div>
       <div class="stat big" style="margin-top: 10px; background: #ecfdf5; border-color: #a7f3d0;">
         <div class="k" style="color: #047857;">真实 π</div>
         <div class="v" id="piTrue" style="color: #059669;">3.14159265...</div>
@@ -46649,8 +46635,8 @@ const PIALG_HTML = `
     </div>
     <div class="card" style="margin-top: 20px;">
       <h2>收敛速度对比</h2>
-      <p style="font-size: 14px; line-height: 1.6;"><strong>莱布尼茨</strong>：O(1/N)，超慢——算 1000 项才到 3.14；算 10⁶ 项到 3.141。<br><strong>马青</strong>：O(1/N^3)，中速——10 项到 12 位精度。<br><strong>Chud诺夫斯基</strong>：O(1/N^6)，极快——<strong>每加 1 项多 14 位有效数字</strong>，是当前算 π 万亿位的工业标准。</p>
-      <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">课堂上：<strong>让孩子按"开始"看图，红线 莱布尼茨 几乎不动，黄线 Chud诺夫斯基 一步到位</strong>——算法差距是数量级的。</p>
+      <p style="font-size: 14px; line-height: 1.6;"><strong>莱布尼茨</strong>：O(1/N)，超慢——算 1000 项才到 3.14；算 10⁶ 项到 3.141。<br><strong>马青</strong>：O(1/N^3)，中速——10 项到 12 位精度。<br><strong>丘德诺夫斯基</strong>：O(1/N^6)，极快——<strong>每加 1 项多 14 位有效数字</strong>，是当前算 π 万亿位的工业标准。</p>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">课堂上：<strong>让孩子按"开始"看图，红线 莱布尼茨 几乎不动，黄线 丘德诺夫斯基 一步到位</strong>——算法差距是数量级的。</p>
     </div>
   </div>
 </div>
@@ -46676,7 +46662,7 @@ function setupPiAlg(root) {
         { label: '阿基米德', data: [], borderColor: '#ef4444', borderWidth: 2, pointRadius: 0, tension: 0 },
         { label: '莱布尼茨',  data: [], borderColor: '#2563eb', borderWidth: 2, pointRadius: 0, tension: 0 },
         { label: '马青',   data: [], borderColor: '#10b981', borderWidth: 2, pointRadius: 0, tension: 0 },
-        { label: 'Chud诺夫斯基', data: [], borderColor: '#eab308', borderWidth: 2, pointRadius: 0, tension: 0 },
+        { label: '丘德诺夫斯基', data: [], borderColor: '#eab308', borderWidth: 2, pointRadius: 0, tension: 0 },
       ]
     },
     options: {

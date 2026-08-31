@@ -23,6 +23,27 @@ test('历史入口复用共享壳且不请求缺失音频', async ({ page }) => 
   expect(mediaRequests).toEqual([]);
 });
 
+test('NT19 使用 Lucas–Lehmer 判据并展示当前梅森素数纪录', async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.goto('/pages/NT19.html', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveURL(/\/index\.html#NT19$/, { timeout: 10_000 });
+  await expect(page.locator('#plazaDetail')).toBeVisible({ timeout: 15_000 });
+
+  await expect(page.locator('.stage-panel').first()).toContainText('截至 2026-08 已知 52 个');
+  await expect(page.locator('.stage-panel').first()).toContainText('41,024,320 位');
+
+  await page.locator('.stage-tab').nth(1).click();
+  await page.locator('#nt19s2-p').fill('31');
+  await expect(page.locator('#nt19s2-result')).toContainText('524287');
+  await expect(page.locator('#nt19s2-result')).not.toContainText('2047');
+  await expect(page.locator('#nt19s2-result')).not.toContainText('536870911');
+
+  await page.locator('#nt19_p').fill('31');
+  await page.getByRole('button', { name: '用 Lucas–Lehmer 检验' }).click();
+  await expect(page.locator('#nt19_out')).toContainText('2147483647');
+  await expect(page.locator('#nt19_out')).not.toContainText('536870911');
+});
+
 for (const filename of experimentPages) {
   const experimentId = basename(filename, '.html');
 

@@ -1,8 +1,7 @@
 // 从 index.html 中提取 EXPERIMENTS 数组，把每个实验的字段 + render 源码存为 JSON
-const fs = require('fs');
-const path = require('path');
+import { readFileSync, writeFileSync } from 'node:fs';
 
-const html = fs.readFileSync('index.html', 'utf-8');
+const html = readFileSync('index.html', 'utf-8');
 // 从 // EXPERIMENTS 结束 标记往前找 EXPERIMENTS 数组结束
 const expEndIdx = html.indexOf('// EXPERIMENTS 结束');
 if (expEndIdx === -1) { console.error('找不到 EXPERIMENTS 结束标记'); process.exit(1); }
@@ -42,7 +41,7 @@ const out = EXPERIMENTS.map(e => ({
   renderSrc: e.render.toString()
 }));
 
-fs.writeFileSync('experiments_meta.json', JSON.stringify(out, null, 2));
+writeFileSync('experiments_meta.json', JSON.stringify(out, null, 2));
 console.log(`提取 ${out.length} 个实验到 experiments_meta.json`);
 console.log('前 3 个 ID:', out.slice(0, 3).map(e => e.id).join(', '));
 console.log('render 样例（前 200 字符）:', out[0].renderSrc.substring(0, 200));

@@ -25,11 +25,30 @@ describe('类型化实验目录', () => {
     }
   });
 
-  it('仅把已经逐项核验的三十个旗舰实验标记为已核验', () => {
+  it('仅把已经逐项核验的三十一个实验标记为已核验', () => {
     const verified = experimentCatalog
       .filter((experiment) => experiment.education.reviewStatus === 'verified')
       .map((experiment) => experiment.id);
-    expect(verified).toEqual(['PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08', 'NT01', 'SQ01', 'SQ04', 'SQ07', 'SQ09', 'GM01', 'GM03', 'GM04', 'GM07', 'GR01', 'GR02', 'GR07', 'GR09', 'PB01', 'PB02', 'PB03', 'PB08', 'AL01', 'AL04', 'AL07', 'AL10', 'FR03']);
-    expect(experimentCatalog.filter((experiment) => experiment.education.reviewStatus === 'unreviewed')).toHaveLength(118);
+    expect(verified).toEqual(['PR01', 'PR02', 'PR03', 'PR04', 'PR05', 'PR06', 'PR07', 'PR08', 'NT01', 'NT19', 'SQ01', 'SQ04', 'SQ07', 'SQ09', 'GM01', 'GM03', 'GM04', 'GM07', 'GR01', 'GR02', 'GR07', 'GR09', 'PB01', 'PB02', 'PB03', 'PB08', 'AL01', 'AL04', 'AL07', 'AL10', 'FR03']);
+    expect(experimentCatalog.filter((experiment) => experiment.education.reviewStatus === 'unreviewed')).toHaveLength(117);
+  });
+
+  it('已核验实验具有可追溯来源和非模板化教学元数据', () => {
+    const verified = experimentCatalog.filter(
+      (experiment) => experiment.education.reviewStatus === 'verified'
+    );
+
+    for (const experiment of verified) {
+      expect(experiment.education.learningObjectives.length, experiment.id).toBeGreaterThanOrEqual(3);
+      expect(experiment.education.sources.length, experiment.id).toBeGreaterThanOrEqual(2);
+      expect(experiment.education.lastReviewedAt, experiment.id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(experiment.education.learningObjectives.join(' '), experiment.id).not.toContain(
+        '通过可视化和操作描述'
+      );
+      for (const source of experiment.education.sources) {
+        expect(source.label.trim(), experiment.id).not.toBe('');
+        expect(source.url, experiment.id).toMatch(/^https:\/\//);
+      }
+    }
   });
 });

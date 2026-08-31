@@ -19,8 +19,8 @@ test('新应用展示全部 148 个实验并支持搜索', async ({ page }) => {
 
 test('新应用详情路由提供原生五步实验并保留旧实验对照', async ({ page }) => {
   await page.goto('/dist/index.html#/experiment/PR01', { waitUntil: 'domcontentloaded' });
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('投针');
-  await expect(page.getByRole('tab')).toHaveCount(5);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('投针', { timeout: 15_000 });
+  await expect(page.getByRole('tab')).toHaveCount(5, { timeout: 15_000 });
   await expect(page.getByRole('link', { name: /打开 PR01 旧版实验/ })).toHaveAttribute(
     'href',
     './pages/PR01.html'

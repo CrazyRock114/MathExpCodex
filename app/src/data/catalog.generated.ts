@@ -4,7 +4,7 @@ import type { ExperimentSummary } from './experiment';
 export const EXPERIMENT_CATALOG = [
   {
     "id": "PR01",
-    "title": "投针算 π (Buffon 1733)",
+    "title": "投针算 π (布丰 1733)",
     "intro": "把长度为 L 的针扔到画着等距平行线（间距 d）的纸上，针跨线概率 P = 2L/(πd)，反推 π。",
     "category": "几何",
     "kind": "axiom_theorem",
@@ -17,7 +17,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“投针算 π (Buffon 1733)”中的核心现象",
+        "通过可视化和操作描述“投针算 π (布丰 1733)”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -31,14 +31,11 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "PR02",
-    "title": "冰雹蹦跳 (Collatz 猜想)",
+    "title": "冰雹蹦跳 (科拉茨 猜想)",
     "intro": "选一个正整数 n：偶数就除 2，奇数就 ×3+1，一直蹦下去，最后必到 1。",
     "category": "数论",
     "kind": "conjecture_open",
-    "searchAliases": [
-      "科拉茨",
-      "冰雹猜想"
-    ],
+    "searchAliases": [],
     "stageCount": 5,
     "legacyPath": "./pages/PR02.html",
     "education": {
@@ -47,7 +44,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“冰雹蹦跳 (Collatz 猜想)”中的核心现象",
+        "通过可视化和操作描述“冰雹蹦跳 (科拉茨 猜想)”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -61,8 +58,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "PR03",
-    "title": "猜勾股数 (Euclid 公式)",
-    "intro": "本原勾股数 (a, b, c) 满足 a² + b² = c²。Euclid 公式：所有本原勾股数都长 (m²−n², 2mn, m²+n²)。",
+    "title": "猜勾股数 (欧几里得 公式)",
+    "intro": "本原勾股数 (a, b, c) 满足 a² + b² = c²。欧几里得 公式：所有本原勾股数都长 (m²−n², 2mn, m²+n²)。",
     "category": "数论",
     "kind": "axiom_theorem",
     "searchAliases": [],
@@ -74,7 +71,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“猜勾股数 (Euclid 公式)”中的核心现象",
+        "通过可视化和操作描述“猜勾股数 (欧几里得 公式)”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -142,8 +139,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "PR06",
-    "title": "哥德巴赫配糖 (Goldbach 1742)",
-    "intro": "任何大于 2 的偶数都能写成两个素数之和。强版至今未证，弱版（Helfgott 2013）已证。",
+    "title": "哥德巴赫配糖 (哥德巴赫 1742)",
+    "intro": "任何大于 2 的偶数都能写成两个素数之和。强版至今未证，弱版（赫尔福特 2013）已证。",
     "category": "数论",
     "kind": "conjecture_open",
     "searchAliases": [],
@@ -155,7 +152,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“哥德巴赫配糖 (Goldbach 1742)”中的核心现象",
+        "通过可视化和操作描述“哥德巴赫配糖 (哥德巴赫 1742)”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -169,7 +166,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "PR07",
-    "title": "孪生素数 (Twin Primes)",
+    "title": "孪生素数 (Twin primes)",
     "intro": "相差 2 的素数对：(3,5)、(5,7)、(11,13)、(17,19)、(29,31)... 张益唐 2013 年里程碑证明。",
     "category": "数论",
     "kind": "conjecture_open",
@@ -182,7 +179,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“孪生素数 (Twin Primes)”中的核心现象",
+        "通过可视化和操作描述“孪生素数 (Twin primes)”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -197,7 +194,7 @@ export const EXPERIMENT_CATALOG = [
   {
     "id": "PR08",
     "title": "π 的多算法对比（4 种并行）",
-    "intro": "阿基米德割圆 / Leibniz / Machin / Chudnovsky——同一目标 π，4 种完全不同的算法，差距 6 个数量级。",
+    "intro": "阿基米德割圆 / 莱布尼茨 / 马青 / 丘德诺夫斯基——同一目标 π，4 种完全不同的算法，差距 6 个数量级。",
     "category": "π·e",
     "kind": "axiom_theorem",
     "searchAliases": [],
@@ -385,7 +382,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "NT07",
-    "title": "Kaprekar 变换",
+    "title": "卡普雷卡 变换",
     "intro": "把 n 各位排序（大-小组成大数 - 小-大组成小数），迭代到固定点 6174（4 位数）。",
     "category": "数论",
     "kind": "axiom_theorem",
@@ -398,7 +395,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Kaprekar 变换”中的核心现象",
+        "通过可视化和操作描述“卡普雷卡 变换”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -709,8 +706,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "NT19",
-    "title": "梅森素数（部分）",
-    "intro": "形如 2^p - 1 的素数（p 也必须是素数）。已知 51 个。例：3, 7, 31, 127, 8191, 131071...",
+    "title": "梅森素数与 Lucas–Lehmer 检验",
+    "intro": "梅森素数形如 2^p−1；p 为素数只是必要条件。用 Lucas–Lehmer 判据检验小指数，并区分有限搜索与“是否有无穷多个”的开放问题。",
     "category": "数论",
     "kind": "conjecture_open",
     "searchAliases": [],
@@ -722,7 +719,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“梅森素数（部分）”中的核心现象",
+        "通过可视化和操作描述“梅森素数与 Lucas–Lehmer 检验”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -763,13 +760,11 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "SQ01",
-    "title": "Fibonacci 数列",
+    "title": "斐波那契 数列",
     "intro": "F_1=F_2=1, F_n = F_{n-1} + F_{n-2}。1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144...",
     "category": "序列",
     "kind": "axiom_theorem",
-    "searchAliases": [
-      "斐波那契"
-    ],
+    "searchAliases": [],
     "stageCount": 5,
     "legacyPath": "./pages/SQ01.html",
     "education": {
@@ -778,7 +773,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Fibonacci 数列”中的核心现象",
+        "通过可视化和操作描述“斐波那契 数列”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -792,13 +787,11 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "SQ02",
-    "title": "Fibonacci 与黄金比例",
+    "title": "斐波那契 与黄金比例",
     "intro": "F_{n+1} / F_n → φ = 1.618... 越来越准。φ = (1+√5)/2。",
     "category": "序列",
     "kind": "axiom_theorem",
-    "searchAliases": [
-      "斐波那契"
-    ],
+    "searchAliases": [],
     "stageCount": 5,
     "legacyPath": "./pages/SQ02.html",
     "education": {
@@ -807,7 +800,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Fibonacci 与黄金比例”中的核心现象",
+        "通过可视化和操作描述“斐波那契 与黄金比例”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -821,7 +814,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "SQ03",
-    "title": "Lucas 数列",
+    "title": "卢卡斯 数列",
     "intro": "L_1=1, L_2=3, L_n = L_{n-1} + L_{n-2}。1, 3, 4, 7, 11, 18, 29, 47, 76, 123...",
     "category": "序列",
     "kind": "axiom_theorem",
@@ -834,7 +827,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Lucas 数列”中的核心现象",
+        "通过可视化和操作描述“卢卡斯 数列”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -848,7 +841,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "SQ04",
-    "title": "Catalan 数",
+    "title": "卡塔兰 数",
     "intro": "C_n = C(2n, n) / (n+1)。1, 1, 2, 5, 14, 42, 132, 429, 1430...",
     "category": "序列",
     "kind": "axiom_theorem",
@@ -861,7 +854,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Catalan 数”中的核心现象",
+        "通过可视化和操作描述“卡塔兰 数”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -1010,13 +1003,11 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "SQ10",
-    "title": "斐波那契词（Fibonacci word）",
+    "title": "斐波那契词（斐波那契 word）",
     "intro": "S(0) = \"0\", S(1) = \"01\", S(n) = S(n-1) + S(n-2)。生成二进制字符串。",
     "category": "序列",
     "kind": "axiom_theorem",
-    "searchAliases": [
-      "斐波那契"
-    ],
+    "searchAliases": [],
     "stageCount": 5,
     "legacyPath": "./pages/SQ10.html",
     "education": {
@@ -1025,7 +1016,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“斐波那契词（Fibonacci word）”中的核心现象",
+        "通过可视化和操作描述“斐波那契词（斐波那契 word）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -1066,7 +1057,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "SQ12",
-    "title": "Eulerian 数（排列的上升数）",
+    "title": "欧拉数（排列的上升数）",
     "intro": "⟨n, k⟩ = n 个元素的排列中恰有 k 个\"上升\"位置的数目。",
     "category": "序列",
     "kind": "axiom_theorem",
@@ -1079,7 +1070,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Eulerian 数（排列的上升数）”中的核心现象",
+        "通过可视化和操作描述“欧拉数（排列的上升数）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -1093,7 +1084,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "SQ13",
-    "title": "Stirling 数（第二类）",
+    "title": "斯特林 数（第二类）",
     "intro": "S(n, k) = n 个元素的集合分到 k 个非空子集的方法数。",
     "category": "序列",
     "kind": "axiom_theorem",
@@ -1106,7 +1097,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Stirling 数（第二类）”中的核心现象",
+        "通过可视化和操作描述“斯特林 数（第二类）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -1148,7 +1139,7 @@ export const EXPERIMENT_CATALOG = [
   {
     "id": "SQ15",
     "title": "回文数与 Lychrel 数",
-    "intro": "LyChrel 猜想：有些数（如 196）可能永远迭代不到回文数。",
+    "intro": "Lychrel 猜想：有些数（如 196）可能永远迭代不到回文数。",
     "category": "序列",
     "kind": "axiom_theorem",
     "searchAliases": [],
@@ -1174,7 +1165,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "PE01",
-    "title": "Wallis 乘积",
+    "title": "沃利斯 乘积",
     "intro": "π/2 = 2·2·4·4·6·6.../1·3·3·5·5·7... 收敛慢但优雅。",
     "category": "π·e",
     "kind": "axiom_theorem",
@@ -1187,7 +1178,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Wallis 乘积”中的核心现象",
+        "通过可视化和操作描述“沃利斯 乘积”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -1201,8 +1192,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "PE02",
-    "title": "Nilakantha 级数",
-    "intro": "π = 3 + 4/(2·3·4) - 4/(4·5·6) + 4/(6·7·8) - ... 比 Leibniz 收敛快。",
+    "title": "尼拉康塔 级数",
+    "intro": "π = 3 + 4/(2·3·4) - 4/(4·5·6) + 4/(6·7·8) - ... 比 莱布尼茨 收敛快。",
     "category": "π·e",
     "kind": "axiom_theorem",
     "searchAliases": [],
@@ -1214,7 +1205,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Nilakantha 级数”中的核心现象",
+        "通过可视化和操作描述“尼拉康塔 级数”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -1228,8 +1219,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "PE03",
-    "title": "Ramanujan π 公式",
-    "intro": "1910 年拉马努金发现：1/π = (2√2/9801) Σ (4k)!(1103+26390k) / ((k!)^4 · 396^(4k))",
+    "title": "拉马努金 π 公式",
+    "intro": "一九一〇年拉马努金发现：1/π = (2√2/9801) Σ (4k)!(1103+26390k) / ((k!)^4 · 396^(4k))",
     "category": "π·e",
     "kind": "axiom_theorem",
     "searchAliases": [],
@@ -1241,7 +1232,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Ramanujan π 公式”中的核心现象",
+        "通过可视化和操作描述“拉马努金 π 公式”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -2200,7 +2191,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "PB09",
-    "title": "Bertrand 悖论（圆内随机弦）",
+    "title": "伯特兰 悖论（圆内随机弦）",
     "intro": "\"随机弦\"有 3 种定义，得出不同答案。揭示\"随机\"需要明确定义。",
     "category": "概率",
     "kind": "axiom_theorem",
@@ -2213,7 +2204,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Bertrand 悖论（圆内随机弦）”中的核心现象",
+        "通过可视化和操作描述“伯特兰 悖论（圆内随机弦）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -2227,7 +2218,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "PB10",
-    "title": "Poisson 分布（稀有事件）",
+    "title": "泊松 分布（稀有事件）",
     "intro": "P(X=k) = λ^k e^(-λ) / k!。λ 是单位时间平均事件数。",
     "category": "概率",
     "kind": "axiom_theorem",
@@ -2240,7 +2231,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Poisson 分布（稀有事件）”中的核心现象",
+        "通过可视化和操作描述“泊松 分布（稀有事件）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -2902,7 +2893,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "OT10",
-    "title": "生命游戏（Conway）",
+    "title": "生命游戏（康威）",
     "intro": "细胞自动机：活细胞 2-3 邻居活下来；死细胞 3 邻居复活。",
     "category": "其他",
     "kind": "axiom_theorem",
@@ -2915,7 +2906,7 @@ export const EXPERIMENT_CATALOG = [
         "middle"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“生命游戏（Conway）”中的核心现象",
+        "通过可视化和操作描述“生命游戏（康威）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3449,8 +3440,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_01",
-    "title": "挂谷集的几何构造（Kakeya 1928 → Besicovitch）",
-    "intro": "1917 年日本数学家挂谷宗一提出\"小厕所转棒\"问题；1928 年 Besicovitch 构造出面积可任意小的挂谷集——用佩龙树\"劈-叠\"。",
+    "title": "挂谷集的几何构造（挂谷 1928 → 贝西科维奇）",
+    "intro": "一九一七年日本数学家挂谷宗一提出\"小厕所转棒\"问题；一九二八年 贝西科维奇 构造出面积可任意小的挂谷集——用佩龙树\"劈-叠\"。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3461,7 +3452,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“挂谷集的几何构造（Kakeya 1928 → Besicovitch）”中的核心现象",
+        "通过可视化和操作描述“挂谷集的几何构造（挂谷 1928 → 贝西科维奇）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3502,7 +3493,7 @@ export const EXPERIMENT_CATALOG = [
   {
     "id": "EX_PROVEN_03",
     "title": "2D 黏性挂谷集（王虹 2022 简化）",
-    "intro": "黏性 Kakeya 集：所有方向的针\"黏\"成细管。Wolff 1999 首次形式化，王虹 2022 给出 6 页简化证明。关键结论：dim 仍 = 2。",
+    "intro": "黏性 挂谷 集：所有方向的针\"黏\"成细管。Wolff 1999 首次形式化，王虹 2022 给出 6 页简化证明。关键结论：dim 仍 = 2。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3553,8 +3544,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_05",
-    "title": "3D 黏性 Kakeya 证明 (王虹+Zahl 2022)",
-    "intro": "2022 年王虹 (Hong Wang) 与 Joshua Zahl 证明：3D 中「黏性 Kakeya 集」（方向相似细管抱团）的 Hausdorff 维数 = 3。这是攻克百年挂谷猜想的关键第一步。",
+    "title": "3D 黏性 挂谷 证明 (王虹+Zahl 2022)",
+    "intro": "二〇二二年王虹 (Hong Wang) 与 Joshua Zahl 证明：3D 中「黏性 挂谷 集」（方向相似细管抱团）的 Hausdorff 维数 = 3。这是攻克百年挂谷猜想的关键第一步。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3565,7 +3556,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“3D 黏性 Kakeya 证明 (王虹+Zahl 2022)”中的核心现象",
+        "通过可视化和操作描述“3D 黏性 挂谷 证明 (王虹+Zahl 2022)”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3580,7 +3571,7 @@ export const EXPERIMENT_CATALOG = [
   {
     "id": "EX_PROVEN_06",
     "title": "3D 挂谷 Assouad 维数 (王虹+Zahl 2024)",
-    "intro": "2024 年王虹 (Hong Wang) 与 Joshua Zahl 进一步证明：3D Kakeya 集的 Assouad 维数（比 Minkowski 维数更强的局部放大指标）也 = 3。这是黏性 Kakeya 之后的第二步里程碑。",
+    "intro": "二〇二四年王虹 (Hong Wang) 与 Joshua Zahl 进一步证明：3D 挂谷 集的 Assouad 维数（比 Minkowski 维数更强的局部放大指标）也 = 3。这是黏性 挂谷 之后的第二步里程碑。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3606,7 +3597,7 @@ export const EXPERIMENT_CATALOG = [
   {
     "id": "EX_PROVEN_07",
     "title": "3D 挂谷猜想完整证明 (王虹+Zahl 2025) ★最重磅★",
-    "intro": "公元 2025 年 2 月，王虹 (Hong Wang) 与 Joshua Zahl 发表 127 页论文 (arXiv:2502.17655)，完整证明 3D Kakeya 猜想的 Hausdorff 维数 + Minkowski 维数都 = 3，结束了这个 1917 年悬而未决的百年问题。",
+    "intro": "2025 年 2 月，王虹 (Hong Wang) 与 Joshua Zahl 发表 127 页论文 (arXiv:2502.17655)，完整证明 3D 挂谷 猜想的 Hausdorff 维数 + Minkowski 维数都 = 3，结束了这个 1917 年悬而未决的百年问题。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3631,8 +3622,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_08",
-    "title": "Falconer 距离集 2D 突破 (王虹+Guth+Du 2024)",
-    "intro": "2024 年王虹 (Hong Wang) 与 Larry Guth (MIT)、Du (杜亚楠) 合作证明 2D 情形下 Falconer 距离猜想的关键临界指数下界，将这个 1985 年悬而未决的猜想推进了一大步。",
+    "title": "法尔科纳 距离集 2D 突破 (王虹+Guth+Du 2024)",
+    "intro": "2024 年王虹 (Hong 王) 与 Larry Guth (MIT)、Du (杜亚楠) 合作证明 2D 情形下 法尔科纳 距离猜想的关键临界指数下界，将这个 1985 年悬而未决的猜想推进了一大步。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3643,7 +3634,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Falconer 距离集 2D 突破 (王虹+Guth+Du 2024)”中的核心现象",
+        "通过可视化和操作描述“法尔科纳 距离集 2D 突破 (王虹+Guth+Du 2024)”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3657,8 +3648,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_09",
-    "title": "Furstenberg 集合猜想完整证明（王虹 2024）",
-    "intro": "1970 Furstenberg 提出：自然数中上密度正的子集 A，其加法表 A+A 必含任意长等差数列。54 年悬案，2024 王虹与合作者用动力系统 + 加法组合完整解决。",
+    "title": "弗斯滕伯格 集合猜想完整证明（王虹 2024）",
+    "intro": "1970 弗斯滕伯格 提出：自然数中上密度正的子集 A，其加法表 A+A 必含任意长等差数列。54 年悬案，2024 王虹与合作者用动力系统 + 加法组合完整解决。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3669,7 +3660,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Furstenberg 集合猜想完整证明（王虹 2024）”中的核心现象",
+        "通过可视化和操作描述“弗斯滕伯格 集合猜想完整证明（王虹 2024）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3683,7 +3674,7 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_10",
-    "title": "调和分析猜想之塔（Fefferman-王虹）",
+    "title": "调和分析猜想之塔（费弗曼-王虹）",
     "intro": "调和分析有四层互相联系的猜想：挂谷（底）→ 限制 → Bochner-Riesz → 局部光滑化（顶）。王虹 + Guth + Zahl 2025 完整证明挂谷猜想，相当于夯实了整座塔的地基。",
     "category": "已证",
     "kind": "conjecture_proven",
@@ -3695,7 +3686,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“调和分析猜想之塔（Fefferman-王虹）”中的核心现象",
+        "通过可视化和操作描述“调和分析猜想之塔（费弗曼-王虹）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3787,8 +3778,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_14",
-    "title": "庞加莱猜想证明（Perelman 2003）",
-    "intro": "1904 年庞加莱提出 3 维球面是唯一封闭 3-流形，2003 年俄裔数学家 Grigori Perelman 用 Ricci flow + 手术给出证明，2006 年拒领菲尔兹奖 + 千禧百万奖金。",
+    "title": "庞加莱猜想证明（佩雷尔曼 2003）",
+    "intro": "1904 年庞加莱提出 3 维球面是唯一封闭 3-流形，2003 年俄裔数学家 Grigori 佩雷尔曼 用 Ricci flow + 手术给出证明，2006 年拒领菲尔兹奖 + 千禧百万奖金。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3799,7 +3790,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“庞加莱猜想证明（Perelman 2003）”中的核心现象",
+        "通过可视化和操作描述“庞加莱猜想证明（佩雷尔曼 2003）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3813,8 +3804,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_15",
-    "title": "Ricci flow 几何演化方程（Hamilton 1982, Perelman 2003 改进）",
-    "intro": "1982 年 Hamilton 引入，2003 年 Perelman 用 Ricci flow + 手术 (surgery) 证明庞加莱猜想；2006 年朱熹平/曹怀东给出 500+ 页完整补充。",
+    "title": "Ricci flow 几何演化方程（汉密尔顿 1982, 佩雷尔曼 2003 改进）",
+    "intro": "一九八二年 汉密尔顿 引入，二〇〇三年 佩雷尔曼 用 Ricci flow + 手术 (surgery) 证明庞加莱猜想；二〇〇六年朱熹平/曹怀东给出 500+ 页完整补充。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3825,7 +3816,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“Ricci flow 几何演化方程（Hamilton 1982, Perelman 2003 改进）”中的核心现象",
+        "通过可视化和操作描述“Ricci flow 几何演化方程（汉密尔顿 1982, 佩雷尔曼 2003 改进）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3839,8 +3830,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_16",
-    "title": "费马大定理证明（Wiles 1995 + Taylor-Wiles）",
-    "intro": "1637 年费马在《算术》页边写下 xⁿ+yⁿ=zⁿ 无正整数解的猜想，1995 年 Andrew Wiles 用椭圆曲线 + 模形式给出 109 页完整证明。",
+    "title": "费马大定理证明（怀尔斯 1995 + Taylor-怀尔斯）",
+    "intro": "一六三七年费马在《算术》页边写下 xⁿ+yⁿ=zⁿ 无正整数解的猜想，一九九五年 Andrew 怀尔斯 用椭圆曲线 + 模形式给出 109 页完整证明。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3851,7 +3842,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“费马大定理证明（Wiles 1995 + Taylor-Wiles）”中的核心现象",
+        "通过可视化和操作描述“费马大定理证明（怀尔斯 1995 + Taylor-怀尔斯）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3865,8 +3856,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_17",
-    "title": "谷山-志村猜想的部分证明（Wiles）",
-    "intro": "1955 年日本数学家谷山丰提出\"每条椭圆曲线都对应一个模形式\"，Wiles 1995 年证明半稳定情形（间接证明费马大定理）。",
+    "title": "谷山-志村猜想的部分证明（怀尔斯）",
+    "intro": "1955 年日本数学家谷山丰提出\"每条椭圆曲线都对应一个模形式\"，怀尔斯 1995 年证明半稳定情形（间接证明费马大定理）。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3877,7 +3868,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“谷山-志村猜想的部分证明（Wiles）”中的核心现象",
+        "通过可视化和操作描述“谷山-志村猜想的部分证明（怀尔斯）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [
@@ -3917,8 +3908,8 @@ export const EXPERIMENT_CATALOG = [
   },
   {
     "id": "EX_PROVEN_19",
-    "title": "弱哥德巴赫证明（Helfgott 2013）",
-    "intro": "1742 年 Goldbach 提出\"每个奇数 = 三个素数之和\"。Helfgott 2013 用圆法完整证明——从 Vinogradov 1937 的\"足够大\"到 2013 的\"每个都成立\"，走了 76 年。",
+    "title": "弱哥德巴赫证明（赫尔福特 2013）",
+    "intro": "1742 年 哥德巴赫 提出\"每个奇数 = 三个素数之和\"。赫尔福特 2013 用圆法完整证明——从 Vinogradov 1937 的\"足够大\"到 2013 的\"每个都成立\"，走了 76 年。",
     "category": "已证",
     "kind": "conjecture_proven",
     "searchAliases": [],
@@ -3929,7 +3920,7 @@ export const EXPERIMENT_CATALOG = [
         "high"
       ],
       "learningObjectives": [
-        "通过可视化和操作描述“弱哥德巴赫证明（Helfgott 2013）”中的核心现象",
+        "通过可视化和操作描述“弱哥德巴赫证明（赫尔福特 2013）”中的核心现象",
         "比较不同输入或参数下的结果，并用自己的语言解释观察到的规律"
       ],
       "prerequisites": [

@@ -254,6 +254,39 @@ export const REVIEWED_EXPERIMENT_OVERRIDES: Readonly<Record<string, ReviewedOver
       lastReviewedAt: '2026-08-30'
     }
   },
+  NT19: {
+    title: '梅森素数与 Lucas–Lehmer 检验',
+    intro:
+      '梅森素数形如 2ᵖ−1；p 为素数只是必要条件。用 Lucas–Lehmer 判据检验小指数，并区分有限搜索与“是否有无穷多个”的开放问题。',
+    education: {
+      gradeBands: ['middle', 'high'],
+      learningObjectives: [
+        '说明为什么 2ᵖ−1 为素数时 p 必须是素数，并用 p=11 说明反向不成立',
+        '按 Lucas–Lehmer 递推检验小指数，而不把有限试除当作素性证明',
+        '连接梅森素数与偶完全数，并区分已知纪录、暂定序号和无穷性开放问题'
+      ],
+      prerequisites: ['素数与合数', '整数幂与因式分解', '同余与递推（进阶阶段）'],
+      sources: [
+        {
+          label: 'GIMPS：已知梅森素数官方列表',
+          url: 'https://www.mersenne.org/primes/',
+          kind: 'reference'
+        },
+        {
+          label: 'GIMPS：Lucas–Lehmer 判据与搜索算法',
+          url: 'https://www.mersenne.org/various/math.php',
+          kind: 'reference'
+        },
+        {
+          label: 'Euclid’s Elements, Book IX, Proposition 36',
+          url: 'https://aleph0.clarku.edu/~djoyce/elements/bookIX/propIX36.html',
+          kind: 'primary'
+        }
+      ],
+      reviewStatus: 'verified',
+      lastReviewedAt: '2026-08-31'
+    }
+  },
   SQ01: {
     title: '从递推规则长出斐波那契数列',
     intro:
