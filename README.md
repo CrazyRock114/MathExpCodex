@@ -45,7 +45,7 @@ npm run build
 npm run preview
 ```
 
-构建结果位于 `dist/`：`index.html` 是 React 主应用，`legacy.html` 是共享旧实验壳，`pages/{ID}.html` 保留全部历史入口。构建器会拒绝少于 148 个入口或夹带音频二进制的发布包。`vercel.json` 明确使用该命令与输出目录，但自动 Git 部署保持关闭；未经项目负责人确认不会发布生产环境。
+构建结果位于 `dist/`：`index.html` 是 React 实验目录，`pages/{ID}.html` 是 148 个可直接打开、刷新和分享的独立 React 实验页面，`legacy.html` 只保留为迁移对照。构建器会拒绝少于 148 个独立页面、页面回退到 Hash 跳转或发布包夹带音频二进制。`vercel.json` 明确使用该命令与输出目录，但自动 Git 部署保持关闭；未经项目负责人确认不会发布生产环境。
 
 ## 质量检查
 
@@ -53,7 +53,7 @@ npm run preview
 npm test
 ```
 
-当前质量入口会依次运行目录与历史入口生成、资产边界审计、TypeScript、41 项 Vitest、完整静态发布包构建和 198 项 Playwright 检查：
+当前质量入口会依次运行目录与源码兼容入口生成、资产边界审计、TypeScript、42 项 Vitest、完整静态发布包构建和 198 项 Playwright 检查：
 
 - 独立实验页面数量必须为 148
 - 每页能够加载且没有破坏交互的 JavaScript 错误
@@ -61,11 +61,11 @@ npm test
 - 互动区域不能无提示地留白
 - 首页数据数量与类型统计一致
 - 首页在 360px、390px、768px 视口没有横向溢出
-- 新 React 目录包含 148 个类型化实验，并支持搜索、筛选和详情路由
+- 新 React 目录包含 148 个类型化实验，并为每项链接唯一的 `pages/{ID}.html` 页面
 - 30 个旗舰实验已具有 React 原生五阶段互动与算法单元测试
 - 三十个原生实验的全部 150 个阶段在 360px、390px、768px 无横向溢出
 - 新目录与三十个原生实验的全部阶段没有 axe `critical` 或 `serious` 无障碍问题
-- 发布包根入口、旧 `#实验ID` 深链接、148 个历史入口和旧壳回退路径均经过浏览器测试
+- 发布包根入口、148 个独立实验页面、旧 `#实验ID` 兼容跳转和旧壳对照路径均经过浏览器测试
 - 发布包包含 0 个音频二进制，并生成可审计的 `release-manifest.json`
 
 GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生成页重新膨胀或元数据再次声明不存在的运行时音频。
@@ -76,7 +76,7 @@ GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生�
 
 - Vite 8、TypeScript 7、React 19
 - 148 条类型化实验摘要与模块级 ID 索引
-- Hash 详情路由、搜索别名、状态与主题筛选
+- 物理实验页面路由、旧 Hash 兼容跳转、搜索别名、状态与主题筛选
 - 小学 / 初中 / 高中学段草案、学习目标、前置知识和审阅状态字段
 - PR01–PR08、NT01、SQ01、SQ04、SQ07、SQ09、GM01、GM03、GM04、GM07、GR01、GR02、GR07、GR09、PB01–PB03、PB08、AL01、AL04、AL07、AL10、FR03 的 React 原生五阶段实验
 - 31 项已完成来源与数学内容核验，117 项仍明确标记为 `unreviewed`
@@ -89,18 +89,18 @@ GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生�
 - 一个共享的静态 HTML、CSS 和原生 JavaScript 旧版应用
 - 本地固定版本的 Chart.js 4.4.1 UMD（保留上游许可证，旧页不再依赖 CDN 时序）
 - Canvas、SVG 和少量 SMIL 动画
-- 源码中的 148 个轻量历史入口统一跳转到 `index.html#实验ID`；发布包中的同名入口跳转到 `legacy.html#实验ID`，总计约 80KB，不再复制 300MB 共享代码
+- 源码中的 148 个轻量兼容入口用于打开本地构建结果；发布包中的同名 URL 是直接加载共享 React 资源的独立页面，不再跳回首页，也不复制 300MB 共享代码
 - 讲解文字稿保留在源码；生产音频 URL 当前为 0，6 个不完整 MP3 仅作为带 SHA-256 清单的历史样本
 - 无后端、无账户和用户数据存储
 
-旧版 `index.html` 仍是约 2.5MB 的单文件共享壳，但不再被复制到 148 个页面。首批 30 个旗舰实验已迁入 React 共享实验壳；其余详情页仍链接旧互动页面，迁移期间保留旧页作为对照。
+旧版 `index.html` 仍是约 2.5MB 的单文件共享壳，但不再被复制到 148 个页面。首批 30 个旗舰实验已迁入 React 共享实验壳；其余实验也先拥有独立 React 介绍页，并从页面内进入旧互动对照，直到互动迁移完成。
 
 ## 重要目录
 
 - `index.html`：旧版共享实验壳源码；构建后输出为 `dist/legacy.html`
 - `app/`：React 主应用、组件、样式和类型化目录；构建后输出为 `dist/index.html`
 - `scripts/generate-catalog.mjs`：从旧元数据生成受 TypeScript 约束的目录
-- `pages/`：148 个可重建的轻量历史 URL 入口
+- `pages/`：148 个可重建的源码兼容入口；生产构建会在同名 URL 生成独立 React 页面
 - `experiments_meta.json`：旧版实验元数据快照，后续将迁移为有类型约束的数据源
 - `audio/`：历史讲解文字稿与 6 个隔离的 v13 音频样本；边界说明见目录内 README
 - `docs/ASSET_INVENTORY.md`：生成页、文字稿、归档音频、校验值与恢复方案
@@ -109,7 +109,7 @@ GitHub Actions 使用稀疏检出跳过归档 MP3；资产审计同时阻止生�
 - `scripts/assemble-site.mjs`：组装并验证不含音频二进制的完整静态发布包
 - `tests/`：Playwright 浏览器冒烟测试
 - `docs/PROGRESS.md`：当前 Goal、里程碑、测试证据和后续工作
-- `gen_pages.py`：旧版独立页面生成器
+- `gen_pages.py`：源码兼容入口生成器
 
 ## 当前迭代优先级
 

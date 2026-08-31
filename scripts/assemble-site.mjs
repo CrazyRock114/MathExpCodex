@@ -37,15 +37,15 @@ await Promise.all([
 ]);
 
 const releaseFiles = await walk(outputRoot);
-const historicalPages = releaseFiles.filter((path) =>
+const experimentPages = releaseFiles.filter((path) =>
   dirname(path) === join(outputRoot, 'pages') && path.endsWith('.html')
 );
 const mediaBinaries = releaseFiles.filter((path) => binaryExtensions.has(extname(path).toLowerCase()));
-const pageTargets = await Promise.all(historicalPages.map((path) => readFile(path, 'utf8')));
+const pageSources = await Promise.all(experimentPages.map((path) => readFile(path, 'utf8')));
 
-if (historicalPages.length !== 148) throw new Error(`发布包历史入口不是 148 个：${historicalPages.length}`);
-if (pageTargets.some((source) => !source.includes('../legacy.html#'))) {
-  throw new Error('发布包历史入口没有统一指向 legacy.html');
+if (experimentPages.length !== 148) throw new Error(`发布包独立实验页面不是 148 个：${experimentPages.length}`);
+if (pageSources.some((source) => !source.includes('../assets/') || source.includes('http-equiv="refresh"'))) {
+  throw new Error('独立实验页面没有直接加载共享 React 资源');
 }
 if (mediaBinaries.length) {
   throw new Error(`发布包意外包含音频二进制：${mediaBinaries.map((path) => relative(outputRoot, path)).join(', ')}`);
@@ -55,7 +55,7 @@ const manifest = {
   appEntry: 'index.html',
   legacyEntry: 'legacy.html',
   knowledgeEntry: 'knowledge.html',
-  historicalPages: historicalPages.length,
+  experimentPages: experimentPages.length,
   payloadFiles: releaseFiles.length,
   payloadBytes: (await Promise.all(releaseFiles.map(async (path) => (await stat(path)).size)))
     .reduce((sum, size) => sum + size, 0),

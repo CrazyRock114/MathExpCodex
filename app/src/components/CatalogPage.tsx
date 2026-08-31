@@ -82,7 +82,7 @@ export function CatalogPage() {
               <span>{experiment.category}</span>
               <span>{experiment.id}</span>
             </div>
-            <h2><a href={`#/experiment/${experiment.id}`}>{experiment.title}</a></h2>
+            <h2><a href={experiment.pagePath}>{experiment.title}</a></h2>
             <p>{experiment.intro}</p>
             <div className="chip-row" aria-label="推荐学段">
               {experiment.education.gradeBands.map((band) => (

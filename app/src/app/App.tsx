@@ -1,10 +1,11 @@
 import { catalogById } from '../data/catalog';
 import { CatalogPage } from '../components/CatalogPage';
 import { ExperimentPage } from '../components/ExperimentPage';
-import { useHashRoute } from './hash-route';
+import { catalogHref, useAppRoute } from './app-route';
 
 export function App() {
-  const route = useHashRoute();
+  const route = useAppRoute();
+  const homeHref = catalogHref(window.location.pathname);
   const experiment =
     route.name === 'experiment' ? catalogById.get(route.experimentId) : undefined;
 
@@ -14,7 +15,7 @@ export function App() {
         跳到主要内容
       </a>
       <header className="site-header">
-        <a className="brand" href="#/">
+        <a className="brand" href={homeHref}>
           <span aria-hidden="true">π</span>
           <span>MathExpCodex</span>
         </a>

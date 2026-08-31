@@ -5,6 +5,7 @@ import {
   type ExperimentSummary
 } from '../data/experiment';
 import { nativeExperimentById } from '../experiments/registry';
+import { catalogHref, legacyExperimentHref } from '../app/app-route';
 
 interface ExperimentPageProps {
   readonly experiment: ExperimentSummary | undefined;
@@ -12,10 +13,12 @@ interface ExperimentPageProps {
 }
 
 export function ExperimentPage({ experiment, requestedId }: ExperimentPageProps) {
+  const homeHref = catalogHref(window.location.pathname);
+
   if (!experiment) {
     return (
       <div className="page-shell narrow-page">
-        <a className="back-link" href="#/">← 返回实验目录</a>
+        <a className="back-link" href={homeHref}>← 返回实验目录</a>
         <h1>没有找到实验 {requestedId}</h1>
         <p>请检查链接，或从完整目录重新选择。</p>
       </div>
@@ -26,7 +29,7 @@ export function ExperimentPage({ experiment, requestedId }: ExperimentPageProps)
 
   return (
     <article className="page-shell narrow-page">
-      <a className="back-link" href="#/">← 返回实验目录</a>
+      <a className="back-link" href={homeHref}>← 返回实验目录</a>
       <header className="experiment-header">
         <div className="card-meta"><span>{experiment.category}</span><span>{experiment.id}</span></div>
         <h1>{experiment.title}</h1>
@@ -71,7 +74,12 @@ export function ExperimentPage({ experiment, requestedId }: ExperimentPageProps)
             ? '上方是经过内容核验的 React 原生实验；旧页面暂时保留，便于迁移期间对照。'
             : '共享互动组件仍在迁移中；现阶段打开经过 148 页回归测试的旧版实验。'}
         </p>
-        <a className="primary-link" href={experiment.legacyPath}>打开 {experiment.id} 旧版实验</a>
+        <a
+          className="primary-link"
+          href={legacyExperimentHref(experiment.id, window.location.pathname)}
+        >
+          打开 {experiment.id} 旧版实验
+        </a>
       </section>
     </article>
   );

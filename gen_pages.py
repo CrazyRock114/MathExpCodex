@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""为 148 个历史页面 URL 生成轻量入口，统一复用根目录旧版应用。"""
+"""为源码目录生成 148 个轻量入口，转到构建后的独立实验页面。"""
 
 import argparse
 import html
@@ -13,8 +13,12 @@ PAGES_DIR = WORKSPACE / 'pages'
 ID_PATTERN = re.compile(r'^[A-Z0-9_]+$')
 
 
-def page_source(experiment_id: str, title: str, app_target: str = '../index.html') -> str:
-    target = f'{app_target}#{experiment_id}'
+def page_source(
+    experiment_id: str,
+    title: str,
+    target_template: str = '../dist/pages/{id}.html'
+) -> str:
+    target = target_template.format(id=experiment_id)
     safe_title = html.escape(title)
     safe_target = html.escape(target, quote=True)
     script_target = json.dumps(target)
@@ -44,9 +48,9 @@ def main() -> None:
         help='生成目录；默认写入源码 pages/'
     )
     parser.add_argument(
-        '--app-target',
-        default='../index.html',
-        help='入口相对目标；发布包使用 ../legacy.html'
+        '--target-template',
+        default='../dist/pages/{id}.html',
+        help='包含 {id} 的目标模板；默认转到构建后的独立实验页面'
     )
     args = parser.parse_args()
     output_dir = args.output_dir if args.output_dir.is_absolute() else WORKSPACE / args.output_dir
@@ -61,7 +65,7 @@ def main() -> None:
         filename = f'{experiment_id}.html'
         expected_files.add(filename)
         (output_dir / filename).write_text(
-            page_source(experiment_id, experiment['title'], args.app_target),
+            page_source(experiment_id, experiment['title'], args.target_template),
             encoding='utf-8'
         )
 

@@ -11,13 +11,13 @@ test('仓库包含 148 个独立实验页面', () => {
   expect(experimentPages).toHaveLength(148);
 });
 
-test('历史入口复用共享壳且不请求缺失音频', async ({ page }) => {
+test('共享旧壳不请求缺失音频', async ({ page }) => {
   const mediaRequests = [];
   page.on('request', (request) => {
     if (/\.(?:mp3|wav|m4a|ogg)(?:\?.*)?$/i.test(request.url())) mediaRequests.push(request.url());
   });
-  await page.goto('/pages/NT06.html', { waitUntil: 'domcontentloaded' });
-  await expect(page).toHaveURL(/\/index\.html#NT06$/);
+  await page.goto('/dist/legacy.html#NT06', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveURL(/\/dist\/legacy\.html#NT06$/);
   await expect(page.getByText('音频二进制未随源码分发').first()).toBeVisible();
   await expect(page.locator('audio[src]')).toHaveCount(0);
   expect(mediaRequests).toEqual([]);
@@ -25,8 +25,8 @@ test('历史入口复用共享壳且不请求缺失音频', async ({ page }) => 
 
 test('NT19 使用 Lucas–Lehmer 判据并展示当前梅森素数纪录', async ({ page }) => {
   test.setTimeout(60_000);
-  await page.goto('/pages/NT19.html', { waitUntil: 'domcontentloaded' });
-  await expect(page).toHaveURL(/\/index\.html#NT19$/, { timeout: 10_000 });
+  await page.goto('/dist/legacy.html#NT19', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveURL(/\/dist\/legacy\.html#NT19$/, { timeout: 10_000 });
   await expect(page.locator('#plazaDetail')).toBeVisible({ timeout: 15_000 });
 
   await expect(page.locator('.stage-panel').first()).toContainText('截至 2026-08 已知 52 个');
@@ -49,7 +49,7 @@ for (const filename of experimentPages) {
 
   test(`${experimentId} 可加载并展示完整五阶段`, async ({ page }) => {
     // 原生阶段的全量 axe 扫描会与旧页并行；给单页留出资源竞争余量。
-    // 先单独验证重定向，再等待 2.5MB 共享旧壳完成解析，避免把 CPU 争用误判成缺页。
+    // 等待共享旧壳完成解析，避免把 CPU 争用误判成缺页。
     test.setTimeout(60_000);
     const runtimeErrors = [];
     page.on('pageerror', (error) => runtimeErrors.push(error.message));
@@ -65,9 +65,9 @@ for (const filename of experimentPages) {
     await page.route(/\.(?:mp3|wav|m4a)(?:\?.*)?$/i, (route) =>
       route.fulfill({ status: 204, contentType: 'audio/mpeg', body: '' })
     );
-    await page.goto(`/pages/${filename}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`/dist/legacy.html#${experimentId}`, { waitUntil: 'domcontentloaded' });
 
-    await expect(page).toHaveURL(new RegExp(`/index\\.html#${experimentId}$`), { timeout: 10_000 });
+    await expect(page).toHaveURL(new RegExp(`/dist/legacy\\.html#${experimentId}$`), { timeout: 10_000 });
     await expect(page.locator('#plazaDetail')).toBeVisible({ timeout: 15_000 });
     await expect(page.locator('.stage-tab')).toHaveCount(5);
     await expect(page.locator('#plazaDetail')).not.toContainText('错误:');

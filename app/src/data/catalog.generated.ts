@@ -10,7 +10,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PR01.html",
+    "pagePath": "./pages/PR01.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -37,7 +37,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_open",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PR02.html",
+    "pagePath": "./pages/PR02.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -64,7 +64,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PR03.html",
+    "pagePath": "./pages/PR03.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -91,7 +91,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PR04.html",
+    "pagePath": "./pages/PR04.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -118,7 +118,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PR05.html",
+    "pagePath": "./pages/PR05.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -145,7 +145,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_open",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PR06.html",
+    "pagePath": "./pages/PR06.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -172,7 +172,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_open",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PR07.html",
+    "pagePath": "./pages/PR07.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -199,7 +199,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PR08.html",
+    "pagePath": "./pages/PR08.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -226,7 +226,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT01.html",
+    "pagePath": "./pages/NT01.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -253,7 +253,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT02.html",
+    "pagePath": "./pages/NT02.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -280,7 +280,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT03.html",
+    "pagePath": "./pages/NT03.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -307,7 +307,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT04.html",
+    "pagePath": "./pages/NT04.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -334,7 +334,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT05.html",
+    "pagePath": "./pages/NT05.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -361,7 +361,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT06.html",
+    "pagePath": "./pages/NT06.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -388,7 +388,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT07.html",
+    "pagePath": "./pages/NT07.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -415,7 +415,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT08.html",
+    "pagePath": "./pages/NT08.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -442,7 +442,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT09.html",
+    "pagePath": "./pages/NT09.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -469,7 +469,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT10.html",
+    "pagePath": "./pages/NT10.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -496,7 +496,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT11.html",
+    "pagePath": "./pages/NT11.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -523,7 +523,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT12.html",
+    "pagePath": "./pages/NT12.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -550,7 +550,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT13.html",
+    "pagePath": "./pages/NT13.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -577,7 +577,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT14.html",
+    "pagePath": "./pages/NT14.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -604,7 +604,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT15.html",
+    "pagePath": "./pages/NT15.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -631,7 +631,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_open",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT16.html",
+    "pagePath": "./pages/NT16.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -658,7 +658,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT17.html",
+    "pagePath": "./pages/NT17.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -685,7 +685,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT18.html",
+    "pagePath": "./pages/NT18.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -712,7 +712,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_open",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT19.html",
+    "pagePath": "./pages/NT19.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -739,7 +739,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_open",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/NT20.html",
+    "pagePath": "./pages/NT20.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -766,7 +766,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ01.html",
+    "pagePath": "./pages/SQ01.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -793,7 +793,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ02.html",
+    "pagePath": "./pages/SQ02.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -820,7 +820,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ03.html",
+    "pagePath": "./pages/SQ03.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -847,7 +847,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ04.html",
+    "pagePath": "./pages/SQ04.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -874,7 +874,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ05.html",
+    "pagePath": "./pages/SQ05.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -901,7 +901,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ06.html",
+    "pagePath": "./pages/SQ06.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -928,7 +928,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ07.html",
+    "pagePath": "./pages/SQ07.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -955,7 +955,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ08.html",
+    "pagePath": "./pages/SQ08.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -982,7 +982,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ09.html",
+    "pagePath": "./pages/SQ09.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1009,7 +1009,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ10.html",
+    "pagePath": "./pages/SQ10.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1036,7 +1036,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ11.html",
+    "pagePath": "./pages/SQ11.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1063,7 +1063,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ12.html",
+    "pagePath": "./pages/SQ12.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1090,7 +1090,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ13.html",
+    "pagePath": "./pages/SQ13.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1117,7 +1117,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ14.html",
+    "pagePath": "./pages/SQ14.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1144,7 +1144,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/SQ15.html",
+    "pagePath": "./pages/SQ15.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1171,7 +1171,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE01.html",
+    "pagePath": "./pages/PE01.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1198,7 +1198,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE02.html",
+    "pagePath": "./pages/PE02.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1225,7 +1225,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE03.html",
+    "pagePath": "./pages/PE03.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1252,7 +1252,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE04.html",
+    "pagePath": "./pages/PE04.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1279,7 +1279,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE05.html",
+    "pagePath": "./pages/PE05.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1306,7 +1306,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE06.html",
+    "pagePath": "./pages/PE06.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1333,7 +1333,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE07.html",
+    "pagePath": "./pages/PE07.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1360,7 +1360,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE08.html",
+    "pagePath": "./pages/PE08.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1387,7 +1387,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE09.html",
+    "pagePath": "./pages/PE09.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1414,7 +1414,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PE10.html",
+    "pagePath": "./pages/PE10.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1441,7 +1441,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM01.html",
+    "pagePath": "./pages/GM01.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1468,7 +1468,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM02.html",
+    "pagePath": "./pages/GM02.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1495,7 +1495,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM03.html",
+    "pagePath": "./pages/GM03.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1522,7 +1522,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM04.html",
+    "pagePath": "./pages/GM04.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1549,7 +1549,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM05.html",
+    "pagePath": "./pages/GM05.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1576,7 +1576,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM06.html",
+    "pagePath": "./pages/GM06.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1603,7 +1603,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM07.html",
+    "pagePath": "./pages/GM07.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1630,7 +1630,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM08.html",
+    "pagePath": "./pages/GM08.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1657,7 +1657,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM09.html",
+    "pagePath": "./pages/GM09.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1684,7 +1684,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GM10.html",
+    "pagePath": "./pages/GM10.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -1711,7 +1711,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR01.html",
+    "pagePath": "./pages/GR01.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1738,7 +1738,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR02.html",
+    "pagePath": "./pages/GR02.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1765,7 +1765,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR03.html",
+    "pagePath": "./pages/GR03.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1792,7 +1792,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR04.html",
+    "pagePath": "./pages/GR04.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1819,7 +1819,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR05.html",
+    "pagePath": "./pages/GR05.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1846,7 +1846,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR06.html",
+    "pagePath": "./pages/GR06.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1873,7 +1873,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR07.html",
+    "pagePath": "./pages/GR07.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1900,7 +1900,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR08.html",
+    "pagePath": "./pages/GR08.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1927,7 +1927,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR09.html",
+    "pagePath": "./pages/GR09.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1954,7 +1954,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/GR10.html",
+    "pagePath": "./pages/GR10.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -1981,7 +1981,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB01.html",
+    "pagePath": "./pages/PB01.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2008,7 +2008,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB02.html",
+    "pagePath": "./pages/PB02.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2035,7 +2035,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB03.html",
+    "pagePath": "./pages/PB03.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2062,7 +2062,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB04.html",
+    "pagePath": "./pages/PB04.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2089,7 +2089,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB05.html",
+    "pagePath": "./pages/PB05.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2116,7 +2116,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB06.html",
+    "pagePath": "./pages/PB06.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2143,7 +2143,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB07.html",
+    "pagePath": "./pages/PB07.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2170,7 +2170,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB08.html",
+    "pagePath": "./pages/PB08.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2197,7 +2197,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB09.html",
+    "pagePath": "./pages/PB09.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2224,7 +2224,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/PB10.html",
+    "pagePath": "./pages/PB10.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2251,7 +2251,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL01.html",
+    "pagePath": "./pages/AL01.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2278,7 +2278,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL02.html",
+    "pagePath": "./pages/AL02.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2305,7 +2305,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL03.html",
+    "pagePath": "./pages/AL03.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2332,7 +2332,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL04.html",
+    "pagePath": "./pages/AL04.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2359,7 +2359,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL05.html",
+    "pagePath": "./pages/AL05.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2386,7 +2386,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL06.html",
+    "pagePath": "./pages/AL06.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2413,7 +2413,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL07.html",
+    "pagePath": "./pages/AL07.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2440,7 +2440,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL08.html",
+    "pagePath": "./pages/AL08.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2467,7 +2467,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL09.html",
+    "pagePath": "./pages/AL09.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2494,7 +2494,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/AL10.html",
+    "pagePath": "./pages/AL10.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2521,7 +2521,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/FR01.html",
+    "pagePath": "./pages/FR01.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2548,7 +2548,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/FR02.html",
+    "pagePath": "./pages/FR02.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2575,7 +2575,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/FR03.html",
+    "pagePath": "./pages/FR03.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2602,7 +2602,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/FR04.html",
+    "pagePath": "./pages/FR04.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2629,7 +2629,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/FR05.html",
+    "pagePath": "./pages/FR05.html",
     "education": {
       "gradeBands": [
         "middle",
@@ -2656,7 +2656,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT01.html",
+    "pagePath": "./pages/OT01.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2683,7 +2683,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT02.html",
+    "pagePath": "./pages/OT02.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2710,7 +2710,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT03.html",
+    "pagePath": "./pages/OT03.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2737,7 +2737,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT04.html",
+    "pagePath": "./pages/OT04.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2764,7 +2764,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT05.html",
+    "pagePath": "./pages/OT05.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2791,7 +2791,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT06.html",
+    "pagePath": "./pages/OT06.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2818,7 +2818,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT07.html",
+    "pagePath": "./pages/OT07.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2845,7 +2845,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT08.html",
+    "pagePath": "./pages/OT08.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2872,7 +2872,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT09.html",
+    "pagePath": "./pages/OT09.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2899,7 +2899,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/OT10.html",
+    "pagePath": "./pages/OT10.html",
     "education": {
       "gradeBands": [
         "primary",
@@ -2926,7 +2926,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX01.html",
+    "pagePath": "./pages/EX01.html",
     "education": {
       "gradeBands": [
         "high"
@@ -2952,7 +2952,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX02.html",
+    "pagePath": "./pages/EX02.html",
     "education": {
       "gradeBands": [
         "high"
@@ -2978,7 +2978,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX03.html",
+    "pagePath": "./pages/EX03.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3004,7 +3004,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX04.html",
+    "pagePath": "./pages/EX04.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3030,7 +3030,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX05.html",
+    "pagePath": "./pages/EX05.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3056,7 +3056,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX06.html",
+    "pagePath": "./pages/EX06.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3082,7 +3082,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX07.html",
+    "pagePath": "./pages/EX07.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3108,7 +3108,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_open",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX08.html",
+    "pagePath": "./pages/EX08.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3134,7 +3134,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX09.html",
+    "pagePath": "./pages/EX09.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3160,7 +3160,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX10.html",
+    "pagePath": "./pages/EX10.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3186,7 +3186,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_open",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX11.html",
+    "pagePath": "./pages/EX11.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3212,7 +3212,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX12.html",
+    "pagePath": "./pages/EX12.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3238,7 +3238,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX13.html",
+    "pagePath": "./pages/EX13.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3264,7 +3264,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX14.html",
+    "pagePath": "./pages/EX14.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3290,7 +3290,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_open",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX15.html",
+    "pagePath": "./pages/EX15.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3316,7 +3316,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX16.html",
+    "pagePath": "./pages/EX16.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3342,7 +3342,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX17.html",
+    "pagePath": "./pages/EX17.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3368,7 +3368,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX18.html",
+    "pagePath": "./pages/EX18.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3394,7 +3394,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX19.html",
+    "pagePath": "./pages/EX19.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3420,7 +3420,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "axiom_theorem",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX20.html",
+    "pagePath": "./pages/EX20.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3446,7 +3446,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_01.html",
+    "pagePath": "./pages/EX_PROVEN_01.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3472,7 +3472,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_02.html",
+    "pagePath": "./pages/EX_PROVEN_02.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3498,7 +3498,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_03.html",
+    "pagePath": "./pages/EX_PROVEN_03.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3524,7 +3524,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_04.html",
+    "pagePath": "./pages/EX_PROVEN_04.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3550,7 +3550,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_05.html",
+    "pagePath": "./pages/EX_PROVEN_05.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3576,7 +3576,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_06.html",
+    "pagePath": "./pages/EX_PROVEN_06.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3602,7 +3602,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_07.html",
+    "pagePath": "./pages/EX_PROVEN_07.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3628,7 +3628,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_08.html",
+    "pagePath": "./pages/EX_PROVEN_08.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3654,7 +3654,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_09.html",
+    "pagePath": "./pages/EX_PROVEN_09.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3680,7 +3680,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_10.html",
+    "pagePath": "./pages/EX_PROVEN_10.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3706,7 +3706,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_11.html",
+    "pagePath": "./pages/EX_PROVEN_11.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3732,7 +3732,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_12.html",
+    "pagePath": "./pages/EX_PROVEN_12.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3758,7 +3758,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_13.html",
+    "pagePath": "./pages/EX_PROVEN_13.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3784,7 +3784,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_14.html",
+    "pagePath": "./pages/EX_PROVEN_14.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3810,7 +3810,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_15.html",
+    "pagePath": "./pages/EX_PROVEN_15.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3836,7 +3836,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_16.html",
+    "pagePath": "./pages/EX_PROVEN_16.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3862,7 +3862,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_17.html",
+    "pagePath": "./pages/EX_PROVEN_17.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3888,7 +3888,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_18.html",
+    "pagePath": "./pages/EX_PROVEN_18.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3914,7 +3914,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_19.html",
+    "pagePath": "./pages/EX_PROVEN_19.html",
     "education": {
       "gradeBands": [
         "high"
@@ -3940,7 +3940,7 @@ export const EXPERIMENT_CATALOG = [
     "kind": "conjecture_proven",
     "searchAliases": [],
     "stageCount": 5,
-    "legacyPath": "./pages/EX_PROVEN_20.html",
+    "pagePath": "./pages/EX_PROVEN_20.html",
     "education": {
       "gradeBands": [
         "high"

@@ -15,21 +15,22 @@ npm run build
 
 发布包结构：
 
-- `dist/index.html`：React 主应用。
+- `dist/index.html`：React 实验目录。
 - `dist/assets/`：Vite 生成的按需加载模块与样式。
-- `dist/pages/{ID}.html`：148 个历史 URL 入口。
+- `dist/pages/{ID}.html`：148 个直接加载 React 资源的独立实验页面，每页有独立标题和描述。
 - `dist/legacy.html`：所有尚未迁移实验共用的旧版互动壳。
 - `dist/knowledge.html`、`dist/vendor/`：旧版学习路径和固定版本 Chart.js。
 - `dist/audio/`：仅文字稿和资产说明，不包含 MP3、WAV、M4A 或 OGG。
 - `dist/release-manifest.json`：入口数、文件数、总字节数和音频二进制计数。
 
-`scripts/assemble-site.mjs` 会在构建期间验证 148 个发布入口都指向共享旧壳，并在发现任何音频二进制时失败。源码 `pages/` 和发布包 `dist/pages/` 分别指向开发旧壳与发布旧壳，二者都由同一个 `gen_pages.py` 生成。
+`scripts/generate-experiment-pages.mjs` 会从 Vite 入口生成 148 个共享资源的静态实验页面；`scripts/assemble-site.mjs` 验证每页直接引用 React 资源、没有 Meta Refresh，并在发现缺页或任何音频二进制时失败。源码 `pages/` 只是本地兼容入口，不属于生产页面实现。
 
 ## 兼容性与回滚
 
-- 新链接使用 `#/experiment/{ID}`。
-- 旧根入口 `#{ID}` 会由 React 路由解析到同一实验详情。
-- `/pages/{ID}.html` 保持不变，随后进入 `legacy.html#{ID}`。
+- 新链接统一使用 `/pages/{ID}.html`，浏览器地址不会停留在首页。
+- 旧根入口 `#{ID}` 和 `#/experiment/{ID}` 会自动跳转到对应的物理实验页面。
+- `/pages/{ID}.html` 历史地址保持不变，但由原来的旧壳中转升级为独立 React 页面。
+- `legacy.html#{ID}` 只通过实验页中的“旧版实验”对照入口访问。
 - 旧壳是单一文件，不再复制 148 份；回滚时只需回退发布提交或把别名指回上一份已验证部署。
 
 ## 发布权限边界

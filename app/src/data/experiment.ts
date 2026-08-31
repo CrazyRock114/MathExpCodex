@@ -30,7 +30,7 @@ export interface ExperimentSummary {
   readonly kind: ExperimentKind;
   readonly searchAliases: readonly string[];
   readonly stageCount: number;
-  readonly legacyPath: string;
+  readonly pagePath: string;
   readonly education: EducationMetadata;
 }
 
